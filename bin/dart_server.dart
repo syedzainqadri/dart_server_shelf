@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf/shelf.dart';
@@ -18,11 +17,11 @@ Response _echoHandler(Request request) {
 }
 
 void main(List<String> arguments) async {
-  app.get('/hello', (Request request) {
-    var json = {'message': 'Hello World!'};
-    return Response.ok(jsonEncode(json),
-        headers: {'Content-Type': 'application/json'});
-  });
+  // app.get('/hello', (Request request) {
+  //   var json = {'message': 'Hello World!'};
+  //   return Response.ok(jsonEncode(json),
+  //       headers: {'Content-Type': 'application/json'});
+  // });
 
   final ip = InternetAddress.anyIPv4;
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
