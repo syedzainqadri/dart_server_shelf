@@ -12,8 +12,8 @@ class SqlHandler {
 
   Future<Response> sqlHandler(Request request) async {
     try {
-      final User user = await prisma.user.create(
-        data: UserCreateInput(
+      final Users user = await prisma.users.create(
+        data: UsersCreateInput(
           name: PrismaUnion.zero("Seven"),
           email: "seven@odroe.com",
         ),
@@ -32,7 +32,7 @@ class SqlHandler {
       list.add(jsonEncode(map));
     }
     */
-    return Response.ok('db results: $list\n',
+    return Response.ok('db results: \n',
         headers: {'Content-Type': 'application/json'});
   }
 

@@ -21,3 +21,9 @@ dev_dependencies:
   json_serializable: ^6.5.4
   lints: ^2.0.0
   test: ^1.16.0
+
+prisma:
+    schema: prisma/schema.prisma # Path to your Prisma schema
+    production: lib/prisma_configurator.dart # Path to your production configurator
+    development: prisma/development.dart # Path to your development configurator
+
