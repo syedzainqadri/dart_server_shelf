@@ -1,19 +1,37 @@
 import 'dart:convert';
+import 'package:dart_server/prisma_client.dart';
 import 'package:mysql_client/mysql_client.dart';
 import 'package:shelf/shelf.dart';
 
 import 'config/MysqlConnectionController.dart';
 
+final PrismaClient prisma = PrismaClient();
+
 class SqlHandler {
   final MysqlConnectionController _connection = MysqlConnectionController();
 
   Future<Response> sqlHandler(Request request) async {
+    try {
+      final User user = await prisma.user.create(
+        data: UserCreateInput(
+          name: PrismaUnion.zero("Seven"),
+          email: "seven@odroe.com",
+        ),
+      );
+      print(user.toJson());
+    } catch (e) {
+      print(e.toString());
+    } finally {
+      await prisma.$disconnect();
+    }
+    /*
     final results = _connection.query('SELECT * FROM users');
     var list = [];
     for (var row in results.rows) {
       var map = row.assoc();
       list.add(jsonEncode(map));
     }
+    */
     return Response.ok('db results: $list\n',
         headers: {'Content-Type': 'application/json'});
   }
