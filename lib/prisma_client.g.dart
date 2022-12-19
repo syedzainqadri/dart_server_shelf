@@ -45,6 +45,7 @@ UsersGroupByOutputType _$UsersGroupByOutputTypeFromJson(
       id: json['id'] as int,
       email: json['email'] as String,
       name: json['name'] as String?,
+      password: json['password'] as String?,
       $count: json['_count'] == null
           ? null
           : UsersCountAggregateOutputType.fromJson(
@@ -73,6 +74,7 @@ Map<String, dynamic> _$UsersGroupByOutputTypeToJson(
       'id': instance.id,
       'email': instance.email,
       'name': instance.name,
+      'password': instance.password,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -264,6 +266,7 @@ UsersCountAggregateOutputType _$UsersCountAggregateOutputTypeFromJson(
       id: json['id'] as int,
       email: json['email'] as int,
       name: json['name'] as int,
+      password: json['password'] as int,
       $all: json['_all'] as int,
     );
 
@@ -273,6 +276,7 @@ Map<String, dynamic> _$UsersCountAggregateOutputTypeToJson(
       'id': instance.id,
       'email': instance.email,
       'name': instance.name,
+      'password': instance.password,
       '_all': instance.$all,
     };
 
@@ -306,6 +310,7 @@ UsersMinAggregateOutputType _$UsersMinAggregateOutputTypeFromJson(
       id: json['id'] as int?,
       email: json['email'] as String?,
       name: json['name'] as String?,
+      password: json['password'] as String?,
     );
 
 Map<String, dynamic> _$UsersMinAggregateOutputTypeToJson(
@@ -314,6 +319,7 @@ Map<String, dynamic> _$UsersMinAggregateOutputTypeToJson(
       'id': instance.id,
       'email': instance.email,
       'name': instance.name,
+      'password': instance.password,
     };
 
 UsersMaxAggregateOutputType _$UsersMaxAggregateOutputTypeFromJson(
@@ -322,6 +328,7 @@ UsersMaxAggregateOutputType _$UsersMaxAggregateOutputTypeFromJson(
       id: json['id'] as int?,
       email: json['email'] as String?,
       name: json['name'] as String?,
+      password: json['password'] as String?,
     );
 
 Map<String, dynamic> _$UsersMaxAggregateOutputTypeToJson(
@@ -330,6 +337,7 @@ Map<String, dynamic> _$UsersMaxAggregateOutputTypeToJson(
       'id': instance.id,
       'email': instance.email,
       'name': instance.name,
+      'password': instance.password,
     };
 
 PostCountOutputType _$PostCountOutputTypeFromJson(Map<String, dynamic> json) =>
@@ -527,12 +535,14 @@ Users _$UsersFromJson(Map<String, dynamic> json) => Users(
       id: json['id'] as int,
       email: json['email'] as String,
       name: json['name'] as String?,
+      password: json['password'] as String?,
     );
 
 Map<String, dynamic> _$UsersToJson(Users instance) => <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
       'name': instance.name,
+      'password': instance.password,
     };
 
 Post _$PostFromJson(Map<String, dynamic> json) => Post(

@@ -11,7 +11,10 @@ final app = Router()
   ..get('/', _rootHandler)
   ..get('/echo/<message>', _echoHandler)
   ..get('/sql', sqlHandler.sqlHandler)
-  ..post('/post', sqlHandler.sqlPostHandler);
+  ..post('/post', sqlHandler.sqlPostHandler)
+  ..get('/allUsers', sqlHandler.allUserHandler)
+  ..get('/jwtToken', sqlHandler.jwtTokenHandler)
+  ..post('/verifyToken', sqlHandler.verifyToken);
 
 Response _rootHandler(Request request) {
   return Response.ok('Hello World!');
