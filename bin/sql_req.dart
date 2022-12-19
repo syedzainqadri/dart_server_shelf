@@ -132,6 +132,6 @@ class SqlHandler {
       }
     }
     return Response.ok('db results: $jwtToken\n',
-        headers: {'Content-Type': 'application/json'});
+        headers: {'Content-Type': 'application/json', 'X-API-KEY': token});
   }
 }
