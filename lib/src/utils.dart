@@ -49,7 +49,7 @@ String generateJwt(
 }) {
   final jwt = JWT(
     {
-      'iat': DateTime.now().millisecondsSinceEpoch,
+      'iat': DateTime.now().day,
     },
     subject: subject,
     issuer: issuer,
@@ -66,6 +66,7 @@ Middleware handleAuth(String secret) {
       JWT? jwt;
       if (authHeader != null && authHeader.startsWith('Bearer ')) {
         final token = authHeader.substring(7);
+        print(token);
         jwt = JWT.verify(token, SecretKey(secret));
       }
 
