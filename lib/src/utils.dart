@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:shelf/shelf.dart';
@@ -59,6 +58,7 @@ String generateJwt(
   return jwt.sign(SecretKey(secret), expiresIn: expiry);
 }
 
+//TODO: Auth is expring in 30 seconds, need to check why
 Middleware handleAuth(String secret) {
   return (Handler innerHandler) {
     return (Request request) async {
@@ -89,7 +89,7 @@ Middleware checkAuthorisation() {
   );
 }
 
-Handler fallback(String indexPath) => (Request request) {
-      final indexFile = File(indexPath).readAsStringSync();
-      return Response.ok(indexFile, headers: {'content-type': 'text/html'});
-    };
+// Handler fallback(String indexPath) => (Request request) {
+//       final indexFile = File(indexPath).readAsStringSync();
+//       return Response.ok(indexFile, headers: {'content-type': 'text/html'});
+//     };
