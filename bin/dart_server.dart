@@ -3,27 +3,15 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
-import 'sql_req.dart';
+import 'sql_handlers.dart';
 
 SqlHandler sqlHandler = SqlHandler();
 
 final app = Router()
-  ..get('/', _rootHandler)
-  ..get('/echo/<message>', _echoHandler)
-  ..get('/sql', sqlHandler.sqlHandler)
-  ..post('/post', sqlHandler.sqlPostHandler)
+  ..post('/createuser', sqlHandler.createUserHandler)
   ..get('/allUsers', sqlHandler.allUserHandler)
   ..get('/jwtToken', sqlHandler.jwtTokenHandler)
   ..post('/verifyToken', sqlHandler.verifyToken);
-
-Response _rootHandler(Request request) {
-  return Response.ok('Hello World!');
-}
-
-Response _echoHandler(Request request) {
-  final message = request.params['message'];
-  return Response.ok('$message\n');
-}
 
 void main(List<String> arguments) async {
   final ip = InternetAddress.anyIPv4;
