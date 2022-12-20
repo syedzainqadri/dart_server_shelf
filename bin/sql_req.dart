@@ -96,7 +96,7 @@ class SqlHandler {
           'loc': 'euw-2',
         }
       },
-      issuer: 'https://github.com/jonasroussel/dart_jsonwebtoken',
+      issuer: 'https://example.com',
     );
 
     // Sign it
@@ -113,25 +113,24 @@ class SqlHandler {
   }
 
   Future<Response> verifyToken(Request request) async {
-    var jwtToken;
-    final token = jsonDecode(await request.readAsString());
-    print(token['token']);
-    var tokenToString = token['token'];
+    bool verified;
+    String? jwtToken = request.headers['x-api-key'];
+    print(jwtToken);
+    final jwt = JWT.decode(jwtToken!);
+    // final jwt = JWT.verify(jwtToken!, SecretKey('secret passphrase'));
 
-    /* Verify */ {
-      try {
-        // Verify a token
-        final jwt = JWT.verify(tokenToString, SecretKey('secret passphrase'));
-
-        print('Payload: ${jwt.payload}');
-        jwtToken = jwt.payload;
-      } on JWTExpiredError {
-        print('jwt expired');
-      } on JWTError catch (ex) {
-        print(ex.message); // ex: invalid signature
-      }
+    print('Payload: ${jwt.payload}');
+    if (jwt.payload['server']['id'] == '3e4fc296' &&
+        jwt.payload['server']['loc'] == 'euw-2' &&
+        jwt.payload['iss'] == 'https://example.com') {
+      print('verified');
+      verified = true;
+    } else {
+      print('not verified');
+      verified = false;
     }
-    return Response.ok('db results: $jwtToken\n',
-        headers: {'Content-Type': 'application/json', 'X-API-KEY': token});
+
+    return Response.ok('db results: $verified\n',
+        headers: {'Content-Type': 'application/json'});
   }
 }
