@@ -6,42 +6,6 @@ import 'package:shelf/shelf.dart';
 final PrismaClient prisma = PrismaClient();
 
 class SqlHandler {
-  Future<Response> createUserHandler(
-    Request request,
-  ) async {
-    String? jwtToken = request.headers['x-api-key'];
-    String? responseValue;
-    final jwt = JWT.decode(jwtToken!);
-    print(jwt.payload);
-    if (jwt.payload['id'] == 123) {
-      var payLoad = jsonDecode(await request.readAsString());
-      var name = payLoad['name'];
-      var email = payLoad['email'];
-      var password = payLoad['password'];
-      try {
-        final Users user = await prisma.users.create(
-          data: UsersCreateInput(
-            name: PrismaUnion.zero(name),
-            email: email,
-            password: PrismaUnion.zero(password),
-          ),
-        );
-        print(jsonEncode(user));
-        responseValue = jsonEncode(user);
-      } catch (e) {
-        print(e.toString());
-        responseValue = e.toString();
-      } finally {
-        await prisma.$disconnect();
-      }
-      return Response.ok('response: $responseValue\n',
-          headers: {'Content-Type': 'application/json'});
-    } else {
-      return Response.ok('response: InValid Api key $responseValue\n',
-          headers: {'Content-Type': 'application/json'});
-    }
-  }
-
   Future<Response> allUserHandler(Request request) async {
     String? jwtToken = request.headers['x-api-key'];
     String? responseValue;

@@ -64,17 +64,15 @@ Middleware handleAuth(String secret) {
     return (Request request) async {
       final authHeader = request.headers['authorization'];
       JWT? jwt;
-
-      try {
-        if (authHeader != null && authHeader.startsWith('Bearer ')) {
-          final token = authHeader.substring(7);
-          jwt = JWT.verify(token, SecretKey(secret));
-        }
-      } catch (_) {}
+      if (authHeader != null && authHeader.startsWith('Bearer ')) {
+        final token = authHeader.substring(7);
+        jwt = JWT.verify(token, SecretKey(secret));
+      }
 
       final updatedRequest = request.change(context: {
         'authDetails': jwt,
       });
+
       return await innerHandler(updatedRequest);
     };
   };
