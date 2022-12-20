@@ -33,7 +33,7 @@ enum PostScalarFieldEnum { id, title, content, published, authorId }
 
 enum SortOrder { asc, desc }
 
-enum UsersScalarFieldEnum { id, email, name, password }
+enum UsersScalarFieldEnum { id, email, name, password, salt }
 
 class UsersWhereInput implements _i1.JsonSerializable {
   const UsersWhereInput({
@@ -44,6 +44,7 @@ class UsersWhereInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
     this.posts,
   });
 
@@ -61,6 +62,8 @@ class UsersWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableFilter> password;
 
+  final _i1.PrismaNullable<StringNullableFilter> salt;
+
   final _i1.PrismaNullable<PostListRelationFilter> posts;
 
   @override
@@ -73,6 +76,7 @@ class UsersWhereInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
       'posts': posts,
     };
   }
@@ -84,6 +88,7 @@ class UsersOrderByWithRelationInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
     this.posts,
   });
 
@@ -95,6 +100,8 @@ class UsersOrderByWithRelationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> password;
 
+  final _i1.PrismaNullable<SortOrder> salt;
+
   final _i1.PrismaNullable<PostOrderByRelationAggregateInput> posts;
 
   @override
@@ -104,6 +111,7 @@ class UsersOrderByWithRelationInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
       'posts': posts,
     };
   }
@@ -134,6 +142,7 @@ class UsersOrderByWithAggregationInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
     this.$count,
     this.$avg,
     this.$max,
@@ -148,6 +157,8 @@ class UsersOrderByWithAggregationInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<SortOrder> name;
 
   final _i1.PrismaNullable<SortOrder> password;
+
+  final _i1.PrismaNullable<SortOrder> salt;
 
   final _i1.PrismaNullable<UsersCountOrderByAggregateInput> $count;
 
@@ -166,6 +177,7 @@ class UsersOrderByWithAggregationInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
       '_count': $count,
       '_avg': $avg,
       '_max': $max,
@@ -184,6 +196,7 @@ class UsersScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final _i1.PrismaNullable<UsersScalarWhereWithAggregatesInput> AND;
@@ -200,6 +213,8 @@ class UsersScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableWithAggregatesFilter> password;
 
+  final _i1.PrismaNullable<StringNullableWithAggregatesFilter> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -210,6 +225,7 @@ class UsersScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -605,6 +621,7 @@ class UsersCreateInput implements _i1.JsonSerializable {
     required this.email,
     this.name,
     this.password,
+    this.salt,
     this.posts,
   });
 
@@ -614,6 +631,8 @@ class UsersCreateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> password;
 
+  final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
+
   final _i1.PrismaNullable<PostCreateNestedManyWithoutAuthorInput> posts;
 
   @override
@@ -622,6 +641,7 @@ class UsersCreateInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
       'posts': posts,
     };
   }
@@ -633,6 +653,7 @@ class UsersUncheckedCreateInput implements _i1.JsonSerializable {
     required this.email,
     this.name,
     this.password,
+    this.salt,
     this.posts,
   });
 
@@ -643,6 +664,8 @@ class UsersUncheckedCreateInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> name;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> password;
+
+  final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
 
   final _i1.PrismaNullable<PostUncheckedCreateNestedManyWithoutAuthorInput>
       posts;
@@ -654,6 +677,7 @@ class UsersUncheckedCreateInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
       'posts': posts,
     };
   }
@@ -664,6 +688,7 @@ class UsersUpdateInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
     this.posts,
   });
 
@@ -673,6 +698,8 @@ class UsersUpdateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> password;
 
+  final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
+
   final _i1.PrismaNullable<PostUpdateManyWithoutAuthorNestedInput> posts;
 
   @override
@@ -681,6 +708,7 @@ class UsersUpdateInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
       'posts': posts,
     };
   }
@@ -692,6 +720,7 @@ class UsersUncheckedUpdateInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
     this.posts,
   });
 
@@ -703,6 +732,8 @@ class UsersUncheckedUpdateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> password;
 
+  final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
+
   final _i1.PrismaNullable<PostUncheckedUpdateManyWithoutAuthorNestedInput>
       posts;
 
@@ -713,6 +744,7 @@ class UsersUncheckedUpdateInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
       'posts': posts,
     };
   }
@@ -724,6 +756,7 @@ class UsersCreateManyInput implements _i1.JsonSerializable {
     required this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final _i1.PrismaNullable<int> id;
@@ -734,6 +767,8 @@ class UsersCreateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> password;
 
+  final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -741,6 +776,7 @@ class UsersCreateManyInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -750,6 +786,7 @@ class UsersUpdateManyMutationInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final _i1.PrismaNullable<StringFieldUpdateOperationsInput> email;
@@ -758,12 +795,15 @@ class UsersUpdateManyMutationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> password;
 
+  final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -774,6 +814,7 @@ class UsersUncheckedUpdateManyInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> id;
@@ -784,6 +825,8 @@ class UsersUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> password;
 
+  final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -791,6 +834,7 @@ class UsersUncheckedUpdateManyInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -1419,6 +1463,7 @@ class UsersCountOrderByAggregateInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final _i1.PrismaNullable<SortOrder> id;
@@ -1429,6 +1474,8 @@ class UsersCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> password;
 
+  final _i1.PrismaNullable<SortOrder> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -1436,6 +1483,7 @@ class UsersCountOrderByAggregateInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -1459,6 +1507,7 @@ class UsersMaxOrderByAggregateInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final _i1.PrismaNullable<SortOrder> id;
@@ -1469,6 +1518,8 @@ class UsersMaxOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> password;
 
+  final _i1.PrismaNullable<SortOrder> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -1476,6 +1527,7 @@ class UsersMaxOrderByAggregateInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -1486,6 +1538,7 @@ class UsersMinOrderByAggregateInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final _i1.PrismaNullable<SortOrder> id;
@@ -1496,6 +1549,8 @@ class UsersMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> password;
 
+  final _i1.PrismaNullable<SortOrder> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -1503,6 +1558,7 @@ class UsersMinOrderByAggregateInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -3330,6 +3386,7 @@ class UsersCreateWithoutPostsInput implements _i1.JsonSerializable {
     required this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final String email;
@@ -3338,12 +3395,15 @@ class UsersCreateWithoutPostsInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> password;
 
+  final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -3354,6 +3414,7 @@ class UsersUncheckedCreateWithoutPostsInput implements _i1.JsonSerializable {
     required this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final _i1.PrismaNullable<int> id;
@@ -3364,6 +3425,8 @@ class UsersUncheckedCreateWithoutPostsInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> password;
 
+  final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -3371,6 +3434,7 @@ class UsersUncheckedCreateWithoutPostsInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -3508,6 +3572,7 @@ class UsersUpdateWithoutPostsInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final _i1.PrismaNullable<StringFieldUpdateOperationsInput> email;
@@ -3516,12 +3581,15 @@ class UsersUpdateWithoutPostsInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> password;
 
+  final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -3532,6 +3600,7 @@ class UsersUncheckedUpdateWithoutPostsInput implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> id;
@@ -3542,6 +3611,8 @@ class UsersUncheckedUpdateWithoutPostsInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> password;
 
+  final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -3549,6 +3620,7 @@ class UsersUncheckedUpdateWithoutPostsInput implements _i1.JsonSerializable {
       'email': email,
       'name': name,
       'password': password,
+      'salt': salt,
     };
   }
 }
@@ -4084,6 +4156,7 @@ class UsersGroupByOutputType implements _i1.JsonSerializable {
     required this.email,
     this.name,
     this.password,
+    this.salt,
     this.$count,
     this.$avg,
     this.$sum,
@@ -4101,6 +4174,8 @@ class UsersGroupByOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> name;
 
   final _i1.PrismaNullable<String> password;
+
+  final _i1.PrismaNullable<String> salt;
 
   @_i2.JsonKey(name: '_count')
   final _i1.PrismaNullable<UsersCountAggregateOutputType> $count;
@@ -4340,6 +4415,7 @@ class UsersCountAggregateOutputType implements _i1.JsonSerializable {
     required this.email,
     required this.name,
     required this.password,
+    required this.salt,
     required this.$all,
   });
 
@@ -4353,6 +4429,8 @@ class UsersCountAggregateOutputType implements _i1.JsonSerializable {
   final int name;
 
   final int password;
+
+  final int salt;
 
   @_i2.JsonKey(name: '_all')
   final int $all;
@@ -4406,6 +4484,7 @@ class UsersMinAggregateOutputType implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   factory UsersMinAggregateOutputType.fromJson(Map<String, dynamic> json) =>
@@ -4418,6 +4497,8 @@ class UsersMinAggregateOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> name;
 
   final _i1.PrismaNullable<String> password;
+
+  final _i1.PrismaNullable<String> salt;
 
   @override
   Map<String, dynamic> toJson() => _$UsersMinAggregateOutputTypeToJson(this);
@@ -4434,6 +4515,7 @@ class UsersMaxAggregateOutputType implements _i1.JsonSerializable {
     this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   factory UsersMaxAggregateOutputType.fromJson(Map<String, dynamic> json) =>
@@ -4446,6 +4528,8 @@ class UsersMaxAggregateOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> name;
 
   final _i1.PrismaNullable<String> password;
+
+  final _i1.PrismaNullable<String> salt;
 
   @override
   Map<String, dynamic> toJson() => _$UsersMaxAggregateOutputTypeToJson(this);
@@ -4763,6 +4847,7 @@ class Users implements _i1.JsonSerializable {
     required this.email,
     this.name,
     this.password,
+    this.salt,
   });
 
   factory Users.fromJson(Map<String, dynamic> json) => _$UsersFromJson(json);
@@ -4774,6 +4859,8 @@ class Users implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> name;
 
   final _i1.PrismaNullable<String> password;
+
+  final _i1.PrismaNullable<String> salt;
 
   @override
   Map<String, dynamic> toJson() => _$UsersToJson(this);
@@ -6537,6 +6624,39 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
           },
           {
+            'name': 'salt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': false,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'String',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+            'dbNames': null,
+            'default': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'salt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': false,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'String',
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+          },
+          {
             'name': 'posts',
             'kind': 'object',
             'isList': true,
@@ -6628,6 +6748,19 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': false,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'String',
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+            {
+              'name': 'salt',
               'kind': 'scalar',
               'isList': false,
               'isRequired': false,
@@ -7519,6 +7652,33 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'salt',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'StringNullableFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'posts',
               'comment': null,
               'isNullable': false,
@@ -7590,6 +7750,21 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'salt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -7715,6 +7890,21 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'salt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -7941,6 +8131,33 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'StringNullableWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'salt',
               'comment': null,
               'isNullable': true,
               'isRequired': false,
@@ -9388,6 +9605,27 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'salt',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'posts',
               'comment': null,
               'isNullable': false,
@@ -9485,6 +9723,27 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'salt',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'posts',
               'comment': null,
               'isNullable': false,
@@ -9559,6 +9818,33 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'NullableStringFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'salt',
               'comment': null,
               'isNullable': true,
               'isRequired': false,
@@ -9706,6 +9992,33 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'salt',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'NullableStringFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'posts',
               'comment': null,
               'isNullable': false,
@@ -9802,6 +10115,27 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               ],
               'deprecation': null,
             },
+            {
+              'name': 'salt',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -9862,6 +10196,33 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'NullableStringFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'salt',
               'comment': null,
               'isNullable': true,
               'isRequired': false,
@@ -9968,6 +10329,33 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'NullableStringFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'salt',
               'comment': null,
               'isNullable': true,
               'isRequired': false,
@@ -12071,6 +12459,21 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               ],
               'deprecation': null,
             },
+            {
+              'name': 'salt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -12166,6 +12569,21 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               ],
               'deprecation': null,
             },
+            {
+              'name': 'salt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -12223,6 +12641,21 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'salt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -18084,6 +18517,27 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               ],
               'deprecation': null,
             },
+            {
+              'name': 'salt',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -18147,6 +18601,27 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'salt',
               'comment': null,
               'isNullable': true,
               'isRequired': false,
@@ -18572,6 +19047,33 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               ],
               'deprecation': null,
             },
+            {
+              'name': 'salt',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'NullableStringFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -18653,6 +19155,33 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'comment': null,
+              'isNullable': true,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'String',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'NullableStringFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'salt',
               'comment': null,
               'isNullable': true,
               'isRequired': false,
@@ -20286,6 +20815,19 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'String',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'salt',
               'isNullable': true,
               'outputType': {
                 'isList': false,
@@ -23664,6 +24206,19 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'salt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'String',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': '_count',
               'isNullable': true,
               'outputType': {
@@ -24239,6 +24794,19 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'salt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': '_all',
               'isNullable': false,
               'outputType': {
@@ -24347,6 +24915,19 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
               'documentation': null,
             },
+            {
+              'name': 'salt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'String',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -24394,6 +24975,19 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'password',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'String',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'salt',
               'isNullable': true,
               'outputType': {
                 'isList': false,
@@ -25055,6 +25649,7 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             'email',
             'name',
             'password',
+            'salt',
           ],
         },
       ],
@@ -25124,7 +25719,7 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
   },
 });
 final String schema = _i6.utf8.decode(_i6.base64.decode(
-    r'Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgICAgICAgID0gInByaXNtYS1jbGllbnQtZGFydCIKICBwcmV2aWV3RmVhdHVyZXMgPSBbImludGVyYWN0aXZlVHJhbnNhY3Rpb25zIl0KfQoKZGF0YXNvdXJjZSBkYiB7CiAgcHJvdmlkZXIgPSAibXlzcWwiCiAgdXJsICAgICAgPSBlbnYoIkRBVEFCQVNFX1VSTCIpCn0KCgptb2RlbCBVc2VycyB7CiAgaWQgICAgSW50ICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGVtYWlsIFN0cmluZyAgQHVuaXF1ZQogIG5hbWUgIFN0cmluZz8KICBwYXNzd29yZCBTdHJpbmc/IAogIHBvc3RzIFBvc3RbXQp9Cgptb2RlbCBQb3N0ewogIGlkICAgICAgICBJbnQgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgdGl0bGUgICAgIFN0cmluZwogIGNvbnRlbnQgICBTdHJpbmc/CiAgcHVibGlzaGVkIEJvb2xlYW4gQGRlZmF1bHQoZmFsc2UpCiAgYXV0aG9yICAgIFVzZXJzICAgIEByZWxhdGlvbihmaWVsZHM6IFthdXRob3JJZF0sIHJlZmVyZW5jZXM6IFtpZF0pCiAgYXV0aG9ySWQgIEludAogIHBvc3RtZXRhIFBvc3RNZXRhW10KfQoKbW9kZWwgUG9zdE1ldGF7CiAgaWQgICAgICAgIEludCAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBtZXRhX3RpdGxlICAgICBTdHJpbmcKICBtZXRhX2Rlc2NyaXB0aW9uICAgU3RyaW5nPwogIHB1Ymxpc2hlZCBCb29sZWFuIEBkZWZhdWx0KGZhbHNlKQogIHBvc3QgICAgUG9zdCAgICBAcmVsYXRpb24oZmllbGRzOiBbcG9zdElkXSwgcmVmZXJlbmNlczogW2lkXSkKICBwb3N0SWQgIEludAp9'));
+    r'Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgICAgICAgID0gInByaXNtYS1jbGllbnQtZGFydCIKICBwcmV2aWV3RmVhdHVyZXMgPSBbImludGVyYWN0aXZlVHJhbnNhY3Rpb25zIl0KfQoKZGF0YXNvdXJjZSBkYiB7CiAgcHJvdmlkZXIgPSAibXlzcWwiCiAgdXJsICAgICAgPSBlbnYoIkRBVEFCQVNFX1VSTCIpCn0KCgptb2RlbCBVc2VycyB7CiAgaWQgICAgSW50ICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGVtYWlsIFN0cmluZyAgQHVuaXF1ZQogIG5hbWUgIFN0cmluZz8KICBwYXNzd29yZCBTdHJpbmc/IAogIHNhbHQgU3RyaW5nPwogIHBvc3RzIFBvc3RbXQp9Cgptb2RlbCBQb3N0ewogIGlkICAgICAgICBJbnQgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgdGl0bGUgICAgIFN0cmluZwogIGNvbnRlbnQgICBTdHJpbmc/CiAgcHVibGlzaGVkIEJvb2xlYW4gQGRlZmF1bHQoZmFsc2UpCiAgYXV0aG9yICAgIFVzZXJzICAgIEByZWxhdGlvbihmaWVsZHM6IFthdXRob3JJZF0sIHJlZmVyZW5jZXM6IFtpZF0pCiAgYXV0aG9ySWQgIEludAogIHBvc3RtZXRhIFBvc3RNZXRhW10KfQoKbW9kZWwgUG9zdE1ldGF7CiAgaWQgICAgICAgIEludCAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBtZXRhX3RpdGxlICAgICBTdHJpbmcKICBtZXRhX2Rlc2NyaXB0aW9uICAgU3RyaW5nPwogIHB1Ymxpc2hlZCBCb29sZWFuIEBkZWZhdWx0KGZhbHNlKQogIHBvc3QgICAgUG9zdCAgICBAcmVsYXRpb24oZmllbGRzOiBbcG9zdElkXSwgcmVmZXJlbmNlczogW2lkXSkKICBwb3N0SWQgIEludAp9'));
 const String _executable =
     r'/Users/xain/Documents/GitHub/dart_server/dart_server/.dart_tool/prisma/query-engine';
 
