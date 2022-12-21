@@ -3,7 +3,7 @@ import 'package:dart_server/dart_server.dart';
 final app = Router();
 
 void main(List<String> arguments) async {
-  const secret = '098097989798807';
+  var secret = Env.secretKey;
   app.mount('/auth/', AuthAPi(secret: secret).router);
   app.mount('/users', UserApi().router);
   final ip = InternetAddress.anyIPv4;
