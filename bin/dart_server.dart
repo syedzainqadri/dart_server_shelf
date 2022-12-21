@@ -4,7 +4,8 @@ final app = Router();
 
 void main(List<String> arguments) async {
   var secret = Env.secretKey;
-  app.mount('/auth/', AuthAPi(secret: secret).router);
+  app.mount('/api', HelloWorldApi().router);
+  app.mount('/auth', AuthAPi(secret: secret).router);
   app.mount('/users', UserApi().router);
   final ip = InternetAddress.anyIPv4;
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
