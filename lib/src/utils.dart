@@ -1,9 +1,4 @@
-import 'dart:convert';
-import 'dart:math';
-
-import 'package:shelf/shelf.dart';
-import 'package:crypto/crypto.dart';
-import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
+import '../dart_server.dart';
 
 Middleware handleCors() {
   const corsHeaders = {
@@ -45,7 +40,7 @@ String generateJwt(
   String issuer,
   String secret, {
   String? jwtId,
-  Duration expiry = const Duration(days: 30),
+  Duration expiry = const Duration(seconds: 30),
 }) {
   final jwt = JWT(
     {
@@ -89,8 +84,3 @@ Middleware checkAuthorisation() {
     },
   );
 }
-
-// Handler fallback(String indexPath) => (Request request) {
-//       final indexFile = File(indexPath).readAsStringSync();
-//       return Response.ok(indexFile, headers: {'content-type': 'text/html'});
-//     };
