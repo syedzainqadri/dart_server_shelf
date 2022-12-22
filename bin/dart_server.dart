@@ -1,31 +1,19 @@
-import 'dart:io';
-import 'package:shelf/shelf_io.dart' as io;
-import 'package:shelf/shelf.dart';
-import 'package:shelf_router/shelf_router.dart';
+import 'package:dart_server/dart_server.dart';
 
-import 'sql_req.dart';
-
-SqlHandler sqlHandler = SqlHandler();
-
-final app = Router()
-  ..get('/', _rootHandler)
-  ..get('/echo/<message>', _echoHandler)
-  ..get('/sql', sqlHandler.sqlHandler)
-  ..post('/post', sqlHandler.sqlPostHandler);
-
-Response _rootHandler(Request request) {
-  return Response.ok('Hello World!');
-}
-
-Response _echoHandler(Request request) {
-  final message = request.params['message'];
-  return Response.ok('$message\n');
-}
+final app = Router();
 
 void main(List<String> arguments) async {
+  var secret = Env.secretKey;
+  app.mount('/api', HelloWorldApi().router);
+  app.mount('/auth', AuthAPi(secret: secret).router);
+  app.mount('/users', UserApi().router);
   final ip = InternetAddress.anyIPv4;
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
-  final handler = const Pipeline().addMiddleware(logRequests()).addHandler(app);
+  final handler = const Pipeline()
+      .addMiddleware(logRequests())
+      .addMiddleware(handleCors())
+      .addMiddleware(handleAuth(secret))
+      .addHandler(app);
 
-  await io.serve(handler, ip, port);
+  await serve(handler, ip, port);
 }

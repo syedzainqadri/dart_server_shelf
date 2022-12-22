@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-dart"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Users {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+  password String? 
+  salt String?
+  posts Post[]
+}
+
+model Post{
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    Users    @relation(fields: [authorId], references: [id])
+  authorId  Int
+  postmeta PostMeta[]
+}
+
+model PostMeta{
+  id        Int     @id @default(autoincrement())
+  meta_title     String
+  meta_description   String?
+  published Boolean @default(false)
+  post    Post    @relation(fields: [postId], references: [id])
+  postId  Int
+}
