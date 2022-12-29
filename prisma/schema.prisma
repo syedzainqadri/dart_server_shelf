@@ -132,11 +132,7 @@ enum SellPurpose {
   RENT
 }
 
-enum PropertyType {
-  HOME
-  PLOTS
-  COMMERCIAL
-}
+
 
 enum AreaSizeUnit {
   MARLA
