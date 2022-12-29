@@ -60,6 +60,8 @@ model Post {
   content          String?
   plotNumber       String?
   price            Float?
+  city             String?
+  area             String?
   isInstallmentAvailable  Boolean? @default(false)
   advanceAmount    Float
   noOfInstallments Int
@@ -79,8 +81,6 @@ model Post {
   authorId         Int
   postmeta         PostMeta[]
   category         Category[]
-  city             City        @relation(fields: [cityId], references: [id])
-  cityId           Int
   propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
   propertyTypeListId Int
   
@@ -129,23 +129,6 @@ model PropertyTypeList{
   posts       Post[]
 }
 
-model City{
-  id          Int         @id @default(autoincrement())
-  title       String
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  posts       Post[]
-  areas       Area[]
-}
-
-model Area{
-  id          Int         @id @default(autoincrement())
-  title       String
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  city        City        @relation(fields: [cityId], references: [id])
-  cityId      Int
-}
 
 enum Role {
   USER
