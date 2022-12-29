@@ -18,6 +18,8 @@ model Users {
   password String?
   fcmtoken String?
   salt     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   posts    Post[]
   Profile  Profile[] @relation("userProfile")
 }
@@ -37,6 +39,8 @@ model Profile {
   images       String?
   longitude    String?
   latitude     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
   published    Boolean @default(false)
   user         Users?  @relation("userProfile", fields: [userId], references: [id])
   userId       Int?   
@@ -52,6 +56,8 @@ model Post {
   longitude        String?
   latitude         String?
   content          String?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
   published        Boolean    @default(false)
   author           Users      @relation(fields: [authorId], references: [id])
   authorId         Int
@@ -73,6 +79,8 @@ model Amenities {
   name        String
   slug        String?  @unique
   description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   published   Boolean  @default(false)
   category    Category @relation(fields: [categoryId], references: [id])
   categoryId  Int
@@ -84,6 +92,8 @@ model Category {
   slug        String?     @unique
   description String?
   published   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   amenities   Amenities[]
   post        Post        @relation(fields: [postId], references: [id])
   postId      Int
