@@ -40,7 +40,7 @@ String generateJwt(
   String issuer,
   String secret, {
   String? jwtId,
-  Duration expiry = const Duration(seconds: 30),
+  Duration expiry = const Duration(minutes: 30),
 }) {
   final jwt = JWT(
     {
