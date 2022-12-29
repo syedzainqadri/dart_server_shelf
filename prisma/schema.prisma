@@ -80,9 +80,10 @@ model Post {
   author           Users      @relation(fields: [authorId], references: [id])
   authorId         Int
   postmeta         PostMeta[]
-  category         Category[]
-  propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
-  propertyTypeListId Int
+  category         Category @relation(fields: [categoryId], references: [id])
+  categoryId       Int
+  // propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
+  // propertyTypeListId Int
   
 }
 
@@ -112,20 +113,11 @@ model Category {
   name        String
   slug        String?     @unique
   description String?
+  parentId    Int?
   published   Boolean     @default(false)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   amenities   Amenities[]
-  post        Post        @relation(fields: [postId], references: [id])
-  postId      Int
-}
-
-model PropertyTypeList{
-  id          Int         @id @default(autoincrement())
-  title       String
-  propertyType  PropertyType      @default(HOME)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
   posts       Post[]
 }
 
