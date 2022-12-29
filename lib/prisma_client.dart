@@ -26,11 +26,22 @@ enum AmenitiesScalarFieldEnum {
   name,
   slug,
   description,
+  createdAt,
+  updatedAt,
   published,
   categoryId
 }
 
-enum CategoryScalarFieldEnum { id, name, slug, description, published, postId }
+enum CategoryScalarFieldEnum {
+  id,
+  name,
+  slug,
+  description,
+  published,
+  createdAt,
+  updatedAt,
+  postId
+}
 
 enum PostMetaScalarFieldEnum {
   id,
@@ -50,6 +61,8 @@ enum PostScalarFieldEnum {
   longitude,
   latitude,
   content,
+  createdAt,
+  updatedAt,
   published,
   authorId
 }
@@ -69,13 +82,24 @@ enum ProfileScalarFieldEnum {
   images,
   longitude,
   latitude,
+  createdAt,
+  updatedAt,
   published,
   userId
 }
 
 enum SortOrder { asc, desc }
 
-enum UsersScalarFieldEnum { id, email, role, password, fcmtoken, salt }
+enum UsersScalarFieldEnum {
+  id,
+  email,
+  role,
+  password,
+  fcmtoken,
+  salt,
+  createdAt,
+  updatedAt
+}
 
 enum Role { USER, ADMIN }
 
@@ -90,6 +114,8 @@ class UsersWhereInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.posts,
     this.Profile,
   });
@@ -112,6 +138,10 @@ class UsersWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableFilter> salt;
 
+  final _i1.PrismaNullable<DateTimeFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFilter> updatedAt;
+
   final _i1.PrismaNullable<PostListRelationFilter> posts;
 
   final _i1.PrismaNullable<ProfileListRelationFilter> Profile;
@@ -128,6 +158,8 @@ class UsersWhereInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'posts': posts,
       'Profile': Profile,
     };
@@ -142,6 +174,8 @@ class UsersOrderByWithRelationInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.posts,
     this.Profile,
   });
@@ -158,6 +192,10 @@ class UsersOrderByWithRelationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> salt;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<PostOrderByRelationAggregateInput> posts;
 
   final _i1.PrismaNullable<ProfileOrderByRelationAggregateInput> Profile;
@@ -171,6 +209,8 @@ class UsersOrderByWithRelationInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'posts': posts,
       'Profile': Profile,
     };
@@ -204,6 +244,8 @@ class UsersOrderByWithAggregationInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.$count,
     this.$avg,
     this.$max,
@@ -222,6 +264,10 @@ class UsersOrderByWithAggregationInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<SortOrder> fcmtoken;
 
   final _i1.PrismaNullable<SortOrder> salt;
+
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
 
   final _i1.PrismaNullable<UsersCountOrderByAggregateInput> $count;
 
@@ -242,6 +288,8 @@ class UsersOrderByWithAggregationInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       '_count': $count,
       '_avg': $avg,
       '_max': $max,
@@ -262,6 +310,8 @@ class UsersScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final _i1.PrismaNullable<UsersScalarWhereWithAggregatesInput> AND;
@@ -282,6 +332,10 @@ class UsersScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableWithAggregatesFilter> salt;
 
+  final _i1.PrismaNullable<DateTimeWithAggregatesFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeWithAggregatesFilter> updatedAt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -294,6 +348,8 @@ class UsersScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 }
@@ -317,6 +373,8 @@ class ProfileWhereInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.user,
     this.userId,
@@ -356,6 +414,10 @@ class ProfileWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableFilter> latitude;
 
+  final _i1.PrismaNullable<DateTimeFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFilter> updatedAt;
+
   final _i1.PrismaNullable<BoolFilter> published;
 
   final _i1.PrismaNullable<UsersRelationFilter> user;
@@ -382,6 +444,8 @@ class ProfileWhereInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'user': user,
       'userId': userId,
@@ -405,6 +469,8 @@ class ProfileOrderByWithRelationInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.user,
     this.userId,
@@ -438,6 +504,10 @@ class ProfileOrderByWithRelationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> latitude;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<UsersOrderByWithRelationInput> user;
@@ -461,6 +531,8 @@ class ProfileOrderByWithRelationInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'user': user,
       'userId': userId,
@@ -503,6 +575,8 @@ class ProfileOrderByWithAggregationInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
     this.$count,
@@ -540,6 +614,10 @@ class ProfileOrderByWithAggregationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> latitude;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> userId;
@@ -571,6 +649,8 @@ class ProfileOrderByWithAggregationInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'userId': userId,
       '_count': $count,
@@ -601,6 +681,8 @@ class ProfileScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -639,6 +721,10 @@ class ProfileScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableWithAggregatesFilter> latitude;
 
+  final _i1.PrismaNullable<DateTimeWithAggregatesFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeWithAggregatesFilter> updatedAt;
+
   final _i1.PrismaNullable<BoolWithAggregatesFilter> published;
 
   final _i1.PrismaNullable<IntNullableWithAggregatesFilter> userId;
@@ -663,6 +749,8 @@ class ProfileScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'userId': userId,
     };
@@ -683,6 +771,8 @@ class PostWhereInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.author,
     this.authorId,
@@ -714,6 +804,10 @@ class PostWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableFilter> content;
 
+  final _i1.PrismaNullable<DateTimeFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFilter> updatedAt;
+
   final _i1.PrismaNullable<BoolFilter> published;
 
   final _i1.PrismaNullable<UsersRelationFilter> author;
@@ -739,6 +833,8 @@ class PostWhereInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'author': author,
       'authorId': authorId,
@@ -759,6 +855,8 @@ class PostOrderByWithRelationInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.author,
     this.authorId,
@@ -784,6 +882,10 @@ class PostOrderByWithRelationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> content;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<UsersOrderByWithRelationInput> author;
@@ -806,6 +908,8 @@ class PostOrderByWithRelationInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'author': author,
       'authorId': authorId,
@@ -845,6 +949,8 @@ class PostOrderByWithAggregationInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
     this.$count,
@@ -872,6 +978,10 @@ class PostOrderByWithAggregationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> content;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> authorId;
@@ -898,6 +1008,8 @@ class PostOrderByWithAggregationInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
       '_count': $count,
@@ -923,6 +1035,8 @@ class PostScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
   });
@@ -951,6 +1065,10 @@ class PostScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableWithAggregatesFilter> content;
 
+  final _i1.PrismaNullable<DateTimeWithAggregatesFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeWithAggregatesFilter> updatedAt;
+
   final _i1.PrismaNullable<BoolWithAggregatesFilter> published;
 
   final _i1.PrismaNullable<IntWithAggregatesFilter> authorId;
@@ -970,6 +1088,8 @@ class PostScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
     };
@@ -1174,6 +1294,8 @@ class AmenitiesWhereInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.category,
     this.categoryId,
@@ -1193,6 +1315,10 @@ class AmenitiesWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableFilter> description;
 
+  final _i1.PrismaNullable<DateTimeFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFilter> updatedAt;
+
   final _i1.PrismaNullable<BoolFilter> published;
 
   final _i1.PrismaNullable<CategoryRelationFilter> category;
@@ -1209,6 +1335,8 @@ class AmenitiesWhereInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'category': category,
       'categoryId': categoryId,
@@ -1222,6 +1350,8 @@ class AmenitiesOrderByWithRelationInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.category,
     this.categoryId,
@@ -1234,6 +1364,10 @@ class AmenitiesOrderByWithRelationInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<SortOrder> slug;
 
   final _i1.PrismaNullable<SortOrder> description;
+
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
 
   final _i1.PrismaNullable<SortOrder> published;
 
@@ -1248,6 +1382,8 @@ class AmenitiesOrderByWithRelationInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'category': category,
       'categoryId': categoryId,
@@ -1280,6 +1416,8 @@ class AmenitiesOrderByWithAggregationInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.categoryId,
     this.$count,
@@ -1296,6 +1434,10 @@ class AmenitiesOrderByWithAggregationInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<SortOrder> slug;
 
   final _i1.PrismaNullable<SortOrder> description;
+
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
 
   final _i1.PrismaNullable<SortOrder> published;
 
@@ -1318,6 +1460,8 @@ class AmenitiesOrderByWithAggregationInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'categoryId': categoryId,
       '_count': $count,
@@ -1338,6 +1482,8 @@ class AmenitiesScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.categoryId,
   });
@@ -1356,6 +1502,10 @@ class AmenitiesScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableWithAggregatesFilter> description;
 
+  final _i1.PrismaNullable<DateTimeWithAggregatesFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeWithAggregatesFilter> updatedAt;
+
   final _i1.PrismaNullable<BoolWithAggregatesFilter> published;
 
   final _i1.PrismaNullable<IntWithAggregatesFilter> categoryId;
@@ -1370,6 +1520,8 @@ class AmenitiesScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'categoryId': categoryId,
     };
@@ -1386,6 +1538,8 @@ class CategoryWhereInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.amenities,
     this.post,
     this.postId,
@@ -1407,6 +1561,10 @@ class CategoryWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<BoolFilter> published;
 
+  final _i1.PrismaNullable<DateTimeFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFilter> updatedAt;
+
   final _i1.PrismaNullable<AmenitiesListRelationFilter> amenities;
 
   final _i1.PrismaNullable<PostRelationFilter> post;
@@ -1424,6 +1582,8 @@ class CategoryWhereInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'amenities': amenities,
       'post': post,
       'postId': postId,
@@ -1438,6 +1598,8 @@ class CategoryOrderByWithRelationInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.amenities,
     this.post,
     this.postId,
@@ -1453,6 +1615,10 @@ class CategoryOrderByWithRelationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> published;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<AmenitiesOrderByRelationAggregateInput> amenities;
 
   final _i1.PrismaNullable<PostOrderByWithRelationInput> post;
@@ -1467,6 +1633,8 @@ class CategoryOrderByWithRelationInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'amenities': amenities,
       'post': post,
       'postId': postId,
@@ -1500,6 +1668,8 @@ class CategoryOrderByWithAggregationInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.postId,
     this.$count,
     this.$avg,
@@ -1517,6 +1687,10 @@ class CategoryOrderByWithAggregationInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<SortOrder> description;
 
   final _i1.PrismaNullable<SortOrder> published;
+
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
 
   final _i1.PrismaNullable<SortOrder> postId;
 
@@ -1538,6 +1712,8 @@ class CategoryOrderByWithAggregationInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'postId': postId,
       '_count': $count,
       '_avg': $avg,
@@ -1558,6 +1734,8 @@ class CategoryScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.postId,
   });
 
@@ -1577,6 +1755,10 @@ class CategoryScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<BoolWithAggregatesFilter> published;
 
+  final _i1.PrismaNullable<DateTimeWithAggregatesFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeWithAggregatesFilter> updatedAt;
+
   final _i1.PrismaNullable<IntWithAggregatesFilter> postId;
 
   @override
@@ -1590,6 +1772,8 @@ class CategoryScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'postId': postId,
     };
   }
@@ -1602,6 +1786,8 @@ class UsersCreateInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.posts,
     this.Profile,
   });
@@ -1616,6 +1802,10 @@ class UsersCreateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<PostCreateNestedManyWithoutAuthorInput> posts;
 
   final _i1.PrismaNullable<ProfileCreateNestedManyWithoutUserInput> Profile;
@@ -1628,6 +1818,8 @@ class UsersCreateInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'posts': posts,
       'Profile': Profile,
     };
@@ -1642,6 +1834,8 @@ class UsersUncheckedCreateInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.posts,
     this.Profile,
   });
@@ -1657,6 +1851,10 @@ class UsersUncheckedCreateInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> fcmtoken;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   final _i1.PrismaNullable<PostUncheckedCreateNestedManyWithoutAuthorInput>
       posts;
@@ -1673,6 +1871,8 @@ class UsersUncheckedCreateInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'posts': posts,
       'Profile': Profile,
     };
@@ -1686,6 +1886,8 @@ class UsersUpdateInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.posts,
     this.Profile,
   });
@@ -1700,6 +1902,10 @@ class UsersUpdateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<PostUpdateManyWithoutAuthorNestedInput> posts;
 
   final _i1.PrismaNullable<ProfileUpdateManyWithoutUserNestedInput> Profile;
@@ -1712,6 +1918,8 @@ class UsersUpdateInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'posts': posts,
       'Profile': Profile,
     };
@@ -1726,6 +1934,8 @@ class UsersUncheckedUpdateInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.posts,
     this.Profile,
   });
@@ -1741,6 +1951,10 @@ class UsersUncheckedUpdateInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> fcmtoken;
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
 
   final _i1.PrismaNullable<PostUncheckedUpdateManyWithoutAuthorNestedInput>
       posts;
@@ -1757,6 +1971,8 @@ class UsersUncheckedUpdateInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'posts': posts,
       'Profile': Profile,
     };
@@ -1771,6 +1987,8 @@ class UsersCreateManyInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final _i1.PrismaNullable<int> id;
@@ -1785,6 +2003,10 @@ class UsersCreateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -1794,6 +2016,8 @@ class UsersCreateManyInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 }
@@ -1805,6 +2029,8 @@ class UsersUpdateManyMutationInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final _i1.PrismaNullable<StringFieldUpdateOperationsInput> email;
@@ -1817,6 +2043,10 @@ class UsersUpdateManyMutationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -1825,6 +2055,8 @@ class UsersUpdateManyMutationInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 }
@@ -1837,6 +2069,8 @@ class UsersUncheckedUpdateManyInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> id;
@@ -1851,6 +2085,10 @@ class UsersUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -1860,6 +2098,8 @@ class UsersUncheckedUpdateManyInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 }
@@ -1879,6 +2119,8 @@ class ProfileCreateInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.user,
   });
@@ -1911,6 +2153,10 @@ class ProfileCreateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> latitude;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final _i1.PrismaNullable<UsersCreateNestedOneWithoutProfileInput> user;
@@ -1931,6 +2177,8 @@ class ProfileCreateInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'user': user,
     };
@@ -1953,6 +2201,8 @@ class ProfileUncheckedCreateInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -1987,6 +2237,10 @@ class ProfileUncheckedCreateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> latitude;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<int, _i1.PrismaNull>> userId;
@@ -2008,6 +2262,8 @@ class ProfileUncheckedCreateInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'userId': userId,
     };
@@ -2029,6 +2285,8 @@ class ProfileUpdateInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.user,
   });
@@ -2061,6 +2319,10 @@ class ProfileUpdateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> latitude;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<UsersUpdateOneWithoutProfileNestedInput> user;
@@ -2081,6 +2343,8 @@ class ProfileUpdateInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'user': user,
     };
@@ -2103,6 +2367,8 @@ class ProfileUncheckedUpdateInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -2137,6 +2403,10 @@ class ProfileUncheckedUpdateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> latitude;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<NullableIntFieldUpdateOperationsInput> userId;
@@ -2158,6 +2428,8 @@ class ProfileUncheckedUpdateInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'userId': userId,
     };
@@ -2180,6 +2452,8 @@ class ProfileCreateManyInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -2214,6 +2488,10 @@ class ProfileCreateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> latitude;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<int, _i1.PrismaNull>> userId;
@@ -2235,6 +2513,8 @@ class ProfileCreateManyInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'userId': userId,
     };
@@ -2256,6 +2536,8 @@ class ProfileUpdateManyMutationInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -2287,6 +2569,10 @@ class ProfileUpdateManyMutationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> latitude;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   @override
@@ -2305,6 +2591,8 @@ class ProfileUpdateManyMutationInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -2326,6 +2614,8 @@ class ProfileUncheckedUpdateManyInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -2360,6 +2650,10 @@ class ProfileUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> latitude;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<NullableIntFieldUpdateOperationsInput> userId;
@@ -2381,6 +2675,8 @@ class ProfileUncheckedUpdateManyInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'userId': userId,
     };
@@ -2397,6 +2693,8 @@ class PostCreateInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     required this.author,
     this.postmeta,
@@ -2420,6 +2718,10 @@ class PostCreateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final UsersCreateNestedOneWithoutPostsInput author;
@@ -2439,6 +2741,8 @@ class PostCreateInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'author': author,
       'postmeta': postmeta,
@@ -2458,6 +2762,8 @@ class PostUncheckedCreateInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     required this.authorId,
     this.postmeta,
@@ -2483,6 +2789,10 @@ class PostUncheckedCreateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final int authorId;
@@ -2505,6 +2815,8 @@ class PostUncheckedCreateInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
       'postmeta': postmeta,
@@ -2523,6 +2835,8 @@ class PostUpdateInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.author,
     this.postmeta,
@@ -2547,6 +2861,10 @@ class PostUpdateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<UsersUpdateOneRequiredWithoutPostsNestedInput>
@@ -2567,6 +2885,8 @@ class PostUpdateInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'author': author,
       'postmeta': postmeta,
@@ -2586,6 +2906,8 @@ class PostUncheckedUpdateInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
     this.postmeta,
@@ -2612,6 +2934,10 @@ class PostUncheckedUpdateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> authorId;
@@ -2634,6 +2960,8 @@ class PostUncheckedUpdateInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
       'postmeta': postmeta,
@@ -2653,6 +2981,8 @@ class PostCreateManyInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     required this.authorId,
   });
@@ -2676,6 +3006,10 @@ class PostCreateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final int authorId;
@@ -2692,6 +3026,8 @@ class PostCreateManyInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
     };
@@ -2708,6 +3044,8 @@ class PostUpdateManyMutationInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -2729,6 +3067,10 @@ class PostUpdateManyMutationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   @override
@@ -2742,6 +3084,8 @@ class PostUpdateManyMutationInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -2758,6 +3102,8 @@ class PostUncheckedUpdateManyInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
   });
@@ -2782,6 +3128,10 @@ class PostUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> authorId;
@@ -2798,6 +3148,8 @@ class PostUncheckedUpdateManyInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
     };
@@ -3018,6 +3370,8 @@ class AmenitiesCreateInput implements _i1.JsonSerializable {
     required this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     required this.category,
   });
@@ -3027,6 +3381,10 @@ class AmenitiesCreateInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> slug;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> description;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   final _i1.PrismaNullable<bool> published;
 
@@ -3038,6 +3396,8 @@ class AmenitiesCreateInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'category': category,
     };
@@ -3050,6 +3410,8 @@ class AmenitiesUncheckedCreateInput implements _i1.JsonSerializable {
     required this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     required this.categoryId,
   });
@@ -3062,6 +3424,10 @@ class AmenitiesUncheckedCreateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> description;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final int categoryId;
@@ -3073,6 +3439,8 @@ class AmenitiesUncheckedCreateInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'categoryId': categoryId,
     };
@@ -3084,6 +3452,8 @@ class AmenitiesUpdateInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.category,
   });
@@ -3094,6 +3464,10 @@ class AmenitiesUpdateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput>
       description;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
@@ -3106,6 +3480,8 @@ class AmenitiesUpdateInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'category': category,
     };
@@ -3118,6 +3494,8 @@ class AmenitiesUncheckedUpdateInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.categoryId,
   });
@@ -3131,6 +3509,10 @@ class AmenitiesUncheckedUpdateInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput>
       description;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> categoryId;
@@ -3142,6 +3524,8 @@ class AmenitiesUncheckedUpdateInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'categoryId': categoryId,
     };
@@ -3154,6 +3538,8 @@ class AmenitiesCreateManyInput implements _i1.JsonSerializable {
     required this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     required this.categoryId,
   });
@@ -3166,6 +3552,10 @@ class AmenitiesCreateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> description;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final int categoryId;
@@ -3177,6 +3567,8 @@ class AmenitiesCreateManyInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'categoryId': categoryId,
     };
@@ -3188,6 +3580,8 @@ class AmenitiesUpdateManyMutationInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -3198,6 +3592,10 @@ class AmenitiesUpdateManyMutationInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput>
       description;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   @override
@@ -3206,6 +3604,8 @@ class AmenitiesUpdateManyMutationInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -3217,6 +3617,8 @@ class AmenitiesUncheckedUpdateManyInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.categoryId,
   });
@@ -3230,6 +3632,10 @@ class AmenitiesUncheckedUpdateManyInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput>
       description;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> categoryId;
@@ -3241,6 +3647,8 @@ class AmenitiesUncheckedUpdateManyInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'categoryId': categoryId,
     };
@@ -3253,6 +3661,8 @@ class CategoryCreateInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.amenities,
     required this.post,
   });
@@ -3264,6 +3674,10 @@ class CategoryCreateInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> description;
 
   final _i1.PrismaNullable<bool> published;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   final _i1.PrismaNullable<AmenitiesCreateNestedManyWithoutCategoryInput>
       amenities;
@@ -3277,6 +3691,8 @@ class CategoryCreateInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'amenities': amenities,
       'post': post,
     };
@@ -3290,6 +3706,8 @@ class CategoryUncheckedCreateInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.amenities,
     required this.postId,
   });
@@ -3303,6 +3721,10 @@ class CategoryUncheckedCreateInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> description;
 
   final _i1.PrismaNullable<bool> published;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   final _i1.PrismaNullable<
       AmenitiesUncheckedCreateNestedManyWithoutCategoryInput> amenities;
@@ -3317,6 +3739,8 @@ class CategoryUncheckedCreateInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'amenities': amenities,
       'postId': postId,
     };
@@ -3329,6 +3753,8 @@ class CategoryUpdateInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.amenities,
     this.post,
   });
@@ -3341,6 +3767,10 @@ class CategoryUpdateInput implements _i1.JsonSerializable {
       description;
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
 
   final _i1.PrismaNullable<AmenitiesUpdateManyWithoutCategoryNestedInput>
       amenities;
@@ -3355,6 +3785,8 @@ class CategoryUpdateInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'amenities': amenities,
       'post': post,
     };
@@ -3368,6 +3800,8 @@ class CategoryUncheckedUpdateInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.amenities,
     this.postId,
   });
@@ -3383,6 +3817,10 @@ class CategoryUncheckedUpdateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<
       AmenitiesUncheckedUpdateManyWithoutCategoryNestedInput> amenities;
 
@@ -3396,6 +3834,8 @@ class CategoryUncheckedUpdateInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'amenities': amenities,
       'postId': postId,
     };
@@ -3409,6 +3849,8 @@ class CategoryCreateManyInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     required this.postId,
   });
 
@@ -3422,6 +3864,10 @@ class CategoryCreateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<bool> published;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final int postId;
 
   @override
@@ -3432,6 +3878,8 @@ class CategoryCreateManyInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'postId': postId,
     };
   }
@@ -3443,6 +3891,8 @@ class CategoryUpdateManyMutationInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final _i1.PrismaNullable<StringFieldUpdateOperationsInput> name;
@@ -3454,6 +3904,10 @@ class CategoryUpdateManyMutationInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -3461,6 +3915,8 @@ class CategoryUpdateManyMutationInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 }
@@ -3472,6 +3928,8 @@ class CategoryUncheckedUpdateManyInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.postId,
   });
 
@@ -3486,6 +3944,10 @@ class CategoryUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> postId;
 
   @override
@@ -3496,6 +3958,8 @@ class CategoryUncheckedUpdateManyInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'postId': postId,
     };
   }
@@ -3681,6 +4145,49 @@ class StringNullableFilter implements _i1.JsonSerializable {
   }
 }
 
+class DateTimeFilter implements _i1.JsonSerializable {
+  const DateTimeFilter({
+    this.equals,
+    this.in$,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+  });
+
+  final _i1.PrismaNullable<DateTime> equals;
+
+  final _i1.PrismaNullable<List<DateTime>> in$;
+
+  final _i1.PrismaNullable<List<DateTime>> notIn;
+
+  final _i1.PrismaNullable<DateTime> lt;
+
+  final _i1.PrismaNullable<DateTime> lte;
+
+  final _i1.PrismaNullable<DateTime> gt;
+
+  final _i1.PrismaNullable<DateTime> gte;
+
+  final _i1.PrismaNullable<NestedDateTimeFilter> not;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'equals': equals,
+      'in': in$,
+      'notIn': notIn,
+      'lt': lt,
+      'lte': lte,
+      'gt': gt,
+      'gte': gte,
+      'not': not,
+    };
+  }
+}
+
 class PostListRelationFilter implements _i1.JsonSerializable {
   const PostListRelationFilter({
     this.every,
@@ -3761,6 +4268,8 @@ class UsersCountOrderByAggregateInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final _i1.PrismaNullable<SortOrder> id;
@@ -3775,6 +4284,10 @@ class UsersCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> salt;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -3784,6 +4297,8 @@ class UsersCountOrderByAggregateInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 }
@@ -3809,6 +4324,8 @@ class UsersMaxOrderByAggregateInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final _i1.PrismaNullable<SortOrder> id;
@@ -3823,6 +4340,10 @@ class UsersMaxOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> salt;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -3832,6 +4353,8 @@ class UsersMaxOrderByAggregateInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 }
@@ -3844,6 +4367,8 @@ class UsersMinOrderByAggregateInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final _i1.PrismaNullable<SortOrder> id;
@@ -3858,6 +4383,10 @@ class UsersMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> salt;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -3867,6 +4396,8 @@ class UsersMinOrderByAggregateInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 }
@@ -4120,6 +4651,61 @@ class StringNullableWithAggregatesFilter implements _i1.JsonSerializable {
   }
 }
 
+class DateTimeWithAggregatesFilter implements _i1.JsonSerializable {
+  const DateTimeWithAggregatesFilter({
+    this.equals,
+    this.in$,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+    this.$count,
+    this.$min,
+    this.$max,
+  });
+
+  final _i1.PrismaNullable<DateTime> equals;
+
+  final _i1.PrismaNullable<List<DateTime>> in$;
+
+  final _i1.PrismaNullable<List<DateTime>> notIn;
+
+  final _i1.PrismaNullable<DateTime> lt;
+
+  final _i1.PrismaNullable<DateTime> lte;
+
+  final _i1.PrismaNullable<DateTime> gt;
+
+  final _i1.PrismaNullable<DateTime> gte;
+
+  final _i1.PrismaNullable<NestedDateTimeWithAggregatesFilter> not;
+
+  final _i1.PrismaNullable<NestedIntFilter> $count;
+
+  final _i1.PrismaNullable<NestedDateTimeFilter> $min;
+
+  final _i1.PrismaNullable<NestedDateTimeFilter> $max;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'equals': equals,
+      'in': in$,
+      'notIn': notIn,
+      'lt': lt,
+      'lte': lte,
+      'gt': gt,
+      'gte': gte,
+      'not': not,
+      '_count': $count,
+      '_min': $min,
+      '_max': $max,
+    };
+  }
+}
+
 class BoolFilter implements _i1.JsonSerializable {
   const BoolFilter({
     this.equals,
@@ -4217,6 +4803,8 @@ class ProfileCountOrderByAggregateInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -4249,6 +4837,10 @@ class ProfileCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> latitude;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> userId;
@@ -4270,6 +4862,8 @@ class ProfileCountOrderByAggregateInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'userId': userId,
     };
@@ -4311,6 +4905,8 @@ class ProfileMaxOrderByAggregateInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -4343,6 +4939,10 @@ class ProfileMaxOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> latitude;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> userId;
@@ -4364,6 +4964,8 @@ class ProfileMaxOrderByAggregateInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'userId': userId,
     };
@@ -4386,6 +4988,8 @@ class ProfileMinOrderByAggregateInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -4418,6 +5022,10 @@ class ProfileMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> latitude;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> userId;
@@ -4439,6 +5047,8 @@ class ProfileMinOrderByAggregateInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'userId': userId,
     };
@@ -4641,6 +5251,8 @@ class PostCountOrderByAggregateInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
   });
@@ -4663,6 +5275,10 @@ class PostCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> content;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> authorId;
@@ -4679,6 +5295,8 @@ class PostCountOrderByAggregateInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
     };
@@ -4715,6 +5333,8 @@ class PostMaxOrderByAggregateInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
   });
@@ -4737,6 +5357,10 @@ class PostMaxOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> content;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> authorId;
@@ -4753,6 +5377,8 @@ class PostMaxOrderByAggregateInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
     };
@@ -4770,6 +5396,8 @@ class PostMinOrderByAggregateInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
   });
@@ -4792,6 +5420,10 @@ class PostMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> content;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> authorId;
@@ -4808,6 +5440,8 @@ class PostMinOrderByAggregateInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
     };
@@ -5008,6 +5642,8 @@ class AmenitiesCountOrderByAggregateInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.categoryId,
   });
@@ -5020,6 +5656,10 @@ class AmenitiesCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> description;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> categoryId;
@@ -5031,6 +5671,8 @@ class AmenitiesCountOrderByAggregateInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'categoryId': categoryId,
     };
@@ -5062,6 +5704,8 @@ class AmenitiesMaxOrderByAggregateInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.categoryId,
   });
@@ -5074,6 +5718,10 @@ class AmenitiesMaxOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> description;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> categoryId;
@@ -5085,6 +5733,8 @@ class AmenitiesMaxOrderByAggregateInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'categoryId': categoryId,
     };
@@ -5097,6 +5747,8 @@ class AmenitiesMinOrderByAggregateInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.categoryId,
   });
@@ -5109,6 +5761,10 @@ class AmenitiesMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> description;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> published;
 
   final _i1.PrismaNullable<SortOrder> categoryId;
@@ -5120,6 +5776,8 @@ class AmenitiesMinOrderByAggregateInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'categoryId': categoryId,
     };
@@ -5188,6 +5846,8 @@ class CategoryCountOrderByAggregateInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.postId,
   });
 
@@ -5201,6 +5861,10 @@ class CategoryCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> published;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> postId;
 
   @override
@@ -5211,6 +5875,8 @@ class CategoryCountOrderByAggregateInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'postId': postId,
     };
   }
@@ -5242,6 +5908,8 @@ class CategoryMaxOrderByAggregateInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.postId,
   });
 
@@ -5255,6 +5923,10 @@ class CategoryMaxOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> published;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> postId;
 
   @override
@@ -5265,6 +5937,8 @@ class CategoryMaxOrderByAggregateInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'postId': postId,
     };
   }
@@ -5277,6 +5951,8 @@ class CategoryMinOrderByAggregateInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.postId,
   });
 
@@ -5290,6 +5966,10 @@ class CategoryMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<SortOrder> published;
 
+  final _i1.PrismaNullable<SortOrder> createdAt;
+
+  final _i1.PrismaNullable<SortOrder> updatedAt;
+
   final _i1.PrismaNullable<SortOrder> postId;
 
   @override
@@ -5300,6 +5980,8 @@ class CategoryMinOrderByAggregateInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'postId': postId,
     };
   }
@@ -5468,6 +6150,19 @@ class NullableStringFieldUpdateOperationsInput implements _i1.JsonSerializable {
   const NullableStringFieldUpdateOperationsInput({this.set$});
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> set$;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'set': set$,
+    };
+  }
+}
+
+class DateTimeFieldUpdateOperationsInput implements _i1.JsonSerializable {
+  const DateTimeFieldUpdateOperationsInput({this.set$});
+
+  final _i1.PrismaNullable<DateTime> set$;
 
   @override
   Map<String, dynamic> toJson() {
@@ -6785,6 +7480,49 @@ class NestedStringNullableFilter implements _i1.JsonSerializable {
   }
 }
 
+class NestedDateTimeFilter implements _i1.JsonSerializable {
+  const NestedDateTimeFilter({
+    this.equals,
+    this.in$,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+  });
+
+  final _i1.PrismaNullable<DateTime> equals;
+
+  final _i1.PrismaNullable<List<DateTime>> in$;
+
+  final _i1.PrismaNullable<List<DateTime>> notIn;
+
+  final _i1.PrismaNullable<DateTime> lt;
+
+  final _i1.PrismaNullable<DateTime> lte;
+
+  final _i1.PrismaNullable<DateTime> gt;
+
+  final _i1.PrismaNullable<DateTime> gte;
+
+  final _i1.PrismaNullable<NestedDateTimeFilter> not;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'equals': equals,
+      'in': in$,
+      'notIn': notIn,
+      'lt': lt,
+      'lte': lte,
+      'gt': gt,
+      'gte': gte,
+      'not': not,
+    };
+  }
+}
+
 class NestedIntWithAggregatesFilter implements _i1.JsonSerializable {
   const NestedIntWithAggregatesFilter({
     this.equals,
@@ -7107,6 +7845,61 @@ class NestedIntNullableFilter implements _i1.JsonSerializable {
   }
 }
 
+class NestedDateTimeWithAggregatesFilter implements _i1.JsonSerializable {
+  const NestedDateTimeWithAggregatesFilter({
+    this.equals,
+    this.in$,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.not,
+    this.$count,
+    this.$min,
+    this.$max,
+  });
+
+  final _i1.PrismaNullable<DateTime> equals;
+
+  final _i1.PrismaNullable<List<DateTime>> in$;
+
+  final _i1.PrismaNullable<List<DateTime>> notIn;
+
+  final _i1.PrismaNullable<DateTime> lt;
+
+  final _i1.PrismaNullable<DateTime> lte;
+
+  final _i1.PrismaNullable<DateTime> gt;
+
+  final _i1.PrismaNullable<DateTime> gte;
+
+  final _i1.PrismaNullable<NestedDateTimeWithAggregatesFilter> not;
+
+  final _i1.PrismaNullable<NestedIntFilter> $count;
+
+  final _i1.PrismaNullable<NestedDateTimeFilter> $min;
+
+  final _i1.PrismaNullable<NestedDateTimeFilter> $max;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'equals': equals,
+      'in': in$,
+      'notIn': notIn,
+      'lt': lt,
+      'lte': lte,
+      'gt': gt,
+      'gte': gte,
+      'not': not,
+      '_count': $count,
+      '_min': $min,
+      '_max': $max,
+    };
+  }
+}
+
 class NestedBoolFilter implements _i1.JsonSerializable {
   const NestedBoolFilter({
     this.equals,
@@ -7273,6 +8066,8 @@ class PostCreateWithoutAuthorInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.postmeta,
     this.category,
@@ -7295,6 +8090,10 @@ class PostCreateWithoutAuthorInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final _i1.PrismaNullable<PostMetaCreateNestedManyWithoutPostInput> postmeta;
@@ -7312,6 +8111,8 @@ class PostCreateWithoutAuthorInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'postmeta': postmeta,
       'category': category,
@@ -7330,6 +8131,8 @@ class PostUncheckedCreateWithoutAuthorInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.postmeta,
     this.category,
@@ -7354,6 +8157,10 @@ class PostUncheckedCreateWithoutAuthorInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final _i1.PrismaNullable<PostMetaUncheckedCreateNestedManyWithoutPostInput>
@@ -7374,6 +8181,8 @@ class PostUncheckedCreateWithoutAuthorInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'postmeta': postmeta,
       'category': category,
@@ -7434,6 +8243,8 @@ class ProfileCreateWithoutUserInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -7465,6 +8276,10 @@ class ProfileCreateWithoutUserInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> latitude;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   @override
@@ -7483,6 +8298,8 @@ class ProfileCreateWithoutUserInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -7504,6 +8321,8 @@ class ProfileUncheckedCreateWithoutUserInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -7537,6 +8356,10 @@ class ProfileUncheckedCreateWithoutUserInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> latitude;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   @override
@@ -7556,6 +8379,8 @@ class ProfileUncheckedCreateWithoutUserInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -7677,6 +8502,8 @@ class PostScalarWhereInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
   });
@@ -7705,6 +8532,10 @@ class PostScalarWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableFilter> content;
 
+  final _i1.PrismaNullable<DateTimeFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFilter> updatedAt;
+
   final _i1.PrismaNullable<BoolFilter> published;
 
   final _i1.PrismaNullable<IntFilter> authorId;
@@ -7724,6 +8555,8 @@ class PostScalarWhereInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
     };
@@ -7813,6 +8646,8 @@ class ProfileScalarWhereInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -7851,6 +8686,10 @@ class ProfileScalarWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableFilter> latitude;
 
+  final _i1.PrismaNullable<DateTimeFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFilter> updatedAt;
+
   final _i1.PrismaNullable<BoolFilter> published;
 
   final _i1.PrismaNullable<IntNullableFilter> userId;
@@ -7875,6 +8714,8 @@ class ProfileScalarWhereInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'userId': userId,
     };
@@ -7888,6 +8729,8 @@ class UsersCreateWithoutProfileInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.posts,
   });
 
@@ -7901,6 +8744,10 @@ class UsersCreateWithoutProfileInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<PostCreateNestedManyWithoutAuthorInput> posts;
 
   @override
@@ -7911,6 +8758,8 @@ class UsersCreateWithoutProfileInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'posts': posts,
     };
   }
@@ -7924,6 +8773,8 @@ class UsersUncheckedCreateWithoutProfileInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.posts,
   });
 
@@ -7939,6 +8790,10 @@ class UsersUncheckedCreateWithoutProfileInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<PostUncheckedCreateNestedManyWithoutAuthorInput>
       posts;
 
@@ -7951,6 +8806,8 @@ class UsersUncheckedCreateWithoutProfileInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'posts': posts,
     };
   }
@@ -8001,6 +8858,8 @@ class UsersUpdateWithoutProfileInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.posts,
   });
 
@@ -8014,6 +8873,10 @@ class UsersUpdateWithoutProfileInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<PostUpdateManyWithoutAuthorNestedInput> posts;
 
   @override
@@ -8024,6 +8887,8 @@ class UsersUpdateWithoutProfileInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'posts': posts,
     };
   }
@@ -8037,6 +8902,8 @@ class UsersUncheckedUpdateWithoutProfileInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.posts,
   });
 
@@ -8052,6 +8919,10 @@ class UsersUncheckedUpdateWithoutProfileInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<PostUncheckedUpdateManyWithoutAuthorNestedInput>
       posts;
 
@@ -8064,6 +8935,8 @@ class UsersUncheckedUpdateWithoutProfileInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'posts': posts,
     };
   }
@@ -8076,6 +8949,8 @@ class UsersCreateWithoutPostsInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.Profile,
   });
 
@@ -8089,6 +8964,10 @@ class UsersCreateWithoutPostsInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<ProfileCreateNestedManyWithoutUserInput> Profile;
 
   @override
@@ -8099,6 +8978,8 @@ class UsersCreateWithoutPostsInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'Profile': Profile,
     };
   }
@@ -8112,6 +8993,8 @@ class UsersUncheckedCreateWithoutPostsInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.Profile,
   });
 
@@ -8127,6 +9010,10 @@ class UsersUncheckedCreateWithoutPostsInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> salt;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<ProfileUncheckedCreateNestedManyWithoutUserInput>
       Profile;
 
@@ -8139,6 +9026,8 @@ class UsersUncheckedCreateWithoutPostsInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'Profile': Profile,
     };
   }
@@ -8259,6 +9148,8 @@ class CategoryCreateWithoutPostInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.amenities,
   });
 
@@ -8270,6 +9161,10 @@ class CategoryCreateWithoutPostInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<bool> published;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<AmenitiesCreateNestedManyWithoutCategoryInput>
       amenities;
 
@@ -8280,6 +9175,8 @@ class CategoryCreateWithoutPostInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'amenities': amenities,
     };
   }
@@ -8292,6 +9189,8 @@ class CategoryUncheckedCreateWithoutPostInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.amenities,
   });
 
@@ -8305,6 +9204,10 @@ class CategoryUncheckedCreateWithoutPostInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<bool> published;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<
       AmenitiesUncheckedCreateNestedManyWithoutCategoryInput> amenities;
 
@@ -8316,6 +9219,8 @@ class CategoryUncheckedCreateWithoutPostInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'amenities': amenities,
     };
   }
@@ -8385,6 +9290,8 @@ class UsersUpdateWithoutPostsInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.Profile,
   });
 
@@ -8398,6 +9305,10 @@ class UsersUpdateWithoutPostsInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<ProfileUpdateManyWithoutUserNestedInput> Profile;
 
   @override
@@ -8408,6 +9319,8 @@ class UsersUpdateWithoutPostsInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'Profile': Profile,
     };
   }
@@ -8421,6 +9334,8 @@ class UsersUncheckedUpdateWithoutPostsInput implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
     this.Profile,
   });
 
@@ -8436,6 +9351,10 @@ class UsersUncheckedUpdateWithoutPostsInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> salt;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<ProfileUncheckedUpdateManyWithoutUserNestedInput>
       Profile;
 
@@ -8448,6 +9367,8 @@ class UsersUncheckedUpdateWithoutPostsInput implements _i1.JsonSerializable {
       'password': password,
       'fcmtoken': fcmtoken,
       'salt': salt,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'Profile': Profile,
     };
   }
@@ -8634,6 +9555,8 @@ class CategoryScalarWhereInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.postId,
   });
 
@@ -8653,6 +9576,10 @@ class CategoryScalarWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<BoolFilter> published;
 
+  final _i1.PrismaNullable<DateTimeFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFilter> updatedAt;
+
   final _i1.PrismaNullable<IntFilter> postId;
 
   @override
@@ -8666,6 +9593,8 @@ class CategoryScalarWhereInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'postId': postId,
     };
   }
@@ -8681,6 +9610,8 @@ class PostCreateWithoutPostmetaInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     required this.author,
     this.category,
@@ -8703,6 +9634,10 @@ class PostCreateWithoutPostmetaInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final UsersCreateNestedOneWithoutPostsInput author;
@@ -8720,6 +9655,8 @@ class PostCreateWithoutPostmetaInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'author': author,
       'category': category,
@@ -8738,6 +9675,8 @@ class PostUncheckedCreateWithoutPostmetaInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     required this.authorId,
     this.category,
@@ -8762,6 +9701,10 @@ class PostUncheckedCreateWithoutPostmetaInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final int authorId;
@@ -8781,6 +9724,8 @@ class PostUncheckedCreateWithoutPostmetaInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
       'category': category,
@@ -8836,6 +9781,8 @@ class PostUpdateWithoutPostmetaInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.author,
     this.category,
@@ -8859,6 +9806,10 @@ class PostUpdateWithoutPostmetaInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<UsersUpdateOneRequiredWithoutPostsNestedInput>
@@ -8877,6 +9828,8 @@ class PostUpdateWithoutPostmetaInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'author': author,
       'category': category,
@@ -8895,6 +9848,8 @@ class PostUncheckedUpdateWithoutPostmetaInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
     this.category,
@@ -8920,6 +9875,10 @@ class PostUncheckedUpdateWithoutPostmetaInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> authorId;
@@ -8939,6 +9898,8 @@ class PostUncheckedUpdateWithoutPostmetaInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
       'category': category,
@@ -8952,6 +9913,8 @@ class CategoryCreateWithoutAmenitiesInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     required this.post,
   });
 
@@ -8963,6 +9926,10 @@ class CategoryCreateWithoutAmenitiesInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<bool> published;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final PostCreateNestedOneWithoutCategoryInput post;
 
   @override
@@ -8972,6 +9939,8 @@ class CategoryCreateWithoutAmenitiesInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'post': post,
     };
   }
@@ -8985,6 +9954,8 @@ class CategoryUncheckedCreateWithoutAmenitiesInput
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     required this.postId,
   });
 
@@ -8998,6 +9969,10 @@ class CategoryUncheckedCreateWithoutAmenitiesInput
 
   final _i1.PrismaNullable<bool> published;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final int postId;
 
   @override
@@ -9008,6 +9983,8 @@ class CategoryUncheckedCreateWithoutAmenitiesInput
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'postId': postId,
     };
   }
@@ -9058,6 +10035,8 @@ class CategoryUpdateWithoutAmenitiesInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.post,
   });
 
@@ -9070,6 +10049,10 @@ class CategoryUpdateWithoutAmenitiesInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<PostUpdateOneRequiredWithoutCategoryNestedInput>
       post;
 
@@ -9080,6 +10063,8 @@ class CategoryUpdateWithoutAmenitiesInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'post': post,
     };
   }
@@ -9093,6 +10078,8 @@ class CategoryUncheckedUpdateWithoutAmenitiesInput
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.postId,
   });
 
@@ -9107,6 +10094,10 @@ class CategoryUncheckedUpdateWithoutAmenitiesInput
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> postId;
 
   @override
@@ -9117,6 +10108,8 @@ class CategoryUncheckedUpdateWithoutAmenitiesInput
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'postId': postId,
     };
   }
@@ -9127,6 +10120,8 @@ class AmenitiesCreateWithoutCategoryInput implements _i1.JsonSerializable {
     required this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -9136,6 +10131,10 @@ class AmenitiesCreateWithoutCategoryInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> description;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   @override
@@ -9144,6 +10143,8 @@ class AmenitiesCreateWithoutCategoryInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -9156,6 +10157,8 @@ class AmenitiesUncheckedCreateWithoutCategoryInput
     required this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -9167,6 +10170,10 @@ class AmenitiesUncheckedCreateWithoutCategoryInput
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> description;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   @override
@@ -9176,6 +10183,8 @@ class AmenitiesUncheckedCreateWithoutCategoryInput
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -9230,6 +10239,8 @@ class PostCreateWithoutCategoryInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     required this.author,
     this.postmeta,
@@ -9252,6 +10263,10 @@ class PostCreateWithoutCategoryInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final UsersCreateNestedOneWithoutPostsInput author;
@@ -9269,6 +10284,8 @@ class PostCreateWithoutCategoryInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'author': author,
       'postmeta': postmeta,
@@ -9287,6 +10304,8 @@ class PostUncheckedCreateWithoutCategoryInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     required this.authorId,
     this.postmeta,
@@ -9311,6 +10330,10 @@ class PostUncheckedCreateWithoutCategoryInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final int authorId;
@@ -9330,6 +10353,8 @@ class PostUncheckedCreateWithoutCategoryInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
       'postmeta': postmeta,
@@ -9429,6 +10454,8 @@ class AmenitiesScalarWhereInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.categoryId,
   });
@@ -9447,6 +10474,10 @@ class AmenitiesScalarWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<StringNullableFilter> description;
 
+  final _i1.PrismaNullable<DateTimeFilter> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFilter> updatedAt;
+
   final _i1.PrismaNullable<BoolFilter> published;
 
   final _i1.PrismaNullable<IntFilter> categoryId;
@@ -9461,6 +10492,8 @@ class AmenitiesScalarWhereInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'categoryId': categoryId,
     };
@@ -9496,6 +10529,8 @@ class PostUpdateWithoutCategoryInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.author,
     this.postmeta,
@@ -9519,6 +10554,10 @@ class PostUpdateWithoutCategoryInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<UsersUpdateOneRequiredWithoutPostsNestedInput>
@@ -9537,6 +10576,8 @@ class PostUpdateWithoutCategoryInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'author': author,
       'postmeta': postmeta,
@@ -9555,6 +10596,8 @@ class PostUncheckedUpdateWithoutCategoryInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
     this.postmeta,
@@ -9580,6 +10623,10 @@ class PostUncheckedUpdateWithoutCategoryInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> authorId;
@@ -9599,6 +10646,8 @@ class PostUncheckedUpdateWithoutCategoryInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'authorId': authorId,
       'postmeta': postmeta,
@@ -9617,6 +10666,8 @@ class PostCreateManyAuthorInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -9639,6 +10690,10 @@ class PostCreateManyAuthorInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   @override
@@ -9653,6 +10708,8 @@ class PostCreateManyAuthorInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -9674,6 +10731,8 @@ class ProfileCreateManyUserInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -9707,6 +10766,10 @@ class ProfileCreateManyUserInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> latitude;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   @override
@@ -9726,6 +10789,8 @@ class ProfileCreateManyUserInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -9741,6 +10806,8 @@ class PostUpdateWithoutAuthorInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.postmeta,
     this.category,
@@ -9764,6 +10831,10 @@ class PostUpdateWithoutAuthorInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   final _i1.PrismaNullable<PostMetaUpdateManyWithoutPostNestedInput> postmeta;
@@ -9781,6 +10852,8 @@ class PostUpdateWithoutAuthorInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'postmeta': postmeta,
       'category': category,
@@ -9799,6 +10872,8 @@ class PostUncheckedUpdateWithoutAuthorInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.postmeta,
     this.category,
@@ -9823,6 +10898,10 @@ class PostUncheckedUpdateWithoutAuthorInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> latitude;
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
@@ -9844,6 +10923,8 @@ class PostUncheckedUpdateWithoutAuthorInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
       'postmeta': postmeta,
       'category': category,
@@ -9862,6 +10943,8 @@ class PostUncheckedUpdateManyWithoutPostsInput implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -9885,6 +10968,10 @@ class PostUncheckedUpdateManyWithoutPostsInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> content;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   @override
@@ -9899,6 +10986,8 @@ class PostUncheckedUpdateManyWithoutPostsInput implements _i1.JsonSerializable {
       'longitude': longitude,
       'latitude': latitude,
       'content': content,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -9919,6 +11008,8 @@ class ProfileUpdateWithoutUserInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -9950,6 +11041,10 @@ class ProfileUpdateWithoutUserInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> latitude;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   @override
@@ -9968,6 +11063,8 @@ class ProfileUpdateWithoutUserInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -9989,6 +11086,8 @@ class ProfileUncheckedUpdateWithoutUserInput implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -10022,6 +11121,10 @@ class ProfileUncheckedUpdateWithoutUserInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> latitude;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   @override
@@ -10041,6 +11144,8 @@ class ProfileUncheckedUpdateWithoutUserInput implements _i1.JsonSerializable {
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -10063,6 +11168,8 @@ class ProfileUncheckedUpdateManyWithoutProfileInput
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -10096,6 +11203,10 @@ class ProfileUncheckedUpdateManyWithoutProfileInput
 
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput> latitude;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   @override
@@ -10115,6 +11226,8 @@ class ProfileUncheckedUpdateManyWithoutProfileInput
       'images': images,
       'longitude': longitude,
       'latitude': latitude,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -10155,6 +11268,8 @@ class CategoryCreateManyPostInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final _i1.PrismaNullable<int> id;
@@ -10167,6 +11282,10 @@ class CategoryCreateManyPostInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<bool> published;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -10175,6 +11294,8 @@ class CategoryCreateManyPostInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 }
@@ -10266,6 +11387,8 @@ class CategoryUpdateWithoutPostInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.amenities,
   });
 
@@ -10278,6 +11401,10 @@ class CategoryUpdateWithoutPostInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<AmenitiesUpdateManyWithoutCategoryNestedInput>
       amenities;
 
@@ -10288,6 +11415,8 @@ class CategoryUpdateWithoutPostInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'amenities': amenities,
     };
   }
@@ -10300,6 +11429,8 @@ class CategoryUncheckedUpdateWithoutPostInput implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.amenities,
   });
 
@@ -10314,6 +11445,10 @@ class CategoryUncheckedUpdateWithoutPostInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<
       AmenitiesUncheckedUpdateManyWithoutCategoryNestedInput> amenities;
 
@@ -10325,6 +11460,8 @@ class CategoryUncheckedUpdateWithoutPostInput implements _i1.JsonSerializable {
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'amenities': amenities,
     };
   }
@@ -10338,6 +11475,8 @@ class CategoryUncheckedUpdateManyWithoutCategoryInput
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final _i1.PrismaNullable<IntFieldUpdateOperationsInput> id;
@@ -10351,6 +11490,10 @@ class CategoryUncheckedUpdateManyWithoutCategoryInput
 
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -10359,6 +11502,8 @@ class CategoryUncheckedUpdateManyWithoutCategoryInput
       'slug': slug,
       'description': description,
       'published': published,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 }
@@ -10369,6 +11514,8 @@ class AmenitiesCreateManyCategoryInput implements _i1.JsonSerializable {
     required this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -10380,6 +11527,10 @@ class AmenitiesCreateManyCategoryInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<String, _i1.PrismaNull>> description;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   @override
@@ -10389,6 +11540,8 @@ class AmenitiesCreateManyCategoryInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -10399,6 +11552,8 @@ class AmenitiesUpdateWithoutCategoryInput implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -10409,6 +11564,10 @@ class AmenitiesUpdateWithoutCategoryInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput>
       description;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   @override
@@ -10417,6 +11576,8 @@ class AmenitiesUpdateWithoutCategoryInput implements _i1.JsonSerializable {
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -10429,6 +11590,8 @@ class AmenitiesUncheckedUpdateWithoutCategoryInput
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -10441,6 +11604,10 @@ class AmenitiesUncheckedUpdateWithoutCategoryInput
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput>
       description;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   @override
@@ -10450,6 +11617,8 @@ class AmenitiesUncheckedUpdateWithoutCategoryInput
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -10462,6 +11631,8 @@ class AmenitiesUncheckedUpdateManyWithoutAmenitiesInput
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
   });
 
@@ -10474,6 +11645,10 @@ class AmenitiesUncheckedUpdateManyWithoutAmenitiesInput
   final _i1.PrismaNullable<NullableStringFieldUpdateOperationsInput>
       description;
 
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> createdAt;
+
+  final _i1.PrismaNullable<DateTimeFieldUpdateOperationsInput> updatedAt;
+
   final _i1.PrismaNullable<BoolFieldUpdateOperationsInput> published;
 
   @override
@@ -10483,6 +11658,8 @@ class AmenitiesUncheckedUpdateManyWithoutAmenitiesInput
       'name': name,
       'slug': slug,
       'description': description,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
       'published': published,
     };
   }
@@ -10537,6 +11714,8 @@ class UsersGroupByOutputType implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    required this.createdAt,
+    required this.updatedAt,
     this.$count,
     this.$avg,
     this.$sum,
@@ -10558,6 +11737,10 @@ class UsersGroupByOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> fcmtoken;
 
   final _i1.PrismaNullable<String> salt;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
 
   @_i2.JsonKey(name: '_count')
   final _i1.PrismaNullable<UsersCountAggregateOutputType> $count;
@@ -10635,6 +11818,8 @@ class ProfileGroupByOutputType implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    required this.createdAt,
+    required this.updatedAt,
     required this.published,
     this.userId,
     this.$count,
@@ -10674,6 +11859,10 @@ class ProfileGroupByOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> longitude;
 
   final _i1.PrismaNullable<String> latitude;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
 
   final bool published;
 
@@ -10750,6 +11939,8 @@ class PostGroupByOutputType implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    required this.createdAt,
+    required this.updatedAt,
     required this.published,
     required this.authorId,
     this.$count,
@@ -10779,6 +11970,10 @@ class PostGroupByOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> latitude;
 
   final _i1.PrismaNullable<String> content;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
 
   final bool published;
 
@@ -10937,6 +12132,8 @@ class AmenitiesGroupByOutputType implements _i1.JsonSerializable {
     required this.name,
     this.slug,
     this.description,
+    required this.createdAt,
+    required this.updatedAt,
     required this.published,
     required this.categoryId,
     this.$count,
@@ -10956,6 +12153,10 @@ class AmenitiesGroupByOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> slug;
 
   final _i1.PrismaNullable<String> description;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
 
   final bool published;
 
@@ -11028,6 +12229,8 @@ class CategoryGroupByOutputType implements _i1.JsonSerializable {
     this.slug,
     this.description,
     required this.published,
+    required this.createdAt,
+    required this.updatedAt,
     required this.postId,
     this.$count,
     this.$avg,
@@ -11048,6 +12251,10 @@ class CategoryGroupByOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> description;
 
   final bool published;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
 
   final int postId;
 
@@ -11122,6 +12329,8 @@ class UsersCountAggregateOutputType implements _i1.JsonSerializable {
     required this.password,
     required this.fcmtoken,
     required this.salt,
+    required this.createdAt,
+    required this.updatedAt,
     required this.$all,
   });
 
@@ -11139,6 +12348,10 @@ class UsersCountAggregateOutputType implements _i1.JsonSerializable {
   final int fcmtoken;
 
   final int salt;
+
+  final int createdAt;
+
+  final int updatedAt;
 
   @_i2.JsonKey(name: '_all')
   final int $all;
@@ -11194,6 +12407,8 @@ class UsersMinAggregateOutputType implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory UsersMinAggregateOutputType.fromJson(Map<String, dynamic> json) =>
@@ -11210,6 +12425,10 @@ class UsersMinAggregateOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> fcmtoken;
 
   final _i1.PrismaNullable<String> salt;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   @override
   Map<String, dynamic> toJson() => _$UsersMinAggregateOutputTypeToJson(this);
@@ -11228,6 +12447,8 @@ class UsersMaxAggregateOutputType implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory UsersMaxAggregateOutputType.fromJson(Map<String, dynamic> json) =>
@@ -11244,6 +12465,10 @@ class UsersMaxAggregateOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> fcmtoken;
 
   final _i1.PrismaNullable<String> salt;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   @override
   Map<String, dynamic> toJson() => _$UsersMaxAggregateOutputTypeToJson(this);
@@ -11270,6 +12495,8 @@ class ProfileCountAggregateOutputType implements _i1.JsonSerializable {
     required this.images,
     required this.longitude,
     required this.latitude,
+    required this.createdAt,
+    required this.updatedAt,
     required this.published,
     required this.userId,
     required this.$all,
@@ -11305,6 +12532,10 @@ class ProfileCountAggregateOutputType implements _i1.JsonSerializable {
   final int longitude;
 
   final int latitude;
+
+  final int createdAt;
+
+  final int updatedAt;
 
   final int published;
 
@@ -11383,6 +12614,8 @@ class ProfileMinAggregateOutputType implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -11418,6 +12651,10 @@ class ProfileMinAggregateOutputType implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<String> latitude;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final _i1.PrismaNullable<int> userId;
@@ -11447,6 +12684,8 @@ class ProfileMaxAggregateOutputType implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.userId,
   });
@@ -11481,6 +12720,10 @@ class ProfileMaxAggregateOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> longitude;
 
   final _i1.PrismaNullable<String> latitude;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   final _i1.PrismaNullable<bool> published;
 
@@ -11528,6 +12771,8 @@ class PostCountAggregateOutputType implements _i1.JsonSerializable {
     required this.longitude,
     required this.latitude,
     required this.content,
+    required this.createdAt,
+    required this.updatedAt,
     required this.published,
     required this.authorId,
     required this.$all,
@@ -11553,6 +12798,10 @@ class PostCountAggregateOutputType implements _i1.JsonSerializable {
   final int latitude;
 
   final int content;
+
+  final int createdAt;
+
+  final int updatedAt;
 
   final int published;
 
@@ -11625,6 +12874,8 @@ class PostMinAggregateOutputType implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
   });
@@ -11650,6 +12901,10 @@ class PostMinAggregateOutputType implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<String> content;
 
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
+
   final _i1.PrismaNullable<bool> published;
 
   final _i1.PrismaNullable<int> authorId;
@@ -11674,6 +12929,8 @@ class PostMaxAggregateOutputType implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.authorId,
   });
@@ -11698,6 +12955,10 @@ class PostMaxAggregateOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> latitude;
 
   final _i1.PrismaNullable<String> content;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   final _i1.PrismaNullable<bool> published;
 
@@ -11861,6 +13122,8 @@ class AmenitiesCountAggregateOutputType implements _i1.JsonSerializable {
     required this.name,
     required this.slug,
     required this.description,
+    required this.createdAt,
+    required this.updatedAt,
     required this.published,
     required this.categoryId,
     required this.$all,
@@ -11877,6 +13140,10 @@ class AmenitiesCountAggregateOutputType implements _i1.JsonSerializable {
   final int slug;
 
   final int description;
+
+  final int createdAt;
+
+  final int updatedAt;
 
   final int published;
 
@@ -11947,6 +13214,8 @@ class AmenitiesMinAggregateOutputType implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.categoryId,
   });
@@ -11961,6 +13230,10 @@ class AmenitiesMinAggregateOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> slug;
 
   final _i1.PrismaNullable<String> description;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   final _i1.PrismaNullable<bool> published;
 
@@ -11982,6 +13255,8 @@ class AmenitiesMaxAggregateOutputType implements _i1.JsonSerializable {
     this.name,
     this.slug,
     this.description,
+    this.createdAt,
+    this.updatedAt,
     this.published,
     this.categoryId,
   });
@@ -11996,6 +13271,10 @@ class AmenitiesMaxAggregateOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> slug;
 
   final _i1.PrismaNullable<String> description;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   final _i1.PrismaNullable<bool> published;
 
@@ -12035,6 +13314,8 @@ class CategoryCountAggregateOutputType implements _i1.JsonSerializable {
     required this.slug,
     required this.description,
     required this.published,
+    required this.createdAt,
+    required this.updatedAt,
     required this.postId,
     required this.$all,
   });
@@ -12052,6 +13333,10 @@ class CategoryCountAggregateOutputType implements _i1.JsonSerializable {
   final int description;
 
   final int published;
+
+  final int createdAt;
+
+  final int updatedAt;
 
   final int postId;
 
@@ -12119,6 +13404,8 @@ class CategoryMinAggregateOutputType implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.postId,
   });
 
@@ -12134,6 +13421,10 @@ class CategoryMinAggregateOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> description;
 
   final _i1.PrismaNullable<bool> published;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   final _i1.PrismaNullable<int> postId;
 
@@ -12153,6 +13444,8 @@ class CategoryMaxAggregateOutputType implements _i1.JsonSerializable {
     this.slug,
     this.description,
     this.published,
+    this.createdAt,
+    this.updatedAt,
     this.postId,
   });
 
@@ -12168,6 +13461,10 @@ class CategoryMaxAggregateOutputType implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> description;
 
   final _i1.PrismaNullable<bool> published;
+
+  final _i1.PrismaNullable<DateTime> createdAt;
+
+  final _i1.PrismaNullable<DateTime> updatedAt;
 
   final _i1.PrismaNullable<int> postId;
 
@@ -12188,6 +13485,8 @@ class Users implements _i1.JsonSerializable {
     this.password,
     this.fcmtoken,
     this.salt,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   factory Users.fromJson(Map<String, dynamic> json) => _$UsersFromJson(json);
@@ -12203,6 +13502,10 @@ class Users implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> fcmtoken;
 
   final _i1.PrismaNullable<String> salt;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
 
   @override
   Map<String, dynamic> toJson() => _$UsersToJson(this);
@@ -12229,6 +13532,8 @@ class Profile implements _i1.JsonSerializable {
     this.images,
     this.longitude,
     this.latitude,
+    required this.createdAt,
+    required this.updatedAt,
     required this.published,
     this.userId,
   });
@@ -12264,6 +13569,10 @@ class Profile implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<String> latitude;
 
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
+
   final bool published;
 
   final _i1.PrismaNullable<int> userId;
@@ -12288,6 +13597,8 @@ class Post implements _i1.JsonSerializable {
     this.longitude,
     this.latitude,
     this.content,
+    required this.createdAt,
+    required this.updatedAt,
     required this.published,
     required this.authorId,
   });
@@ -12311,6 +13622,10 @@ class Post implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> latitude;
 
   final _i1.PrismaNullable<String> content;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
 
   final bool published;
 
@@ -12362,6 +13677,8 @@ class Amenities implements _i1.JsonSerializable {
     required this.name,
     this.slug,
     this.description,
+    required this.createdAt,
+    required this.updatedAt,
     required this.published,
     required this.categoryId,
   });
@@ -12376,6 +13693,10 @@ class Amenities implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> slug;
 
   final _i1.PrismaNullable<String> description;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
 
   final bool published;
 
@@ -12397,6 +13718,8 @@ class Category implements _i1.JsonSerializable {
     this.slug,
     this.description,
     required this.published,
+    required this.createdAt,
+    required this.updatedAt,
     required this.postId,
   });
 
@@ -12412,6 +13735,10 @@ class Category implements _i1.JsonSerializable {
   final _i1.PrismaNullable<String> description;
 
   final bool published;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
 
   final int postId;
 
@@ -15734,6 +17061,79 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
           },
           {
+            'name': 'createdAt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'DateTime',
+            'default': {
+              'name': 'now',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+            'dbNames': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'createdAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': true,
+              'type': 'DateTime',
+              'default': {
+                'name': 'now',
+                'args': [],
+              },
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+          },
+          {
+            'name': 'updatedAt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'DateTime',
+            'isGenerated': false,
+            'isUpdatedAt': true,
+            'dbNames': null,
+            'default': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'updatedAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'DateTime',
+              'isGenerated': false,
+              'isUpdatedAt': true,
+            },
+          },
+          {
             'name': 'posts',
             'kind': 'object',
             'isList': true,
@@ -15898,6 +17298,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'type': 'String',
               'isGenerated': false,
               'isUpdatedAt': false,
+            },
+            {
+              'name': 'createdAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': true,
+              'type': 'DateTime',
+              'default': {
+                'name': 'now',
+                'args': [],
+              },
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+            {
+              'name': 'updatedAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'DateTime',
+              'isGenerated': false,
+              'isUpdatedAt': true,
             },
             {
               'name': 'posts',
@@ -16412,6 +17842,79 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
           },
           {
+            'name': 'createdAt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'DateTime',
+            'default': {
+              'name': 'now',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+            'dbNames': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'createdAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': true,
+              'type': 'DateTime',
+              'default': {
+                'name': 'now',
+                'args': [],
+              },
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+          },
+          {
+            'name': 'updatedAt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'DateTime',
+            'isGenerated': false,
+            'isUpdatedAt': true,
+            'dbNames': null,
+            'default': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'updatedAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'DateTime',
+              'isGenerated': false,
+              'isUpdatedAt': true,
+            },
+          },
+          {
             'name': 'published',
             'kind': 'scalar',
             'isList': false,
@@ -16710,6 +18213,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'type': 'String',
               'isGenerated': false,
               'isUpdatedAt': false,
+            },
+            {
+              'name': 'createdAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': true,
+              'type': 'DateTime',
+              'default': {
+                'name': 'now',
+                'args': [],
+              },
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+            {
+              'name': 'updatedAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'DateTime',
+              'isGenerated': false,
+              'isUpdatedAt': true,
             },
             {
               'name': 'published',
@@ -17070,6 +18603,79 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
           },
           {
+            'name': 'createdAt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'DateTime',
+            'default': {
+              'name': 'now',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+            'dbNames': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'createdAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': true,
+              'type': 'DateTime',
+              'default': {
+                'name': 'now',
+                'args': [],
+              },
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+          },
+          {
+            'name': 'updatedAt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'DateTime',
+            'isGenerated': false,
+            'isUpdatedAt': true,
+            'dbNames': null,
+            'default': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'updatedAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'DateTime',
+              'isGenerated': false,
+              'isUpdatedAt': true,
+            },
+          },
+          {
             'name': 'published',
             'kind': 'scalar',
             'isList': false,
@@ -17375,6 +18981,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'type': 'String',
               'isGenerated': false,
               'isUpdatedAt': false,
+            },
+            {
+              'name': 'createdAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': true,
+              'type': 'DateTime',
+              'default': {
+                'name': 'now',
+                'args': [],
+              },
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+            {
+              'name': 'updatedAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'DateTime',
+              'isGenerated': false,
+              'isUpdatedAt': true,
             },
             {
               'name': 'published',
@@ -17919,6 +19555,79 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
           },
           {
+            'name': 'createdAt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'DateTime',
+            'default': {
+              'name': 'now',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+            'dbNames': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'createdAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': true,
+              'type': 'DateTime',
+              'default': {
+                'name': 'now',
+                'args': [],
+              },
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+          },
+          {
+            'name': 'updatedAt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'DateTime',
+            'isGenerated': false,
+            'isUpdatedAt': true,
+            'dbNames': null,
+            'default': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'updatedAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'DateTime',
+              'isGenerated': false,
+              'isUpdatedAt': true,
+            },
+          },
+          {
             'name': 'published',
             'kind': 'scalar',
             'isList': false,
@@ -18087,6 +19796,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'type': 'String',
               'isGenerated': false,
               'isUpdatedAt': false,
+            },
+            {
+              'name': 'createdAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': true,
+              'type': 'DateTime',
+              'default': {
+                'name': 'now',
+                'args': [],
+              },
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+            {
+              'name': 'updatedAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'DateTime',
+              'isGenerated': false,
+              'isUpdatedAt': true,
             },
             {
               'name': 'published',
@@ -18316,6 +20055,79 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
           },
           {
+            'name': 'createdAt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'DateTime',
+            'default': {
+              'name': 'now',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+            'dbNames': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'createdAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': true,
+              'type': 'DateTime',
+              'default': {
+                'name': 'now',
+                'args': [],
+              },
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+          },
+          {
+            'name': 'updatedAt',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'DateTime',
+            'isGenerated': false,
+            'isUpdatedAt': true,
+            'dbNames': null,
+            'default': null,
+            'relationFromFields': null,
+            'relationToFields': null,
+            'relationOnDelete': null,
+            'relationName': null,
+            'documentation': null,
+            'additionalProperties': {
+              'name': 'updatedAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'DateTime',
+              'isGenerated': false,
+              'isUpdatedAt': true,
+            },
+          },
+          {
             'name': 'amenities',
             'kind': 'object',
             'isList': true,
@@ -18500,6 +20312,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'default': false,
               'isGenerated': false,
               'isUpdatedAt': false,
+            },
+            {
+              'name': 'createdAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': true,
+              'type': 'DateTime',
+              'default': {
+                'name': 'now',
+                'args': [],
+              },
+              'isGenerated': false,
+              'isUpdatedAt': false,
+            },
+            {
+              'name': 'updatedAt',
+              'kind': 'scalar',
+              'isList': false,
+              'isRequired': true,
+              'isUnique': false,
+              'isId': false,
+              'isReadOnly': false,
+              'hasDefaultValue': false,
+              'type': 'DateTime',
+              'isGenerated': false,
+              'isUpdatedAt': true,
             },
             {
               'name': 'amenities',
@@ -18788,6 +20630,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'posts',
               'comment': null,
               'isNullable': false,
@@ -18904,6 +20788,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'salt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -19074,6 +20988,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'salt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -19367,6 +21311,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
                   'location': 'scalar',
                   'namespace': null,
                 },
@@ -19813,6 +21799,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -20094,6 +22122,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'latitude',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -20399,6 +22457,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'latitude',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -20957,6 +23045,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -21303,6 +23433,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -21527,6 +23699,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'content',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -21787,6 +23989,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'content',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -22197,6 +24429,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
                   'location': 'scalar',
                   'namespace': null,
                 },
@@ -23071,6 +25345,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -23190,6 +25506,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'description',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -23345,6 +25691,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'description',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -23627,6 +26003,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -23853,6 +26271,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'amenities',
               'comment': null,
               'isNullable': false,
@@ -23981,6 +26441,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'published',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -24151,6 +26641,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'published',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -24439,6 +26959,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'postId',
               'comment': null,
               'isNullable': false,
@@ -24559,6 +27121,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -24707,6 +27299,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -24869,6 +27491,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -25058,6 +27722,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'posts',
               'comment': null,
               'isNullable': false,
@@ -25205,6 +27911,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               ],
               'deprecation': null,
             },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -25334,6 +28070,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -25488,6 +28266,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -25772,6 +28592,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -26100,6 +28950,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -26496,6 +29376,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -26919,6 +29841,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -27261,6 +30225,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -27657,6 +30651,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -28065,6 +31101,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -28281,6 +31359,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -28528,6 +31636,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -28807,6 +31945,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -29119,6 +32299,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -29378,6 +32600,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -29623,6 +32875,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -29885,6 +33179,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -30672,6 +34008,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -30780,6 +34146,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -30894,6 +34290,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -31042,6 +34480,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -31166,6 +34646,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -31276,6 +34786,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -31408,6 +34960,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -31525,6 +35119,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'Boolean',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -31652,6 +35276,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'Boolean',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -31789,6 +35443,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'BoolFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -31953,6 +35649,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'amenities',
               'comment': null,
               'isNullable': false,
@@ -32087,6 +35825,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'postId',
               'comment': null,
               'isNullable': false,
@@ -32201,6 +35969,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'BoolFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -32328,6 +36138,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'BoolFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -32957,6 +36809,142 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
           'fieldMap': null,
         },
         {
+          'name': 'DateTimeFilter',
+          'constraints': {
+            'maxNumFields': null,
+            'minNumFields': null,
+          },
+          'fields': [
+            {
+              'name': 'equals',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'in',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': true,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'notIn',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': true,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'lt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'lte',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'gt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'gte',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'not',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'NestedDateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+          ],
+          'fieldMap': null,
+        },
+        {
           'name': 'PostListRelationFilter',
           'constraints': {
             'maxNumFields': null,
@@ -33213,6 +37201,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               ],
               'deprecation': null,
             },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -33338,6 +37356,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               ],
               'deprecation': null,
             },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -33425,6 +37473,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'salt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -34275,6 +38353,187 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
           'fieldMap': null,
         },
         {
+          'name': 'DateTimeWithAggregatesFilter',
+          'constraints': {
+            'maxNumFields': null,
+            'minNumFields': null,
+          },
+          'fields': [
+            {
+              'name': 'equals',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'in',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': true,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'notIn',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': true,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'lt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'lte',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'gt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'gte',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'not',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'NestedDateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': '_count',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'NestedIntFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': '_min',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'NestedDateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': '_max',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'NestedDateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+          ],
+          'fieldMap': null,
+        },
+        {
           'name': 'BoolFilter',
           'constraints': {
             'maxNumFields': null,
@@ -34750,6 +39009,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -35040,6 +39329,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -35276,6 +39595,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'latitude',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -35991,6 +40340,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -36206,6 +40585,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -36367,6 +40776,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'content',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -36936,6 +41375,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -37076,6 +41545,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -37162,6 +41661,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'description',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -37411,6 +41940,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'postId',
               'comment': null,
               'isNullable': false,
@@ -37551,6 +42110,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'postId',
               'comment': null,
               'isNullable': false,
@@ -37637,6 +42226,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'published',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -38183,6 +42802,31 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            }
+          ],
+          'fieldMap': null,
+        },
+        {
+          'name': 'DateTimeFieldUpdateOperationsInput',
+          'constraints': {
+            'maxNumFields': 1,
+            'minNumFields': 1,
+          },
+          'fields': [
+            {
+              'name': 'set',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             }
@@ -42879,6 +47523,142 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
           'fieldMap': null,
         },
         {
+          'name': 'NestedDateTimeFilter',
+          'constraints': {
+            'maxNumFields': null,
+            'minNumFields': null,
+          },
+          'fields': [
+            {
+              'name': 'equals',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'in',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': true,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'notIn',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': true,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'lt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'lte',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'gt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'gte',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'not',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'NestedDateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+          ],
+          'fieldMap': null,
+        },
+        {
           'name': 'NestedIntWithAggregatesFilter',
           'constraints': {
             'maxNumFields': null,
@@ -43983,6 +48763,187 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
           'fieldMap': null,
         },
         {
+          'name': 'NestedDateTimeWithAggregatesFilter',
+          'constraints': {
+            'maxNumFields': null,
+            'minNumFields': null,
+          },
+          'fields': [
+            {
+              'name': 'equals',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'in',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': true,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'notIn',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': true,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'lt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'lte',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'gt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'gte',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'not',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'NestedDateTimeWithAggregatesFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': '_count',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'NestedIntFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': '_min',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'NestedDateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': '_max',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'NestedDateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+          ],
+          'fieldMap': null,
+        },
+        {
           'name': 'NestedBoolFilter',
           'constraints': {
             'maxNumFields': null,
@@ -44684,6 +49645,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -44912,6 +49903,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -45330,6 +50351,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -45639,6 +50690,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -46194,6 +51275,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'Null',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
                   'location': 'scalar',
                   'namespace': null,
                 },
@@ -46841,6 +51964,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -46992,6 +52157,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'posts',
               'comment': null,
               'isNullable': false,
@@ -47121,6 +52316,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -47371,6 +52596,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'posts',
               'comment': null,
               'isNullable': false,
@@ -47540,6 +52807,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'posts',
               'comment': null,
               'isNullable': false,
@@ -47654,6 +52963,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -47787,6 +53126,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -48157,6 +53526,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'amenities',
               'comment': null,
               'isNullable': false,
@@ -48262,6 +53661,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'Boolean',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -48556,6 +53985,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'Profile',
               'comment': null,
               'isNullable': false,
@@ -48720,6 +54191,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -49420,6 +54933,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'postId',
               'comment': null,
               'isNullable': false,
@@ -49609,6 +55164,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -49841,6 +55426,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -50208,6 +55823,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -50500,6 +56157,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -50639,6 +56338,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'post',
               'comment': null,
               'isNullable': false,
@@ -50744,6 +56473,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'Boolean',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -50970,6 +56729,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'post',
               'comment': null,
               'isNullable': false,
@@ -51112,6 +56913,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'postId',
               'comment': null,
               'isNullable': false,
@@ -51196,6 +57039,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -51293,6 +57166,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -51570,6 +57473,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -51798,6 +57731,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -52215,6 +58178,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTimeFilter',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -52529,6 +58534,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -52821,6 +58868,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -53061,6 +59150,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -53378,6 +59497,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -53608,6 +59757,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -53905,6 +60096,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -54192,6 +60425,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -54574,6 +60849,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -54982,6 +61299,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -55385,6 +61744,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -55572,6 +61973,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'Boolean',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -55964,6 +62395,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'amenities',
               'comment': null,
               'isNullable': false,
@@ -56099,6 +62572,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                 {
                   'isList': false,
                   'type': 'BoolFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -56248,6 +62763,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               ],
               'deprecation': null,
             },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -56327,6 +62884,36 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'location': 'scalar',
                   'namespace': null,
                 },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                }
               ],
               'deprecation': null,
             },
@@ -56426,6 +63013,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
                   'type': 'Null',
                   'location': 'scalar',
                   'namespace': null,
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
                 },
               ],
               'deprecation': null,
@@ -56558,6 +63187,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -56685,6 +63356,48 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
             },
             {
+              'name': 'createdAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'DateTime',
+                  'location': 'scalar',
+                  'namespace': null,
+                },
+                {
+                  'isList': false,
+                  'type': 'DateTimeFieldUpdateOperationsInput',
+                  'location': 'inputObjectTypes',
+                  'namespace': 'prisma',
+                },
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'published',
               'comment': null,
               'isNullable': false,
@@ -56786,6 +63499,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'outputType': {
                 'isList': false,
                 'type': 'String',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -57215,6 +63954,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'published',
               'isNullable': false,
               'outputType': {
@@ -57369,6 +64134,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'outputType': {
                 'isList': false,
                 'type': 'String',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -57791,6 +64582,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'published',
               'isNullable': false,
               'outputType': {
@@ -57893,6 +64710,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'outputType': {
                 'isList': false,
                 'type': 'Boolean',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -63749,6 +70592,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': '_count',
               'isNullable': true,
               'outputType': {
@@ -64073,6 +70942,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'published',
               'isNullable': false,
               'outputType': {
@@ -64350,6 +71245,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'outputType': {
                 'isList': false,
                 'type': 'String',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -64785,6 +71706,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'published',
               'isNullable': false,
               'outputType': {
@@ -65018,6 +71965,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'postId',
               'isNullable': false,
               'outputType': {
@@ -65231,6 +72204,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': '_all',
               'isNullable': false,
               'outputType': {
@@ -65365,6 +72364,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'deprecation': null,
               'documentation': null,
             },
+            {
+              'name': 'createdAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
           ],
           'fieldMap': null,
         },
@@ -65442,6 +72467,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'outputType': {
                 'isList': false,
                 'type': 'String',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'createdAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -65626,6 +72677,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'latitude',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
               'isNullable': false,
               'outputType': {
                 'isList': false,
@@ -65929,6 +73006,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'published',
               'isNullable': true,
               'outputType': {
@@ -66143,6 +73246,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'published',
               'isNullable': true,
               'outputType': {
@@ -66312,6 +73441,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'content',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
               'isNullable': false,
               'outputType': {
                 'isList': false,
@@ -66550,6 +73705,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'published',
               'isNullable': true,
               'outputType': {
@@ -66691,6 +73872,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'outputType': {
                 'isList': false,
                 'type': 'String',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'createdAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -67073,6 +74280,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'published',
               'isNullable': false,
               'outputType': {
@@ -67234,6 +74467,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'published',
               'isNullable': true,
               'outputType': {
@@ -67310,6 +74569,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'outputType': {
                 'isList': false,
                 'type': 'String',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'createdAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -67422,6 +74707,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             },
             {
               'name': 'published',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'createdAt',
+              'isNullable': false,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
               'isNullable': false,
               'outputType': {
                 'isList': false,
@@ -67595,6 +74906,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'postId',
               'isNullable': true,
               'outputType': {
@@ -67679,6 +75016,32 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
               'documentation': null,
             },
             {
+              'name': 'createdAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'updatedAt',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'DateTime',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'postId',
               'isNullable': true,
               'outputType': {
@@ -67714,6 +75077,8 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             'name',
             'slug',
             'description',
+            'createdAt',
+            'updatedAt',
             'published',
             'categoryId',
           ],
@@ -67726,6 +75091,8 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             'slug',
             'description',
             'published',
+            'createdAt',
+            'updatedAt',
             'postId',
           ],
         },
@@ -67751,6 +75118,8 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             'longitude',
             'latitude',
             'content',
+            'createdAt',
+            'updatedAt',
             'published',
             'authorId',
           ],
@@ -67772,6 +75141,8 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             'images',
             'longitude',
             'latitude',
+            'createdAt',
+            'updatedAt',
             'published',
             'userId',
           ],
@@ -67801,6 +75172,8 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
             'password',
             'fcmtoken',
             'salt',
+            'createdAt',
+            'updatedAt',
           ],
         },
       ],
@@ -67921,7 +75294,7 @@ final _i5.Document dmmf = _i5.Document.fromJson(<String, dynamic>{
   },
 });
 final String schema = _i6.utf8.decode(_i6.base64.decode(
-    r'Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgICAgICAgID0gInByaXNtYS1jbGllbnQtZGFydCIKICBwcmV2aWV3RmVhdHVyZXMgPSBbImludGVyYWN0aXZlVHJhbnNhY3Rpb25zIl0KfQoKZGF0YXNvdXJjZSBkYiB7CiAgcHJvdmlkZXIgPSAibXlzcWwiCiAgdXJsICAgICAgPSBlbnYoIkRBVEFCQVNFX1VSTCIpCn0KCm1vZGVsIFVzZXJzIHsKICBpZCAgICAgICBJbnQgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBlbWFpbCAgICBTdHJpbmcgICAgQHVuaXF1ZQogIHJvbGUgICAgIFJvbGUgICAgICBAZGVmYXVsdChVU0VSKQogIHBhc3N3b3JkIFN0cmluZz8KICBmY210b2tlbiBTdHJpbmc/CiAgc2FsdCAgICAgU3RyaW5nPwogIHBvc3RzICAgIFBvc3RbXQogIFByb2ZpbGUgIFByb2ZpbGVbXSBAcmVsYXRpb24oInVzZXJQcm9maWxlIikKfQoKbW9kZWwgUHJvZmlsZSB7CiAgaWQgICAgICAgICAgIEludCAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBmaXJzdE5hbWUgICAgU3RyaW5nPwogIGxhc3ROYW1lICAgICBTdHJpbmc/CiAgYWRkcmVzc0xpbmUxIFN0cmluZz8KICBhZGRyZXNzTGluZTIgU3RyaW5nPwogIGNpdHkgICAgICAgICBTdHJpbmc/CiAgc3RhdGUgICAgICAgIFN0cmluZz8KICBjb3VudHJ5ICAgICAgU3RyaW5nPwogIHBvc3RDb2RlICAgICBTdHJpbmc/CiAgcGhvbmUgICAgICAgIFN0cmluZz8KICBzbHVnICAgICAgICAgU3RyaW5nPyBAdW5pcXVlCiAgaW1hZ2VzICAgICAgIFN0cmluZz8KICBsb25naXR1ZGUgICAgU3RyaW5nPwogIGxhdGl0dWRlICAgICBTdHJpbmc/CiAgcHVibGlzaGVkICAgIEJvb2xlYW4gQGRlZmF1bHQoZmFsc2UpCiAgdXNlciAgICAgICAgIFVzZXJzPyAgQHJlbGF0aW9uKCJ1c2VyUHJvZmlsZSIsIGZpZWxkczogW3VzZXJJZF0sIHJlZmVyZW5jZXM6IFtpZF0pCiAgdXNlcklkICAgICAgIEludD8gICAKfQoKbW9kZWwgUG9zdCB7CiAgaWQgICAgICAgICAgICAgICBJbnQgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgdGl0bGUgICAgICAgICAgICBTdHJpbmcKICBzbHVnICAgICAgICAgICAgIFN0cmluZz8gICAgQHVuaXF1ZQogIGRlc2NyaXB0aW9uICAgICAgU3RyaW5nPwogIGltYWdlcyAgICAgICAgICAgU3RyaW5nPwogIGxvbmdfZGVzY3JpcHRpb24gU3RyaW5nPwogIGxvbmdpdHVkZSAgICAgICAgU3RyaW5nPwogIGxhdGl0dWRlICAgICAgICAgU3RyaW5nPwogIGNvbnRlbnQgICAgICAgICAgU3RyaW5nPwogIHB1Ymxpc2hlZCAgICAgICAgQm9vbGVhbiAgICBAZGVmYXVsdChmYWxzZSkKICBhdXRob3IgICAgICAgICAgIFVzZXJzICAgICAgQHJlbGF0aW9uKGZpZWxkczogW2F1dGhvcklkXSwgcmVmZXJlbmNlczogW2lkXSkKICBhdXRob3JJZCAgICAgICAgIEludAogIHBvc3RtZXRhICAgICAgICAgUG9zdE1ldGFbXQogIGNhdGVnb3J5ICAgICAgICAgQ2F0ZWdvcnlbXQp9Cgptb2RlbCBQb3N0TWV0YSB7CiAgaWQgICAgICAgICAgICAgICBJbnQgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgbWV0YV90aXRsZSAgICAgICBTdHJpbmcKICBtZXRhX2Rlc2NyaXB0aW9uIFN0cmluZz8KICBwdWJsaXNoZWQgICAgICAgIEJvb2xlYW4gQGRlZmF1bHQoZmFsc2UpCiAgcG9zdCAgICAgICAgICAgICBQb3N0ICAgIEByZWxhdGlvbihmaWVsZHM6IFtwb3N0SWRdLCByZWZlcmVuY2VzOiBbaWRdKQogIHBvc3RJZCAgICAgICAgICAgSW50Cn0KCm1vZGVsIEFtZW5pdGllcyB7CiAgaWQgICAgICAgICAgSW50ICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBuYW1lICAgICAgICBTdHJpbmcKICBzbHVnICAgICAgICBTdHJpbmc/ICBAdW5pcXVlCiAgZGVzY3JpcHRpb24gU3RyaW5nPwogIHB1Ymxpc2hlZCAgIEJvb2xlYW4gIEBkZWZhdWx0KGZhbHNlKQogIGNhdGVnb3J5ICAgIENhdGVnb3J5IEByZWxhdGlvbihmaWVsZHM6IFtjYXRlZ29yeUlkXSwgcmVmZXJlbmNlczogW2lkXSkKICBjYXRlZ29yeUlkICBJbnQKfQoKbW9kZWwgQ2F0ZWdvcnkgewogIGlkICAgICAgICAgIEludCAgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgbmFtZSAgICAgICAgU3RyaW5nCiAgc2x1ZyAgICAgICAgU3RyaW5nPyAgICAgQHVuaXF1ZQogIGRlc2NyaXB0aW9uIFN0cmluZz8KICBwdWJsaXNoZWQgICBCb29sZWFuICAgICBAZGVmYXVsdChmYWxzZSkKICBhbWVuaXRpZXMgICBBbWVuaXRpZXNbXQogIHBvc3QgICAgICAgIFBvc3QgICAgICAgIEByZWxhdGlvbihmaWVsZHM6IFtwb3N0SWRdLCByZWZlcmVuY2VzOiBbaWRdKQogIHBvc3RJZCAgICAgIEludAp9CgplbnVtIFJvbGUgewogIFVTRVIKICBBRE1JTgp9Cg=='));
+    r'Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgICAgICAgID0gInByaXNtYS1jbGllbnQtZGFydCIKICBwcmV2aWV3RmVhdHVyZXMgPSBbImludGVyYWN0aXZlVHJhbnNhY3Rpb25zIl0KfQoKZGF0YXNvdXJjZSBkYiB7CiAgcHJvdmlkZXIgPSAibXlzcWwiCiAgdXJsICAgICAgPSBlbnYoIkRBVEFCQVNFX1VSTCIpCn0KCm1vZGVsIFVzZXJzIHsKICBpZCAgICAgICBJbnQgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBlbWFpbCAgICBTdHJpbmcgICAgQHVuaXF1ZQogIHJvbGUgICAgIFJvbGUgICAgICBAZGVmYXVsdChVU0VSKQogIHBhc3N3b3JkIFN0cmluZz8KICBmY210b2tlbiBTdHJpbmc/CiAgc2FsdCAgICAgU3RyaW5nPwogIGNyZWF0ZWRBdCBEYXRlVGltZSBAZGVmYXVsdChub3coKSkKICB1cGRhdGVkQXQgRGF0ZVRpbWUgQHVwZGF0ZWRBdAogIHBvc3RzICAgIFBvc3RbXQogIFByb2ZpbGUgIFByb2ZpbGVbXSBAcmVsYXRpb24oInVzZXJQcm9maWxlIikKfQoKbW9kZWwgUHJvZmlsZSB7CiAgaWQgICAgICAgICAgIEludCAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBmaXJzdE5hbWUgICAgU3RyaW5nPwogIGxhc3ROYW1lICAgICBTdHJpbmc/CiAgYWRkcmVzc0xpbmUxIFN0cmluZz8KICBhZGRyZXNzTGluZTIgU3RyaW5nPwogIGNpdHkgICAgICAgICBTdHJpbmc/CiAgc3RhdGUgICAgICAgIFN0cmluZz8KICBjb3VudHJ5ICAgICAgU3RyaW5nPwogIHBvc3RDb2RlICAgICBTdHJpbmc/CiAgcGhvbmUgICAgICAgIFN0cmluZz8KICBzbHVnICAgICAgICAgU3RyaW5nPyBAdW5pcXVlCiAgaW1hZ2VzICAgICAgIFN0cmluZz8KICBsb25naXR1ZGUgICAgU3RyaW5nPwogIGxhdGl0dWRlICAgICBTdHJpbmc/CiAgY3JlYXRlZEF0ICAgIERhdGVUaW1lIEBkZWZhdWx0KG5vdygpKQogIHVwZGF0ZWRBdCAgICBEYXRlVGltZSBAdXBkYXRlZEF0CiAgcHVibGlzaGVkICAgIEJvb2xlYW4gQGRlZmF1bHQoZmFsc2UpCiAgdXNlciAgICAgICAgIFVzZXJzPyAgQHJlbGF0aW9uKCJ1c2VyUHJvZmlsZSIsIGZpZWxkczogW3VzZXJJZF0sIHJlZmVyZW5jZXM6IFtpZF0pCiAgdXNlcklkICAgICAgIEludD8gICAKfQoKbW9kZWwgUG9zdCB7CiAgaWQgICAgICAgICAgICAgICBJbnQgICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgdGl0bGUgICAgICAgICAgICBTdHJpbmcKICBzbHVnICAgICAgICAgICAgIFN0cmluZz8gICAgQHVuaXF1ZQogIGRlc2NyaXB0aW9uICAgICAgU3RyaW5nPwogIGltYWdlcyAgICAgICAgICAgU3RyaW5nPwogIGxvbmdfZGVzY3JpcHRpb24gU3RyaW5nPwogIGxvbmdpdHVkZSAgICAgICAgU3RyaW5nPwogIGxhdGl0dWRlICAgICAgICAgU3RyaW5nPwogIGNvbnRlbnQgICAgICAgICAgU3RyaW5nPwogIGNyZWF0ZWRBdCAgICAgICAgRGF0ZVRpbWUgICBAZGVmYXVsdChub3coKSkKICB1cGRhdGVkQXQgICAgICAgIERhdGVUaW1lICAgQHVwZGF0ZWRBdAogIHB1Ymxpc2hlZCAgICAgICAgQm9vbGVhbiAgICBAZGVmYXVsdChmYWxzZSkKICBhdXRob3IgICAgICAgICAgIFVzZXJzICAgICAgQHJlbGF0aW9uKGZpZWxkczogW2F1dGhvcklkXSwgcmVmZXJlbmNlczogW2lkXSkKICBhdXRob3JJZCAgICAgICAgIEludAogIHBvc3RtZXRhICAgICAgICAgUG9zdE1ldGFbXQogIGNhdGVnb3J5ICAgICAgICAgQ2F0ZWdvcnlbXQp9Cgptb2RlbCBQb3N0TWV0YSB7CiAgaWQgICAgICAgICAgICAgICBJbnQgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgbWV0YV90aXRsZSAgICAgICBTdHJpbmcKICBtZXRhX2Rlc2NyaXB0aW9uIFN0cmluZz8KICBwdWJsaXNoZWQgICAgICAgIEJvb2xlYW4gQGRlZmF1bHQoZmFsc2UpCiAgcG9zdCAgICAgICAgICAgICBQb3N0ICAgIEByZWxhdGlvbihmaWVsZHM6IFtwb3N0SWRdLCByZWZlcmVuY2VzOiBbaWRdKQogIHBvc3RJZCAgICAgICAgICAgSW50Cn0KCm1vZGVsIEFtZW5pdGllcyB7CiAgaWQgICAgICAgICAgSW50ICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBuYW1lICAgICAgICBTdHJpbmcKICBzbHVnICAgICAgICBTdHJpbmc/ICBAdW5pcXVlCiAgZGVzY3JpcHRpb24gU3RyaW5nPwogIGNyZWF0ZWRBdCAgIERhdGVUaW1lIEBkZWZhdWx0KG5vdygpKQogIHVwZGF0ZWRBdCAgIERhdGVUaW1lIEB1cGRhdGVkQXQKICBwdWJsaXNoZWQgICBCb29sZWFuICBAZGVmYXVsdChmYWxzZSkKICBjYXRlZ29yeSAgICBDYXRlZ29yeSBAcmVsYXRpb24oZmllbGRzOiBbY2F0ZWdvcnlJZF0sIHJlZmVyZW5jZXM6IFtpZF0pCiAgY2F0ZWdvcnlJZCAgSW50Cn0KCm1vZGVsIENhdGVnb3J5IHsKICBpZCAgICAgICAgICBJbnQgICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIG5hbWUgICAgICAgIFN0cmluZwogIHNsdWcgICAgICAgIFN0cmluZz8gICAgIEB1bmlxdWUKICBkZXNjcmlwdGlvbiBTdHJpbmc/CiAgcHVibGlzaGVkICAgQm9vbGVhbiAgICAgQGRlZmF1bHQoZmFsc2UpCiAgY3JlYXRlZEF0ICAgRGF0ZVRpbWUgICAgQGRlZmF1bHQobm93KCkpCiAgdXBkYXRlZEF0ICAgRGF0ZVRpbWUgICAgQHVwZGF0ZWRBdAogIGFtZW5pdGllcyAgIEFtZW5pdGllc1tdCiAgcG9zdCAgICAgICAgUG9zdCAgICAgICAgQHJlbGF0aW9uKGZpZWxkczogW3Bvc3RJZF0sIHJlZmVyZW5jZXM6IFtpZF0pCiAgcG9zdElkICAgICAgSW50Cn0KCmVudW0gUm9sZSB7CiAgVVNFUgogIEFETUlOCn0K'));
 const String _executable =
     r'/Users/xain/Documents/GitHub/dart_server/dart_server/.dart_tool/prisma/query-engine';
 
