@@ -14,7 +14,7 @@ datasource db {
 model Users {
   id       Int       @id @default(autoincrement())
   email    String    @unique
-  role     Role      @default(USER)
+  role     Role      @default(USER) // need to create table
   password String?
   fcmtoken String?
   salt     String?
@@ -51,11 +51,27 @@ model Post {
   title            String
   slug             String?    @unique
   description      String?
-  images           String?
-  long_description String?
+  featuredImages   String?
+  galleryImages    String?
+  video            String
+  longDescription  String?
   longitude        String?
   latitude         String?
   content          String?
+  plotNumber       String?
+  price            Float?
+  isInstallmentAvailable  Boolean? @default(false)
+  advanceAmount    Float
+  noOfInstallments Int
+  monthlyInstallments Int
+  readyForPossession  Boolean? @default(false)
+  areaSizeUnit     AreaSizeUnit @default(MARLA)
+  bedroooms        Int
+  bathroom         Int
+  contactEmail     String
+  contactMobile    String
+  contactLandline  String
+  featureAndAmenities String // save ameeties or featurs in json
   createdAt        DateTime   @default(now())
   updatedAt        DateTime   @updatedAt
   published        Boolean    @default(false)
@@ -63,12 +79,17 @@ model Post {
   authorId         Int
   postmeta         PostMeta[]
   category         Category[]
+  city             City        @relation(fields: [cityId], references: [id])
+  cityId           Int
+  propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
+  propertyTypeListId Int
+  
 }
 
 model PostMeta {
   id               Int     @id @default(autoincrement())
-  meta_title       String
-  meta_description String?
+  metaTitle        String
+  metaDescription  String?
   published        Boolean @default(false)
   post             Post    @relation(fields: [postId], references: [id])
   postId           Int
@@ -99,7 +120,53 @@ model Category {
   postId      Int
 }
 
+model PropertyTypeList{
+  id          Int         @id @default(autoincrement())
+  title       String
+  propertyType  PropertyType      @default(HOME)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  posts       Post[]
+}
+
+model City{
+  id          Int         @id @default(autoincrement())
+  title       String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  posts       Post[]
+  areas       Area[]
+}
+
+model Area{
+  id          Int         @id @default(autoincrement())
+  title       String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  city        City        @relation(fields: [cityId], references: [id])
+  cityId      Int
+}
+
 enum Role {
   USER
   ADMIN
+}
+
+enum SellPurpose {
+  SELL
+  RENT
+}
+
+enum PropertyType {
+  HOME
+  PLOTS
+  COMMERCIAL
+}
+
+enum AreaSizeUnit {
+  MARLA
+  SQFT
+  SQM
+  SQYD
+  KANAL
 }

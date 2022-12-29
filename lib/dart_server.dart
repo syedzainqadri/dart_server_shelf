@@ -1,6 +1,7 @@
 export 'src/auth_api.dart';
 export 'src/user_api.dart';
 export 'src/utils.dart';
+export 'src/profile_api.dart';
 export 'src/hello_world.dart';
 export 'package:shelf/shelf_io.dart';
 export 'package:shelf/shelf.dart';
