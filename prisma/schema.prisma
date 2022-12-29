@@ -11,31 +11,85 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Users {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  password String? 
-  salt String?
-  posts Post[]
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  role     Role      @default(USER)
+  password String?
+  fcmtoken String?
+  salt     String?
+  posts    Post[]
+  Profile  Profile[] @relation("userProfile")
 }
 
-model Post{
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    Users    @relation(fields: [authorId], references: [id])
-  authorId  Int
-  postmeta PostMeta[]
+model Profile {
+  id           Int     @id @default(autoincrement())
+  firstName    String?
+  lastName     String?
+  addressLine1 String?
+  addressLine2 String?
+  city         String?
+  state        String?
+  country      String?
+  postCode     String?
+  phone        String?
+  slug         String? @unique
+  images       String?
+  longitude    String?
+  latitude     String?
+  published    Boolean @default(false)
+  user         Users?  @relation("userProfile", fields: [userId], references: [id])
+  userId       Int?
 }
 
-model PostMeta{
-  id        Int     @id @default(autoincrement())
-  meta_title     String
-  meta_description   String?
-  published Boolean @default(false)
-  post    Post    @relation(fields: [postId], references: [id])
-  postId  Int
+model Post {
+  id               Int        @id @default(autoincrement())
+  title            String
+  slug             String?    @unique
+  description      String?
+  images           String?
+  long_description String?
+  longitude        String?
+  latitude         String?
+  content          String?
+  published        Boolean    @default(false)
+  author           Users      @relation(fields: [authorId], references: [id])
+  authorId         Int
+  postmeta         PostMeta[]
+  category         Category[]
+}
+
+model PostMeta {
+  id               Int     @id @default(autoincrement())
+  meta_title       String
+  meta_description String?
+  published        Boolean @default(false)
+  post             Post    @relation(fields: [postId], references: [id])
+  postId           Int
+}
+
+model Amenities {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String?  @unique
+  description String?
+  published   Boolean  @default(false)
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+}
+
+model Category {
+  id          Int         @id @default(autoincrement())
+  name        String
+  slug        String?     @unique
+  description String?
+  published   Boolean     @default(false)
+  amenities   Amenities[]
+  post        Post        @relation(fields: [postId], references: [id])
+  postId      Int
+}
+
+enum Role {
+  USER
+  ADMIN
 }

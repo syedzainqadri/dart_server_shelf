@@ -10,9 +10,10 @@ class AuthAPi {
     final router = Router();
     router.post('/register', (Request request) async {
       var payLoad = jsonDecode(await request.readAsString());
-      var name = payLoad['name'];
-      var userEmail = payLoad['email'];
-      var password = payLoad['password'];
+      print(payLoad);
+      var userEmail = payLoad['email']; //email provided by the user
+      var fcmToken = payLoad['fcmtoken']; //fcmToken provided by the user
+      var password = payLoad['password']; //password provided by the user
       final salt = generateSalt();
       final hashedPassword = hashPassword(password, salt);
       final newUser = await prisma.users
@@ -23,8 +24,8 @@ class AuthAPi {
       }
       final Users user = await prisma.users.create(
         data: UsersCreateInput(
-          name: PrismaUnion.zero(name),
           email: userEmail,
+          fcmtoken: fcmToken,
           password: PrismaUnion.zero(hashedPassword),
           salt: PrismaUnion.zero(salt),
         ),

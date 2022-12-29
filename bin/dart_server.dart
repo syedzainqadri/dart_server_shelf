@@ -1,12 +1,13 @@
 import 'package:dart_server/dart_server.dart';
+import 'package:dart_server/src/profile_api.dart';
 
 final app = Router();
-
 void main(List<String> arguments) async {
   var secret = Env.secretKey;
   app.mount('/api', HelloWorldApi().router);
   app.mount('/auth', AuthAPi(secret: secret).router);
   app.mount('/users', UserApi().router);
+  app.mount('/profile', ProfileApi().router);
   final ip = InternetAddress.anyIPv4;
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
   final handler = const Pipeline()
