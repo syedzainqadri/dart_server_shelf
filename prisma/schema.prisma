@@ -49,7 +49,7 @@ model Profile {
 model Post {
   id               Int        @id @default(autoincrement())
   title            String
-  slug             String?    @unique
+  // slug             String?    @unique
   description      String?
   featuredImages   String?
   galleryImages    String?
@@ -82,6 +82,8 @@ model Post {
   postmeta         PostMeta[]
   category         Category @relation(fields: [categoryId], references: [id])
   categoryId       Int
+  slug   Slug @relation(fields: [slugId], references: [id])
+  slugId Int  @unique
   // propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
   // propertyTypeListId Int
 }
@@ -128,6 +130,10 @@ model Blog {
   createdAt   DateTime
   updatedAt   DateTime
   status      Boolean   @default(true)
+  blogCategory        BlogCategory      @relation(fields: [blogCategoryId], references: [id])
+  blogCategoryId      Int
+  slug   Slug @relation(fields: [slugId], references: [id])
+  slugId Int  @unique
 }
 
 model BlogCategory {
@@ -138,6 +144,7 @@ model BlogCategory {
   image       String?
   createdAt   DateTime
   updatedAt   DateTime
+  blogs       Blog[]
 }
 
 model Page{
@@ -148,13 +155,18 @@ model Page{
   createdAt   DateTime
   updatedAt   DateTime
   status      Boolean   @default(true)
+  slug   Slug @relation(fields: [slugId], references: [id])
+  slugId Int  @unique
 }
 
 model Slug {
   id        Int       @id @default(autoincrement())
   slug      String    @unique
   type      SlugType  @default(POST)
-  query     String    // Save the postID / pageID / 
+  referenceId     Int    // Save the postID / pageID / 
+  pages Page[]
+  blogs Blog[]
+  posts Post[]
 }
 
 enum Role {
