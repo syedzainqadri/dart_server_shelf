@@ -11,6 +11,89 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model SystemSettings {
+  id       Int       @id @default(autoincrement())
+  name     String
+  value    String? 
+  settingGroup  SettingGroup @default(GENERAL)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SystemUser {
+  id        Int       @id @default(autoincrement())
+  username  String
+  password  String
+  salt      String
+  role      SystemRole  @default(SUPERADMIN)
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Agency {
+  id       Int       @id @default(autoincrement())
+  title    String
+  featuredImage String?
+  logoImage String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+// developer and project schema started
+model Developer {
+  id       Int       @id @default(autoincrement())
+  title    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  projects Project[]
+}
+
+model Project {
+  id        Int       @id @default(autoincrement())
+  title     String
+  address   String
+  featuredImage String?
+  gallery   String?
+  locality  String?
+  city      String?
+  price     String?
+  WalkthroughThreeD String? //iframe
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  developer Developer?  @relation(fields: [developerId], references: [id])
+  developerId Int?
+  category Category?  @relation(fields: [categoryId], references: [id])
+  categoryId Int?
+  projectNearByPlace ProjectNearByPlace?  @relation(fields: [projectNearByPlaceId], references: [id])
+  projectNearByPlaceId Int?
+  floorplans  FloorPlan[]
+}
+
+model FloorPlan {
+  id        Int       @id @default(autoincrement())
+  title     String
+  floorPlanPath String
+  project Project?  @relation(fields: [projectId], references: [id])
+  projectId Int?
+
+}
+model ProjectNearByPlace {
+  id        Int       @id @default(autoincrement())
+  title     String
+  latitude  String
+  longitude String
+  placeCategory ProjectNearByPlaceCategory @default(PROPERTY)
+  projects Project[]
+}
+
+enum ProjectNearByPlaceCategory {
+  PROPERTY
+  SCHOOL
+  RESTAURANT
+  HOSPITAL
+  PARK
+}
+// developer and project schema end
 model Users {
   id       Int       @id @default(autoincrement())
   email    String    @unique
@@ -67,23 +150,24 @@ model Post {
   noOfInstallments Int
   monthlyInstallments Int
   readyForPossession  Boolean? @default(false)
-  areaSizeUnit     AreaSizeUnit @default(MARLA)
+  areaSizeUnit     String? @default("Marla")
   bedroooms        Int
   bathroom         Int
   contactEmail     String
   contactMobile    String
   contactLandline  String
   featureAndAmenities String // save ameeties or featurs in json
-  createdAt        DateTime   @default(now())
-  updatedAt        DateTime   @updatedAt
-  published        Boolean    @default(false)
-  author           Users      @relation(fields: [authorId], references: [id])
-  authorId         Int
+  // published        Boolean    @default(false)
   postmeta         PostMeta[]
   category         Category @relation(fields: [categoryId], references: [id])
   categoryId       Int
+  author           Users      @relation(fields: [authorId], references: [id])
+  authorId         Int
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
+  status  PostStatus @default(DRAFT)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
   // propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
   // propertyTypeListId Int
 }
@@ -120,6 +204,7 @@ model Category {
   updatedAt   DateTime    @updatedAt
   amenities   Amenities[]
   posts       Post[]
+  projects    Project[]
 }
 
 model Blog {
@@ -187,11 +272,26 @@ enum SlugType {
   BLOGCATEGORY
 }
 
-enum AreaSizeUnit {
-  MARLA
-  SQFT
-  SQM
-  SQYD
-  KANAL
+enum SystemRole {
+  SUPERADMIN
+  ADMIN
+  AREAMANAGER
+  SALESMANAGER
+  MANAGER
+  MARKETER
+}
+
+enum SettingGroup {
+  GENERAL
+  EMAIL
+  BRANDING
+  SEO
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISH
+  PENDING
+  DELETED
 }
 
