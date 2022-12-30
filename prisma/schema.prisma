@@ -84,7 +84,6 @@ model Post {
   categoryId       Int
   // propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
   // propertyTypeListId Int
-  
 }
 
 model PostMeta {
@@ -121,6 +120,42 @@ model Category {
   posts       Post[]
 }
 
+model Blog {
+  id          Int         @id @default(autoincrement())
+  title       String
+  content     String?
+  featuredImage String?
+  createdAt   DateTime
+  updatedAt   DateTime
+  status      Boolean   @default(true)
+}
+
+model BlogCategory {
+  id          Int         @id @default(autoincrement())
+  title       String
+  content     String?
+  iconImage   String?
+  image       String?
+  createdAt   DateTime
+  updatedAt   DateTime
+}
+
+model Page{
+  id          Int         @id @default(autoincrement())
+  title       String
+  content     String?
+  featuredImage String?
+  createdAt   DateTime
+  updatedAt   DateTime
+  status      Boolean   @default(true)
+}
+
+model Slug {
+  id        Int       @id @default(autoincrement())
+  slug      String    @unique
+  type      SlugType  @default(POST)
+  query     String    // Save the postID / pageID / 
+}
 
 enum Role {
   USER
@@ -132,7 +167,13 @@ enum SellPurpose {
   RENT
 }
 
-
+enum SlugType {
+  POST
+  POSTCATEGORY
+  PAGE
+  BLOG
+  BLOGCATEGORY
+}
 
 enum AreaSizeUnit {
   MARLA
@@ -141,3 +182,4 @@ enum AreaSizeUnit {
   SQYD
   KANAL
 }
+
