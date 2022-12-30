@@ -67,20 +67,22 @@ class CategoryApi {
     //update category
     router.put('/updateCategory', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'];
+      var id = payload['id'].toInt();
       var name = payload['name'];
       var slug = payload['slug'];
       var description = payload['description'];
       var parentId = payload['parentId'];
       var published = payload['published'];
       var category = await prisma.category.update(
-        where: CategoryWhereUniqueInput(id: int.parse(id)),
+        where: CategoryWhereUniqueInput(id: id),
         data: CategoryUpdateInput(
-          name: name,
-          slug: NullableStringFieldUpdateOperationsInput(set$: slug),
-          description:
-              NullableStringFieldUpdateOperationsInput(set$: description),
-          parentId: NullableIntFieldUpdateOperationsInput(set$: parentId),
+          name: StringFieldUpdateOperationsInput(set$: name),
+          slug: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(slug)),
+          description: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(description)),
+          parentId: NullableIntFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(parentId)),
           published: BoolFieldUpdateOperationsInput(set$: published),
         ),
       );
@@ -93,9 +95,9 @@ class CategoryApi {
     //delete category
     router.delete('/deleteCategory', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'];
+      var id = payload['id'].toInt();
       var category = await prisma.category.delete(
-        where: CategoryWhereUniqueInput(id: int.parse(id)),
+        where: CategoryWhereUniqueInput(id: id),
       );
       var categoryObject = jsonEncode(category);
       return Response.ok('Post by ID Is: $categoryObject\n', headers: {
