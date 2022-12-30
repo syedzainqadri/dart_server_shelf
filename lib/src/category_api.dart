@@ -13,11 +13,11 @@ class CategoryApi {
     });
 
     //get category by id
-    router.get('/<id|[0-9]+>', (Request request, String id) async {
+    router.get('/id', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var category = await prisma.category.findUnique(
-        where: CategoryWhereUniqueInput(id: int.parse(id)),
+        where: CategoryWhereUniqueInput(id: id),
       );
       var categoryObject = jsonEncode(category);
       return Response.ok('Post by ID Is: $categoryObject\n', headers: {
@@ -26,12 +26,14 @@ class CategoryApi {
     });
 
     //get subcategories by category id
-    router.get('/<id|[0-9]+>/subCategories',
-        (Request request, String id) async {
+    router.get('/subCategories', (
+      Request request,
+    ) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'];
+      var id = payload['id'].toInt();
       var subCategory = await prisma.category.findMany(
-        where: CategoryWhereInput(parentId: id),
+        where: CategoryWhereInput(
+            parentId: IntNullableFilter(equals: PrismaUnion.zero(id))),
       );
       var subCategoryObject = jsonEncode(subCategory);
       return Response.ok('Post by ID Is: $subCategoryObject\n', headers: {
@@ -45,7 +47,7 @@ class CategoryApi {
       var name = payload['name'];
       var slug = payload['slug'];
       var description = payload['description'];
-      var parentId = payload['parentId'];
+      var parentId = payload['parentId'].toInt();
       var published = payload['published'];
       var category = await prisma.category.create(
         data: CategoryCreateInput(

@@ -4,6 +4,7 @@ export 'src/utils.dart';
 export 'src/profile_api.dart';
 export 'src/post_api.dart';
 export 'src/category_api.dart';
+export 'src/amenisties_api.dart';
 export 'src/hello_world.dart';
 export 'package:shelf/shelf_io.dart';
 export 'package:shelf/shelf.dart';
