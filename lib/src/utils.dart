@@ -40,7 +40,7 @@ String generateJwt(
   String issuer,
   String secret, {
   String? jwtId,
-  Duration expiry = const Duration(seconds: 30),
+  Duration expiry = const Duration(minutes: 30),
 }) {
   final jwt = JWT(
     {
@@ -53,7 +53,6 @@ String generateJwt(
   return jwt.sign(SecretKey(secret), expiresIn: expiry);
 }
 
-//TODO: Auth is expring in 30 days, Fix this when deploying to server
 Middleware handleAuth(String secret) {
   return (Handler innerHandler) {
     return (Request request) async {

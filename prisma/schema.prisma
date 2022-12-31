@@ -11,31 +11,287 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model SystemSettings {
+  id       Int       @id @default(autoincrement())
+  name     String
+  value    String? 
+  settingGroup  SettingGroup @default(GENERAL)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
+model SystemUser {
+  id        Int       @id @default(autoincrement())
+  username  String
+  password  String
+  salt      String
+  role      SystemRole  @default(SUPERADMIN)
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Agency {
+  id       Int       @id @default(autoincrement())
+  title    String
+  featuredImage String?
+  logoImage String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+// developer and project schema started
+model Developer {
+  id       Int       @id @default(autoincrement())
+  title    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  projects Project[]
+}
+
+model Project {
+  id        Int       @id @default(autoincrement())
+  title     String
+  address   String
+  featuredImage String?
+  gallery   String?
+  locality  String?
+  city      String?
+  price     String?
+  WalkthroughThreeD String? //iframe
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  developer Developer?  @relation(fields: [developerId], references: [id])
+  developerId Int?
+  category Category?  @relation(fields: [categoryId], references: [id])
+  categoryId Int?
+  projectNearByPlace ProjectNearByPlace?  @relation(fields: [projectNearByPlaceId], references: [id])
+  projectNearByPlaceId Int?
+  floorplans  FloorPlan[]
+}
+
+model FloorPlan {
+  id        Int       @id @default(autoincrement())
+  title     String
+  floorPlanPath String
+  project Project?  @relation(fields: [projectId], references: [id])
+  projectId Int?
+
+}
+model ProjectNearByPlace {
+  id        Int       @id @default(autoincrement())
+  title     String
+  latitude  String
+  longitude String
+  placeCategory ProjectNearByPlaceCategory @default(PROPERTY)
+  projects Project[]
+}
+
+enum ProjectNearByPlaceCategory {
+  PROPERTY
+  SCHOOL
+  RESTAURANT
+  HOSPITAL
+  PARK
+}
+// developer and project schema end
 model Users {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  password String? 
-  salt String?
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  role     Role      @default(USER) // need to create table
+  password String?
+  fcmtoken String?
+  salt     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts    Post[]
+  Profile  Profile[] @relation("userProfile")
+}
+
+model Profile {
+  id           Int     @id @default(autoincrement())
+  firstName    String?
+  lastName     String?
+  addressLine1 String?
+  addressLine2 String?
+  city         String?
+  state        String?
+  country      String?
+  postCode     String?
+  phone        String?
+  slug         String? @unique
+  images       String?
+  longitude    String?
+  latitude     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  published    Boolean @default(false)
+  user         Users?  @relation("userProfile", fields: [userId], references: [id])
+  userId       Int?   
+}
+
+model Post {
+  id               Int        @id @default(autoincrement())
+  title            String
+  // slug             String?    @unique
+  description      String?
+  featuredImages   String?
+  galleryImages    String?
+  video            String
+  longDescription  String?
+  longitude        String?
+  latitude         String?
+  content          String?
+  plotNumber       String?
+  price            Float?
+  city             String?
+  area             String?
+  isInstallmentAvailable  Boolean? @default(false)
+  advanceAmount    Float
+  noOfInstallments Int
+  monthlyInstallments Int
+  readyForPossession  Boolean? @default(false)
+  areaSizeUnit     String? @default("Marla")
+  bedroooms        Int
+  bathroom         Int
+  contactEmail     String
+  contactMobile    String
+  contactLandline  String
+  featureAndAmenities String // save ameeties or featurs in json
+  // published        Boolean    @default(false)
+  postmeta         PostMeta[]
+  category         Category @relation(fields: [categoryId], references: [id])
+  categoryId       Int
+  author           Users      @relation(fields: [authorId], references: [id])
+  authorId         Int
+  slug   Slug @relation(fields: [slugId], references: [id])
+  slugId Int  @unique
+  status  PostStatus @default(DRAFT)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  // propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
+  // propertyTypeListId Int
+}
+
+model PostMeta {
+  id               Int     @id @default(autoincrement())
+  metaTitle        String
+  metaDescription  String?
+  published        Boolean @default(false)
+  post             Post    @relation(fields: [postId], references: [id])
+  postId           Int
+}
+
+model Amenities {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String?  @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  published   Boolean  @default(false)
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+}
+
+model Category {
+  id          Int         @id @default(autoincrement())
+  name        String
+  slug        String?     @unique
+  description String?
+  parentId    Int?
+  published   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  amenities   Amenities[]
+  posts       Post[]
+  projects    Project[]
+}
+
+model Blog {
+  id          Int         @id @default(autoincrement())
+  title       String
+  content     String?
+  featuredImage String?
+  createdAt   DateTime
+  updatedAt   DateTime
+  status      Boolean   @default(true)
+  blogCategory        BlogCategory      @relation(fields: [blogCategoryId], references: [id])
+  blogCategoryId      Int
+  slug   Slug @relation(fields: [slugId], references: [id])
+  slugId Int  @unique
+}
+
+model BlogCategory {
+  id          Int         @id @default(autoincrement())
+  title       String
+  content     String?
+  iconImage   String?
+  image       String?
+  createdAt   DateTime
+  updatedAt   DateTime
+  blogs       Blog[]
+}
+
+model Page{
+  id          Int         @id @default(autoincrement())
+  title       String
+  content     String?
+  featuredImage String?
+  createdAt   DateTime
+  updatedAt   DateTime
+  status      Boolean   @default(true)
+  slug   Slug @relation(fields: [slugId], references: [id])
+  slugId Int  @unique
+}
+
+model Slug {
+  id        Int       @id @default(autoincrement())
+  slug      String    @unique
+  type      SlugType  @default(POST)
+  referenceId     Int    // Save the postID / pageID / 
+  pages Page[]
+  blogs Blog[]
   posts Post[]
 }
 
-model Post{
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    Users    @relation(fields: [authorId], references: [id])
-  authorId  Int
-  postmeta PostMeta[]
+enum Role {
+  USER
+  ADMIN
 }
 
-model PostMeta{
-  id        Int     @id @default(autoincrement())
-  meta_title     String
-  meta_description   String?
-  published Boolean @default(false)
-  post    Post    @relation(fields: [postId], references: [id])
-  postId  Int
+enum SellPurpose {
+  SELL
+  RENT
 }
+
+enum SlugType {
+  POST
+  POSTCATEGORY
+  PAGE
+  BLOG
+  BLOGCATEGORY
+}
+
+enum SystemRole {
+  SUPERADMIN
+  ADMIN
+  AREAMANAGER
+  SALESMANAGER
+  MANAGER
+  MARKETER
+}
+
+enum SettingGroup {
+  GENERAL
+  EMAIL
+  BRANDING
+  SEO
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISH
+  PENDING
+  DELETED
+}
+
