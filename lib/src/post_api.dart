@@ -58,7 +58,9 @@ class PostApi {
       var noOfInstallments = payload['noOfInstallments'];
       var monthlyInstallments = payload['monthlyInstallments'];
       var readyForPossession = payload['readyForPossession'];
-      var areaSizeUnit = payload['areaSizeUnit'];
+      var areaSizeUnit = payload['areaSizeUnit']['AreaSizeUnit'];
+      AreaSizeUnit areaSizeUnitenum = AreaSizeUnit.values
+          .firstWhere((e) => e.toString() == 'AreaSizeUnit.' + areaSizeUnit);
       var bedroooms = payload['bedroooms'];
       var bathrooms = payload['bathrooms'];
       var contactEmail = payload['contactEmail'];
@@ -90,7 +92,7 @@ class PostApi {
           noOfInstallments: noOfInstallments,
           monthlyInstallments: monthlyInstallments,
           readyForPossession: PrismaUnion.zero(readyForPossession),
-          areaSizeUnit: areaSizeUnit,
+          areaSizeUnit: areaSizeUnitenum,
           bedroooms: bedroooms,
           bathroom: bathrooms,
           contactEmail: contactEmail,
@@ -119,9 +121,9 @@ class PostApi {
     });
 
     //update post
-    router.put('/updatePost/<id|[0-9]+>', (Request request, String id) async {
+    router.put('/updatePost', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'];
+      var id = payload['id'].toInt();
       var title = payload['title'];
       var description = payload['description'];
       var featuredImages = payload['featuredImages'];
@@ -140,7 +142,9 @@ class PostApi {
       var noOfInstallments = payload['noOfInstallments'];
       var monthlyInstallments = payload['monthlyInstallments'];
       var readyForPossession = payload['readyForPossession'];
-      var areaSizeUnit = payload['areaSizeUnit'];
+      var areaSizeUnit = payload['areaSizeUnit']['AreaSizeUnit'];
+      AreaSizeUnit areaSizeUnitenum = AreaSizeUnit.values
+          .firstWhere((e) => e.toString() == 'AreaSizeUnit.' + areaSizeUnit);
       var bedroooms = payload['bedroooms'];
       var bathrooms = payload['bathrooms'];
       var contactEmail = payload['contactEmail'];
@@ -153,40 +157,64 @@ class PostApi {
       var metaDescription = payload['metaDescription'];
       var published = payload['published'];
       var post = await prisma.post.update(
-        where: PostWhereUniqueInput(id: int.parse(id)),
+        where: PostWhereUniqueInput(id: id),
         data: PostUpdateInput(
-          title: title,
-          description:
-              NullableStringFieldUpdateOperationsInput(set$: description),
-          featuredImages:
-              NullableStringFieldUpdateOperationsInput(set$: featuredImages),
-          galleryImages:
-              NullableStringFieldUpdateOperationsInput(set$: galleryImages),
+          title: StringFieldUpdateOperationsInput(set$: title),
+          description: NullableStringFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(description),
+          ),
+          featuredImages: NullableStringFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(featuredImages),
+          ),
+          galleryImages: NullableStringFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(galleryImages),
+          ),
           video: StringFieldUpdateOperationsInput(set$: video),
-          longDescription:
-              NullableStringFieldUpdateOperationsInput(set$: longDescription),
-          longitude: NullableStringFieldUpdateOperationsInput(set$: longitude),
-          latitude: NullableStringFieldUpdateOperationsInput(set$: latitude),
-          content: NullableStringFieldUpdateOperationsInput(set$: content),
-          plotNumber:
-              NullableStringFieldUpdateOperationsInput(set$: plotNumber),
-          price: NullableFloatFieldUpdateOperationsInput(set$: price),
-          city: NullableStringFieldUpdateOperationsInput(set$: city),
-          area: NullableStringFieldUpdateOperationsInput(set$: area),
+          longDescription: NullableStringFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(longDescription),
+          ),
+          longitude: NullableStringFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(longitude),
+          ),
+          latitude: NullableStringFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(latitude),
+          ),
+          content: NullableStringFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(content),
+          ),
+          plotNumber: NullableStringFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(plotNumber),
+          ),
+          price: NullableFloatFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(price),
+          ),
+          city: NullableStringFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(city),
+          ),
+          area: NullableStringFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(area),
+          ),
           isInstallmentAvailable: NullableBoolFieldUpdateOperationsInput(
-              set$: isInstallmentAvailable),
-          advanceAmount: advanceAmount,
-          noOfInstallments: noOfInstallments,
-          monthlyInstallments: monthlyInstallments,
-          readyForPossession:
-              NullableBoolFieldUpdateOperationsInput(set$: readyForPossession),
-          areaSizeUnit: areaSizeUnit,
-          bedroooms: bedroooms,
-          bathroom: bathrooms,
-          contactEmail: contactEmail,
-          contactMobile: contactMobile,
-          contactLandline: contactLandline,
-          featureAndAmenities: featureAndAmenities,
+            set$: PrismaUnion.zero(isInstallmentAvailable),
+          ),
+          advanceAmount: FloatFieldUpdateOperationsInput(set$: advanceAmount),
+          noOfInstallments:
+              IntFieldUpdateOperationsInput(set$: noOfInstallments),
+          monthlyInstallments:
+              IntFieldUpdateOperationsInput(set$: monthlyInstallments),
+          readyForPossession: NullableBoolFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(readyForPossession),
+          ),
+          areaSizeUnit: EnumAreaSizeUnitFieldUpdateOperationsInput(
+              set$: areaSizeUnitenum),
+          bedroooms: IntFieldUpdateOperationsInput(set$: bedroooms),
+          bathroom: IntFieldUpdateOperationsInput(set$: bathrooms),
+          contactEmail: StringFieldUpdateOperationsInput(set$: contactEmail),
+          contactMobile: StringFieldUpdateOperationsInput(set$: contactMobile),
+          contactLandline:
+              StringFieldUpdateOperationsInput(set$: contactLandline),
+          featureAndAmenities:
+              StringFieldUpdateOperationsInput(set$: featureAndAmenities),
           author: UsersUpdateOneRequiredWithoutPostsNestedInput(
             connect: UsersWhereUniqueInput(id: authorId),
           ),
