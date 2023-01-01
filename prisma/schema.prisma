@@ -36,6 +36,19 @@ model Agency {
   title    String
   featuredImage String?
   logoImage String?
+  ownerName String?
+  ownerDesignation String?
+  ownerMessage String?
+  ownerProfilePic String?
+  companyTitle String?
+  country String? @default("Pakistan")
+  email String?
+  website String?
+  address String?
+  description String?
+  mobile String?
+  landline String?
+  whatsapp String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -101,10 +114,18 @@ model Users {
   password String?
   fcmtoken String?
   salt     String?
+  preferencesEmailNotification Boolean @default(false)
+  preferencesNewsletter Boolean @default(false)
+  preferencesAutomatedReport Boolean @default(false)
+  currency String @default("PKR")
+  AreaUnit AreaSizeUnit @default(SQFT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   posts    Post[]
   Profile  Profile[] @relation("userProfile")
+  review Review[]
+  wishlist Wishlit[]
+  
 }
 
 model Profile {
@@ -150,7 +171,7 @@ model Post {
   noOfInstallments Int
   monthlyInstallments Int
   readyForPossession  Boolean? @default(false)
-  areaSizeUnit     String? @default("Marla")
+  areaSizeUnit     AreaSizeUnit? @default(MARLA)
   bedroooms        Int
   bathroom         Int
   contactEmail     String
@@ -159,10 +180,14 @@ model Post {
   featureAndAmenities String // save ameeties or featurs in json
   // published        Boolean    @default(false)
   postmeta         PostMeta[]
-  category         Category @relation(fields: [categoryId], references: [id])
+  category         Category    @relation(fields: [categoryId], references: [id])
   categoryId       Int
-  author           Users      @relation(fields: [authorId], references: [id])
+  author           Users       @relation(fields: [authorId], references: [id])
   authorId         Int
+  postContact      PostContact[]
+  review           Review[]
+  wishlist         Wishlit[]
+
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
   status  PostStatus @default(DRAFT)
@@ -170,6 +195,39 @@ model Post {
   updatedAt        DateTime   @updatedAt
   // propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
   // propertyTypeListId Int
+}
+
+model PostContact {
+  id       Int       @id @default(autoincrement())
+  name  String?
+  email String?
+  phone String?
+  message String?
+  ccontactPersonType  CcontactPersonType @default(BUYERTENAT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts Post[]
+}
+
+model Review {
+  id    Int       @id @default(autoincrement())
+  name  String?
+  message String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts Post[]
+  user  Users    @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model Wishlit {
+  id    Int       @id @default(autoincrement())
+  post  Post    @relation(fields: [postId], references: [id])
+  postId Int
+  user  Users    @relation(fields: [userId], references: [id])
+  userId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model PostMeta {
@@ -295,3 +353,14 @@ enum PostStatus {
   DELETED
 }
 
+enum AreaSizeUnit {
+  MARLA
+  SQFT
+  SQMT
+}
+
+enum CcontactPersonType {
+  BUYERTENAT
+  AGENT
+  OTHER
+}
