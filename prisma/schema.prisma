@@ -171,7 +171,7 @@ model Profile {
 model Post {
   id               Int        @id @default(autoincrement())
   title            String
-  // slug             String?    @unique
+  propertyNumber   String?    @unique
   description      String?
   featuredImages   String?
   galleryImages    String?
