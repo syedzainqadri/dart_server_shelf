@@ -137,11 +137,12 @@ model Users {
   updatedAt DateTime @updatedAt
   posts    Post[]
   Profile  Profile[] @relation("userProfile")
-  review Review[]
-  wishlist Wishlit[]
-  formPost ForumPost[]
-  formPostComment ForumPostComment[]
-  blog Blog[]
+  reviews Review[]
+  wishlists Wishlit[]
+  formPosts ForumPost[]
+  formPostComments ForumPostComment[]
+  postComments PostComment[]
+  blogs Blog[]
   
 }
 
@@ -204,6 +205,7 @@ model Post {
   postContact      PostContact[]
   review           Review[]
   wishlist         Wishlit[]
+  postComment      PostComment[]
 
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
@@ -232,9 +234,25 @@ model Review {
   message String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  posts Post[]
   user  Users    @relation(fields: [userId], references: [id])
   userId Int
+  post  Post    @relation(fields: [postId], references: [id])
+  postId Int
+}
+
+model PostComment {
+  id        Int       @id @default(autoincrement())
+  postReplyTitle String
+  postReplyType String
+  postReplyDescription String
+  createdAt   DateTime  
+  updatedAt   DateTime  @default(now())
+  forumPost Post @relation(fields: [postId], references: [id])
+  postId Int
+  user      Users @relation(fields: [userId], references: [id])
+  userId    Int
+
+
 }
 
 model Wishlit {
@@ -331,6 +349,8 @@ model Slug {
   posts Post[]
 }
 
+
+// Form models start
 model ForumPost {
   id        Int       @id @default(autoincrement())
   postTitle String
