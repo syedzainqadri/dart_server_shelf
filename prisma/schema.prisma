@@ -65,6 +65,9 @@ model Agency {
   whatsapp String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  users         Users?  @relation(fields: [userId], references: [id])
+  userId       Int?
+
 }
 // developer and project schema started
 model Developer {
@@ -143,6 +146,7 @@ model Users {
   formPostComments ForumPostComment[]
   postComments PostComment[]
   blogs Blog[]
+  agency Agency[]
   
 }
 
@@ -400,7 +404,6 @@ model FaqQuestionAnswer {
   faqGroupId  Int
 }
 // FAQ models ended
-
 
 enum ForumStatus {
   PENDING
