@@ -140,7 +140,7 @@ model Users {
   review Review[]
   wishlist Wishlit[]
   formPost ForumPost[]
-  formPostReply ForumPostReply[]
+  formPostComment ForumPostComment[]
   blog Blog[]
   
 }
@@ -350,14 +350,14 @@ model ForumPost {
   postDescription String
   createdAt   DateTime  
   updatedAt   DateTime  @default(now())
-  forumPostReply ForumPostReply[]
+  forumPostReply ForumPostComment[]
   forum Forum @relation(fields: [forumId], references: [id])
   forumId Int
   user           Users       @relation(fields: [userId], references: [id])
   userId         Int
 }
 
-model ForumPostReply {
+model ForumPostComment {
   id        Int       @id @default(autoincrement())
   postReplyTitle String
   postReplyType String
