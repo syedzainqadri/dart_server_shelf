@@ -141,6 +141,7 @@ model Users {
   wishlist Wishlit[]
   formPost ForumPost[]
   formPostReply ForumPostReply[]
+  blog Blog[]
   
 }
 
@@ -293,6 +294,8 @@ model Blog {
   blogCategoryId      Int
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
+  author           Users       @relation(fields: [authorId], references: [id])
+  authorId         Int
 }
 
 model BlogCategory {
