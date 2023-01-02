@@ -331,18 +331,6 @@ model Slug {
   posts Post[]
 }
 
-model Forum {
-  id        Int       @id @default(autoincrement())
-  forumName String    @unique
-  forumType ForumType @default(GENERAL)
-  formDescription String
-  status ForumStatus @default(PENDING)
-  createdAt   DateTime  
-  updatedAt   DateTime  @default(now())
-  forumPost ForumPost[]
-
-}
-
 model ForumPost {
   id        Int       @id @default(autoincrement())
   postTitle String
@@ -351,8 +339,6 @@ model ForumPost {
   createdAt   DateTime  
   updatedAt   DateTime  @default(now())
   forumPostReply ForumPostComment[]
-  forum Forum @relation(fields: [forumId], references: [id])
-  forumId Int
   user           Users       @relation(fields: [userId], references: [id])
   userId         Int
 }
