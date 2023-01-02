@@ -125,6 +125,8 @@ model Users {
   Profile  Profile[] @relation("userProfile")
   review Review[]
   wishlist Wishlit[]
+  formPost ForumPost[]
+  formPostReply ForumPostReply[]
   
 }
 
@@ -310,6 +312,58 @@ model Slug {
   pages Page[]
   blogs Blog[]
   posts Post[]
+}
+
+model Forum {
+  id        Int       @id @default(autoincrement())
+  forumName String    @unique
+  forumType ForumType @default(GENERAL)
+  formDescription String
+  status ForumStatus @default(PENDING)
+  createdAt   DateTime  
+  updatedAt   DateTime  @default(now())
+  forumPost ForumPost[]
+
+}
+
+model ForumPost {
+  id        Int       @id @default(autoincrement())
+  postTitle String
+  postType  String
+  postDescription String
+  createdAt   DateTime  
+  updatedAt   DateTime  @default(now())
+  forumPostReply ForumPostReply[]
+  forum Forum @relation(fields: [forumId], references: [id])
+  forumId Int
+  user           Users       @relation(fields: [userId], references: [id])
+  userId         Int
+}
+
+model ForumPostReply {
+  id        Int       @id @default(autoincrement())
+  postReplyTitle String
+  postReplyType String
+  postReplyDescription String
+  createdAt   DateTime  
+  updatedAt   DateTime  @default(now())
+  forumPost ForumPost @relation(fields: [forumPostId], references: [id])
+  forumPostId Int
+  user           Users       @relation(fields: [userId], references: [id])
+  userId         Int
+
+}
+
+enum ForumStatus {
+  PENDING
+  CANCEL
+  DELETE
+}
+
+enum ForumType {
+  GENERAL
+  DOCUMENTS
+  CLEARANCE
 }
 
 enum Role {
