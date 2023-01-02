@@ -29,6 +29,20 @@ model SystemUser {
   email     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  systemUserPermissions SystemUserPermissions[]
+}
+
+model SystemUserPermissions{
+  id        Int       @id @default(autoincrement())
+  moduleTitle String
+  canView Boolean
+  canAdd Boolean
+  canEdit Boolean
+  canDelete Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  projectNearByPlace SystemUser?  @relation(fields: [systemUserId], references: [id])
+  systemUserId Int?
 }
 
 model Agency {
