@@ -377,6 +377,31 @@ model ForumPostComment {
 
 }
 
+// FAQ models started
+model FaqGroup {
+  id        Int       @id @default(autoincrement())
+  faqGroupName String
+  sortOrder Int
+  status Boolean @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  faqQuestionAnswer FaqQuestionAnswer[]
+}
+
+model FaqQuestionAnswer {
+  id  Int @id @default(autoincrement())
+  qusestion String
+  answer String
+  sortOrder Int
+  status Boolean @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  faqGroup  FaqGroup  @relation(fields: [faqGroupId], references: [id])
+  faqGroupId  Int
+}
+// FAQ models ended
+
+
 enum ForumStatus {
   PENDING
   CANCEL
