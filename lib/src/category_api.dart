@@ -84,6 +84,7 @@ class CategoryApi {
           parentId: NullableIntFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(parentId)),
           published: BoolFieldUpdateOperationsInput(set$: published),
+          updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
         ),
       );
       var categoryObject = jsonEncode(category);

@@ -72,6 +72,11 @@ class PostApi {
       var metaTitle = payload['metaTitle'];
       var metaDescription = payload['metaDescription'];
       var published = payload['published'];
+      var contactName = payload['contactName'];
+      var contactPersonType = payload['contactPersonType'];
+      var status = payload['status'];
+      PostStatus postStatus = PostStatus.values
+          .firstWhere((e) => e.toString() == 'PostStatus.' + status);
       var post = await prisma.post.create(
         data: PostCreateInput(
           title: title,
@@ -92,7 +97,7 @@ class PostApi {
           noOfInstallments: noOfInstallments,
           monthlyInstallments: monthlyInstallments,
           readyForPossession: PrismaUnion.zero(readyForPossession),
-          areaSizeUnit: areaSizeUnitenum,
+          areaSizeUnit: PrismaUnion.zero(areaSizeUnitenum),
           bedroooms: bedroooms,
           bathroom: bathrooms,
           contactEmail: contactEmail,
@@ -105,6 +110,17 @@ class PostApi {
           category: CategoryCreateNestedOneWithoutPostsInput(
             connect: CategoryWhereUniqueInput(id: categoryId),
           ),
+          postContact: PostContactCreateNestedManyWithoutPostInput(
+            create: PostContactCreateWithoutPostInput(
+              name: contactName,
+              email: contactEmail,
+              phone: contactMobile,
+              message: contactLandline,
+              ccontactPersonType: contactPersonType,
+            ),
+          ),
+          slug: title,
+          status: postStatus,
           postmeta: PostMetaCreateNestedManyWithoutPostInput(
             create: PostMetaCreateWithoutPostInput(
               metaTitle: metaTitle,
@@ -156,6 +172,9 @@ class PostApi {
       var metaTitle = payload['metaTitle'];
       var metaDescription = payload['metaDescription'];
       var published = payload['published'];
+      var status = payload['status'];
+      PostStatus postStatus = PostStatus.values
+          .firstWhere((e) => e.toString() == 'PostStatus.' + status);
       var post = await prisma.post.update(
         where: PostWhereUniqueInput(id: id),
         data: PostUpdateInput(
@@ -205,8 +224,8 @@ class PostApi {
           readyForPossession: NullableBoolFieldUpdateOperationsInput(
             set$: PrismaUnion.zero(readyForPossession),
           ),
-          areaSizeUnit: EnumAreaSizeUnitFieldUpdateOperationsInput(
-              set$: areaSizeUnitenum),
+          areaSizeUnit: NullableEnumAreaSizeUnitFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(areaSizeUnitenum)),
           bedroooms: IntFieldUpdateOperationsInput(set$: bedroooms),
           bathroom: IntFieldUpdateOperationsInput(set$: bathrooms),
           contactEmail: StringFieldUpdateOperationsInput(set$: contactEmail),
@@ -228,6 +247,12 @@ class PostApi {
               published: published,
             ),
           ),
+          slug: SlugUpdateOneRequiredWithoutPostsNestedInput(
+            update: SlugUpdateWithoutPostsInput(
+              slug: title,
+            ),
+          ),
+          status: EnumPostStatusFieldUpdateOperationsInput(set$: postStatus),
         ),
       );
       var postObject = jsonEncode(post);
