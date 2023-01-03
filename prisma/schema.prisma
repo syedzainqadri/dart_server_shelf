@@ -132,6 +132,16 @@ model Subscription {
   status Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  membership Membership[]
+}
+
+model Membership {
+  id       Int       @id @default(autoincrement())
+  qty Int
+  subscription         Subscription?  @relation(fields: [subscriptionId], references: [id])
+  subscriptionId       Int?  
+  user         Users?  @relation(fields: [userId], references: [id])
+  userId       Int?  
 }
 
 // developer and project schema end
@@ -158,6 +168,7 @@ model Users {
   postComments PostComment[]
   blogs Blog[]
   agency Agency[]
+  membership Membership[]
   
 }
 
@@ -240,7 +251,8 @@ model PostContact {
   ccontactPersonType  CcontactPersonType @default(BUYERTENAT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  posts Post[]
+  post  Post    @relation(fields: [postId], references: [id])
+  postId Int
 }
 
 model Review {
@@ -266,8 +278,6 @@ model PostComment {
   postId Int
   user      Users @relation(fields: [userId], references: [id])
   userId    Int
-
-
 }
 
 model Wishlit {
