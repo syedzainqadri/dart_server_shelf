@@ -13,6 +13,7 @@ export 'src/api/blog_api/blog_category_api.dart';
 export 'src/api/faq_api/faq_group_api.dart';
 export 'src/api/faq_api/faq_api.dart';
 export 'src/api/forum_api/forum_post.dart';
+export 'src/api/floorplan_api/floor_plan_api.dart';
 //TODO: add forum post comment api first
 export 'src/api/forum_api/forum_post_comment.dart';
 //shelf exports

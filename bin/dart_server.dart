@@ -16,6 +16,7 @@ void main(List<String> arguments) async {
   app.mount('/developer', DeveloperApi().router);
   app.mount('/faqGroup', FaqGroupApi().router);
   app.mount('/faq', FaqQuestionAnswerApi().router);
+  app.mount('/floorPlan', FloorPlanApi().router);
 
   //server configuration
   final ip = InternetAddress.anyIPv4;
