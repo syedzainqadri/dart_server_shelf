@@ -1,4 +1,4 @@
-import '../dart_server.dart';
+import '/dart_server.dart';
 
 class FaqGroupApi {
   //TODO: sort order is not required

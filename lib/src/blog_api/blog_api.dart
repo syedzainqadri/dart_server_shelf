@@ -1,4 +1,4 @@
-import '../dart_server.dart';
+import '/dart_server.dart';
 
 class BlogApi {
   Handler get router {

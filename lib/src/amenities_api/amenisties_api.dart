@@ -1,13 +1,14 @@
-import '../dart_server.dart';
+import '/dart_server.dart';
 
-class AmenistiesApi {
+//TODO: amenities are the right spellings
+class AmenitiesApi {
   Handler get router {
     final router = Router();
     //get all amenisties
     router.get('/', (Request request) async {
-      var amenisties = await prisma.amenities.findMany();
-      var amenistiesObject = jsonEncode(amenisties);
-      return Response.ok('Post Is: $amenistiesObject\n', headers: {
+      var amenities = await prisma.amenities.findMany();
+      var amenitiesObject = jsonEncode(amenities);
+      return Response.ok('Post Is: $amenitiesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -16,11 +17,11 @@ class AmenistiesApi {
     router.get('/id', (Request request, String id) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
-      var amenisties = await prisma.amenities.findUnique(
+      var amenities = await prisma.amenities.findUnique(
         where: AmenitiesWhereUniqueInput(id: int.parse(id)),
       );
-      var amenistiesObject = jsonEncode(amenisties);
-      return Response.ok('Post by ID Is: $amenistiesObject\n', headers: {
+      var amenitiesObject = jsonEncode(amenities);
+      return Response.ok('Post by ID Is: $amenitiesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -33,7 +34,7 @@ class AmenistiesApi {
       var description = payload['description'];
       var published = payload['published'];
       var categoryId = payload['categoryId'];
-      var amenisties = await prisma.amenities.create(
+      var amenities = await prisma.amenities.create(
         data: AmenitiesCreateInput(
           name: name,
           slug: PrismaUnion.zero(slug),
@@ -44,8 +45,8 @@ class AmenistiesApi {
           ),
         ),
       );
-      var amenistiesObject = jsonEncode(amenisties);
-      return Response.ok('Post by ID Is: $amenistiesObject\n', headers: {
+      var amenitiesObject = jsonEncode(amenities);
+      return Response.ok('Post by ID Is: $amenitiesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -59,7 +60,7 @@ class AmenistiesApi {
       var description = payload['description'];
       var published = payload['published'];
       var categoryId = payload['categoryId'];
-      var amenisties = await prisma.amenities.update(
+      var amenities = await prisma.amenities.update(
         where: AmenitiesWhereUniqueInput(id: int.parse(id)),
         data: AmenitiesUpdateInput(
           name: StringFieldUpdateOperationsInput(set$: name),
@@ -72,8 +73,8 @@ class AmenistiesApi {
           ),
         ),
       );
-      var amenistiesObject = jsonEncode(amenisties);
-      return Response.ok('Amenisties Updated Result: $amenistiesObject\n',
+      var amenitiesObject = jsonEncode(amenities);
+      return Response.ok('Amenisties Updated Result: $amenitiesObject\n',
           headers: {
             'Content-Type': 'application/json',
           });
@@ -83,11 +84,11 @@ class AmenistiesApi {
     router.delete('/deleteAmenisties', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
-      var amenisties = await prisma.amenities.delete(
+      var amenities = await prisma.amenities.delete(
         where: AmenitiesWhereUniqueInput(id: int.parse(id)),
       );
-      var amenistiesObject = jsonEncode(amenisties);
-      return Response.ok('Post by ID Is: $amenistiesObject\n', headers: {
+      var amenitiesObject = jsonEncode(amenities);
+      return Response.ok('Post by ID Is: $amenitiesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
