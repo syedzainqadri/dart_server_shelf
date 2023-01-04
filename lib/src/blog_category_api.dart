@@ -78,11 +78,11 @@ class BlogCategoryApi {
     router.delete('/deleteBlogCategory', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'].toInt();
-      var category = await prisma.blogCategory.delete(
+      var blogCategory = await prisma.blogCategory.delete(
         where: BlogCategoryWhereUniqueInput(id: id),
       );
-      var categoryObject = jsonEncode(category);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
+      var blogCategoryObject = jsonEncode(blogCategory);
+      return Response.ok('Post by ID Is: $blogCategoryObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
