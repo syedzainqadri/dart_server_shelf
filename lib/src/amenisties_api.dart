@@ -13,7 +13,7 @@ class AmenistiesApi {
     });
 
     //get amenisties by id
-    router.get('/<id|[0-9]+>', (Request request, String id) async {
+    router.get('/id', (Request request, String id) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var amenisties = await prisma.amenities.findUnique(
@@ -73,9 +73,10 @@ class AmenistiesApi {
         ),
       );
       var amenistiesObject = jsonEncode(amenisties);
-      return Response.ok('Post by ID Is: $amenistiesObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Amenisties Updated Result: $amenistiesObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //delete amenisties

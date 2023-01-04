@@ -13,7 +13,7 @@ class AgencyApi {
     });
 
     //get agency by id
-    router.get('/agencyById', (Request request) async {
+    router.get('/id', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var amenisties = await prisma.agency.findUnique(
@@ -91,7 +91,6 @@ class AgencyApi {
       var mobile = payload['mobile'];
       var landline = payload['landline'];
       var whatsapp = payload['whatsapp'];
-      var userID = payload['userID'];
       var featuredImage = payload['featuredImage'];
       var logoImage = payload['logoImage'];
       var agency = await prisma.agency.update(

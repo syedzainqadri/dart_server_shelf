@@ -7,6 +7,7 @@ export 'src/category_api.dart';
 export 'src/amenisties_api.dart';
 export 'src/agency_api.dart';
 export 'src/hello_world.dart';
+export 'src/blog_category_api.dart';
 export 'package:shelf/shelf_io.dart';
 export 'package:shelf/shelf.dart';
 export 'package:shelf_router/shelf_router.dart';
