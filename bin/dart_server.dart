@@ -12,6 +12,7 @@ void main(List<String> arguments) async {
   app.mount('/amenisties', AmenistiesApi().router);
   app.mount('/agency', AgencyApi().router);
   app.mount('/blogCategory', BlogCategoryApi().router);
+  app.mount('/blog', BlogApi().router);
   final ip = InternetAddress.anyIPv4;
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
 
