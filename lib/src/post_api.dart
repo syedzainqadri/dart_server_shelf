@@ -243,7 +243,9 @@ class PostApi {
           postmeta: PostMetaUpdateManyWithoutPostNestedInput(
             create: PostMetaCreateWithoutPostInput(
               metaTitle: metaTitle,
-              metaDescription: PrismaUnion.zero(metaDescription),
+              metaDescription: PrismaUnion.zero(
+                metaDescription,
+              ),
               published: published,
             ),
           ),
@@ -252,7 +254,12 @@ class PostApi {
               slug: title,
             ),
           ),
-          status: EnumPostStatusFieldUpdateOperationsInput(set$: postStatus),
+          status: EnumPostStatusFieldUpdateOperationsInput(
+            set$: postStatus,
+          ),
+          updatedAt: DateTimeFieldUpdateOperationsInput(
+            set$: DateTime.now(),
+          ),
         ),
       );
       var postObject = jsonEncode(post);
