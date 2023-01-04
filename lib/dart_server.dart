@@ -10,6 +10,9 @@ export 'src/blog_api.dart';
 export 'src/hello_world.dart';
 export 'src/developer_api.dart';
 export 'src/blog_category_api.dart';
+export 'src/faq_group_api.dart';
+export 'src/faq_api.dart';
+//shelf exports
 export 'package:shelf/shelf_io.dart';
 export 'package:shelf/shelf.dart';
 export 'package:shelf_router/shelf_router.dart';

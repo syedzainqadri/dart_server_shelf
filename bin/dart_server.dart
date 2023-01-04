@@ -14,6 +14,8 @@ void main(List<String> arguments) async {
   app.mount('/blogCategory', BlogCategoryApi().router);
   app.mount('/blog', BlogApi().router);
   app.mount('/developer', DeveloperApi().router);
+  app.mount('/faqGroup', FaqGroupApi().router);
+  app.mount('/faq', FaqQuestionAnswerApi().router);
 
   //server configuration
   final ip = InternetAddress.anyIPv4;

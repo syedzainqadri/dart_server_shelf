@@ -1,6 +1,7 @@
 import '../dart_server.dart';
 
 class AgencyApi {
+  //TODO: slug is missing
   Handler get router {
     final router = Router();
     //get all agency
