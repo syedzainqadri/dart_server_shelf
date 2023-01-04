@@ -3,6 +3,7 @@ import '/dart_server.dart';
 class MembershipApi {
   Handler get router {
     final router = Router();
+    //TODO: needs restructuring
     //get all membership
     router.get('/', (Request request) async {
       var membership = await prisma.membership.findMany();

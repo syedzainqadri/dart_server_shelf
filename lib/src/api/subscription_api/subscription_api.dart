@@ -1,6 +1,7 @@
 import '/dart_server.dart';
 
 class SubscriptionApi {
+  //TODO: needs restructuring
   Handler get router {
     final router = Router();
     //get all subscription
