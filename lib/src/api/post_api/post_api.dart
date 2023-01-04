@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
-import '../../dart_server.dart';
+import '/dart_server.dart';
 
 class PostApi {
   Handler get router {

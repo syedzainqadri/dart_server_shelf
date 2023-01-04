@@ -1,4 +1,4 @@
-import '../../dart_server.dart';
+import '/dart_server.dart';
 
 Middleware handleCors() {
   const corsHeaders = {
