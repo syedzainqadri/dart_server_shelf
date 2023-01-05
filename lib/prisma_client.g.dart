@@ -136,7 +136,6 @@ SystemUserGroupByOutputType _$SystemUserGroupByOutputTypeFromJson(
       username: json['username'] as String,
       password: json['password'] as String,
       salt: json['salt'] as String,
-      role: $enumDecode(_$SystemRoleEnumMap, json['role']),
       email: json['email'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
@@ -169,7 +168,6 @@ Map<String, dynamic> _$SystemUserGroupByOutputTypeToJson(
       'username': instance.username,
       'password': instance.password,
       'salt': instance.salt,
-      'role': _$SystemRoleEnumMap[instance.role]!,
       'email': instance.email,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
@@ -180,13 +178,168 @@ Map<String, dynamic> _$SystemUserGroupByOutputTypeToJson(
       '_max': instance.$max?.toJson(),
     };
 
-const _$SystemRoleEnumMap = {
-  SystemRole.SUPERADMIN: 'SUPERADMIN',
-  SystemRole.ADMIN: 'ADMIN',
-  SystemRole.AREAMANAGER: 'AREAMANAGER',
-  SystemRole.SALESMANAGER: 'SALESMANAGER',
-  SystemRole.MANAGER: 'MANAGER',
-  SystemRole.MARKETER: 'MARKETER',
+AggregateSystemUserRole _$AggregateSystemUserRoleFromJson(
+        Map<String, dynamic> json) =>
+    AggregateSystemUserRole(
+      $count: json['_count'] == null
+          ? null
+          : SystemUserRoleCountAggregateOutputType.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : SystemUserRoleAvgAggregateOutputType.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : SystemUserRoleSumAggregateOutputType.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : SystemUserRoleMinAggregateOutputType.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : SystemUserRoleMaxAggregateOutputType.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$AggregateSystemUserRoleToJson(
+        AggregateSystemUserRole instance) =>
+    <String, dynamic>{
+      '_count': instance.$count?.toJson(),
+      '_avg': instance.$avg?.toJson(),
+      '_sum': instance.$sum?.toJson(),
+      '_min': instance.$min?.toJson(),
+      '_max': instance.$max?.toJson(),
+    };
+
+SystemUserRoleGroupByOutputType _$SystemUserRoleGroupByOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    SystemUserRoleGroupByOutputType(
+      id: json['id'] as int,
+      title: json['title'] as String,
+      $count: json['_count'] == null
+          ? null
+          : SystemUserRoleCountAggregateOutputType.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : SystemUserRoleAvgAggregateOutputType.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : SystemUserRoleSumAggregateOutputType.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : SystemUserRoleMinAggregateOutputType.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : SystemUserRoleMaxAggregateOutputType.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$SystemUserRoleGroupByOutputTypeToJson(
+        SystemUserRoleGroupByOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      '_count': instance.$count?.toJson(),
+      '_avg': instance.$avg?.toJson(),
+      '_sum': instance.$sum?.toJson(),
+      '_min': instance.$min?.toJson(),
+      '_max': instance.$max?.toJson(),
+    };
+
+AggregateSystemActivityLog _$AggregateSystemActivityLogFromJson(
+        Map<String, dynamic> json) =>
+    AggregateSystemActivityLog(
+      $count: json['_count'] == null
+          ? null
+          : SystemActivityLogCountAggregateOutputType.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : SystemActivityLogAvgAggregateOutputType.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : SystemActivityLogSumAggregateOutputType.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : SystemActivityLogMinAggregateOutputType.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : SystemActivityLogMaxAggregateOutputType.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$AggregateSystemActivityLogToJson(
+        AggregateSystemActivityLog instance) =>
+    <String, dynamic>{
+      '_count': instance.$count?.toJson(),
+      '_avg': instance.$avg?.toJson(),
+      '_sum': instance.$sum?.toJson(),
+      '_min': instance.$min?.toJson(),
+      '_max': instance.$max?.toJson(),
+    };
+
+SystemActivityLogGroupByOutputType _$SystemActivityLogGroupByOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    SystemActivityLogGroupByOutputType(
+      id: json['id'] as int,
+      refrenceId: json['refrenceId'] as int,
+      refrenceFrom: $enumDecode(_$RefrenceFromEnumMap, json['refrenceFrom']),
+      activity: json['activity'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      $count: json['_count'] == null
+          ? null
+          : SystemActivityLogCountAggregateOutputType.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : SystemActivityLogAvgAggregateOutputType.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : SystemActivityLogSumAggregateOutputType.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : SystemActivityLogMinAggregateOutputType.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : SystemActivityLogMaxAggregateOutputType.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$SystemActivityLogGroupByOutputTypeToJson(
+        SystemActivityLogGroupByOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'refrenceId': instance.refrenceId,
+      'refrenceFrom': _$RefrenceFromEnumMap[instance.refrenceFrom]!,
+      'activity': instance.activity,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      '_count': instance.$count?.toJson(),
+      '_avg': instance.$avg?.toJson(),
+      '_sum': instance.$sum?.toJson(),
+      '_min': instance.$min?.toJson(),
+      '_max': instance.$max?.toJson(),
+    };
+
+const _$RefrenceFromEnumMap = {
+  RefrenceFrom.PRODUCT: 'PRODUCT',
+  RefrenceFrom.ORDER: 'ORDER',
+  RefrenceFrom.PROJECT: 'PROJECT',
+  RefrenceFrom.USER: 'USER',
+  RefrenceFrom.POST: 'POST',
 };
 
 AggregateSystemUserPermissions _$AggregateSystemUserPermissionsFromJson(
@@ -229,14 +382,18 @@ SystemUserPermissionsGroupByOutputType
             Map<String, dynamic> json) =>
         SystemUserPermissionsGroupByOutputType(
           id: json['id'] as int,
-          moduleTitle: json['moduleTitle'] as String,
           canView: json['canView'] as bool,
           canAdd: json['canAdd'] as bool,
           canEdit: json['canEdit'] as bool,
           canDelete: json['canDelete'] as bool,
+          hasFullAccess: json['hasFullAccess'] as bool,
+          allowedProject: json['allowedProject'] as String?,
+          allowedCity: json['allowedCity'] as String?,
+          allowedAgency: json['allowedAgency'] as String?,
           createdAt: DateTime.parse(json['createdAt'] as String),
           updatedAt: DateTime.parse(json['updatedAt'] as String),
-          systemUserId: json['systemUserId'] as int?,
+          systemUserId: json['systemUserId'] as int,
+          systemModuleId: json['systemModuleId'] as int,
           $count: json['_count'] == null
               ? null
               : SystemUserPermissionsCountAggregateOutputType.fromJson(
@@ -263,14 +420,96 @@ Map<String, dynamic> _$SystemUserPermissionsGroupByOutputTypeToJson(
         SystemUserPermissionsGroupByOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'moduleTitle': instance.moduleTitle,
       'canView': instance.canView,
       'canAdd': instance.canAdd,
       'canEdit': instance.canEdit,
       'canDelete': instance.canDelete,
+      'hasFullAccess': instance.hasFullAccess,
+      'allowedProject': instance.allowedProject,
+      'allowedCity': instance.allowedCity,
+      'allowedAgency': instance.allowedAgency,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'systemUserId': instance.systemUserId,
+      'systemModuleId': instance.systemModuleId,
+      '_count': instance.$count?.toJson(),
+      '_avg': instance.$avg?.toJson(),
+      '_sum': instance.$sum?.toJson(),
+      '_min': instance.$min?.toJson(),
+      '_max': instance.$max?.toJson(),
+    };
+
+AggregateSystemModule _$AggregateSystemModuleFromJson(
+        Map<String, dynamic> json) =>
+    AggregateSystemModule(
+      $count: json['_count'] == null
+          ? null
+          : SystemModuleCountAggregateOutputType.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : SystemModuleAvgAggregateOutputType.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : SystemModuleSumAggregateOutputType.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : SystemModuleMinAggregateOutputType.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : SystemModuleMaxAggregateOutputType.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$AggregateSystemModuleToJson(
+        AggregateSystemModule instance) =>
+    <String, dynamic>{
+      '_count': instance.$count?.toJson(),
+      '_avg': instance.$avg?.toJson(),
+      '_sum': instance.$sum?.toJson(),
+      '_min': instance.$min?.toJson(),
+      '_max': instance.$max?.toJson(),
+    };
+
+SystemModuleGroupByOutputType _$SystemModuleGroupByOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    SystemModuleGroupByOutputType(
+      id: json['id'] as int,
+      parentId: json['parentId'] as int,
+      title: json['title'] as String,
+      sortOrder: json['sortOrder'] as int,
+      $count: json['_count'] == null
+          ? null
+          : SystemModuleCountAggregateOutputType.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : SystemModuleAvgAggregateOutputType.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : SystemModuleSumAggregateOutputType.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : SystemModuleMinAggregateOutputType.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : SystemModuleMaxAggregateOutputType.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$SystemModuleGroupByOutputTypeToJson(
+        SystemModuleGroupByOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'parentId': instance.parentId,
+      'title': instance.title,
+      'sortOrder': instance.sortOrder,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -334,6 +573,7 @@ AgencyGroupByOutputType _$AgencyGroupByOutputTypeFromJson(
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       userId: json['userId'] as int?,
+      slugId: json['slugId'] as int,
       $count: json['_count'] == null
           ? null
           : AgencyCountAggregateOutputType.fromJson(
@@ -379,6 +619,7 @@ Map<String, dynamic> _$AgencyGroupByOutputTypeToJson(
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'userId': instance.userId,
+      'slugId': instance.slugId,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -505,8 +746,9 @@ ProjectGroupByOutputType _$ProjectGroupByOutputTypeFromJson(
       gallery: json['gallery'] as String?,
       locality: json['locality'] as String?,
       city: json['city'] as String?,
-      price: json['price'] as String?,
-      WalkthroughThreeD: json['WalkthroughThreeD'] as String?,
+      startingPrice: (json['startingPrice'] as num?)?.toDouble(),
+      endingPrice: (json['endingPrice'] as num?)?.toDouble(),
+      walkthroughThreeD: json['walkthroughThreeD'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       developerId: json['developerId'] as int?,
@@ -544,8 +786,9 @@ Map<String, dynamic> _$ProjectGroupByOutputTypeToJson(
       'gallery': instance.gallery,
       'locality': instance.locality,
       'city': instance.city,
-      'price': instance.price,
-      'WalkthroughThreeD': instance.WalkthroughThreeD,
+      'startingPrice': instance.startingPrice,
+      'endingPrice': instance.endingPrice,
+      'walkthroughThreeD': instance.walkthroughThreeD,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'developerId': instance.developerId,
@@ -724,33 +967,31 @@ const _$ProjectNearByPlaceCategoryEnumMap = {
   ProjectNearByPlaceCategory.PARK: 'PARK',
 };
 
-AggregateSubscription _$AggregateSubscriptionFromJson(
-        Map<String, dynamic> json) =>
-    AggregateSubscription(
+AggregateProduct _$AggregateProductFromJson(Map<String, dynamic> json) =>
+    AggregateProduct(
       $count: json['_count'] == null
           ? null
-          : SubscriptionCountAggregateOutputType.fromJson(
+          : ProductCountAggregateOutputType.fromJson(
               json['_count'] as Map<String, dynamic>),
       $avg: json['_avg'] == null
           ? null
-          : SubscriptionAvgAggregateOutputType.fromJson(
+          : ProductAvgAggregateOutputType.fromJson(
               json['_avg'] as Map<String, dynamic>),
       $sum: json['_sum'] == null
           ? null
-          : SubscriptionSumAggregateOutputType.fromJson(
+          : ProductSumAggregateOutputType.fromJson(
               json['_sum'] as Map<String, dynamic>),
       $min: json['_min'] == null
           ? null
-          : SubscriptionMinAggregateOutputType.fromJson(
+          : ProductMinAggregateOutputType.fromJson(
               json['_min'] as Map<String, dynamic>),
       $max: json['_max'] == null
           ? null
-          : SubscriptionMaxAggregateOutputType.fromJson(
+          : ProductMaxAggregateOutputType.fromJson(
               json['_max'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$AggregateSubscriptionToJson(
-        AggregateSubscription instance) =>
+Map<String, dynamic> _$AggregateProductToJson(AggregateProduct instance) =>
     <String, dynamic>{
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
@@ -759,46 +1000,54 @@ Map<String, dynamic> _$AggregateSubscriptionToJson(
       '_max': instance.$max?.toJson(),
     };
 
-SubscriptionGroupByOutputType _$SubscriptionGroupByOutputTypeFromJson(
+ProductGroupByOutputType _$ProductGroupByOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    SubscriptionGroupByOutputType(
+    ProductGroupByOutputType(
       id: json['id'] as int,
       title: json['title'] as String,
-      amount: (json['amount'] as num).toDouble(),
+      price: (json['price'] as num).toDouble(),
+      salePrice: (json['salePrice'] as num).toDouble(),
+      image: json['image'] as String,
+      PproductType: $enumDecode(_$ProductTypeEnumMap, json['PproductType']),
       description: json['description'] as String?,
-      status: json['status'] as bool,
+      productLifeInDays: json['productLifeInDays'] as int,
+      status: $enumDecode(_$CommonStatusEnumMap, json['status']),
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       $count: json['_count'] == null
           ? null
-          : SubscriptionCountAggregateOutputType.fromJson(
+          : ProductCountAggregateOutputType.fromJson(
               json['_count'] as Map<String, dynamic>),
       $avg: json['_avg'] == null
           ? null
-          : SubscriptionAvgAggregateOutputType.fromJson(
+          : ProductAvgAggregateOutputType.fromJson(
               json['_avg'] as Map<String, dynamic>),
       $sum: json['_sum'] == null
           ? null
-          : SubscriptionSumAggregateOutputType.fromJson(
+          : ProductSumAggregateOutputType.fromJson(
               json['_sum'] as Map<String, dynamic>),
       $min: json['_min'] == null
           ? null
-          : SubscriptionMinAggregateOutputType.fromJson(
+          : ProductMinAggregateOutputType.fromJson(
               json['_min'] as Map<String, dynamic>),
       $max: json['_max'] == null
           ? null
-          : SubscriptionMaxAggregateOutputType.fromJson(
+          : ProductMaxAggregateOutputType.fromJson(
               json['_max'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$SubscriptionGroupByOutputTypeToJson(
-        SubscriptionGroupByOutputType instance) =>
+Map<String, dynamic> _$ProductGroupByOutputTypeToJson(
+        ProductGroupByOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'amount': instance.amount,
+      'price': instance.price,
+      'salePrice': instance.salePrice,
+      'image': instance.image,
+      'PproductType': _$ProductTypeEnumMap[instance.PproductType]!,
       'description': instance.description,
-      'status': instance.status,
+      'productLifeInDays': instance.productLifeInDays,
+      'status': _$CommonStatusEnumMap[instance.status]!,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       '_count': instance.$count?.toJson(),
@@ -808,32 +1057,43 @@ Map<String, dynamic> _$SubscriptionGroupByOutputTypeToJson(
       '_max': instance.$max?.toJson(),
     };
 
-AggregateMembership _$AggregateMembershipFromJson(Map<String, dynamic> json) =>
-    AggregateMembership(
+const _$ProductTypeEnumMap = {
+  ProductType.HOT: 'HOT',
+  ProductType.FEATURED: 'FEATURED',
+  ProductType.TOP: 'TOP',
+  ProductType.BUMPED: 'BUMPED',
+};
+
+const _$CommonStatusEnumMap = {
+  CommonStatus.ACTIVE: 'ACTIVE',
+  CommonStatus.INACTIVE: 'INACTIVE',
+};
+
+AggregateOrder _$AggregateOrderFromJson(Map<String, dynamic> json) =>
+    AggregateOrder(
       $count: json['_count'] == null
           ? null
-          : MembershipCountAggregateOutputType.fromJson(
+          : OrderCountAggregateOutputType.fromJson(
               json['_count'] as Map<String, dynamic>),
       $avg: json['_avg'] == null
           ? null
-          : MembershipAvgAggregateOutputType.fromJson(
+          : OrderAvgAggregateOutputType.fromJson(
               json['_avg'] as Map<String, dynamic>),
       $sum: json['_sum'] == null
           ? null
-          : MembershipSumAggregateOutputType.fromJson(
+          : OrderSumAggregateOutputType.fromJson(
               json['_sum'] as Map<String, dynamic>),
       $min: json['_min'] == null
           ? null
-          : MembershipMinAggregateOutputType.fromJson(
+          : OrderMinAggregateOutputType.fromJson(
               json['_min'] as Map<String, dynamic>),
       $max: json['_max'] == null
           ? null
-          : MembershipMaxAggregateOutputType.fromJson(
+          : OrderMaxAggregateOutputType.fromJson(
               json['_max'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$AggregateMembershipToJson(
-        AggregateMembership instance) =>
+Map<String, dynamic> _$AggregateOrderToJson(AggregateOrder instance) =>
     <String, dynamic>{
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
@@ -842,42 +1102,220 @@ Map<String, dynamic> _$AggregateMembershipToJson(
       '_max': instance.$max?.toJson(),
     };
 
-MembershipGroupByOutputType _$MembershipGroupByOutputTypeFromJson(
+OrderGroupByOutputType _$OrderGroupByOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    MembershipGroupByOutputType(
+    OrderGroupByOutputType(
       id: json['id'] as int,
-      qty: json['qty'] as int,
-      subscriptionId: json['subscriptionId'] as int?,
-      userId: json['userId'] as int?,
+      orderAmount: (json['orderAmount'] as num).toDouble(),
+      userId: json['userId'] as int,
+      paymentMethodId: json['paymentMethodId'] as int,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
       $count: json['_count'] == null
           ? null
-          : MembershipCountAggregateOutputType.fromJson(
+          : OrderCountAggregateOutputType.fromJson(
               json['_count'] as Map<String, dynamic>),
       $avg: json['_avg'] == null
           ? null
-          : MembershipAvgAggregateOutputType.fromJson(
+          : OrderAvgAggregateOutputType.fromJson(
               json['_avg'] as Map<String, dynamic>),
       $sum: json['_sum'] == null
           ? null
-          : MembershipSumAggregateOutputType.fromJson(
+          : OrderSumAggregateOutputType.fromJson(
               json['_sum'] as Map<String, dynamic>),
       $min: json['_min'] == null
           ? null
-          : MembershipMinAggregateOutputType.fromJson(
+          : OrderMinAggregateOutputType.fromJson(
               json['_min'] as Map<String, dynamic>),
       $max: json['_max'] == null
           ? null
-          : MembershipMaxAggregateOutputType.fromJson(
+          : OrderMaxAggregateOutputType.fromJson(
               json['_max'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$MembershipGroupByOutputTypeToJson(
-        MembershipGroupByOutputType instance) =>
+Map<String, dynamic> _$OrderGroupByOutputTypeToJson(
+        OrderGroupByOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'qty': instance.qty,
-      'subscriptionId': instance.subscriptionId,
+      'orderAmount': instance.orderAmount,
       'userId': instance.userId,
+      'paymentMethodId': instance.paymentMethodId,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      '_count': instance.$count?.toJson(),
+      '_avg': instance.$avg?.toJson(),
+      '_sum': instance.$sum?.toJson(),
+      '_min': instance.$min?.toJson(),
+      '_max': instance.$max?.toJson(),
+    };
+
+AggregatePaymentMethod _$AggregatePaymentMethodFromJson(
+        Map<String, dynamic> json) =>
+    AggregatePaymentMethod(
+      $count: json['_count'] == null
+          ? null
+          : PaymentMethodCountAggregateOutputType.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : PaymentMethodAvgAggregateOutputType.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : PaymentMethodSumAggregateOutputType.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : PaymentMethodMinAggregateOutputType.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : PaymentMethodMaxAggregateOutputType.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$AggregatePaymentMethodToJson(
+        AggregatePaymentMethod instance) =>
+    <String, dynamic>{
+      '_count': instance.$count?.toJson(),
+      '_avg': instance.$avg?.toJson(),
+      '_sum': instance.$sum?.toJson(),
+      '_min': instance.$min?.toJson(),
+      '_max': instance.$max?.toJson(),
+    };
+
+PaymentMethodGroupByOutputType _$PaymentMethodGroupByOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    PaymentMethodGroupByOutputType(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      apiKey: json['apiKey'] as String,
+      secret: json['secret'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      status: $enumDecode(_$CommonStatusEnumMap, json['status']),
+      $count: json['_count'] == null
+          ? null
+          : PaymentMethodCountAggregateOutputType.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : PaymentMethodAvgAggregateOutputType.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : PaymentMethodSumAggregateOutputType.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : PaymentMethodMinAggregateOutputType.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : PaymentMethodMaxAggregateOutputType.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$PaymentMethodGroupByOutputTypeToJson(
+        PaymentMethodGroupByOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'apiKey': instance.apiKey,
+      'secret': instance.secret,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      'status': _$CommonStatusEnumMap[instance.status]!,
+      '_count': instance.$count?.toJson(),
+      '_avg': instance.$avg?.toJson(),
+      '_sum': instance.$sum?.toJson(),
+      '_min': instance.$min?.toJson(),
+      '_max': instance.$max?.toJson(),
+    };
+
+AggregateOrderProduct _$AggregateOrderProductFromJson(
+        Map<String, dynamic> json) =>
+    AggregateOrderProduct(
+      $count: json['_count'] == null
+          ? null
+          : OrderProductCountAggregateOutputType.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : OrderProductAvgAggregateOutputType.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : OrderProductSumAggregateOutputType.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : OrderProductMinAggregateOutputType.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : OrderProductMaxAggregateOutputType.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$AggregateOrderProductToJson(
+        AggregateOrderProduct instance) =>
+    <String, dynamic>{
+      '_count': instance.$count?.toJson(),
+      '_avg': instance.$avg?.toJson(),
+      '_sum': instance.$sum?.toJson(),
+      '_min': instance.$min?.toJson(),
+      '_max': instance.$max?.toJson(),
+    };
+
+OrderProductGroupByOutputType _$OrderProductGroupByOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    OrderProductGroupByOutputType(
+      id: json['id'] as int,
+      price: (json['price'] as num).toDouble(),
+      isProductUsed: json['isProductUsed'] as bool,
+      productActiveDate: json['productActiveDate'] == null
+          ? null
+          : DateTime.parse(json['productActiveDate'] as String),
+      productExpireDate: json['productExpireDate'] == null
+          ? null
+          : DateTime.parse(json['productExpireDate'] as String),
+      productId: json['productId'] as int,
+      orderId: json['orderId'] as int,
+      postId: json['postId'] as int,
+      $count: json['_count'] == null
+          ? null
+          : OrderProductCountAggregateOutputType.fromJson(
+              json['_count'] as Map<String, dynamic>),
+      $avg: json['_avg'] == null
+          ? null
+          : OrderProductAvgAggregateOutputType.fromJson(
+              json['_avg'] as Map<String, dynamic>),
+      $sum: json['_sum'] == null
+          ? null
+          : OrderProductSumAggregateOutputType.fromJson(
+              json['_sum'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : OrderProductMinAggregateOutputType.fromJson(
+              json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : OrderProductMaxAggregateOutputType.fromJson(
+              json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$OrderProductGroupByOutputTypeToJson(
+        OrderProductGroupByOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'isProductUsed': instance.isProductUsed,
+      'productActiveDate': instance.productActiveDate?.toIso8601String(),
+      'productExpireDate': instance.productExpireDate?.toIso8601String(),
+      'productId': instance.productId,
+      'orderId': instance.orderId,
+      'postId': instance.postId,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -2203,11 +2641,12 @@ ForumPostGroupByOutputType _$ForumPostGroupByOutputTypeFromJson(
     ForumPostGroupByOutputType(
       id: json['id'] as int,
       postTitle: json['postTitle'] as String,
-      postType: json['postType'] as String,
+      postType: $enumDecode(_$ForumPostTypeEnumMap, json['postType']),
       postDescription: json['postDescription'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       userId: json['userId'] as int,
+      slugId: json['slugId'] as int,
       $count: json['_count'] == null
           ? null
           : ForumPostCountAggregateOutputType.fromJson(
@@ -2235,17 +2674,24 @@ Map<String, dynamic> _$ForumPostGroupByOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postTitle': instance.postTitle,
-      'postType': instance.postType,
+      'postType': _$ForumPostTypeEnumMap[instance.postType]!,
       'postDescription': instance.postDescription,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'userId': instance.userId,
+      'slugId': instance.slugId,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
       '_min': instance.$min?.toJson(),
       '_max': instance.$max?.toJson(),
     };
+
+const _$ForumPostTypeEnumMap = {
+  ForumPostType.GENERAL: 'GENERAL',
+  ForumPostType.DOCUMENTS: 'DOCUMENTS',
+  ForumPostType.CLEARANCE: 'CLEARANCE',
+};
 
 AggregateForumPostComment _$AggregateForumPostCommentFromJson(
         Map<String, dynamic> json) =>
@@ -2615,12 +3061,14 @@ Map<String, dynamic> _$SystemSettingsMaxAggregateOutputTypeToJson(
 SystemUserCountOutputType _$SystemUserCountOutputTypeFromJson(
         Map<String, dynamic> json) =>
     SystemUserCountOutputType(
+      systemUserRole: json['systemUserRole'] as int,
       systemUserPermissions: json['systemUserPermissions'] as int,
     );
 
 Map<String, dynamic> _$SystemUserCountOutputTypeToJson(
         SystemUserCountOutputType instance) =>
     <String, dynamic>{
+      'systemUserRole': instance.systemUserRole,
       'systemUserPermissions': instance.systemUserPermissions,
     };
 
@@ -2631,7 +3079,6 @@ SystemUserCountAggregateOutputType _$SystemUserCountAggregateOutputTypeFromJson(
       username: json['username'] as int,
       password: json['password'] as int,
       salt: json['salt'] as int,
-      role: json['role'] as int,
       email: json['email'] as int,
       createdAt: json['createdAt'] as int,
       updatedAt: json['updatedAt'] as int,
@@ -2645,7 +3092,6 @@ Map<String, dynamic> _$SystemUserCountAggregateOutputTypeToJson(
       'username': instance.username,
       'password': instance.password,
       'salt': instance.salt,
-      'role': instance.role,
       'email': instance.email,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
@@ -2683,7 +3129,6 @@ SystemUserMinAggregateOutputType _$SystemUserMinAggregateOutputTypeFromJson(
       username: json['username'] as String?,
       password: json['password'] as String?,
       salt: json['salt'] as String?,
-      role: $enumDecodeNullable(_$SystemRoleEnumMap, json['role']),
       email: json['email'] as String?,
       createdAt: json['createdAt'] == null
           ? null
@@ -2700,7 +3145,6 @@ Map<String, dynamic> _$SystemUserMinAggregateOutputTypeToJson(
       'username': instance.username,
       'password': instance.password,
       'salt': instance.salt,
-      'role': _$SystemRoleEnumMap[instance.role],
       'email': instance.email,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
@@ -2713,7 +3157,6 @@ SystemUserMaxAggregateOutputType _$SystemUserMaxAggregateOutputTypeFromJson(
       username: json['username'] as String?,
       password: json['password'] as String?,
       salt: json['salt'] as String?,
-      role: $enumDecodeNullable(_$SystemRoleEnumMap, json['role']),
       email: json['email'] as String?,
       createdAt: json['createdAt'] == null
           ? null
@@ -2730,8 +3173,199 @@ Map<String, dynamic> _$SystemUserMaxAggregateOutputTypeToJson(
       'username': instance.username,
       'password': instance.password,
       'salt': instance.salt,
-      'role': _$SystemRoleEnumMap[instance.role],
       'email': instance.email,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };
+
+SystemUserRoleCountOutputType _$SystemUserRoleCountOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    SystemUserRoleCountOutputType(
+      systemUser: json['systemUser'] as int,
+    );
+
+Map<String, dynamic> _$SystemUserRoleCountOutputTypeToJson(
+        SystemUserRoleCountOutputType instance) =>
+    <String, dynamic>{
+      'systemUser': instance.systemUser,
+    };
+
+SystemUserRoleCountAggregateOutputType
+    _$SystemUserRoleCountAggregateOutputTypeFromJson(
+            Map<String, dynamic> json) =>
+        SystemUserRoleCountAggregateOutputType(
+          id: json['id'] as int,
+          title: json['title'] as int,
+          $all: json['_all'] as int,
+        );
+
+Map<String, dynamic> _$SystemUserRoleCountAggregateOutputTypeToJson(
+        SystemUserRoleCountAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      '_all': instance.$all,
+    };
+
+SystemUserRoleAvgAggregateOutputType
+    _$SystemUserRoleAvgAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
+        SystemUserRoleAvgAggregateOutputType(
+          id: (json['id'] as num?)?.toDouble(),
+        );
+
+Map<String, dynamic> _$SystemUserRoleAvgAggregateOutputTypeToJson(
+        SystemUserRoleAvgAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+SystemUserRoleSumAggregateOutputType
+    _$SystemUserRoleSumAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
+        SystemUserRoleSumAggregateOutputType(
+          id: json['id'] as int?,
+        );
+
+Map<String, dynamic> _$SystemUserRoleSumAggregateOutputTypeToJson(
+        SystemUserRoleSumAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+SystemUserRoleMinAggregateOutputType
+    _$SystemUserRoleMinAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
+        SystemUserRoleMinAggregateOutputType(
+          id: json['id'] as int?,
+          title: json['title'] as String?,
+        );
+
+Map<String, dynamic> _$SystemUserRoleMinAggregateOutputTypeToJson(
+        SystemUserRoleMinAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+    };
+
+SystemUserRoleMaxAggregateOutputType
+    _$SystemUserRoleMaxAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
+        SystemUserRoleMaxAggregateOutputType(
+          id: json['id'] as int?,
+          title: json['title'] as String?,
+        );
+
+Map<String, dynamic> _$SystemUserRoleMaxAggregateOutputTypeToJson(
+        SystemUserRoleMaxAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+    };
+
+SystemActivityLogCountAggregateOutputType
+    _$SystemActivityLogCountAggregateOutputTypeFromJson(
+            Map<String, dynamic> json) =>
+        SystemActivityLogCountAggregateOutputType(
+          id: json['id'] as int,
+          refrenceId: json['refrenceId'] as int,
+          refrenceFrom: json['refrenceFrom'] as int,
+          activity: json['activity'] as int,
+          createdAt: json['createdAt'] as int,
+          updatedAt: json['updatedAt'] as int,
+          $all: json['_all'] as int,
+        );
+
+Map<String, dynamic> _$SystemActivityLogCountAggregateOutputTypeToJson(
+        SystemActivityLogCountAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'refrenceId': instance.refrenceId,
+      'refrenceFrom': instance.refrenceFrom,
+      'activity': instance.activity,
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
+      '_all': instance.$all,
+    };
+
+SystemActivityLogAvgAggregateOutputType
+    _$SystemActivityLogAvgAggregateOutputTypeFromJson(
+            Map<String, dynamic> json) =>
+        SystemActivityLogAvgAggregateOutputType(
+          id: (json['id'] as num?)?.toDouble(),
+          refrenceId: (json['refrenceId'] as num?)?.toDouble(),
+        );
+
+Map<String, dynamic> _$SystemActivityLogAvgAggregateOutputTypeToJson(
+        SystemActivityLogAvgAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'refrenceId': instance.refrenceId,
+    };
+
+SystemActivityLogSumAggregateOutputType
+    _$SystemActivityLogSumAggregateOutputTypeFromJson(
+            Map<String, dynamic> json) =>
+        SystemActivityLogSumAggregateOutputType(
+          id: json['id'] as int?,
+          refrenceId: json['refrenceId'] as int?,
+        );
+
+Map<String, dynamic> _$SystemActivityLogSumAggregateOutputTypeToJson(
+        SystemActivityLogSumAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'refrenceId': instance.refrenceId,
+    };
+
+SystemActivityLogMinAggregateOutputType
+    _$SystemActivityLogMinAggregateOutputTypeFromJson(
+            Map<String, dynamic> json) =>
+        SystemActivityLogMinAggregateOutputType(
+          id: json['id'] as int?,
+          refrenceId: json['refrenceId'] as int?,
+          refrenceFrom:
+              $enumDecodeNullable(_$RefrenceFromEnumMap, json['refrenceFrom']),
+          activity: json['activity'] as String?,
+          createdAt: json['createdAt'] == null
+              ? null
+              : DateTime.parse(json['createdAt'] as String),
+          updatedAt: json['updatedAt'] == null
+              ? null
+              : DateTime.parse(json['updatedAt'] as String),
+        );
+
+Map<String, dynamic> _$SystemActivityLogMinAggregateOutputTypeToJson(
+        SystemActivityLogMinAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'refrenceId': instance.refrenceId,
+      'refrenceFrom': _$RefrenceFromEnumMap[instance.refrenceFrom],
+      'activity': instance.activity,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };
+
+SystemActivityLogMaxAggregateOutputType
+    _$SystemActivityLogMaxAggregateOutputTypeFromJson(
+            Map<String, dynamic> json) =>
+        SystemActivityLogMaxAggregateOutputType(
+          id: json['id'] as int?,
+          refrenceId: json['refrenceId'] as int?,
+          refrenceFrom:
+              $enumDecodeNullable(_$RefrenceFromEnumMap, json['refrenceFrom']),
+          activity: json['activity'] as String?,
+          createdAt: json['createdAt'] == null
+              ? null
+              : DateTime.parse(json['createdAt'] as String),
+          updatedAt: json['updatedAt'] == null
+              ? null
+              : DateTime.parse(json['updatedAt'] as String),
+        );
+
+Map<String, dynamic> _$SystemActivityLogMaxAggregateOutputTypeToJson(
+        SystemActivityLogMaxAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'refrenceId': instance.refrenceId,
+      'refrenceFrom': _$RefrenceFromEnumMap[instance.refrenceFrom],
+      'activity': instance.activity,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
@@ -2741,14 +3375,18 @@ SystemUserPermissionsCountAggregateOutputType
             Map<String, dynamic> json) =>
         SystemUserPermissionsCountAggregateOutputType(
           id: json['id'] as int,
-          moduleTitle: json['moduleTitle'] as int,
           canView: json['canView'] as int,
           canAdd: json['canAdd'] as int,
           canEdit: json['canEdit'] as int,
           canDelete: json['canDelete'] as int,
+          hasFullAccess: json['hasFullAccess'] as int,
+          allowedProject: json['allowedProject'] as int,
+          allowedCity: json['allowedCity'] as int,
+          allowedAgency: json['allowedAgency'] as int,
           createdAt: json['createdAt'] as int,
           updatedAt: json['updatedAt'] as int,
           systemUserId: json['systemUserId'] as int,
+          systemModuleId: json['systemModuleId'] as int,
           $all: json['_all'] as int,
         );
 
@@ -2756,14 +3394,18 @@ Map<String, dynamic> _$SystemUserPermissionsCountAggregateOutputTypeToJson(
         SystemUserPermissionsCountAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'moduleTitle': instance.moduleTitle,
       'canView': instance.canView,
       'canAdd': instance.canAdd,
       'canEdit': instance.canEdit,
       'canDelete': instance.canDelete,
+      'hasFullAccess': instance.hasFullAccess,
+      'allowedProject': instance.allowedProject,
+      'allowedCity': instance.allowedCity,
+      'allowedAgency': instance.allowedAgency,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'systemUserId': instance.systemUserId,
+      'systemModuleId': instance.systemModuleId,
       '_all': instance.$all,
     };
 
@@ -2773,6 +3415,7 @@ SystemUserPermissionsAvgAggregateOutputType
         SystemUserPermissionsAvgAggregateOutputType(
           id: (json['id'] as num?)?.toDouble(),
           systemUserId: (json['systemUserId'] as num?)?.toDouble(),
+          systemModuleId: (json['systemModuleId'] as num?)?.toDouble(),
         );
 
 Map<String, dynamic> _$SystemUserPermissionsAvgAggregateOutputTypeToJson(
@@ -2780,6 +3423,7 @@ Map<String, dynamic> _$SystemUserPermissionsAvgAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'systemUserId': instance.systemUserId,
+      'systemModuleId': instance.systemModuleId,
     };
 
 SystemUserPermissionsSumAggregateOutputType
@@ -2788,6 +3432,7 @@ SystemUserPermissionsSumAggregateOutputType
         SystemUserPermissionsSumAggregateOutputType(
           id: json['id'] as int?,
           systemUserId: json['systemUserId'] as int?,
+          systemModuleId: json['systemModuleId'] as int?,
         );
 
 Map<String, dynamic> _$SystemUserPermissionsSumAggregateOutputTypeToJson(
@@ -2795,6 +3440,7 @@ Map<String, dynamic> _$SystemUserPermissionsSumAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'systemUserId': instance.systemUserId,
+      'systemModuleId': instance.systemModuleId,
     };
 
 SystemUserPermissionsMinAggregateOutputType
@@ -2802,11 +3448,14 @@ SystemUserPermissionsMinAggregateOutputType
             Map<String, dynamic> json) =>
         SystemUserPermissionsMinAggregateOutputType(
           id: json['id'] as int?,
-          moduleTitle: json['moduleTitle'] as String?,
           canView: json['canView'] as bool?,
           canAdd: json['canAdd'] as bool?,
           canEdit: json['canEdit'] as bool?,
           canDelete: json['canDelete'] as bool?,
+          hasFullAccess: json['hasFullAccess'] as bool?,
+          allowedProject: json['allowedProject'] as String?,
+          allowedCity: json['allowedCity'] as String?,
+          allowedAgency: json['allowedAgency'] as String?,
           createdAt: json['createdAt'] == null
               ? null
               : DateTime.parse(json['createdAt'] as String),
@@ -2814,20 +3463,25 @@ SystemUserPermissionsMinAggregateOutputType
               ? null
               : DateTime.parse(json['updatedAt'] as String),
           systemUserId: json['systemUserId'] as int?,
+          systemModuleId: json['systemModuleId'] as int?,
         );
 
 Map<String, dynamic> _$SystemUserPermissionsMinAggregateOutputTypeToJson(
         SystemUserPermissionsMinAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'moduleTitle': instance.moduleTitle,
       'canView': instance.canView,
       'canAdd': instance.canAdd,
       'canEdit': instance.canEdit,
       'canDelete': instance.canDelete,
+      'hasFullAccess': instance.hasFullAccess,
+      'allowedProject': instance.allowedProject,
+      'allowedCity': instance.allowedCity,
+      'allowedAgency': instance.allowedAgency,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'systemUserId': instance.systemUserId,
+      'systemModuleId': instance.systemModuleId,
     };
 
 SystemUserPermissionsMaxAggregateOutputType
@@ -2835,11 +3489,14 @@ SystemUserPermissionsMaxAggregateOutputType
             Map<String, dynamic> json) =>
         SystemUserPermissionsMaxAggregateOutputType(
           id: json['id'] as int?,
-          moduleTitle: json['moduleTitle'] as String?,
           canView: json['canView'] as bool?,
           canAdd: json['canAdd'] as bool?,
           canEdit: json['canEdit'] as bool?,
           canDelete: json['canDelete'] as bool?,
+          hasFullAccess: json['hasFullAccess'] as bool?,
+          allowedProject: json['allowedProject'] as String?,
+          allowedCity: json['allowedCity'] as String?,
+          allowedAgency: json['allowedAgency'] as String?,
           createdAt: json['createdAt'] == null
               ? null
               : DateTime.parse(json['createdAt'] as String),
@@ -2847,20 +3504,125 @@ SystemUserPermissionsMaxAggregateOutputType
               ? null
               : DateTime.parse(json['updatedAt'] as String),
           systemUserId: json['systemUserId'] as int?,
+          systemModuleId: json['systemModuleId'] as int?,
         );
 
 Map<String, dynamic> _$SystemUserPermissionsMaxAggregateOutputTypeToJson(
         SystemUserPermissionsMaxAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'moduleTitle': instance.moduleTitle,
       'canView': instance.canView,
       'canAdd': instance.canAdd,
       'canEdit': instance.canEdit,
       'canDelete': instance.canDelete,
+      'hasFullAccess': instance.hasFullAccess,
+      'allowedProject': instance.allowedProject,
+      'allowedCity': instance.allowedCity,
+      'allowedAgency': instance.allowedAgency,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'systemUserId': instance.systemUserId,
+      'systemModuleId': instance.systemModuleId,
+    };
+
+SystemModuleCountOutputType _$SystemModuleCountOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    SystemModuleCountOutputType(
+      systemUserPermissions: json['systemUserPermissions'] as int,
+    );
+
+Map<String, dynamic> _$SystemModuleCountOutputTypeToJson(
+        SystemModuleCountOutputType instance) =>
+    <String, dynamic>{
+      'systemUserPermissions': instance.systemUserPermissions,
+    };
+
+SystemModuleCountAggregateOutputType
+    _$SystemModuleCountAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
+        SystemModuleCountAggregateOutputType(
+          id: json['id'] as int,
+          parentId: json['parentId'] as int,
+          title: json['title'] as int,
+          sortOrder: json['sortOrder'] as int,
+          $all: json['_all'] as int,
+        );
+
+Map<String, dynamic> _$SystemModuleCountAggregateOutputTypeToJson(
+        SystemModuleCountAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'parentId': instance.parentId,
+      'title': instance.title,
+      'sortOrder': instance.sortOrder,
+      '_all': instance.$all,
+    };
+
+SystemModuleAvgAggregateOutputType _$SystemModuleAvgAggregateOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    SystemModuleAvgAggregateOutputType(
+      id: (json['id'] as num?)?.toDouble(),
+      parentId: (json['parentId'] as num?)?.toDouble(),
+      sortOrder: (json['sortOrder'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$SystemModuleAvgAggregateOutputTypeToJson(
+        SystemModuleAvgAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'parentId': instance.parentId,
+      'sortOrder': instance.sortOrder,
+    };
+
+SystemModuleSumAggregateOutputType _$SystemModuleSumAggregateOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    SystemModuleSumAggregateOutputType(
+      id: json['id'] as int?,
+      parentId: json['parentId'] as int?,
+      sortOrder: json['sortOrder'] as int?,
+    );
+
+Map<String, dynamic> _$SystemModuleSumAggregateOutputTypeToJson(
+        SystemModuleSumAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'parentId': instance.parentId,
+      'sortOrder': instance.sortOrder,
+    };
+
+SystemModuleMinAggregateOutputType _$SystemModuleMinAggregateOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    SystemModuleMinAggregateOutputType(
+      id: json['id'] as int?,
+      parentId: json['parentId'] as int?,
+      title: json['title'] as String?,
+      sortOrder: json['sortOrder'] as int?,
+    );
+
+Map<String, dynamic> _$SystemModuleMinAggregateOutputTypeToJson(
+        SystemModuleMinAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'parentId': instance.parentId,
+      'title': instance.title,
+      'sortOrder': instance.sortOrder,
+    };
+
+SystemModuleMaxAggregateOutputType _$SystemModuleMaxAggregateOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    SystemModuleMaxAggregateOutputType(
+      id: json['id'] as int?,
+      parentId: json['parentId'] as int?,
+      title: json['title'] as String?,
+      sortOrder: json['sortOrder'] as int?,
+    );
+
+Map<String, dynamic> _$SystemModuleMaxAggregateOutputTypeToJson(
+        SystemModuleMaxAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'parentId': instance.parentId,
+      'title': instance.title,
+      'sortOrder': instance.sortOrder,
     };
 
 AgencyCountAggregateOutputType _$AgencyCountAggregateOutputTypeFromJson(
@@ -2886,6 +3648,7 @@ AgencyCountAggregateOutputType _$AgencyCountAggregateOutputTypeFromJson(
       createdAt: json['createdAt'] as int,
       updatedAt: json['updatedAt'] as int,
       userId: json['userId'] as int,
+      slugId: json['slugId'] as int,
       $all: json['_all'] as int,
     );
 
@@ -2912,6 +3675,7 @@ Map<String, dynamic> _$AgencyCountAggregateOutputTypeToJson(
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'userId': instance.userId,
+      'slugId': instance.slugId,
       '_all': instance.$all,
     };
 
@@ -2920,6 +3684,7 @@ AgencyAvgAggregateOutputType _$AgencyAvgAggregateOutputTypeFromJson(
     AgencyAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
       userId: (json['userId'] as num?)?.toDouble(),
+      slugId: (json['slugId'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$AgencyAvgAggregateOutputTypeToJson(
@@ -2927,6 +3692,7 @@ Map<String, dynamic> _$AgencyAvgAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
+      'slugId': instance.slugId,
     };
 
 AgencySumAggregateOutputType _$AgencySumAggregateOutputTypeFromJson(
@@ -2934,6 +3700,7 @@ AgencySumAggregateOutputType _$AgencySumAggregateOutputTypeFromJson(
     AgencySumAggregateOutputType(
       id: json['id'] as int?,
       userId: json['userId'] as int?,
+      slugId: json['slugId'] as int?,
     );
 
 Map<String, dynamic> _$AgencySumAggregateOutputTypeToJson(
@@ -2941,6 +3708,7 @@ Map<String, dynamic> _$AgencySumAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
+      'slugId': instance.slugId,
     };
 
 AgencyMinAggregateOutputType _$AgencyMinAggregateOutputTypeFromJson(
@@ -2970,6 +3738,7 @@ AgencyMinAggregateOutputType _$AgencyMinAggregateOutputTypeFromJson(
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       userId: json['userId'] as int?,
+      slugId: json['slugId'] as int?,
     );
 
 Map<String, dynamic> _$AgencyMinAggregateOutputTypeToJson(
@@ -2995,6 +3764,7 @@ Map<String, dynamic> _$AgencyMinAggregateOutputTypeToJson(
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'userId': instance.userId,
+      'slugId': instance.slugId,
     };
 
 AgencyMaxAggregateOutputType _$AgencyMaxAggregateOutputTypeFromJson(
@@ -3024,6 +3794,7 @@ AgencyMaxAggregateOutputType _$AgencyMaxAggregateOutputTypeFromJson(
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       userId: json['userId'] as int?,
+      slugId: json['slugId'] as int?,
     );
 
 Map<String, dynamic> _$AgencyMaxAggregateOutputTypeToJson(
@@ -3049,6 +3820,7 @@ Map<String, dynamic> _$AgencyMaxAggregateOutputTypeToJson(
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'userId': instance.userId,
+      'slugId': instance.slugId,
     };
 
 DeveloperCountOutputType _$DeveloperCountOutputTypeFromJson(
@@ -3173,8 +3945,9 @@ ProjectCountAggregateOutputType _$ProjectCountAggregateOutputTypeFromJson(
       gallery: json['gallery'] as int,
       locality: json['locality'] as int,
       city: json['city'] as int,
-      price: json['price'] as int,
-      WalkthroughThreeD: json['WalkthroughThreeD'] as int,
+      startingPrice: json['startingPrice'] as int,
+      endingPrice: json['endingPrice'] as int,
+      walkthroughThreeD: json['walkthroughThreeD'] as int,
       createdAt: json['createdAt'] as int,
       updatedAt: json['updatedAt'] as int,
       developerId: json['developerId'] as int,
@@ -3193,8 +3966,9 @@ Map<String, dynamic> _$ProjectCountAggregateOutputTypeToJson(
       'gallery': instance.gallery,
       'locality': instance.locality,
       'city': instance.city,
-      'price': instance.price,
-      'WalkthroughThreeD': instance.WalkthroughThreeD,
+      'startingPrice': instance.startingPrice,
+      'endingPrice': instance.endingPrice,
+      'walkthroughThreeD': instance.walkthroughThreeD,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'developerId': instance.developerId,
@@ -3207,6 +3981,8 @@ ProjectAvgAggregateOutputType _$ProjectAvgAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     ProjectAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
+      startingPrice: (json['startingPrice'] as num?)?.toDouble(),
+      endingPrice: (json['endingPrice'] as num?)?.toDouble(),
       developerId: (json['developerId'] as num?)?.toDouble(),
       categoryId: (json['categoryId'] as num?)?.toDouble(),
       projectNearByPlaceId: (json['projectNearByPlaceId'] as num?)?.toDouble(),
@@ -3216,6 +3992,8 @@ Map<String, dynamic> _$ProjectAvgAggregateOutputTypeToJson(
         ProjectAvgAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'startingPrice': instance.startingPrice,
+      'endingPrice': instance.endingPrice,
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
       'projectNearByPlaceId': instance.projectNearByPlaceId,
@@ -3225,6 +4003,8 @@ ProjectSumAggregateOutputType _$ProjectSumAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     ProjectSumAggregateOutputType(
       id: json['id'] as int?,
+      startingPrice: (json['startingPrice'] as num?)?.toDouble(),
+      endingPrice: (json['endingPrice'] as num?)?.toDouble(),
       developerId: json['developerId'] as int?,
       categoryId: json['categoryId'] as int?,
       projectNearByPlaceId: json['projectNearByPlaceId'] as int?,
@@ -3234,6 +4014,8 @@ Map<String, dynamic> _$ProjectSumAggregateOutputTypeToJson(
         ProjectSumAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'startingPrice': instance.startingPrice,
+      'endingPrice': instance.endingPrice,
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
       'projectNearByPlaceId': instance.projectNearByPlaceId,
@@ -3249,8 +4031,9 @@ ProjectMinAggregateOutputType _$ProjectMinAggregateOutputTypeFromJson(
       gallery: json['gallery'] as String?,
       locality: json['locality'] as String?,
       city: json['city'] as String?,
-      price: json['price'] as String?,
-      WalkthroughThreeD: json['WalkthroughThreeD'] as String?,
+      startingPrice: (json['startingPrice'] as num?)?.toDouble(),
+      endingPrice: (json['endingPrice'] as num?)?.toDouble(),
+      walkthroughThreeD: json['walkthroughThreeD'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -3272,8 +4055,9 @@ Map<String, dynamic> _$ProjectMinAggregateOutputTypeToJson(
       'gallery': instance.gallery,
       'locality': instance.locality,
       'city': instance.city,
-      'price': instance.price,
-      'WalkthroughThreeD': instance.WalkthroughThreeD,
+      'startingPrice': instance.startingPrice,
+      'endingPrice': instance.endingPrice,
+      'walkthroughThreeD': instance.walkthroughThreeD,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'developerId': instance.developerId,
@@ -3291,8 +4075,9 @@ ProjectMaxAggregateOutputType _$ProjectMaxAggregateOutputTypeFromJson(
       gallery: json['gallery'] as String?,
       locality: json['locality'] as String?,
       city: json['city'] as String?,
-      price: json['price'] as String?,
-      WalkthroughThreeD: json['WalkthroughThreeD'] as String?,
+      startingPrice: (json['startingPrice'] as num?)?.toDouble(),
+      endingPrice: (json['endingPrice'] as num?)?.toDouble(),
+      walkthroughThreeD: json['walkthroughThreeD'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -3314,8 +4099,9 @@ Map<String, dynamic> _$ProjectMaxAggregateOutputTypeToJson(
       'gallery': instance.gallery,
       'locality': instance.locality,
       'city': instance.city,
-      'price': instance.price,
-      'WalkthroughThreeD': instance.WalkthroughThreeD,
+      'startingPrice': instance.startingPrice,
+      'endingPrice': instance.endingPrice,
+      'walkthroughThreeD': instance.walkthroughThreeD,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'developerId': instance.developerId,
@@ -3514,80 +4300,101 @@ Map<String, dynamic> _$ProjectNearByPlaceMaxAggregateOutputTypeToJson(
           _$ProjectNearByPlaceCategoryEnumMap[instance.placeCategory],
     };
 
-SubscriptionCountOutputType _$SubscriptionCountOutputTypeFromJson(
+ProductCountOutputType _$ProductCountOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    SubscriptionCountOutputType(
-      membership: json['membership'] as int,
+    ProductCountOutputType(
+      orderProduct: json['orderProduct'] as int,
     );
 
-Map<String, dynamic> _$SubscriptionCountOutputTypeToJson(
-        SubscriptionCountOutputType instance) =>
+Map<String, dynamic> _$ProductCountOutputTypeToJson(
+        ProductCountOutputType instance) =>
     <String, dynamic>{
-      'membership': instance.membership,
+      'orderProduct': instance.orderProduct,
     };
 
-SubscriptionCountAggregateOutputType
-    _$SubscriptionCountAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
-        SubscriptionCountAggregateOutputType(
-          id: json['id'] as int,
-          title: json['title'] as int,
-          amount: json['amount'] as int,
-          description: json['description'] as int,
-          status: json['status'] as int,
-          createdAt: json['createdAt'] as int,
-          updatedAt: json['updatedAt'] as int,
-          $all: json['_all'] as int,
-        );
+ProductCountAggregateOutputType _$ProductCountAggregateOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    ProductCountAggregateOutputType(
+      id: json['id'] as int,
+      title: json['title'] as int,
+      price: json['price'] as int,
+      salePrice: json['salePrice'] as int,
+      image: json['image'] as int,
+      PproductType: json['PproductType'] as int,
+      description: json['description'] as int,
+      productLifeInDays: json['productLifeInDays'] as int,
+      status: json['status'] as int,
+      createdAt: json['createdAt'] as int,
+      updatedAt: json['updatedAt'] as int,
+      $all: json['_all'] as int,
+    );
 
-Map<String, dynamic> _$SubscriptionCountAggregateOutputTypeToJson(
-        SubscriptionCountAggregateOutputType instance) =>
+Map<String, dynamic> _$ProductCountAggregateOutputTypeToJson(
+        ProductCountAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'amount': instance.amount,
+      'price': instance.price,
+      'salePrice': instance.salePrice,
+      'image': instance.image,
+      'PproductType': instance.PproductType,
       'description': instance.description,
+      'productLifeInDays': instance.productLifeInDays,
       'status': instance.status,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       '_all': instance.$all,
     };
 
-SubscriptionAvgAggregateOutputType _$SubscriptionAvgAggregateOutputTypeFromJson(
+ProductAvgAggregateOutputType _$ProductAvgAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    SubscriptionAvgAggregateOutputType(
+    ProductAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
-      amount: (json['amount'] as num?)?.toDouble(),
+      price: (json['price'] as num?)?.toDouble(),
+      salePrice: (json['salePrice'] as num?)?.toDouble(),
+      productLifeInDays: (json['productLifeInDays'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$SubscriptionAvgAggregateOutputTypeToJson(
-        SubscriptionAvgAggregateOutputType instance) =>
+Map<String, dynamic> _$ProductAvgAggregateOutputTypeToJson(
+        ProductAvgAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'amount': instance.amount,
+      'price': instance.price,
+      'salePrice': instance.salePrice,
+      'productLifeInDays': instance.productLifeInDays,
     };
 
-SubscriptionSumAggregateOutputType _$SubscriptionSumAggregateOutputTypeFromJson(
+ProductSumAggregateOutputType _$ProductSumAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    SubscriptionSumAggregateOutputType(
+    ProductSumAggregateOutputType(
       id: json['id'] as int?,
-      amount: (json['amount'] as num?)?.toDouble(),
+      price: (json['price'] as num?)?.toDouble(),
+      salePrice: (json['salePrice'] as num?)?.toDouble(),
+      productLifeInDays: json['productLifeInDays'] as int?,
     );
 
-Map<String, dynamic> _$SubscriptionSumAggregateOutputTypeToJson(
-        SubscriptionSumAggregateOutputType instance) =>
+Map<String, dynamic> _$ProductSumAggregateOutputTypeToJson(
+        ProductSumAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'amount': instance.amount,
+      'price': instance.price,
+      'salePrice': instance.salePrice,
+      'productLifeInDays': instance.productLifeInDays,
     };
 
-SubscriptionMinAggregateOutputType _$SubscriptionMinAggregateOutputTypeFromJson(
+ProductMinAggregateOutputType _$ProductMinAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    SubscriptionMinAggregateOutputType(
+    ProductMinAggregateOutputType(
       id: json['id'] as int?,
       title: json['title'] as String?,
-      amount: (json['amount'] as num?)?.toDouble(),
+      price: (json['price'] as num?)?.toDouble(),
+      salePrice: (json['salePrice'] as num?)?.toDouble(),
+      image: json['image'] as String?,
+      PproductType:
+          $enumDecodeNullable(_$ProductTypeEnumMap, json['PproductType']),
       description: json['description'] as String?,
-      status: json['status'] as bool?,
+      productLifeInDays: json['productLifeInDays'] as int?,
+      status: $enumDecodeNullable(_$CommonStatusEnumMap, json['status']),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -3596,26 +4403,35 @@ SubscriptionMinAggregateOutputType _$SubscriptionMinAggregateOutputTypeFromJson(
           : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$SubscriptionMinAggregateOutputTypeToJson(
-        SubscriptionMinAggregateOutputType instance) =>
+Map<String, dynamic> _$ProductMinAggregateOutputTypeToJson(
+        ProductMinAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'amount': instance.amount,
+      'price': instance.price,
+      'salePrice': instance.salePrice,
+      'image': instance.image,
+      'PproductType': _$ProductTypeEnumMap[instance.PproductType],
       'description': instance.description,
-      'status': instance.status,
+      'productLifeInDays': instance.productLifeInDays,
+      'status': _$CommonStatusEnumMap[instance.status],
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 
-SubscriptionMaxAggregateOutputType _$SubscriptionMaxAggregateOutputTypeFromJson(
+ProductMaxAggregateOutputType _$ProductMaxAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    SubscriptionMaxAggregateOutputType(
+    ProductMaxAggregateOutputType(
       id: json['id'] as int?,
       title: json['title'] as String?,
-      amount: (json['amount'] as num?)?.toDouble(),
+      price: (json['price'] as num?)?.toDouble(),
+      salePrice: (json['salePrice'] as num?)?.toDouble(),
+      image: json['image'] as String?,
+      PproductType:
+          $enumDecodeNullable(_$ProductTypeEnumMap, json['PproductType']),
       description: json['description'] as String?,
-      status: json['status'] as bool?,
+      productLifeInDays: json['productLifeInDays'] as int?,
+      status: $enumDecodeNullable(_$CommonStatusEnumMap, json['status']),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -3624,108 +4440,391 @@ SubscriptionMaxAggregateOutputType _$SubscriptionMaxAggregateOutputTypeFromJson(
           : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$SubscriptionMaxAggregateOutputTypeToJson(
-        SubscriptionMaxAggregateOutputType instance) =>
+Map<String, dynamic> _$ProductMaxAggregateOutputTypeToJson(
+        ProductMaxAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'amount': instance.amount,
+      'price': instance.price,
+      'salePrice': instance.salePrice,
+      'image': instance.image,
+      'PproductType': _$ProductTypeEnumMap[instance.PproductType],
       'description': instance.description,
-      'status': instance.status,
+      'productLifeInDays': instance.productLifeInDays,
+      'status': _$CommonStatusEnumMap[instance.status],
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 
-MembershipCountAggregateOutputType _$MembershipCountAggregateOutputTypeFromJson(
+OrderCountOutputType _$OrderCountOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    MembershipCountAggregateOutputType(
+    OrderCountOutputType(
+      orderProduct: json['orderProduct'] as int,
+    );
+
+Map<String, dynamic> _$OrderCountOutputTypeToJson(
+        OrderCountOutputType instance) =>
+    <String, dynamic>{
+      'orderProduct': instance.orderProduct,
+    };
+
+OrderCountAggregateOutputType _$OrderCountAggregateOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    OrderCountAggregateOutputType(
       id: json['id'] as int,
-      qty: json['qty'] as int,
-      subscriptionId: json['subscriptionId'] as int,
+      orderAmount: json['orderAmount'] as int,
       userId: json['userId'] as int,
+      paymentMethodId: json['paymentMethodId'] as int,
+      createdAt: json['createdAt'] as int,
+      updatedAt: json['updatedAt'] as int,
       $all: json['_all'] as int,
     );
 
-Map<String, dynamic> _$MembershipCountAggregateOutputTypeToJson(
-        MembershipCountAggregateOutputType instance) =>
+Map<String, dynamic> _$OrderCountAggregateOutputTypeToJson(
+        OrderCountAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'qty': instance.qty,
-      'subscriptionId': instance.subscriptionId,
+      'orderAmount': instance.orderAmount,
       'userId': instance.userId,
+      'paymentMethodId': instance.paymentMethodId,
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
       '_all': instance.$all,
     };
 
-MembershipAvgAggregateOutputType _$MembershipAvgAggregateOutputTypeFromJson(
+OrderAvgAggregateOutputType _$OrderAvgAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    MembershipAvgAggregateOutputType(
+    OrderAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
-      qty: (json['qty'] as num?)?.toDouble(),
-      subscriptionId: (json['subscriptionId'] as num?)?.toDouble(),
+      orderAmount: (json['orderAmount'] as num?)?.toDouble(),
       userId: (json['userId'] as num?)?.toDouble(),
+      paymentMethodId: (json['paymentMethodId'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$MembershipAvgAggregateOutputTypeToJson(
-        MembershipAvgAggregateOutputType instance) =>
+Map<String, dynamic> _$OrderAvgAggregateOutputTypeToJson(
+        OrderAvgAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'qty': instance.qty,
-      'subscriptionId': instance.subscriptionId,
+      'orderAmount': instance.orderAmount,
       'userId': instance.userId,
+      'paymentMethodId': instance.paymentMethodId,
     };
 
-MembershipSumAggregateOutputType _$MembershipSumAggregateOutputTypeFromJson(
+OrderSumAggregateOutputType _$OrderSumAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    MembershipSumAggregateOutputType(
+    OrderSumAggregateOutputType(
       id: json['id'] as int?,
-      qty: json['qty'] as int?,
-      subscriptionId: json['subscriptionId'] as int?,
+      orderAmount: (json['orderAmount'] as num?)?.toDouble(),
       userId: json['userId'] as int?,
+      paymentMethodId: json['paymentMethodId'] as int?,
     );
 
-Map<String, dynamic> _$MembershipSumAggregateOutputTypeToJson(
-        MembershipSumAggregateOutputType instance) =>
+Map<String, dynamic> _$OrderSumAggregateOutputTypeToJson(
+        OrderSumAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'qty': instance.qty,
-      'subscriptionId': instance.subscriptionId,
+      'orderAmount': instance.orderAmount,
       'userId': instance.userId,
+      'paymentMethodId': instance.paymentMethodId,
     };
 
-MembershipMinAggregateOutputType _$MembershipMinAggregateOutputTypeFromJson(
+OrderMinAggregateOutputType _$OrderMinAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    MembershipMinAggregateOutputType(
+    OrderMinAggregateOutputType(
       id: json['id'] as int?,
-      qty: json['qty'] as int?,
-      subscriptionId: json['subscriptionId'] as int?,
+      orderAmount: (json['orderAmount'] as num?)?.toDouble(),
       userId: json['userId'] as int?,
+      paymentMethodId: json['paymentMethodId'] as int?,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$MembershipMinAggregateOutputTypeToJson(
-        MembershipMinAggregateOutputType instance) =>
+Map<String, dynamic> _$OrderMinAggregateOutputTypeToJson(
+        OrderMinAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'qty': instance.qty,
-      'subscriptionId': instance.subscriptionId,
+      'orderAmount': instance.orderAmount,
       'userId': instance.userId,
+      'paymentMethodId': instance.paymentMethodId,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 
-MembershipMaxAggregateOutputType _$MembershipMaxAggregateOutputTypeFromJson(
+OrderMaxAggregateOutputType _$OrderMaxAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    MembershipMaxAggregateOutputType(
+    OrderMaxAggregateOutputType(
       id: json['id'] as int?,
-      qty: json['qty'] as int?,
-      subscriptionId: json['subscriptionId'] as int?,
+      orderAmount: (json['orderAmount'] as num?)?.toDouble(),
       userId: json['userId'] as int?,
+      paymentMethodId: json['paymentMethodId'] as int?,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$MembershipMaxAggregateOutputTypeToJson(
-        MembershipMaxAggregateOutputType instance) =>
+Map<String, dynamic> _$OrderMaxAggregateOutputTypeToJson(
+        OrderMaxAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'qty': instance.qty,
-      'subscriptionId': instance.subscriptionId,
+      'orderAmount': instance.orderAmount,
       'userId': instance.userId,
+      'paymentMethodId': instance.paymentMethodId,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };
+
+PaymentMethodCountOutputType _$PaymentMethodCountOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    PaymentMethodCountOutputType(
+      order: json['order'] as int,
+    );
+
+Map<String, dynamic> _$PaymentMethodCountOutputTypeToJson(
+        PaymentMethodCountOutputType instance) =>
+    <String, dynamic>{
+      'order': instance.order,
+    };
+
+PaymentMethodCountAggregateOutputType
+    _$PaymentMethodCountAggregateOutputTypeFromJson(
+            Map<String, dynamic> json) =>
+        PaymentMethodCountAggregateOutputType(
+          id: json['id'] as int,
+          name: json['name'] as int,
+          apiKey: json['apiKey'] as int,
+          secret: json['secret'] as int,
+          createdAt: json['createdAt'] as int,
+          updatedAt: json['updatedAt'] as int,
+          status: json['status'] as int,
+          $all: json['_all'] as int,
+        );
+
+Map<String, dynamic> _$PaymentMethodCountAggregateOutputTypeToJson(
+        PaymentMethodCountAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'apiKey': instance.apiKey,
+      'secret': instance.secret,
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
+      'status': instance.status,
+      '_all': instance.$all,
+    };
+
+PaymentMethodAvgAggregateOutputType
+    _$PaymentMethodAvgAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
+        PaymentMethodAvgAggregateOutputType(
+          id: (json['id'] as num?)?.toDouble(),
+        );
+
+Map<String, dynamic> _$PaymentMethodAvgAggregateOutputTypeToJson(
+        PaymentMethodAvgAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+PaymentMethodSumAggregateOutputType
+    _$PaymentMethodSumAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
+        PaymentMethodSumAggregateOutputType(
+          id: json['id'] as int?,
+        );
+
+Map<String, dynamic> _$PaymentMethodSumAggregateOutputTypeToJson(
+        PaymentMethodSumAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+PaymentMethodMinAggregateOutputType
+    _$PaymentMethodMinAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
+        PaymentMethodMinAggregateOutputType(
+          id: json['id'] as int?,
+          name: json['name'] as String?,
+          apiKey: json['apiKey'] as String?,
+          secret: json['secret'] as String?,
+          createdAt: json['createdAt'] == null
+              ? null
+              : DateTime.parse(json['createdAt'] as String),
+          updatedAt: json['updatedAt'] == null
+              ? null
+              : DateTime.parse(json['updatedAt'] as String),
+          status: $enumDecodeNullable(_$CommonStatusEnumMap, json['status']),
+        );
+
+Map<String, dynamic> _$PaymentMethodMinAggregateOutputTypeToJson(
+        PaymentMethodMinAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'apiKey': instance.apiKey,
+      'secret': instance.secret,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'status': _$CommonStatusEnumMap[instance.status],
+    };
+
+PaymentMethodMaxAggregateOutputType
+    _$PaymentMethodMaxAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
+        PaymentMethodMaxAggregateOutputType(
+          id: json['id'] as int?,
+          name: json['name'] as String?,
+          apiKey: json['apiKey'] as String?,
+          secret: json['secret'] as String?,
+          createdAt: json['createdAt'] == null
+              ? null
+              : DateTime.parse(json['createdAt'] as String),
+          updatedAt: json['updatedAt'] == null
+              ? null
+              : DateTime.parse(json['updatedAt'] as String),
+          status: $enumDecodeNullable(_$CommonStatusEnumMap, json['status']),
+        );
+
+Map<String, dynamic> _$PaymentMethodMaxAggregateOutputTypeToJson(
+        PaymentMethodMaxAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'apiKey': instance.apiKey,
+      'secret': instance.secret,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'status': _$CommonStatusEnumMap[instance.status],
+    };
+
+OrderProductCountAggregateOutputType
+    _$OrderProductCountAggregateOutputTypeFromJson(Map<String, dynamic> json) =>
+        OrderProductCountAggregateOutputType(
+          id: json['id'] as int,
+          price: json['price'] as int,
+          isProductUsed: json['isProductUsed'] as int,
+          productActiveDate: json['productActiveDate'] as int,
+          productExpireDate: json['productExpireDate'] as int,
+          productId: json['productId'] as int,
+          orderId: json['orderId'] as int,
+          postId: json['postId'] as int,
+          $all: json['_all'] as int,
+        );
+
+Map<String, dynamic> _$OrderProductCountAggregateOutputTypeToJson(
+        OrderProductCountAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'isProductUsed': instance.isProductUsed,
+      'productActiveDate': instance.productActiveDate,
+      'productExpireDate': instance.productExpireDate,
+      'productId': instance.productId,
+      'orderId': instance.orderId,
+      'postId': instance.postId,
+      '_all': instance.$all,
+    };
+
+OrderProductAvgAggregateOutputType _$OrderProductAvgAggregateOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    OrderProductAvgAggregateOutputType(
+      id: (json['id'] as num?)?.toDouble(),
+      price: (json['price'] as num?)?.toDouble(),
+      productId: (json['productId'] as num?)?.toDouble(),
+      orderId: (json['orderId'] as num?)?.toDouble(),
+      postId: (json['postId'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$OrderProductAvgAggregateOutputTypeToJson(
+        OrderProductAvgAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'productId': instance.productId,
+      'orderId': instance.orderId,
+      'postId': instance.postId,
+    };
+
+OrderProductSumAggregateOutputType _$OrderProductSumAggregateOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    OrderProductSumAggregateOutputType(
+      id: json['id'] as int?,
+      price: (json['price'] as num?)?.toDouble(),
+      productId: json['productId'] as int?,
+      orderId: json['orderId'] as int?,
+      postId: json['postId'] as int?,
+    );
+
+Map<String, dynamic> _$OrderProductSumAggregateOutputTypeToJson(
+        OrderProductSumAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'productId': instance.productId,
+      'orderId': instance.orderId,
+      'postId': instance.postId,
+    };
+
+OrderProductMinAggregateOutputType _$OrderProductMinAggregateOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    OrderProductMinAggregateOutputType(
+      id: json['id'] as int?,
+      price: (json['price'] as num?)?.toDouble(),
+      isProductUsed: json['isProductUsed'] as bool?,
+      productActiveDate: json['productActiveDate'] == null
+          ? null
+          : DateTime.parse(json['productActiveDate'] as String),
+      productExpireDate: json['productExpireDate'] == null
+          ? null
+          : DateTime.parse(json['productExpireDate'] as String),
+      productId: json['productId'] as int?,
+      orderId: json['orderId'] as int?,
+      postId: json['postId'] as int?,
+    );
+
+Map<String, dynamic> _$OrderProductMinAggregateOutputTypeToJson(
+        OrderProductMinAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'isProductUsed': instance.isProductUsed,
+      'productActiveDate': instance.productActiveDate?.toIso8601String(),
+      'productExpireDate': instance.productExpireDate?.toIso8601String(),
+      'productId': instance.productId,
+      'orderId': instance.orderId,
+      'postId': instance.postId,
+    };
+
+OrderProductMaxAggregateOutputType _$OrderProductMaxAggregateOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    OrderProductMaxAggregateOutputType(
+      id: json['id'] as int?,
+      price: (json['price'] as num?)?.toDouble(),
+      isProductUsed: json['isProductUsed'] as bool?,
+      productActiveDate: json['productActiveDate'] == null
+          ? null
+          : DateTime.parse(json['productActiveDate'] as String),
+      productExpireDate: json['productExpireDate'] == null
+          ? null
+          : DateTime.parse(json['productExpireDate'] as String),
+      productId: json['productId'] as int?,
+      orderId: json['orderId'] as int?,
+      postId: json['postId'] as int?,
+    );
+
+Map<String, dynamic> _$OrderProductMaxAggregateOutputTypeToJson(
+        OrderProductMaxAggregateOutputType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'isProductUsed': instance.isProductUsed,
+      'productActiveDate': instance.productActiveDate?.toIso8601String(),
+      'productExpireDate': instance.productExpireDate?.toIso8601String(),
+      'productId': instance.productId,
+      'orderId': instance.orderId,
+      'postId': instance.postId,
     };
 
 UsersCountOutputType _$UsersCountOutputTypeFromJson(
@@ -3740,7 +4839,7 @@ UsersCountOutputType _$UsersCountOutputTypeFromJson(
       postComments: json['postComments'] as int,
       blogs: json['blogs'] as int,
       agency: json['agency'] as int,
-      membership: json['membership'] as int,
+      order: json['order'] as int,
     );
 
 Map<String, dynamic> _$UsersCountOutputTypeToJson(
@@ -3755,7 +4854,7 @@ Map<String, dynamic> _$UsersCountOutputTypeToJson(
       'postComments': instance.postComments,
       'blogs': instance.blogs,
       'agency': instance.agency,
-      'membership': instance.membership,
+      'order': instance.order,
     };
 
 UsersCountAggregateOutputType _$UsersCountAggregateOutputTypeFromJson(
@@ -4085,6 +5184,7 @@ PostCountOutputType _$PostCountOutputTypeFromJson(Map<String, dynamic> json) =>
       review: json['review'] as int,
       wishlist: json['wishlist'] as int,
       postComment: json['postComment'] as int,
+      orderProduct: json['orderProduct'] as int,
     );
 
 Map<String, dynamic> _$PostCountOutputTypeToJson(
@@ -4095,6 +5195,7 @@ Map<String, dynamic> _$PostCountOutputTypeToJson(
       'review': instance.review,
       'wishlist': instance.wishlist,
       'postComment': instance.postComment,
+      'orderProduct': instance.orderProduct,
     };
 
 PostCountAggregateOutputType _$PostCountAggregateOutputTypeFromJson(
@@ -5572,6 +6673,8 @@ SlugCountOutputType _$SlugCountOutputTypeFromJson(Map<String, dynamic> json) =>
       pages: json['pages'] as int,
       blogs: json['blogs'] as int,
       posts: json['posts'] as int,
+      agency: json['agency'] as int,
+      formPost: json['formPost'] as int,
     );
 
 Map<String, dynamic> _$SlugCountOutputTypeToJson(
@@ -5580,6 +6683,8 @@ Map<String, dynamic> _$SlugCountOutputTypeToJson(
       'pages': instance.pages,
       'blogs': instance.blogs,
       'posts': instance.posts,
+      'agency': instance.agency,
+      'formPost': instance.formPost,
     };
 
 SlugCountAggregateOutputType _$SlugCountAggregateOutputTypeFromJson(
@@ -5688,6 +6793,7 @@ ForumPostCountAggregateOutputType _$ForumPostCountAggregateOutputTypeFromJson(
       createdAt: json['createdAt'] as int,
       updatedAt: json['updatedAt'] as int,
       userId: json['userId'] as int,
+      slugId: json['slugId'] as int,
       $all: json['_all'] as int,
     );
 
@@ -5701,6 +6807,7 @@ Map<String, dynamic> _$ForumPostCountAggregateOutputTypeToJson(
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'userId': instance.userId,
+      'slugId': instance.slugId,
       '_all': instance.$all,
     };
 
@@ -5709,6 +6816,7 @@ ForumPostAvgAggregateOutputType _$ForumPostAvgAggregateOutputTypeFromJson(
     ForumPostAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
       userId: (json['userId'] as num?)?.toDouble(),
+      slugId: (json['slugId'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$ForumPostAvgAggregateOutputTypeToJson(
@@ -5716,6 +6824,7 @@ Map<String, dynamic> _$ForumPostAvgAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
+      'slugId': instance.slugId,
     };
 
 ForumPostSumAggregateOutputType _$ForumPostSumAggregateOutputTypeFromJson(
@@ -5723,6 +6832,7 @@ ForumPostSumAggregateOutputType _$ForumPostSumAggregateOutputTypeFromJson(
     ForumPostSumAggregateOutputType(
       id: json['id'] as int?,
       userId: json['userId'] as int?,
+      slugId: json['slugId'] as int?,
     );
 
 Map<String, dynamic> _$ForumPostSumAggregateOutputTypeToJson(
@@ -5730,6 +6840,7 @@ Map<String, dynamic> _$ForumPostSumAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
+      'slugId': instance.slugId,
     };
 
 ForumPostMinAggregateOutputType _$ForumPostMinAggregateOutputTypeFromJson(
@@ -5737,7 +6848,7 @@ ForumPostMinAggregateOutputType _$ForumPostMinAggregateOutputTypeFromJson(
     ForumPostMinAggregateOutputType(
       id: json['id'] as int?,
       postTitle: json['postTitle'] as String?,
-      postType: json['postType'] as String?,
+      postType: $enumDecodeNullable(_$ForumPostTypeEnumMap, json['postType']),
       postDescription: json['postDescription'] as String?,
       createdAt: json['createdAt'] == null
           ? null
@@ -5746,6 +6857,7 @@ ForumPostMinAggregateOutputType _$ForumPostMinAggregateOutputTypeFromJson(
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       userId: json['userId'] as int?,
+      slugId: json['slugId'] as int?,
     );
 
 Map<String, dynamic> _$ForumPostMinAggregateOutputTypeToJson(
@@ -5753,11 +6865,12 @@ Map<String, dynamic> _$ForumPostMinAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postTitle': instance.postTitle,
-      'postType': instance.postType,
+      'postType': _$ForumPostTypeEnumMap[instance.postType],
       'postDescription': instance.postDescription,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'userId': instance.userId,
+      'slugId': instance.slugId,
     };
 
 ForumPostMaxAggregateOutputType _$ForumPostMaxAggregateOutputTypeFromJson(
@@ -5765,7 +6878,7 @@ ForumPostMaxAggregateOutputType _$ForumPostMaxAggregateOutputTypeFromJson(
     ForumPostMaxAggregateOutputType(
       id: json['id'] as int?,
       postTitle: json['postTitle'] as String?,
-      postType: json['postType'] as String?,
+      postType: $enumDecodeNullable(_$ForumPostTypeEnumMap, json['postType']),
       postDescription: json['postDescription'] as String?,
       createdAt: json['createdAt'] == null
           ? null
@@ -5774,6 +6887,7 @@ ForumPostMaxAggregateOutputType _$ForumPostMaxAggregateOutputTypeFromJson(
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       userId: json['userId'] as int?,
+      slugId: json['slugId'] as int?,
     );
 
 Map<String, dynamic> _$ForumPostMaxAggregateOutputTypeToJson(
@@ -5781,11 +6895,12 @@ Map<String, dynamic> _$ForumPostMaxAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postTitle': instance.postTitle,
-      'postType': instance.postType,
+      'postType': _$ForumPostTypeEnumMap[instance.postType],
       'postDescription': instance.postDescription,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'userId': instance.userId,
+      'slugId': instance.slugId,
     };
 
 ForumPostCommentCountAggregateOutputType
@@ -6179,7 +7294,6 @@ SystemUser _$SystemUserFromJson(Map<String, dynamic> json) => SystemUser(
       username: json['username'] as String,
       password: json['password'] as String,
       salt: json['salt'] as String,
-      role: $enumDecode(_$SystemRoleEnumMap, json['role']),
       email: json['email'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
@@ -6191,8 +7305,39 @@ Map<String, dynamic> _$SystemUserToJson(SystemUser instance) =>
       'username': instance.username,
       'password': instance.password,
       'salt': instance.salt,
-      'role': _$SystemRoleEnumMap[instance.role]!,
       'email': instance.email,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+    };
+
+SystemUserRole _$SystemUserRoleFromJson(Map<String, dynamic> json) =>
+    SystemUserRole(
+      id: json['id'] as int,
+      title: json['title'] as String,
+    );
+
+Map<String, dynamic> _$SystemUserRoleToJson(SystemUserRole instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+    };
+
+SystemActivityLog _$SystemActivityLogFromJson(Map<String, dynamic> json) =>
+    SystemActivityLog(
+      id: json['id'] as int,
+      refrenceId: json['refrenceId'] as int,
+      refrenceFrom: $enumDecode(_$RefrenceFromEnumMap, json['refrenceFrom']),
+      activity: json['activity'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$SystemActivityLogToJson(SystemActivityLog instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'refrenceId': instance.refrenceId,
+      'refrenceFrom': _$RefrenceFromEnumMap[instance.refrenceFrom]!,
+      'activity': instance.activity,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };
@@ -6201,28 +7346,51 @@ SystemUserPermissions _$SystemUserPermissionsFromJson(
         Map<String, dynamic> json) =>
     SystemUserPermissions(
       id: json['id'] as int,
-      moduleTitle: json['moduleTitle'] as String,
       canView: json['canView'] as bool,
       canAdd: json['canAdd'] as bool,
       canEdit: json['canEdit'] as bool,
       canDelete: json['canDelete'] as bool,
+      hasFullAccess: json['hasFullAccess'] as bool,
+      allowedProject: json['allowedProject'] as String?,
+      allowedCity: json['allowedCity'] as String?,
+      allowedAgency: json['allowedAgency'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
-      systemUserId: json['systemUserId'] as int?,
+      systemUserId: json['systemUserId'] as int,
+      systemModuleId: json['systemModuleId'] as int,
     );
 
 Map<String, dynamic> _$SystemUserPermissionsToJson(
         SystemUserPermissions instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'moduleTitle': instance.moduleTitle,
       'canView': instance.canView,
       'canAdd': instance.canAdd,
       'canEdit': instance.canEdit,
       'canDelete': instance.canDelete,
+      'hasFullAccess': instance.hasFullAccess,
+      'allowedProject': instance.allowedProject,
+      'allowedCity': instance.allowedCity,
+      'allowedAgency': instance.allowedAgency,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'systemUserId': instance.systemUserId,
+      'systemModuleId': instance.systemModuleId,
+    };
+
+SystemModule _$SystemModuleFromJson(Map<String, dynamic> json) => SystemModule(
+      id: json['id'] as int,
+      parentId: json['parentId'] as int,
+      title: json['title'] as String,
+      sortOrder: json['sortOrder'] as int,
+    );
+
+Map<String, dynamic> _$SystemModuleToJson(SystemModule instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'parentId': instance.parentId,
+      'title': instance.title,
+      'sortOrder': instance.sortOrder,
     };
 
 Agency _$AgencyFromJson(Map<String, dynamic> json) => Agency(
@@ -6246,6 +7414,7 @@ Agency _$AgencyFromJson(Map<String, dynamic> json) => Agency(
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       userId: json['userId'] as int?,
+      slugId: json['slugId'] as int,
     );
 
 Map<String, dynamic> _$AgencyToJson(Agency instance) => <String, dynamic>{
@@ -6269,6 +7438,7 @@ Map<String, dynamic> _$AgencyToJson(Agency instance) => <String, dynamic>{
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'userId': instance.userId,
+      'slugId': instance.slugId,
     };
 
 Developer _$DeveloperFromJson(Map<String, dynamic> json) => Developer(
@@ -6293,8 +7463,9 @@ Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
       gallery: json['gallery'] as String?,
       locality: json['locality'] as String?,
       city: json['city'] as String?,
-      price: json['price'] as String?,
-      WalkthroughThreeD: json['WalkthroughThreeD'] as String?,
+      startingPrice: (json['startingPrice'] as num?)?.toDouble(),
+      endingPrice: (json['endingPrice'] as num?)?.toDouble(),
+      walkthroughThreeD: json['walkthroughThreeD'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       developerId: json['developerId'] as int?,
@@ -6310,8 +7481,9 @@ Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
       'gallery': instance.gallery,
       'locality': instance.locality,
       'city': instance.city,
-      'price': instance.price,
-      'WalkthroughThreeD': instance.WalkthroughThreeD,
+      'startingPrice': instance.startingPrice,
+      'endingPrice': instance.endingPrice,
+      'walkthroughThreeD': instance.walkthroughThreeD,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'developerId': instance.developerId,
@@ -6353,40 +7525,102 @@ Map<String, dynamic> _$ProjectNearByPlaceToJson(ProjectNearByPlace instance) =>
           _$ProjectNearByPlaceCategoryEnumMap[instance.placeCategory]!,
     };
 
-Subscription _$SubscriptionFromJson(Map<String, dynamic> json) => Subscription(
+Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       id: json['id'] as int,
       title: json['title'] as String,
-      amount: (json['amount'] as num).toDouble(),
+      price: (json['price'] as num).toDouble(),
+      salePrice: (json['salePrice'] as num).toDouble(),
+      image: json['image'] as String,
+      PproductType: $enumDecode(_$ProductTypeEnumMap, json['PproductType']),
       description: json['description'] as String?,
-      status: json['status'] as bool,
+      productLifeInDays: json['productLifeInDays'] as int,
+      status: $enumDecode(_$CommonStatusEnumMap, json['status']),
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$SubscriptionToJson(Subscription instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'amount': instance.amount,
+      'price': instance.price,
+      'salePrice': instance.salePrice,
+      'image': instance.image,
+      'PproductType': _$ProductTypeEnumMap[instance.PproductType]!,
       'description': instance.description,
-      'status': instance.status,
+      'productLifeInDays': instance.productLifeInDays,
+      'status': _$CommonStatusEnumMap[instance.status]!,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };
 
-Membership _$MembershipFromJson(Map<String, dynamic> json) => Membership(
+Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       id: json['id'] as int,
-      qty: json['qty'] as int,
-      subscriptionId: json['subscriptionId'] as int?,
-      userId: json['userId'] as int?,
+      orderAmount: (json['orderAmount'] as num).toDouble(),
+      userId: json['userId'] as int,
+      paymentMethodId: json['paymentMethodId'] as int,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$MembershipToJson(Membership instance) =>
+Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
+      'id': instance.id,
+      'orderAmount': instance.orderAmount,
+      'userId': instance.userId,
+      'paymentMethodId': instance.paymentMethodId,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+    };
+
+PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>
+    PaymentMethod(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      apiKey: json['apiKey'] as String,
+      secret: json['secret'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      status: $enumDecode(_$CommonStatusEnumMap, json['status']),
+      $count: PaymentMethodCountOutputType.fromJson(
+          json['_count'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'qty': instance.qty,
-      'subscriptionId': instance.subscriptionId,
-      'userId': instance.userId,
+      'name': instance.name,
+      'apiKey': instance.apiKey,
+      'secret': instance.secret,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      'status': _$CommonStatusEnumMap[instance.status]!,
+      '_count': instance.$count.toJson(),
+    };
+
+OrderProduct _$OrderProductFromJson(Map<String, dynamic> json) => OrderProduct(
+      id: json['id'] as int,
+      price: (json['price'] as num).toDouble(),
+      isProductUsed: json['isProductUsed'] as bool,
+      productActiveDate: json['productActiveDate'] == null
+          ? null
+          : DateTime.parse(json['productActiveDate'] as String),
+      productExpireDate: json['productExpireDate'] == null
+          ? null
+          : DateTime.parse(json['productExpireDate'] as String),
+      productId: json['productId'] as int,
+      orderId: json['orderId'] as int,
+      postId: json['postId'] as int,
+    );
+
+Map<String, dynamic> _$OrderProductToJson(OrderProduct instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'isProductUsed': instance.isProductUsed,
+      'productActiveDate': instance.productActiveDate?.toIso8601String(),
+      'productExpireDate': instance.productExpireDate?.toIso8601String(),
+      'productId': instance.productId,
+      'orderId': instance.orderId,
+      'postId': instance.postId,
     };
 
 Users _$UsersFromJson(Map<String, dynamic> json) => Users(
@@ -6769,21 +8003,23 @@ Map<String, dynamic> _$SlugToJson(Slug instance) => <String, dynamic>{
 ForumPost _$ForumPostFromJson(Map<String, dynamic> json) => ForumPost(
       id: json['id'] as int,
       postTitle: json['postTitle'] as String,
-      postType: json['postType'] as String,
+      postType: $enumDecode(_$ForumPostTypeEnumMap, json['postType']),
       postDescription: json['postDescription'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       userId: json['userId'] as int,
+      slugId: json['slugId'] as int,
     );
 
 Map<String, dynamic> _$ForumPostToJson(ForumPost instance) => <String, dynamic>{
       'id': instance.id,
       'postTitle': instance.postTitle,
-      'postType': instance.postType,
+      'postType': _$ForumPostTypeEnumMap[instance.postType]!,
       'postDescription': instance.postDescription,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'userId': instance.userId,
+      'slugId': instance.slugId,
     };
 
 ForumPostComment _$ForumPostCommentFromJson(Map<String, dynamic> json) =>

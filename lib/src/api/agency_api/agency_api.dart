@@ -45,6 +45,8 @@ class AgencyApi {
       var userID = payload['userID'];
       var featuredImage = payload['featuredImage'];
       var logoImage = payload['logoImage'];
+      var slug = payload['slug'];
+      var refrenceId = payload['refrenceId'];
       var agency = await prisma.agency.create(
         data: AgencyCreateInput(
           title: title,
@@ -64,7 +66,16 @@ class AgencyApi {
           featuredImage: PrismaUnion.zero(featuredImage),
           logoImage: PrismaUnion.zero(logoImage),
           users: UsersCreateNestedOneWithoutAgencyInput(
-              connect: UsersWhereUniqueInput(id: userID)),
+            connect: UsersWhereUniqueInput(id: userID),
+          ),
+          slug: SlugCreateNestedOneWithoutAgencyInput(
+            create: SlugCreateWithoutAgencyInput(
+              slug: slug,
+              type: SlugType.PAGE,
+              //TODO: change slugtype to agency
+              referenceId: refrenceId,
+            ),
+          ),
         ),
       );
       var agencyObject = jsonEncode(agency);

@@ -36,10 +36,11 @@ class ProjectsApi {
       var gallery = payload['gallery'];
       var locality = payload['locality'];
       var city = payload['city'];
-      var price = payload['price'];
       var categoryId = payload['categoryId'];
       var developerId = payload['developerId'];
       var projectNearByPlaceId = payload['projectNearByPlaceId'];
+      var startingPrice = payload['startingPrice'];
+      var endingPrice = payload['endingPrice'];
 
       var project = await prisma.project.create(
         data: ProjectCreateInput(
@@ -49,7 +50,8 @@ class ProjectsApi {
           gallery: PrismaUnion.zero(gallery),
           locality: PrismaUnion.zero(locality),
           city: PrismaUnion.zero(city),
-          price: PrismaUnion.zero(price),
+          startingPrice: PrismaUnion.zero(startingPrice),
+          endingPrice: PrismaUnion.zero(endingPrice),
           category: CategoryCreateNestedOneWithoutProjectsInput(
             connect: CategoryWhereUniqueInput(id: categoryId),
           ),
@@ -70,14 +72,56 @@ class ProjectsApi {
     });
 
     //update project
+    //TODO: Do the update
     router.put('/updateProject', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'].toInt();
       var title = payload['title'];
-      var projectPath = payload['projectPath'];
+      var address = payload['address'];
+      var featuredImage = payload['featuredImage'];
+      var gallery = payload['gallery'];
+      var locality = payload['locality'];
+      var city = payload['city'];
+      var startingPrice = payload['startingPrice'];
+      var endingPrice = payload['endingPrice'];
+      var walkthroughThreeD = payload['walkthroughThreeD'];
+      var categoryId = payload['categoryId'];
+      var projectNearByPlaceId = payload['projectNearByPlaceId'];
+      var floorplansTitle = payload['floorplansTitle'];
+      var floorplansImage = payload['floorplansImage'];
       var project = await prisma.project.update(
         where: ProjectWhereUniqueInput(id: id),
-        data: ProjectUpdateInput(),
+        data: ProjectUpdateInput(
+          title: StringFieldUpdateOperationsInput(set$: title),
+          address: StringFieldUpdateOperationsInput(set$: address),
+          featuredImage:
+              NullableStringFieldUpdateOperationsInput(set$: featuredImage),
+          gallery: NullableStringFieldUpdateOperationsInput(set$: gallery),
+          locality: NullableStringFieldUpdateOperationsInput(set$: locality),
+          city: NullableStringFieldUpdateOperationsInput(set$: city),
+          startingPrice:
+              NullableFloatFieldUpdateOperationsInput(set$: startingPrice),
+          endingPrice:
+              NullableFloatFieldUpdateOperationsInput(set$: endingPrice),
+          walkthroughThreeD:
+              NullableStringFieldUpdateOperationsInput(set$: walkthroughThreeD),
+          updatedAt: DateTimeFieldUpdateOperationsInput(
+            set$: DateTime.now(),
+          ),
+          projectNearByPlace:
+              ProjectNearByPlaceUpdateOneWithoutProjectsNestedInput(
+            connect:
+                ProjectNearByPlaceWhereUniqueInput(id: projectNearByPlaceId),
+          ),
+          floorplans: FloorPlanUpdateManyWithoutProjectNestedInput(
+            create: FloorPlanCreateWithoutProjectInput(
+              title: floorplansTitle,
+              floorPlanPath: floorplansImage,
+            ),
+          ),
+          category: CategoryUpdateOneWithoutProjectsNestedInput(
+              connect: CategoryWhereUniqueInput(id: categoryId)),
+        ),
       );
       var projectObject = jsonEncode(project);
       return Response.ok('Post by ID Is: $projectObject\n', headers: {

@@ -31,6 +31,8 @@ class ForumPostApi {
       var postTitle = payload['postTitle'];
       var postType = payload['postType'];
       var postDescription = payload['postDescription'];
+      var slug = payload['slug'];
+      var refrenceId = payload['refrenceId'];
       var userId = payload['userId'];
       var forumPost = await prisma.forumPost.create(
         data: ForumPostCreateInput(
@@ -40,6 +42,14 @@ class ForumPostApi {
           createdAt: DateTime.now(),
           user: UsersCreateNestedOneWithoutFormPostsInput(
             connect: UsersWhereUniqueInput(id: userId),
+          ),
+          slug: SlugCreateNestedOneWithoutFormPostInput(
+            create: SlugCreateWithoutFormPostInput(
+              slug: slug,
+              referenceId: refrenceId,
+              //TODO: change slugType to forumPost
+              type: SlugType.BLOG,
+            ),
           ),
         ),
       );
