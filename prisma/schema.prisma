@@ -67,6 +67,8 @@ model Agency {
   updatedAt DateTime @updatedAt
   users         Users?  @relation(fields: [userId], references: [id])
   userId       Int?
+  slug   Slug @relation(fields: [slugId], references: [id])
+  slugId Int  @unique
 
 }
 // developer and project schema started
@@ -86,8 +88,9 @@ model Project {
   gallery   String?
   locality  String?
   city      String?
-  price     String?
-  WalkthroughThreeD String? //iframe
+  startingPrice     Float?
+  endingPrice     Float?
+  walkthroughThreeD String? //iframe
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   developer Developer?  @relation(fields: [developerId], references: [id])
@@ -105,8 +108,8 @@ model FloorPlan {
   floorPlanPath String
   project Project?  @relation(fields: [projectId], references: [id])
   projectId Int?
-
 }
+
 model ProjectNearByPlace {
   id        Int       @id @default(autoincrement())
   title     String
@@ -124,24 +127,41 @@ enum ProjectNearByPlaceCategory {
   PARK
 }
 
-model Subscription {
+model Product {
   id       Int       @id @default(autoincrement())
   title String
-  amount Float
+  price Float
+  salePrice Float
+  image String
+  PproductType ProductType @default(HOT)
   description String?
-  status Boolean
+  productLifeInDays Int @default(7)
+  status CommonStatus @default(ACTIVE)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  membership Membership[]
+  orderProduct OrderProduct[]
 }
 
-model Membership {
-  id       Int       @id @default(autoincrement())
-  qty Int
-  subscription         Subscription?  @relation(fields: [subscriptionId], references: [id])
-  subscriptionId       Int?  
+model Order {
+  id  Int       @id @default(autoincrement())
   user         Users?  @relation(fields: [userId], references: [id])
-  userId       Int?  
+  userId       Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  OrderProdcut OrderProduct[]
+}
+
+model OrderProduct {
+  id  Int @id @default(autoincrement())
+  qty Int
+  price Float
+  isProductUsed Boolean @default(false)
+  productActiveDate DateTime
+  productExpireDate DateTime
+  product Product?  @relation(fields: [productId], references: [id])
+  productId Int?
+  order Order?  @relation(fields: [orderId], references: [id])
+  orderId Int?
 }
 
 // developer and project schema end
@@ -168,8 +188,7 @@ model Users {
   postComments PostComment[]
   blogs Blog[]
   agency Agency[]
-  membership Membership[]
-  
+  order Order[]
 }
 
 model Profile {
@@ -330,8 +349,8 @@ model Blog {
   title       String
   content     String?
   featuredImage String?
-  createdAt   DateTime
-  updatedAt   DateTime
+  createdAt   DateTime @default(now())
+  updatedAt  DateTime @updatedAt
   status      Boolean   @default(true)
   blogCategory        BlogCategory      @relation(fields: [blogCategoryId], references: [id])
   blogCategoryId      Int
@@ -372,20 +391,23 @@ model Slug {
   pages Page[]
   blogs Blog[]
   posts Post[]
+  agency Agency[]
+  formPost ForumPost[]
 }
-
 
 // Form models start
 model ForumPost {
   id        Int       @id @default(autoincrement())
   postTitle String
-  postType  String
+  postType  ForumPostType @default(GENERAL)
   postDescription String
-  createdAt   DateTime  
-  updatedAt   DateTime  @default(now())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   forumPostReply ForumPostComment[]
   user           Users       @relation(fields: [userId], references: [id])
   userId         Int
+  slug   Slug @relation(fields: [slugId], references: [id])
+  slugId Int  @unique
 }
 
 model ForumPostComment {
@@ -432,7 +454,7 @@ enum ForumStatus {
   DELETE
 }
 
-enum ForumType {
+enum ForumPostType {
   GENERAL
   DOCUMENTS
   CLEARANCE
@@ -489,4 +511,16 @@ enum CcontactPersonType {
   BUYERTENAT
   AGENT
   OTHER
+}
+
+enum CommonStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum ProductType {
+  HOT
+  FEATURED
+  TOP
+  BUMPED
 }

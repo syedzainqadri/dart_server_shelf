@@ -1,9 +1,6 @@
 import '/dart_server.dart';
 
 class ForumPostApi {
-  //TODO: slug is missing
-  //TODO: Created At should not be required
-  //TODO: post type must be enum
   Handler get router {
     final router = Router();
     //get all forumPost

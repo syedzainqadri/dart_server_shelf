@@ -54,7 +54,6 @@ class BlogApi {
           author: UsersCreateNestedOneWithoutBlogsInput(
             connect: UsersWhereUniqueInput(id: authorId),
           ),
-          //TODO: this should not be required
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
           //uptill here todo
