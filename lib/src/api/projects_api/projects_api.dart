@@ -31,19 +31,36 @@ class ProjectsApi {
     router.post('/createProject', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var title = payload['title'];
-      var projectPath = payload['projectPath'];
+      var address = payload['address'];
+      var featuredImage = payload['featuredImage'];
+      var gallery = payload['gallery'];
+      var locality = payload['locality'];
+      var city = payload['city'];
+      var price = payload['price'];
+      var categoryId = payload['categoryId'];
+      var developerId = payload['developerId'];
+      var projectNearByPlaceId = payload['projectNearByPlaceId'];
+
       var project = await prisma.project.create(
         data: ProjectCreateInput(
           title: title,
-          address: ,
-          featuredImage: ,
-          gallery: ,
-          locality: ,
-          city: ,
-          price: ,
-          category: ,
-          developer: ,
-          projectNearByPlace: ,
+          address: address,
+          featuredImage: PrismaUnion.zero(featuredImage),
+          gallery: PrismaUnion.zero(gallery),
+          locality: PrismaUnion.zero(locality),
+          city: PrismaUnion.zero(city),
+          price: PrismaUnion.zero(price),
+          category: CategoryCreateNestedOneWithoutProjectsInput(
+            connect: CategoryWhereUniqueInput(id: categoryId),
+          ),
+          developer: DeveloperCreateNestedOneWithoutProjectsInput(
+            connect: DeveloperWhereUniqueInput(id: developerId),
+          ),
+          projectNearByPlace:
+              ProjectNearByPlaceCreateNestedOneWithoutProjectsInput(
+            connect:
+                ProjectNearByPlaceWhereUniqueInput(id: projectNearByPlaceId),
+          ),
         ),
       );
       var projectObject = jsonEncode(project);
@@ -60,8 +77,7 @@ class ProjectsApi {
       var projectPath = payload['projectPath'];
       var project = await prisma.project.update(
         where: ProjectWhereUniqueInput(id: id),
-        data: ProjectUpdateInput(
-        ),
+        data: ProjectUpdateInput(),
       );
       var projectObject = jsonEncode(project);
       return Response.ok('Post by ID Is: $projectObject\n', headers: {
