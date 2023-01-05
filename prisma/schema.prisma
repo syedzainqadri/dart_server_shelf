@@ -11,6 +11,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+
 model SystemSettings {
   id       Int       @id @default(autoincrement())
   name     String
@@ -25,24 +27,62 @@ model SystemUser {
   username  String
   password  String
   salt      String
-  role      SystemRole  @default(SUPERADMIN)
+  // role      SystemRole  @default(SUPERADMIN)
   email     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  systemUserRole SystemUserRole[]
   systemUserPermissions SystemUserPermissions[]
 }
 
-model SystemUserPermissions{
+model SystemUserRole {
   id        Int       @id @default(autoincrement())
-  moduleTitle String
+  title     String
+  systemUser SystemUser[]
+}
+
+model SystemActivityLog {
+  id           Int       @id @default(autoincrement())
+  refrenceId   Int
+  refrenceFrom RefrenceFrom @default(PRODUCT)
+  activity  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum RefrenceFrom {
+  PRODUCT
+  ORDER
+  PROJECT
+  USER
+  POST
+}
+
+model SystemUserPermissions{
+  id  Int @id @default(autoincrement())
   canView Boolean
   canAdd Boolean
   canEdit Boolean
   canDelete Boolean
+  hasFullAccess Boolean
+  // TODO; need to do some more discussion
+  allowedProject String?
+  allowedCity String?
+  allowedAgency String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  projectNearByPlace SystemUser?  @relation(fields: [systemUserId], references: [id])
-  systemUserId Int?
+  systemUser SystemUser  @relation(fields: [systemUserId], references: [id])
+  systemUserId Int
+  systemModule SystemModule @relation(fields: [systemModuleId], references: [id])
+  systemModuleId Int
+}
+
+model SystemModule {
+  id        Int       @id @default(autoincrement())
+  parentId  Int
+  title String
+  sortOrder Int
+  systemUserPermissions SystemUserPermissions[]
 }
 
 model Agency {
@@ -144,24 +184,39 @@ model Product {
 
 model Order {
   id  Int       @id @default(autoincrement())
-  user         Users?  @relation(fields: [userId], references: [id])
-  userId       Int?
+  orderAmount Float
+  user         Users  @relation(fields: [userId], references: [id])
+  userId       Int
+  paymentMethod paymentMethod  @relation(fields: [paymentMethodId], references: [id])
+  paymentMethodId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  OrderProdcut OrderProduct[]
+  orderProduct OrderProduct[]
+}
+
+model paymentMethod {
+  id  Int       @id @default(autoincrement())
+  name String
+  apiKey String
+  secret String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  status CommonStatus @default(INACTIVE)
+  order Order[]
 }
 
 model OrderProduct {
   id  Int @id @default(autoincrement())
-  qty Int
   price Float
   isProductUsed Boolean @default(false)
-  productActiveDate DateTime
-  productExpireDate DateTime
-  product Product?  @relation(fields: [productId], references: [id])
-  productId Int?
-  order Order?  @relation(fields: [orderId], references: [id])
-  orderId Int?
+  productActiveDate DateTime?
+  productExpireDate DateTime?
+  product Product  @relation(fields: [productId], references: [id])
+  productId Int
+  order Order  @relation(fields: [orderId], references: [id])
+  orderId Int
+  post Post  @relation(fields: [postId], references: [id])
+  postId Int
 }
 
 // developer and project schema end
@@ -251,6 +306,7 @@ model Post {
   review           Review[]
   wishlist         Wishlit[]
   postComment      PostComment[]
+  orderProduct     OrderProduct[]
 
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
