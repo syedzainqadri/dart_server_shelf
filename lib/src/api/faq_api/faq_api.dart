@@ -2,7 +2,6 @@ import '/dart_server.dart';
 
 class FaqQuestionAnswerApi {
   Handler get router {
-    //TODO: sort order is not required
     final router = Router();
     //get all FaqQuestionAnswer
     router.get('/', (Request request) async {

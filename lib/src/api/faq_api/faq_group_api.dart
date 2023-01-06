@@ -1,7 +1,6 @@
 import '/dart_server.dart';
 
 class FaqGroupApi {
-  //TODO: sort order is not required
   Handler get router {
     final router = Router();
     //get all faq groups

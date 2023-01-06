@@ -1,6 +1,5 @@
 import '/dart_server.dart';
 
-//TODO: amenities are the right spellings
 class AmenitiesApi {
   Handler get router {
     final router = Router();

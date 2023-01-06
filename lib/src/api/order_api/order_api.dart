@@ -56,7 +56,6 @@ class OrderApi {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'].toInt();
       var orderAmount = payload['orderAmount'].toDouble();
-      var userId = payload['userId'].toInt();
       var paymentMethodId = payload['paymentMethodId'];
       var orderProduct = payload['orderProduct'];
       var order = await prisma.order.update(

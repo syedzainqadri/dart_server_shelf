@@ -1,7 +1,5 @@
 import '/dart_server.dart';
 
-//TODO: needs restructuring
-
 class ProjectsApi {
   Handler get router {
     final router = Router();
@@ -72,7 +70,6 @@ class ProjectsApi {
     });
 
     //update project
-    //TODO: Do the update
     router.put('/updateProject', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'].toInt();
