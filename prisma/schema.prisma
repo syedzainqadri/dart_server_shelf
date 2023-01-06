@@ -173,7 +173,7 @@ model Product {
   price Float
   salePrice Float
   image String
-  PproductType ProductType @default(HOT)
+  productType ProductType @default(HOT)
   description String?
   productLifeInDays Int @default(7)
   status CommonStatus @default(ACTIVE)
