@@ -405,8 +405,8 @@ model Blog {
   title       String
   content     String?
   featuredImage String?
-  createdAt   DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt   DateTime? @default(now())
+  updatedAt  DateTime? @updatedAt
   status      Boolean   @default(true)
   blogCategory        BlogCategory      @relation(fields: [blogCategoryId], references: [id])
   blogCategoryId      Int
@@ -422,8 +422,8 @@ model BlogCategory {
   content     String?
   iconImage   String?
   image       String?
-  createdAt   DateTime
-  updatedAt   DateTime
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? @updatedAt
   blogs       Blog[]
 }
 
@@ -532,6 +532,8 @@ enum SlugType {
   PAGE
   BLOG
   BLOGCATEGORY
+  AGENCY
+  FORUMPOST
 }
 
 enum SystemRole {

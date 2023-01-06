@@ -47,7 +47,6 @@ class ForumPostApi {
             create: SlugCreateWithoutFormPostInput(
               slug: slug,
               referenceId: refrenceId,
-              //TODO: change slugType to forumPost
               type: SlugType.BLOG,
             ),
           ),

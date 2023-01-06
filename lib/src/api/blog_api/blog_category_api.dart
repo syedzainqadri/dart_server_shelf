@@ -38,7 +38,6 @@ class BlogCategoryApi {
           content: PrismaUnion.zero(content),
           iconImage: PrismaUnion.zero(iconImage),
           image: PrismaUnion.zero(image),
-          //TODO: this should not be required
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
           //uptill here todo
