@@ -38,8 +38,6 @@ class BlogCategoryApi {
           content: PrismaUnion.zero(content),
           iconImage: PrismaUnion.zero(iconImage),
           image: PrismaUnion.zero(image),
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
           //uptill here todo
         ),
       );
@@ -64,7 +62,11 @@ class BlogCategoryApi {
           content: NullableStringFieldUpdateOperationsInput(set$: content),
           iconImage: NullableStringFieldUpdateOperationsInput(set$: iconImage),
           image: NullableStringFieldUpdateOperationsInput(set$: image),
-          updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
+          updatedAt: NullableDateTimeFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(
+              DateTime.now(),
+            ),
+          ),
         ),
       );
       var categoryObject = jsonEncode(category);

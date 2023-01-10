@@ -54,8 +54,6 @@ class BlogApi {
           author: UsersCreateNestedOneWithoutBlogsInput(
             connect: UsersWhereUniqueInput(id: authorId),
           ),
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
           //uptill here todo
         ),
       );
@@ -91,7 +89,11 @@ class BlogApi {
           blogCategory: BlogCategoryUpdateOneRequiredWithoutBlogsNestedInput(
             connect: BlogCategoryWhereUniqueInput(id: blogCategoryId),
           ),
-          updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
+          updatedAt: NullableDateTimeFieldUpdateOperationsInput(
+            set$: PrismaUnion.zero(
+              DateTime.now(),
+            ),
+          ),
         ),
       );
       var categoryObject = jsonEncode(category);

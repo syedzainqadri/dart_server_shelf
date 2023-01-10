@@ -2303,8 +2303,12 @@ BlogGroupByOutputType _$BlogGroupByOutputTypeFromJson(
       title: json['title'] as String,
       content: json['content'] as String?,
       featuredImage: json['featuredImage'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
       status: json['status'] as bool,
       blogCategoryId: json['blogCategoryId'] as int,
       slugId: json['slugId'] as int,
@@ -2338,8 +2342,8 @@ Map<String, dynamic> _$BlogGroupByOutputTypeToJson(
       'title': instance.title,
       'content': instance.content,
       'featuredImage': instance.featuredImage,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
       'status': instance.status,
       'blogCategoryId': instance.blogCategoryId,
       'slugId': instance.slugId,
@@ -2394,8 +2398,12 @@ BlogCategoryGroupByOutputType _$BlogCategoryGroupByOutputTypeFromJson(
       content: json['content'] as String?,
       iconImage: json['iconImage'] as String?,
       image: json['image'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
       $count: json['_count'] == null
           ? null
           : BlogCategoryCountAggregateOutputType.fromJson(
@@ -2426,8 +2434,8 @@ Map<String, dynamic> _$BlogCategoryGroupByOutputTypeToJson(
       'content': instance.content,
       'iconImage': instance.iconImage,
       'image': instance.image,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -2601,6 +2609,8 @@ const _$SlugTypeEnumMap = {
   SlugType.PAGE: 'PAGE',
   SlugType.BLOG: 'BLOG',
   SlugType.BLOGCATEGORY: 'BLOGCATEGORY',
+  SlugType.AGENCY: 'AGENCY',
+  SlugType.FORUMPOST: 'FORUMPOST',
 };
 
 AggregateForumPost _$AggregateForumPostFromJson(Map<String, dynamic> json) =>
@@ -7922,8 +7932,12 @@ Blog _$BlogFromJson(Map<String, dynamic> json) => Blog(
       title: json['title'] as String,
       content: json['content'] as String?,
       featuredImage: json['featuredImage'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
       status: json['status'] as bool,
       blogCategoryId: json['blogCategoryId'] as int,
       slugId: json['slugId'] as int,
@@ -7935,8 +7949,8 @@ Map<String, dynamic> _$BlogToJson(Blog instance) => <String, dynamic>{
       'title': instance.title,
       'content': instance.content,
       'featuredImage': instance.featuredImage,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
       'status': instance.status,
       'blogCategoryId': instance.blogCategoryId,
       'slugId': instance.slugId,
@@ -7949,8 +7963,12 @@ BlogCategory _$BlogCategoryFromJson(Map<String, dynamic> json) => BlogCategory(
       content: json['content'] as String?,
       iconImage: json['iconImage'] as String?,
       image: json['image'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$BlogCategoryToJson(BlogCategory instance) =>
@@ -7960,8 +7978,8 @@ Map<String, dynamic> _$BlogCategoryToJson(BlogCategory instance) =>
       'content': instance.content,
       'iconImage': instance.iconImage,
       'image': instance.image,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 
 Page _$PageFromJson(Map<String, dynamic> json) => Page(

@@ -20,6 +20,8 @@ void main(List<String> arguments) async {
   app.mount('/product', ProductApi().router);
   app.mount('/order', OrderApi().router);
   app.mount('/productOrder', OrderProductApi().router);
+  app.mount('/forumPost', ForumPostApi().router);
+  app.mount('/forumPostComment', ForumPostCommentApi().router);
 
   //server configuration
   final ip = InternetAddress.anyIPv4;

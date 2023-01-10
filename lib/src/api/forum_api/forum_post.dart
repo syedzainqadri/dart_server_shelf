@@ -5,9 +5,9 @@ class ForumPostApi {
     final router = Router();
     //get all forumPost
     router.get('/', (Request request) async {
-      var categories = await prisma.forumPost.findMany();
-      var categoriesObject = jsonEncode(categories);
-      return Response.ok('Post Is: $categoriesObject\n', headers: {
+      var forumPost = await prisma.forumPost.findMany();
+      var forumPostObject = jsonEncode(forumPost);
+      return Response.ok('Post Is: $forumPostObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });

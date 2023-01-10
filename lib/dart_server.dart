@@ -17,7 +17,6 @@ export 'src/api/floorplan_api/floor_plan_api.dart';
 export 'src/api/product_api/product_api.dart';
 export 'src/api/order_api/order_api.dart';
 export 'src/api/order_api/order_product_api.dart';
-//TODO: add forum post comment api first
 export 'src/api/forum_api/forum_post_comment.dart';
 //shelf exports
 export 'package:shelf/shelf_io.dart';
