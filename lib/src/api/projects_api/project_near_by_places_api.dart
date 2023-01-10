@@ -46,6 +46,7 @@ class ProjectNearByPlaceNearByPlacesApi {
           placeCategory: placeCategoryEnum,
           projects: ProjectCreateNestedManyWithoutProjectNearByPlaceInput(
             connect: ProjectWhereUniqueInput(id: projectId),
+            //TODO: Should not be required, relation needs to be understand
           ),
         ),
       );
