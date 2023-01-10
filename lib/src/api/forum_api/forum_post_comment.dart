@@ -37,8 +37,8 @@ class ForumPostCommentApi {
         data: ForumPostCommentCreateInput(
           postReplyTitle: postReplyTitle,
           postReplyDescription: postReplyDescription,
-          postReplyType: postReplyType, //ToDo: What is this?
-          createdAt: DateTime.now(), //ToDo: This should not be required
+          postReplyType: postReplyType, //TODO: What is this?
+          createdAt: DateTime.now(), //TODO: This should not be required
           user: UsersCreateNestedOneWithoutFormPostCommentsInput(
             connect: UsersWhereUniqueInput(id: userId),
           ),

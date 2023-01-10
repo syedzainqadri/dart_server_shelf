@@ -22,6 +22,8 @@ void main(List<String> arguments) async {
   app.mount('/productOrder', OrderProductApi().router);
   app.mount('/forumPost', ForumPostApi().router);
   app.mount('/forumPostComment', ForumPostCommentApi().router);
+  app.mount('/page', PageApi().router);
+  app.mount('/projectNearByPlaces', ProjectNearByPlaceNearByPlacesApi().router);
 
   //server configuration
   final ip = InternetAddress.anyIPv4;
