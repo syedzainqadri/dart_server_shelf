@@ -20,6 +20,8 @@ export 'src/api/order_api/order_product_api.dart';
 export 'src/api/forum_api/forum_post_comment.dart';
 export 'src/api/page_api/page_api.dart';
 export 'src/api/projects_api/project_near_by_places_api.dart';
+export 'src/api/payment_method_api/payment_method_api.dart';
+export 'src/api/slug_api/slug_api.dart';
 //shelf exports
 export 'package:shelf/shelf_io.dart';
 export 'package:shelf/shelf.dart';
