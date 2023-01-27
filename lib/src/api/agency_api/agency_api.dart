@@ -17,10 +17,10 @@ class AgencyApi {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var amenisties = await prisma.agency.findUnique(
-        where: AgencyWhereUniqueInput(id: int.parse(id)),
+        where: AgencyWhereUniqueInput(id: id),
       );
       var amenistiesObject = jsonEncode(amenisties);
-      return Response.ok('Post by ID Is: $amenistiesObject\n', headers: {
+      return Response.ok('Agency by ID Is: $amenistiesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -40,7 +40,7 @@ class AgencyApi {
       var address = payload['address'];
       var description = payload['description'];
       var mobile = payload['mobile'];
-      var landline = payload['landline'];
+      var landline = payload['landLine'];
       var whatsapp = payload['whatsapp'];
       var userID = payload['userID'];
       var featuredImage = payload['featuredImage'];
@@ -99,35 +99,44 @@ class AgencyApi {
       var address = payload['address'];
       var description = payload['description'];
       var mobile = payload['mobile'];
-      var landline = payload['landline'];
+      var landline = payload['landLine'];
       var whatsapp = payload['whatsapp'];
       var featuredImage = payload['featuredImage'];
       var logoImage = payload['logoImage'];
       var agency = await prisma.agency.update(
-        where: AgencyWhereUniqueInput(id: int.parse(id)),
+        where: AgencyWhereUniqueInput(id: id),
         data: AgencyUpdateInput(
           title: StringFieldUpdateOperationsInput(set$: title),
-          companyTitle:
-              NullableStringFieldUpdateOperationsInput(set$: companyTitle),
-          ownerName: NullableStringFieldUpdateOperationsInput(set$: ownerName),
-          ownerMessage:
-              NullableStringFieldUpdateOperationsInput(set$: ownerMessage),
-          ownerProfilePic:
-              NullableStringFieldUpdateOperationsInput(set$: ownerProfilePic),
-          ownerDesignation:
-              NullableStringFieldUpdateOperationsInput(set$: ownerDesignation),
-          country: NullableStringFieldUpdateOperationsInput(set$: country),
-          email: NullableStringFieldUpdateOperationsInput(set$: email),
-          website: NullableStringFieldUpdateOperationsInput(set$: website),
-          address: NullableStringFieldUpdateOperationsInput(set$: address),
-          description:
-              NullableStringFieldUpdateOperationsInput(set$: description),
-          mobile: NullableStringFieldUpdateOperationsInput(set$: mobile),
-          landline: NullableStringFieldUpdateOperationsInput(set$: landline),
-          whatsapp: NullableStringFieldUpdateOperationsInput(set$: whatsapp),
-          featuredImage:
-              NullableStringFieldUpdateOperationsInput(set$: featuredImage),
-          logoImage: NullableStringFieldUpdateOperationsInput(set$: logoImage),
+          companyTitle: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(companyTitle)),
+          ownerName: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(ownerName)),
+          ownerMessage: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(ownerMessage)),
+          ownerProfilePic: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(ownerProfilePic)),
+          ownerDesignation: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(ownerDesignation)),
+          country: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(country)),
+          email: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(email)),
+          website: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(website)),
+          address: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(address)),
+          description: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(description)),
+          mobile: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(mobile)),
+          landline: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(landline)),
+          whatsapp: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(whatsapp)),
+          featuredImage: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(featuredImage)),
+          logoImage: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(logoImage)),
           updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
         ),
       );
@@ -142,7 +151,7 @@ class AgencyApi {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var agency = await prisma.agency.delete(
-        where: AgencyWhereUniqueInput(id: int.parse(id)),
+        where: AgencyWhereUniqueInput(id: id),
       );
       var agencyObject = jsonEncode(agency);
       return Response.ok('Post by ID Is: $agencyObject\n', headers: {
