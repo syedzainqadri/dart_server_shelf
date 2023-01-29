@@ -7,7 +7,7 @@ class BlogApi {
     router.get('/', (Request request) async {
       var blog = await prisma.blog.findMany();
       var blogObject = jsonEncode(blog);
-      return Response.ok('Post Is: $blogObject\n', headers: {
+      return Response.ok('All Blogs Are: $blogObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -20,7 +20,7 @@ class BlogApi {
         where: BlogWhereUniqueInput(id: id),
       );
       var blogObject = jsonEncode(blog);
-      return Response.ok('Post by ID Is: $blogObject\n', headers: {
+      return Response.ok('Blog by ID Is: $blogObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -58,7 +58,7 @@ class BlogApi {
         ),
       );
       var blogObject = jsonEncode(blog);
-      return Response.ok('Post by ID Is: $blogObject\n', headers: {
+      return Response.ok('New Blog Created Is: $blogObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -97,7 +97,7 @@ class BlogApi {
         ),
       );
       var categoryObject = jsonEncode(category);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
+      return Response.ok('Blog Updated Is: $categoryObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -110,7 +110,7 @@ class BlogApi {
         where: BlogWhereUniqueInput(id: id),
       );
       var blogObject = jsonEncode(blog);
-      return Response.ok('Post by ID Is: $blogObject\n', headers: {
+      return Response.ok('Blog deleted Is: $blogObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });

@@ -7,9 +7,10 @@ class BlogCategoryApi {
     router.get('/', (Request request) async {
       var blogCategory = await prisma.blogCategory.findMany();
       var blogCategoriesObject = jsonEncode(blogCategory);
-      return Response.ok('Post Is: $blogCategoriesObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Blog Categories Are: $blogCategoriesObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //get blog category by id
@@ -20,9 +21,10 @@ class BlogCategoryApi {
         where: BlogCategoryWhereUniqueInput(id: id),
       );
       var blogCategoryObject = jsonEncode(blogCategory);
-      return Response.ok('Post by ID Is: $blogCategoryObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Blog you asked for is: $blogCategoryObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //create category
@@ -42,15 +44,16 @@ class BlogCategoryApi {
         ),
       );
       var blogCategoryObject = jsonEncode(blogCategory);
-      return Response.ok('Post by ID Is: $blogCategoryObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Blog Category Created is: $blogCategoryObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //update blog category
     router.put('/updateBlogCategory', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var title = payload['title'];
       var content = payload['content'];
       var iconImage = payload['iconImage'];
@@ -59,9 +62,12 @@ class BlogCategoryApi {
         where: BlogCategoryWhereUniqueInput(id: id),
         data: BlogCategoryUpdateInput(
           title: StringFieldUpdateOperationsInput(set$: title),
-          content: NullableStringFieldUpdateOperationsInput(set$: content),
-          iconImage: NullableStringFieldUpdateOperationsInput(set$: iconImage),
-          image: NullableStringFieldUpdateOperationsInput(set$: image),
+          content: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(content)),
+          iconImage: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(iconImage)),
+          image: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(image)),
           updatedAt: NullableDateTimeFieldUpdateOperationsInput(
             set$: PrismaUnion.zero(
               DateTime.now(),
@@ -70,9 +76,10 @@ class BlogCategoryApi {
         ),
       );
       var categoryObject = jsonEncode(category);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Blog Category updated Is: $categoryObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //delete blog category
@@ -83,9 +90,10 @@ class BlogCategoryApi {
         where: BlogCategoryWhereUniqueInput(id: id),
       );
       var blogCategoryObject = jsonEncode(blogCategory);
-      return Response.ok('Post by ID Is: $blogCategoryObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Blog Category Deleted Is: $blogCategoryObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     final handler =
