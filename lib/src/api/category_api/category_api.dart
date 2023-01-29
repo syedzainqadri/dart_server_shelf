@@ -7,7 +7,7 @@ class CategoryApi {
     router.get('/', (Request request) async {
       var categories = await prisma.category.findMany();
       var categoriesObject = jsonEncode(categories);
-      return Response.ok('Post Is: $categoriesObject\n', headers: {
+      return Response.ok('Category List is: $categoriesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -20,9 +20,10 @@ class CategoryApi {
         where: CategoryWhereUniqueInput(id: id),
       );
       var categoryObject = jsonEncode(category);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Category you asked for is: $categoryObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //get subcategories by category id
@@ -36,9 +37,10 @@ class CategoryApi {
             parentId: IntNullableFilter(equals: PrismaUnion.zero(id))),
       );
       var subCategoryObject = jsonEncode(subCategory);
-      return Response.ok('Post by ID Is: $subCategoryObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('SubCategory you asked for is: $subCategoryObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //create category
@@ -59,7 +61,7 @@ class CategoryApi {
         ),
       );
       var categoryObject = jsonEncode(category);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
+      return Response.ok('New Category Created: $categoryObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -88,7 +90,7 @@ class CategoryApi {
         ),
       );
       var categoryObject = jsonEncode(category);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
+      return Response.ok('Updated Category is: $categoryObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -101,7 +103,7 @@ class CategoryApi {
         where: CategoryWhereUniqueInput(id: id),
       );
       var categoryObject = jsonEncode(category);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
+      return Response.ok('Deleted Category is: $categoryObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });

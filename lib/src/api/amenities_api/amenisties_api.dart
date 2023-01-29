@@ -3,7 +3,7 @@ import '/dart_server.dart';
 class AmenitiesApi {
   Handler get router {
     final router = Router();
-    //get all amenisties
+    //get all amenities
     router.get('/', (Request request) async {
       var amenities = await prisma.amenities.findMany();
       var amenitiesObject = jsonEncode(amenities);
@@ -12,7 +12,7 @@ class AmenitiesApi {
       });
     });
 
-    //get amenisties by id
+    //get amenities by id
     router.get('/id', (Request request, String id) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
@@ -25,8 +25,8 @@ class AmenitiesApi {
       });
     });
 
-    //create amenisties
-    router.post('/createAmenisties', (Request request) async {
+    //create amenities
+    router.post('/createAmenity', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var name = payload['name'];
       var slug = payload['slug'];
@@ -45,13 +45,13 @@ class AmenitiesApi {
         ),
       );
       var amenitiesObject = jsonEncode(amenities);
-      return Response.ok('Post by ID Is: $amenitiesObject\n', headers: {
+      return Response.ok('Amenity Created: $amenitiesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
 
-    //update amenisties
-    router.put('/updateAmenisties', (Request request) async {
+    //update amenities
+    router.put('/updateAmenity', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var name = payload['name'];
@@ -73,21 +73,21 @@ class AmenitiesApi {
         ),
       );
       var amenitiesObject = jsonEncode(amenities);
-      return Response.ok('Amenisties Updated Result: $amenitiesObject\n',
+      return Response.ok('Amenity Updated Result: $amenitiesObject\n',
           headers: {
             'Content-Type': 'application/json',
           });
     });
 
-    //delete amenisties
-    router.delete('/deleteAmenisties', (Request request) async {
+    //delete amenities
+    router.delete('/deleteAmenity', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var amenities = await prisma.amenities.delete(
         where: AmenitiesWhereUniqueInput(id: int.parse(id)),
       );
       var amenitiesObject = jsonEncode(amenities);
-      return Response.ok('Post by ID Is: $amenitiesObject\n', headers: {
+      return Response.ok('Deleted amenity Is: $amenitiesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });

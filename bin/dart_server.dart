@@ -9,7 +9,7 @@ void main(List<String> arguments) async {
   app.mount('/profile', ProfileApi().router);
   app.mount('/post', PostApi().router);
   app.mount('/category', CategoryApi().router);
-  app.mount('/amenisties', AmenitiesApi().router);
+  app.mount('/amenities', AmenitiesApi().router);
   app.mount('/agency', AgencyApi().router);
   app.mount('/blogCategory', BlogCategoryApi().router);
   app.mount('/blog', BlogApi().router);
