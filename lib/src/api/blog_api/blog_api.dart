@@ -35,6 +35,7 @@ class BlogApi {
       var blogCategory = payload['blogCategory'];
       var slug = payload['slug'];
       var authorId = payload['authorId'];
+      var refrenceId = payload['refrenceId'];
       var blog = await prisma.blog.create(
         data: BlogCreateInput(
           title: title,
@@ -48,7 +49,7 @@ class BlogApi {
             create: SlugCreateWithoutBlogsInput(
               slug: slug,
               type: SlugType.BLOG,
-              referenceId: 1,
+              referenceId: refrenceId,
             ),
           ),
           author: UsersCreateNestedOneWithoutBlogsInput(
@@ -69,17 +70,18 @@ class BlogApi {
       var id = payload['id'].toInt();
       var title = payload['title'];
       var content = payload['content'];
-      var featuredImage = payload['iconImage'];
+      var featuredImage = payload['featuredImage'];
       var status = payload['status'];
       var slug = payload['slug'];
-      var blogCategoryId = payload['blogCategoryId'];
+      var blogCategory = payload['blogCategory'];
       var category = await prisma.blog.update(
         where: BlogWhereUniqueInput(id: id),
         data: BlogUpdateInput(
           title: StringFieldUpdateOperationsInput(set$: title),
-          content: NullableStringFieldUpdateOperationsInput(set$: content),
-          featuredImage:
-              NullableStringFieldUpdateOperationsInput(set$: featuredImage),
+          content: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(content)),
+          featuredImage: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(featuredImage)),
           status: BoolFieldUpdateOperationsInput(set$: status),
           slug: SlugUpdateOneRequiredWithoutBlogsNestedInput(
             update: SlugUpdateWithoutBlogsInput(
@@ -87,7 +89,7 @@ class BlogApi {
             ),
           ),
           blogCategory: BlogCategoryUpdateOneRequiredWithoutBlogsNestedInput(
-            connect: BlogCategoryWhereUniqueInput(id: blogCategoryId),
+            connect: BlogCategoryWhereUniqueInput(id: blogCategory),
           ),
           updatedAt: NullableDateTimeFieldUpdateOperationsInput(
             set$: PrismaUnion.zero(
