@@ -7,7 +7,7 @@ class DeveloperApi {
     router.get('/', (Request request) async {
       var developer = await prisma.developer.findMany();
       var developerObject = jsonEncode(developer);
-      return Response.ok('Post Is: $developerObject\n', headers: {
+      return Response.ok('All Developers Are: $developerObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -20,40 +20,41 @@ class DeveloperApi {
         where: DeveloperWhereUniqueInput(id: id),
       );
       var developerObject = jsonEncode(developer);
-      return Response.ok('Post by ID Is: $developerObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Developer you Asked for is: $developerObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //create developer
     router.post('/createDeveloper', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var title = payload['name'];
+      var name = payload['name'];
       var developer = await prisma.developer.create(
         data: DeveloperCreateInput(
-          title: title,
+          title: name,
         ),
       );
       var developerObject = jsonEncode(developer);
-      return Response.ok('Post by ID Is: $developerObject\n', headers: {
+      return Response.ok('Developer Created: $developerObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
 
     //update developer
-    router.put('/updateCategory', (Request request) async {
+    router.put('/updateDeveloper', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
-      var title = payload['name'];
+      var id = payload['id'];
+      var name = payload['name'];
       var developer = await prisma.developer.update(
         where: DeveloperWhereUniqueInput(id: id),
         data: DeveloperUpdateInput(
-          title: title,
+          title: StringFieldUpdateOperationsInput(set$: name),
           updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
         ),
       );
       var developerObject = jsonEncode(developer);
-      return Response.ok('Post by ID Is: $developerObject\n', headers: {
+      return Response.ok('Develoepr updated Is: $developerObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -66,9 +67,10 @@ class DeveloperApi {
         where: DeveloperWhereUniqueInput(id: id),
       );
       var developerObject = jsonEncode(develoepr);
-      return Response.ok('Post by ID Is: $developerObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Developer Account Deleted Is: $developerObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     final handler =
