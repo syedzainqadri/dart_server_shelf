@@ -7,20 +7,20 @@ class AmenitiesApi {
     router.get('/', (Request request) async {
       var amenities = await prisma.amenities.findMany();
       var amenitiesObject = jsonEncode(amenities);
-      return Response.ok('Post Is: $amenitiesObject\n', headers: {
+      return Response.ok('Amenities are: $amenitiesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
 
     //get amenities by id
-    router.get('/id', (Request request, String id) async {
+    router.get('/id', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var amenities = await prisma.amenities.findUnique(
-        where: AmenitiesWhereUniqueInput(id: int.parse(id)),
+        where: AmenitiesWhereUniqueInput(id: id),
       );
       var amenitiesObject = jsonEncode(amenities);
-      return Response.ok('Post by ID Is: $amenitiesObject\n', headers: {
+      return Response.ok('Amenity By id is: $amenitiesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -60,15 +60,19 @@ class AmenitiesApi {
       var published = payload['published'];
       var categoryId = payload['categoryId'];
       var amenities = await prisma.amenities.update(
-        where: AmenitiesWhereUniqueInput(id: int.parse(id)),
+        where: AmenitiesWhereUniqueInput(id: id),
         data: AmenitiesUpdateInput(
           name: StringFieldUpdateOperationsInput(set$: name),
-          slug: NullableStringFieldUpdateOperationsInput(set$: slug),
-          description:
-              NullableStringFieldUpdateOperationsInput(set$: description),
+          slug: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(slug)),
+          description: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(description)),
           published: BoolFieldUpdateOperationsInput(set$: published),
           category: CategoryUpdateOneRequiredWithoutAmenitiesNestedInput(
-            update: CategoryUpdateWithoutAmenitiesInput(parentId: categoryId),
+            update: CategoryUpdateWithoutAmenitiesInput(
+              parentId: NullableIntFieldUpdateOperationsInput(
+                  set$: PrismaUnion.zero(categoryId)),
+            ),
           ),
         ),
       );
@@ -84,7 +88,7 @@ class AmenitiesApi {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var amenities = await prisma.amenities.delete(
-        where: AmenitiesWhereUniqueInput(id: int.parse(id)),
+        where: AmenitiesWhereUniqueInput(id: id),
       );
       var amenitiesObject = jsonEncode(amenities);
       return Response.ok('Deleted amenity Is: $amenitiesObject\n', headers: {

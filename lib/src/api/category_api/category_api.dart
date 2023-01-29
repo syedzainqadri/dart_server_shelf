@@ -69,7 +69,7 @@ class CategoryApi {
     //update category
     router.put('/updateCategory', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var name = payload['name'];
       var slug = payload['slug'];
       var description = payload['description'];
