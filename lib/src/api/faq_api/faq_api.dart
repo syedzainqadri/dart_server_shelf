@@ -7,7 +7,7 @@ class FaqQuestionAnswerApi {
     router.get('/', (Request request) async {
       var categories = await prisma.faqQuestionAnswer.findMany();
       var categoriesObject = jsonEncode(categories);
-      return Response.ok('Post Is: $categoriesObject\n', headers: {
+      return Response.ok('All Faq Are: $categoriesObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -20,7 +20,7 @@ class FaqQuestionAnswerApi {
         where: FaqQuestionAnswerWhereUniqueInput(id: id),
       );
       var faqObject = jsonEncode(faqQuestionAnswer);
-      return Response.ok('Post by ID Is: $faqObject\n', headers: {
+      return Response.ok('FAQ by id is: $faqObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -28,14 +28,14 @@ class FaqQuestionAnswerApi {
     //create faqQuestionAnswer
     router.post('/createFaqQuestionAnswer', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var qusestion = payload['qusestion'];
+      var question = payload['question'];
       var answer = payload['answer'];
       var sortOrder = payload['sortOrder'];
       var status = payload['status'];
       var faqGroupId = payload['faqGroupId'];
       var faqQuestionAnswer = await prisma.faqQuestionAnswer.create(
         data: FaqQuestionAnswerCreateInput(
-          qusestion: qusestion,
+          qusestion: question,
           answer: answer,
           sortOrder: sortOrder,
           status: status,
@@ -44,7 +44,7 @@ class FaqQuestionAnswerApi {
         ),
       );
       var faqObject = jsonEncode(faqQuestionAnswer);
-      return Response.ok('Post by ID Is: $faqObject\n', headers: {
+      return Response.ok('FAQ Created: $faqObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -52,7 +52,7 @@ class FaqQuestionAnswerApi {
     //update faqQuestionAnswer
     router.put('/updateFaqQuestionAnswer', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var question = payload['qusestion'];
       var answer = payload['answer'];
       var sortOrder = payload['sortOrder'];
@@ -62,9 +62,9 @@ class FaqQuestionAnswerApi {
         where: FaqQuestionAnswerWhereUniqueInput(id: id),
         data: FaqQuestionAnswerUpdateInput(
           qusestion: question,
-          answer: answer,
-          sortOrder: sortOrder,
-          status: status,
+          answer: StringFieldUpdateOperationsInput(set$: answer),
+          sortOrder: IntFieldUpdateOperationsInput(set$: sortOrder),
+          status: BoolFieldUpdateOperationsInput(set$: status),
           faqGroup:
               FaqGroupUpdateOneRequiredWithoutFaqQuestionAnswerNestedInput(
                   connect: FaqGroupWhereUniqueInput(id: faqGroupId)),
@@ -72,7 +72,7 @@ class FaqQuestionAnswerApi {
         ),
       );
       var faqObject = jsonEncode(faqQuestionAnswer);
-      return Response.ok('Post by ID Is: $faqObject\n', headers: {
+      return Response.ok('Faq Updated: $faqObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -80,12 +80,12 @@ class FaqQuestionAnswerApi {
     //delete faqQuestionAnswer
     router.delete('/deleteFaqQuestionAnswer', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var faqQuestionAnswer = await prisma.faqQuestionAnswer.delete(
         where: FaqQuestionAnswerWhereUniqueInput(id: id),
       );
       var faqObject = jsonEncode(faqQuestionAnswer);
-      return Response.ok('Post by ID Is: $faqObject\n', headers: {
+      return Response.ok('FAQ Deleted: $faqObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });

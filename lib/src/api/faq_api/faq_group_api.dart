@@ -7,7 +7,7 @@ class FaqGroupApi {
     router.get('/', (Request request) async {
       var faqGroup = await prisma.faqGroup.findMany();
       var faqGroupObject = jsonEncode(faqGroup);
-      return Response.ok('Post Is: $faqGroupObject\n', headers: {
+      return Response.ok('All Faq Groups are: $faqGroupObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -20,9 +20,10 @@ class FaqGroupApi {
         where: FaqGroupWhereUniqueInput(id: id),
       );
       var faqGroupObject = jsonEncode(faqGroup);
-      return Response.ok('Post by ID Is: $faqGroupObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Faq Group you asked for is: $faqGroupObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //create faqGroup
@@ -39,7 +40,7 @@ class FaqGroupApi {
         ),
       );
       var faqGroupObject = jsonEncode(faqGroup);
-      return Response.ok('Post by ID Is: $faqGroupObject\n', headers: {
+      return Response.ok('Faq Group is: $faqGroupObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -47,7 +48,7 @@ class FaqGroupApi {
     //update faqGroup
     router.put('/updateFaqGroup', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var faqGroupName = payload['faqGroupName'];
       var sortOrder = payload['sortOrder'];
       var status = payload['status'];
@@ -61,7 +62,7 @@ class FaqGroupApi {
         ),
       );
       var faqGroupObject = jsonEncode(faqGroup);
-      return Response.ok('Post by ID Is: $faqGroupObject\n', headers: {
+      return Response.ok('Faq Group Updated is: $faqGroupObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -74,7 +75,7 @@ class FaqGroupApi {
         where: FaqGroupWhereUniqueInput(id: id),
       );
       var faqGroupObject = jsonEncode(faqGroup);
-      return Response.ok('Post by ID Is: $faqGroupObject\n', headers: {
+      return Response.ok('Faq Group Deleted is: $faqGroupObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
