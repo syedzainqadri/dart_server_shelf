@@ -48,14 +48,14 @@ class FloorPlanApi {
     //update floorPlan
     router.put('/updateFloorPlan', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var title = payload['title'];
       var floorPlanPath = payload['floorPlanPath'];
       var floorPlan = await prisma.floorPlan.update(
         where: FloorPlanWhereUniqueInput(id: id),
         data: FloorPlanUpdateInput(
-          title: title,
-          floorPlanPath: floorPlanPath,
+          title: StringFieldUpdateOperationsInput(set$: title),
+          floorPlanPath: StringFieldUpdateOperationsInput(set$: floorPlanPath),
         ),
       );
       var floorPlanObject = jsonEncode(floorPlan);
