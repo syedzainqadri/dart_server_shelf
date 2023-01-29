@@ -7,7 +7,7 @@ class ProjectsApi {
     router.get('/', (Request request) async {
       var project = await prisma.project.findMany();
       var projectObject = jsonEncode(project);
-      return Response.ok('Post Is: $projectObject\n', headers: {
+      return Response.ok('All Projects: $projectObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -20,7 +20,7 @@ class ProjectsApi {
         where: ProjectWhereUniqueInput(id: id),
       );
       var projectObject = jsonEncode(project);
-      return Response.ok('Post by ID Is: $projectObject\n', headers: {
+      return Response.ok('Project By Id: $projectObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -36,7 +36,6 @@ class ProjectsApi {
       var city = payload['city'];
       var categoryId = payload['categoryId'];
       var developerId = payload['developerId'];
-      var projectNearByPlaceId = payload['projectNearByPlaceId'];
       var startingPrice = payload['startingPrice'];
       var endingPrice = payload['endingPrice'];
 
@@ -56,15 +55,10 @@ class ProjectsApi {
           developer: DeveloperCreateNestedOneWithoutProjectsInput(
             connect: DeveloperWhereUniqueInput(id: developerId),
           ),
-          projectNearByPlace:
-              ProjectNearByPlaceCreateNestedOneWithoutProjectsInput(
-            connect:
-                ProjectNearByPlaceWhereUniqueInput(id: projectNearByPlaceId),
-          ),
         ),
       );
       var projectObject = jsonEncode(project);
-      return Response.ok('Post by ID Is: $projectObject\n', headers: {
+      return Response.ok('Project Created: $projectObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -83,45 +77,34 @@ class ProjectsApi {
       var endingPrice = payload['endingPrice'];
       var walkthroughThreeD = payload['walkthroughThreeD'];
       var categoryId = payload['categoryId'];
-      var projectNearByPlaceId = payload['projectNearByPlaceId'];
-      var floorplansTitle = payload['floorplansTitle'];
-      var floorplansImage = payload['floorplansImage'];
       var project = await prisma.project.update(
         where: ProjectWhereUniqueInput(id: id),
         data: ProjectUpdateInput(
           title: StringFieldUpdateOperationsInput(set$: title),
           address: StringFieldUpdateOperationsInput(set$: address),
-          featuredImage:
-              NullableStringFieldUpdateOperationsInput(set$: featuredImage),
-          gallery: NullableStringFieldUpdateOperationsInput(set$: gallery),
-          locality: NullableStringFieldUpdateOperationsInput(set$: locality),
-          city: NullableStringFieldUpdateOperationsInput(set$: city),
-          startingPrice:
-              NullableFloatFieldUpdateOperationsInput(set$: startingPrice),
-          endingPrice:
-              NullableFloatFieldUpdateOperationsInput(set$: endingPrice),
-          walkthroughThreeD:
-              NullableStringFieldUpdateOperationsInput(set$: walkthroughThreeD),
+          featuredImage: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(featuredImage)),
+          gallery: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(gallery)),
+          locality: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(locality)),
+          city: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(city)),
+          startingPrice: NullableFloatFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(startingPrice)),
+          endingPrice: NullableFloatFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(endingPrice)),
+          walkthroughThreeD: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(walkthroughThreeD)),
           updatedAt: DateTimeFieldUpdateOperationsInput(
             set$: DateTime.now(),
-          ),
-          projectNearByPlace:
-              ProjectNearByPlaceUpdateOneWithoutProjectsNestedInput(
-            connect:
-                ProjectNearByPlaceWhereUniqueInput(id: projectNearByPlaceId),
-          ),
-          floorplans: FloorPlanUpdateManyWithoutProjectNestedInput(
-            create: FloorPlanCreateWithoutProjectInput(
-              title: floorplansTitle,
-              floorPlanPath: floorplansImage,
-            ),
           ),
           category: CategoryUpdateOneWithoutProjectsNestedInput(
               connect: CategoryWhereUniqueInput(id: categoryId)),
         ),
       );
       var projectObject = jsonEncode(project);
-      return Response.ok('Post by ID Is: $projectObject\n', headers: {
+      return Response.ok('Project Updated: $projectObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -134,7 +117,7 @@ class ProjectsApi {
         where: ProjectWhereUniqueInput(id: id),
       );
       var projectObject = jsonEncode(project);
-      return Response.ok('Post by ID Is: $projectObject\n', headers: {
+      return Response.ok('Project Deleted: $projectObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });

@@ -7,7 +7,7 @@ class FloorPlanApi {
     router.get('/', (Request request) async {
       var floorPlan = await prisma.floorPlan.findMany();
       var floorPlanObject = jsonEncode(floorPlan);
-      return Response.ok('Post Is: $floorPlanObject\n', headers: {
+      return Response.ok('All Floor Plan Are: $floorPlanObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -20,7 +20,7 @@ class FloorPlanApi {
         where: FloorPlanWhereUniqueInput(id: id),
       );
       var floorPlanObject = jsonEncode(floorPlan);
-      return Response.ok('Post by ID Is: $floorPlanObject\n', headers: {
+      return Response.ok('Floor Plan By Id is: $floorPlanObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -30,14 +30,17 @@ class FloorPlanApi {
       var payload = jsonDecode(await request.readAsString());
       var title = payload['title'];
       var floorPlanPath = payload['floorPlanPath'];
+      var projectId = payload['projectId'];
       var floorPlan = await prisma.floorPlan.create(
         data: FloorPlanCreateInput(
           title: title,
           floorPlanPath: floorPlanPath,
+          project: ProjectCreateNestedOneWithoutFloorplansInput(
+              connect: ProjectWhereUniqueInput(id: projectId)),
         ),
       );
       var floorPlanObject = jsonEncode(floorPlan);
-      return Response.ok('Post by ID Is: $floorPlanObject\n', headers: {
+      return Response.ok('Floor Plan Created it: $floorPlanObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -56,7 +59,7 @@ class FloorPlanApi {
         ),
       );
       var floorPlanObject = jsonEncode(floorPlan);
-      return Response.ok('Post by ID Is: $floorPlanObject\n', headers: {
+      return Response.ok('Floor Plan Updated: $floorPlanObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -69,7 +72,7 @@ class FloorPlanApi {
         where: FloorPlanWhereUniqueInput(id: id),
       );
       var floorPlanObject = jsonEncode(floorPlan);
-      return Response.ok('Post by ID Is: $floorPlanObject\n', headers: {
+      return Response.ok('Floor Plan Deleted: $floorPlanObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });

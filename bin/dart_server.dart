@@ -24,6 +24,7 @@ void main(List<String> arguments) async {
   app.mount('/forumPostComment', ForumPostCommentApi().router);
   app.mount('/page', PageApi().router);
   app.mount('/projectNearByPlaces', ProjectNearByPlaceNearByPlacesApi().router);
+  app.mount('/project', ProjectsApi().router);
   app.mount('/paymentMethod', PaymentMethodApi().router);
   app.mount('/slug', SlugApi().router);
   app.mount('/wishlist', WishListApi().router);
