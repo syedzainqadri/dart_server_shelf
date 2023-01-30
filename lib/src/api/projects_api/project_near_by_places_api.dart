@@ -46,7 +46,6 @@ class ProjectNearByPlaceNearByPlacesApi {
           placeCategory: placeCategoryEnum,
           projects: ProjectCreateNestedManyWithoutProjectNearByPlaceInput(
             connect: ProjectWhereUniqueInput(id: projectId),
-            //TODO: Should not be required, relation needs to be understand
           ),
         ),
       );
@@ -79,7 +78,6 @@ class ProjectNearByPlaceNearByPlacesApi {
           placeCategory:
               EnumProjectNearByPlaceCategoryFieldUpdateOperationsInput(
                   set$: placeCategoryEnum),
-          //TODO:updated At, Created At must be added
         ),
       );
       var projectNearByPlaceObject = jsonEncode(projectNearByPlace);

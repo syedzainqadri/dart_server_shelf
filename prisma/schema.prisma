@@ -187,14 +187,14 @@ model Order {
   orderAmount Float
   user         Users  @relation(fields: [userId], references: [id])
   userId       Int
-  paymentMethod paymentMethod  @relation(fields: [paymentMethodId], references: [id])
+  // paymentMethod PaymentMethod  @relation(fields: [paymentMethodId], references: [id])
   paymentMethodId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   orderProduct OrderProduct[]
 }
 
-model paymentMethod {
+model PaymentMethod {
   id  Int       @id @default(autoincrement())
   name String
   apiKey String
@@ -202,7 +202,7 @@ model paymentMethod {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   status CommonStatus @default(INACTIVE)
-  order Order[]
+  // order Order
 }
 
 model OrderProduct {
@@ -237,7 +237,7 @@ model Users {
   posts    Post[]
   Profile  Profile[] @relation("userProfile")
   reviews Review[]
-  wishlists Wishlit[]
+  wishlists Wishlist[]
   formPosts ForumPost[]
   formPostComments ForumPostComment[]
   postComments PostComment[]
@@ -304,7 +304,7 @@ model Post {
   authorId         Int
   postContact      PostContact[]
   review           Review[]
-  wishlist         Wishlit[]
+  wishlist         Wishlist[]
   postComment      PostComment[]
   orderProduct     OrderProduct[]
 
@@ -345,17 +345,16 @@ model Review {
 model PostComment {
   id        Int       @id @default(autoincrement())
   postReplyTitle String
-  postReplyType String
   postReplyDescription String
-  createdAt   DateTime  
-  updatedAt   DateTime  @default(now())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   forumPost Post @relation(fields: [postId], references: [id])
   postId Int
   user      Users @relation(fields: [userId], references: [id])
   userId    Int
 }
 
-model Wishlit {
+model Wishlist {
   id    Int       @id @default(autoincrement())
   post  Post    @relation(fields: [postId], references: [id])
   postId Int
@@ -432,8 +431,8 @@ model Page{
   title       String
   content     String?
   featuredImage String?
-  createdAt   DateTime
-  updatedAt   DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   status      Boolean   @default(true)
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
@@ -469,10 +468,9 @@ model ForumPost {
 model ForumPostComment {
   id        Int       @id @default(autoincrement())
   postReplyTitle String
-  postReplyType String
   postReplyDescription String
-  createdAt   DateTime  
-  updatedAt   DateTime  @default(now())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   forumPost ForumPost @relation(fields: [forumPostId], references: [id])
   forumPostId Int
   user           Users       @relation(fields: [userId], references: [id])

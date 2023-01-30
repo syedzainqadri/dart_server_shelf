@@ -38,11 +38,11 @@ class OrderApi {
           user: UsersCreateNestedOneWithoutOrderInput(
             connect: UsersWhereUniqueInput(id: userId),
           ),
-          paymentMethod: PaymentMethodCreateNestedOneWithoutOrderInput(
-              connect: PaymentMethodWhereUniqueInput(id: paymentMethodId)),
+          paymentMethodId: paymentMethodId,
+          // paymentMethod: PaymentMethodCreateNestedOneWithoutOrderInput(
+          //     connect: PaymentMethodWhereUniqueInput(id: paymentMethodId)),
           orderProduct: OrderProductCreateNestedManyWithoutOrderInput(
             connect: OrderProductWhereUniqueInput(id: orderProduct),
-            //TODO: Need to create the payment method first to test it
           ),
         ),
       );
@@ -63,9 +63,9 @@ class OrderApi {
         where: OrderWhereUniqueInput(id: id),
         data: OrderUpdateInput(
           orderAmount: FloatFieldUpdateOperationsInput(set$: orderAmount),
-          paymentMethod: PaymentMethodUpdateOneRequiredWithoutOrderNestedInput(
-            connect: PaymentMethodWhereUniqueInput(id: paymentMethodId),
-          ),
+          // paymentMethod: PaymentMethodUpdateOneRequiredWithoutOrderNestedInput(
+          //   connect: PaymentMethodWhereUniqueInput(id: paymentMethodId),
+          // ),
           orderProduct: OrderProductUpdateManyWithoutOrderNestedInput(
             connect: OrderProductWhereUniqueInput(id: orderProduct),
           ),

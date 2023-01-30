@@ -8,7 +8,6 @@ class WishListApi {
     //get all whishlist
     router.get('/', (Request request) async {
       var wishlist = await prisma.wishlit.findMany();
-      //TODO check spellings for wishlist
       var wishlistObject = jsonEncode(wishlist);
       return Response.ok('Wishlit Is: $wishlistObject\n', headers: {
         'Content-Type': 'application/json',

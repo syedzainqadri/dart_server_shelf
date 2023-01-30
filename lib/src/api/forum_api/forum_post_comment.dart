@@ -39,8 +39,7 @@ class ForumPostCommentApi {
         data: ForumPostCommentCreateInput(
           postReplyTitle: postReplyTitle,
           postReplyDescription: postReplyDescription,
-          postReplyType: postReplyType, //TODO: What is this?
-          createdAt: DateTime.now(), //TODO: This should not be required
+          createdAt: DateTime.now(),
           user: UsersCreateNestedOneWithoutFormPostCommentsInput(
             connect: UsersWhereUniqueInput(id: userId),
           ),
@@ -61,7 +60,6 @@ class ForumPostCommentApi {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var postReplyTitle = payload['postReplyTitle'];
-      var postReplyType = payload['postReplyType']; //TODO: Define proper enums
       var postReplyDescription = payload['postReplyDescription'];
       var forumPostComment = await prisma.forumPostComment.update(
         where: ForumPostCommentWhereUniqueInput(id: id),
@@ -70,7 +68,6 @@ class ForumPostCommentApi {
               StringFieldUpdateOperationsInput(set$: postReplyTitle),
           postReplyDescription:
               StringFieldUpdateOperationsInput(set$: postReplyDescription),
-          postReplyType: StringFieldUpdateOperationsInput(set$: postReplyType),
           updatedAt: DateTimeFieldUpdateOperationsInput(
             set$: DateTime.now(),
           ),

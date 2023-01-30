@@ -40,7 +40,6 @@ class PaymentMethodApi {
           apiKey: apiKey,
           secret: secret,
           status: statusEnum,
-          //TODO: Payment Method Type has a relation making problem with order
         ),
       );
       var paymentMethodObject = jsonEncode(paymentMethod);

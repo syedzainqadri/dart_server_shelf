@@ -62,7 +62,6 @@ class SlugApi {
           slug: StringFieldUpdateOperationsInput(set$: slugName),
           type: EnumSlugTypeFieldUpdateOperationsInput(set$: typeEnum),
           referenceId: IntFieldUpdateOperationsInput(set$: referenceId),
-          //TODO: created at and updated at must be added
         ),
       );
       var slugObject = jsonEncode(slug);

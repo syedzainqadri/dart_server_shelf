@@ -1893,7 +1893,6 @@ PostCommentGroupByOutputType _$PostCommentGroupByOutputTypeFromJson(
     PostCommentGroupByOutputType(
       id: json['id'] as int,
       postReplyTitle: json['postReplyTitle'] as String,
-      postReplyType: json['postReplyType'] as String,
       postReplyDescription: json['postReplyDescription'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
@@ -1926,7 +1925,6 @@ Map<String, dynamic> _$PostCommentGroupByOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postReplyTitle': instance.postReplyTitle,
-      'postReplyType': instance.postReplyType,
       'postReplyDescription': instance.postReplyDescription,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
@@ -2743,7 +2741,6 @@ ForumPostCommentGroupByOutputType _$ForumPostCommentGroupByOutputTypeFromJson(
     ForumPostCommentGroupByOutputType(
       id: json['id'] as int,
       postReplyTitle: json['postReplyTitle'] as String,
-      postReplyType: json['postReplyType'] as String,
       postReplyDescription: json['postReplyDescription'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
@@ -2776,7 +2773,6 @@ Map<String, dynamic> _$ForumPostCommentGroupByOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postReplyTitle': instance.postReplyTitle,
-      'postReplyType': instance.postReplyType,
       'postReplyDescription': instance.postReplyDescription,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
@@ -4590,18 +4586,6 @@ Map<String, dynamic> _$OrderMaxAggregateOutputTypeToJson(
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 
-PaymentMethodCountOutputType _$PaymentMethodCountOutputTypeFromJson(
-        Map<String, dynamic> json) =>
-    PaymentMethodCountOutputType(
-      order: json['order'] as int,
-    );
-
-Map<String, dynamic> _$PaymentMethodCountOutputTypeToJson(
-        PaymentMethodCountOutputType instance) =>
-    <String, dynamic>{
-      'order': instance.order,
-    };
-
 PaymentMethodCountAggregateOutputType
     _$PaymentMethodCountAggregateOutputTypeFromJson(
             Map<String, dynamic> json) =>
@@ -5753,7 +5737,6 @@ PostCommentCountAggregateOutputType
         PostCommentCountAggregateOutputType(
           id: json['id'] as int,
           postReplyTitle: json['postReplyTitle'] as int,
-          postReplyType: json['postReplyType'] as int,
           postReplyDescription: json['postReplyDescription'] as int,
           createdAt: json['createdAt'] as int,
           updatedAt: json['updatedAt'] as int,
@@ -5767,7 +5750,6 @@ Map<String, dynamic> _$PostCommentCountAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postReplyTitle': instance.postReplyTitle,
-      'postReplyType': instance.postReplyType,
       'postReplyDescription': instance.postReplyDescription,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
@@ -5813,7 +5795,6 @@ PostCommentMinAggregateOutputType _$PostCommentMinAggregateOutputTypeFromJson(
     PostCommentMinAggregateOutputType(
       id: json['id'] as int?,
       postReplyTitle: json['postReplyTitle'] as String?,
-      postReplyType: json['postReplyType'] as String?,
       postReplyDescription: json['postReplyDescription'] as String?,
       createdAt: json['createdAt'] == null
           ? null
@@ -5830,7 +5811,6 @@ Map<String, dynamic> _$PostCommentMinAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postReplyTitle': instance.postReplyTitle,
-      'postReplyType': instance.postReplyType,
       'postReplyDescription': instance.postReplyDescription,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
@@ -5843,7 +5823,6 @@ PostCommentMaxAggregateOutputType _$PostCommentMaxAggregateOutputTypeFromJson(
     PostCommentMaxAggregateOutputType(
       id: json['id'] as int?,
       postReplyTitle: json['postReplyTitle'] as String?,
-      postReplyType: json['postReplyType'] as String?,
       postReplyDescription: json['postReplyDescription'] as String?,
       createdAt: json['createdAt'] == null
           ? null
@@ -5860,7 +5839,6 @@ Map<String, dynamic> _$PostCommentMaxAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postReplyTitle': instance.postReplyTitle,
-      'postReplyType': instance.postReplyType,
       'postReplyDescription': instance.postReplyDescription,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
@@ -6919,7 +6897,6 @@ ForumPostCommentCountAggregateOutputType
         ForumPostCommentCountAggregateOutputType(
           id: json['id'] as int,
           postReplyTitle: json['postReplyTitle'] as int,
-          postReplyType: json['postReplyType'] as int,
           postReplyDescription: json['postReplyDescription'] as int,
           createdAt: json['createdAt'] as int,
           updatedAt: json['updatedAt'] as int,
@@ -6933,7 +6910,6 @@ Map<String, dynamic> _$ForumPostCommentCountAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postReplyTitle': instance.postReplyTitle,
-      'postReplyType': instance.postReplyType,
       'postReplyDescription': instance.postReplyDescription,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
@@ -6982,7 +6958,6 @@ ForumPostCommentMinAggregateOutputType
         ForumPostCommentMinAggregateOutputType(
           id: json['id'] as int?,
           postReplyTitle: json['postReplyTitle'] as String?,
-          postReplyType: json['postReplyType'] as String?,
           postReplyDescription: json['postReplyDescription'] as String?,
           createdAt: json['createdAt'] == null
               ? null
@@ -6999,7 +6974,6 @@ Map<String, dynamic> _$ForumPostCommentMinAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postReplyTitle': instance.postReplyTitle,
-      'postReplyType': instance.postReplyType,
       'postReplyDescription': instance.postReplyDescription,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
@@ -7013,7 +6987,6 @@ ForumPostCommentMaxAggregateOutputType
         ForumPostCommentMaxAggregateOutputType(
           id: json['id'] as int?,
           postReplyTitle: json['postReplyTitle'] as String?,
-          postReplyType: json['postReplyType'] as String?,
           postReplyDescription: json['postReplyDescription'] as String?,
           createdAt: json['createdAt'] == null
               ? null
@@ -7030,7 +7003,6 @@ Map<String, dynamic> _$ForumPostCommentMaxAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'postReplyTitle': instance.postReplyTitle,
-      'postReplyType': instance.postReplyType,
       'postReplyDescription': instance.postReplyDescription,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
@@ -7590,8 +7562,6 @@ PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       status: $enumDecode(_$CommonStatusEnumMap, json['status']),
-      $count: PaymentMethodCountOutputType.fromJson(
-          json['_count'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) =>
@@ -7603,7 +7573,6 @@ Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) =>
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'status': _$CommonStatusEnumMap[instance.status]!,
-      '_count': instance.$count.toJson(),
     };
 
 OrderProduct _$OrderProductFromJson(Map<String, dynamic> json) => OrderProduct(
@@ -7831,7 +7800,6 @@ Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
 PostComment _$PostCommentFromJson(Map<String, dynamic> json) => PostComment(
       id: json['id'] as int,
       postReplyTitle: json['postReplyTitle'] as String,
-      postReplyType: json['postReplyType'] as String,
       postReplyDescription: json['postReplyDescription'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
@@ -7843,7 +7811,6 @@ Map<String, dynamic> _$PostCommentToJson(PostComment instance) =>
     <String, dynamic>{
       'id': instance.id,
       'postReplyTitle': instance.postReplyTitle,
-      'postReplyType': instance.postReplyType,
       'postReplyDescription': instance.postReplyDescription,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
@@ -8044,7 +8011,6 @@ ForumPostComment _$ForumPostCommentFromJson(Map<String, dynamic> json) =>
     ForumPostComment(
       id: json['id'] as int,
       postReplyTitle: json['postReplyTitle'] as String,
-      postReplyType: json['postReplyType'] as String,
       postReplyDescription: json['postReplyDescription'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
@@ -8056,7 +8022,6 @@ Map<String, dynamic> _$ForumPostCommentToJson(ForumPostComment instance) =>
     <String, dynamic>{
       'id': instance.id,
       'postReplyTitle': instance.postReplyTitle,
-      'postReplyType': instance.postReplyType,
       'postReplyDescription': instance.postReplyDescription,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),

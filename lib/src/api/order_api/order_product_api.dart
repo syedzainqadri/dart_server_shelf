@@ -45,7 +45,6 @@ class OrderProductApi {
           order: OrderCreateNestedOneWithoutOrderProductInput(
             connect: OrderWhereUniqueInput(id: orderId),
           ),
-          //TODO: post cannot be required as it is a relation and will come in future
           post: PostCreateNestedOneWithoutOrderProductInput(
               connect: PostWhereUniqueInput(id: post)),
           productActiveDate: PrismaUnion.zero(productActiveDate),

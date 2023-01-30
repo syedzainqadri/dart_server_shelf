@@ -52,8 +52,8 @@ class PageApi {
               referenceId: refrenceId,
             ),
           ),
-          createdAt: DateTime.now(), //TODO: Should not be required
-          updatedAt: DateTime.now(), //TODO: Should not be required
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
         ),
       );
       var pageObject = jsonEncode(page);
