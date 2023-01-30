@@ -7,9 +7,10 @@ class ForumPostCommentApi {
     router.get('/', (Request request) async {
       var forumPostComment = await prisma.forumPostComment.findMany();
       var forumPostCommentObject = jsonEncode(forumPostComment);
-      return Response.ok('Post Is: $forumPostCommentObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('All Forum Comments Are: $forumPostCommentObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //get forumPostComment by id
@@ -20,9 +21,10 @@ class ForumPostCommentApi {
         where: ForumPostCommentWhereUniqueInput(id: id),
       );
       var forumPostCommentObject = jsonEncode(forumPostComment);
-      return Response.ok('Post by ID Is: $forumPostCommentObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Forum Comment by Id: $forumPostCommentObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //create forumPostComment
@@ -31,8 +33,8 @@ class ForumPostCommentApi {
       var postReplyTitle = payload['postReplyTitle'];
       var postReplyType = payload['postReplyType'];
       var postReplyDescription = payload['postReplyDescription'];
-      var userId = payload['userId'].toInt();
-      var forumPostId = payload['forumPostId'].toInt();
+      var userId = payload['userId'];
+      var forumPostId = payload['forumPostId'];
       var forumPostComment = await prisma.forumPostComment.create(
         data: ForumPostCommentCreateInput(
           postReplyTitle: postReplyTitle,
@@ -48,17 +50,18 @@ class ForumPostCommentApi {
         ),
       );
       var forumPostCommentObject = jsonEncode(forumPostComment);
-      return Response.ok('Post by ID Is: $forumPostCommentObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Forum Comment Created: $forumPostCommentObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //update forumPostComment
     router.put('/updateForumPostComment', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var postReplyTitle = payload['postReplyTitle'];
-      var postReplyType = payload['postReplyType'];
+      var postReplyType = payload['postReplyType']; //ToDo: Define proper enums
       var postReplyDescription = payload['postReplyDescription'];
       var forumPostComment = await prisma.forumPostComment.update(
         where: ForumPostCommentWhereUniqueInput(id: id),
@@ -74,9 +77,10 @@ class ForumPostCommentApi {
         ),
       );
       var forumPostCommentObject = jsonEncode(forumPostComment);
-      return Response.ok('Post by ID Is: $forumPostCommentObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Forum Comment Updated: $forumPostCommentObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     //delete forumPostComment
@@ -87,9 +91,10 @@ class ForumPostCommentApi {
         where: ForumPostCommentWhereUniqueInput(id: id),
       );
       var forumPostCommentObject = jsonEncode(forumPostComment);
-      return Response.ok('Post by ID Is: $forumPostCommentObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      return Response.ok('Forum Comment Deleted: $forumPostCommentObject\n',
+          headers: {
+            'Content-Type': 'application/json',
+          });
     });
 
     final handler =

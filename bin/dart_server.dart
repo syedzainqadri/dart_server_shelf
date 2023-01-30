@@ -4,27 +4,28 @@ final app = Router();
 void main(List<String> arguments) async {
   var secret = Env.secretKey;
   app.mount('/api', HelloWorldApi().router);
-  app.mount('/auth', AuthAPi(secret: secret).router);
-  app.mount('/users', UserApi().router);
+  app.mount('/auth', AuthAPi(secret: secret).router); //done
+  app.mount('/users', UserApi().router); //done
   app.mount('/profile', ProfileApi().router);
   app.mount('/post', PostApi().router);
-  app.mount('/category', CategoryApi().router);
-  app.mount('/amenity', AmenitiesApi().router);
-  app.mount('/agency', AgencyApi().router);
-  app.mount('/blogCategory', BlogCategoryApi().router);
-  app.mount('/blog', BlogApi().router);
-  app.mount('/developer', DeveloperApi().router);
-  app.mount('/faqGroup', FaqGroupApi().router);
-  app.mount('/faq', FaqQuestionAnswerApi().router);
-  app.mount('/floorPlan', FloorPlanApi().router);
+  app.mount('/category', CategoryApi().router); //done
+  app.mount('/amenity', AmenitiesApi().router); //done
+  app.mount('/agency', AgencyApi().router); //done
+  app.mount('/blogCategory', BlogCategoryApi().router); //done
+  app.mount('/blog', BlogApi().router); //done
+  app.mount('/developer', DeveloperApi().router); //done
+  app.mount('/faqGroup', FaqGroupApi().router); //done
+  app.mount('/faq', FaqQuestionAnswerApi().router); //done
+  app.mount('/floorPlan', FloorPlanApi().router); //done
   app.mount('/product', ProductApi().router);
   app.mount('/order', OrderApi().router);
   app.mount('/productOrder', OrderProductApi().router);
-  app.mount('/forumPost', ForumPostApi().router);
-  app.mount('/forumPostComment', ForumPostCommentApi().router);
+  app.mount('/forumPost', ForumPostApi().router); //done
+  app.mount('/forumPostComment', ForumPostCommentApi().router); //done
   app.mount('/page', PageApi().router);
-  app.mount('/projectNearByPlaces', ProjectNearByPlaceNearByPlacesApi().router);
-  app.mount('/project', ProjectsApi().router);
+  app.mount('/projectNearByPlaces',
+      ProjectNearByPlaceNearByPlacesApi().router); //done
+  app.mount('/project', ProjectsApi().router); //done
   app.mount('/paymentMethod', PaymentMethodApi().router);
   app.mount('/slug', SlugApi().router);
   app.mount('/wishlist', WishListApi().router);

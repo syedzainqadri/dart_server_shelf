@@ -7,7 +7,7 @@ class ForumPostApi {
     router.get('/', (Request request) async {
       var forumPost = await prisma.forumPost.findMany();
       var forumPostObject = jsonEncode(forumPost);
-      return Response.ok('Post Is: $forumPostObject\n', headers: {
+      return Response.ok('All Forum Post Are: $forumPostObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -20,7 +20,7 @@ class ForumPostApi {
         where: ForumPostWhereUniqueInput(id: id),
       );
       var categoryObject = jsonEncode(forumPost);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
+      return Response.ok('Forum Post By Id Is: $categoryObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -30,6 +30,8 @@ class ForumPostApi {
       var payload = jsonDecode(await request.readAsString());
       var postTitle = payload['postTitle'];
       var postType = payload['postType'];
+      ForumPostType postTypeEnum = ForumPostType.values
+          .firstWhere((e) => e.toString() == 'ForumPostType.' + postType);
       var postDescription = payload['postDescription'];
       var slug = payload['slug'];
       var refrenceId = payload['refrenceId'];
@@ -37,7 +39,7 @@ class ForumPostApi {
       var forumPost = await prisma.forumPost.create(
         data: ForumPostCreateInput(
           postTitle: postTitle,
-          postType: postType,
+          postType: postTypeEnum,
           postDescription: postDescription,
           createdAt: DateTime.now(),
           user: UsersCreateNestedOneWithoutFormPostsInput(
@@ -53,7 +55,7 @@ class ForumPostApi {
         ),
       );
       var categoryObject = jsonEncode(forumPost);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
+      return Response.ok('Forum Post Created: $categoryObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -61,21 +63,25 @@ class ForumPostApi {
     //update forumPost
     router.put('/updateForumPost', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var postTitle = payload['postTitle'];
       var postType = payload['postType'];
+      ForumPostType postTypeEnum = ForumPostType.values
+          .firstWhere((e) => e.toString() == 'ForumPostType.' + postType);
       var postDescription = payload['postDescription'];
       var forumPost = await prisma.forumPost.update(
         where: ForumPostWhereUniqueInput(id: id),
         data: ForumPostUpdateInput(
-          postTitle: postTitle,
-          postType: postType,
-          postDescription: postDescription,
+          postTitle: StringFieldUpdateOperationsInput(set$: postTitle),
+          postType:
+              EnumForumPostTypeFieldUpdateOperationsInput(set$: postTypeEnum),
+          postDescription:
+              StringFieldUpdateOperationsInput(set$: postDescription),
           updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
         ),
       );
       var categoryObject = jsonEncode(forumPost);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
+      return Response.ok('Forum Post Updated: $categoryObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
@@ -88,7 +94,7 @@ class ForumPostApi {
         where: ForumPostWhereUniqueInput(id: id),
       );
       var categoryObject = jsonEncode(forumPost);
-      return Response.ok('Post by ID Is: $categoryObject\n', headers: {
+      return Response.ok('Forum Post Deleted: $categoryObject\n', headers: {
         'Content-Type': 'application/json',
       });
     });
