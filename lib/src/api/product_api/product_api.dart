@@ -15,11 +15,11 @@ class ProductApi {
     });
 
     //get product by id
-    router.get('/<id|[0-9]+>', (Request request, String id) async {
+    router.get('/id', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var product = await prisma.product.findUnique(
-        where: ProductWhereUniqueInput(id: int.parse(id)),
+        where: ProductWhereUniqueInput(id: id),
       );
       var productObject = jsonEncode(product);
       return Response.ok('product by ID Is: $productObject\n', headers: {
@@ -41,7 +41,7 @@ class ProductApi {
       var description = payload['description'];
       var status = payload['status'];
       CommonStatus productStatus = CommonStatus.values
-          .firstWhere((e) => e.toString() == 'ProductStatus.' + status);
+          .firstWhere((e) => e.toString() == 'CommonStatus.' + status);
       var product = await prisma.product.create(
         data: ProductCreateInput(
           title: title,
@@ -75,7 +75,7 @@ class ProductApi {
       var description = payload['description'];
       var status = payload['status'];
       CommonStatus productStatus = CommonStatus.values
-          .firstWhere((e) => e.toString() == 'ProductStatus.' + status);
+          .firstWhere((e) => e.toString() == 'CommonStatus.' + status);
       var product = await prisma.product.update(
         where: ProductWhereUniqueInput(id: id),
         data: ProductUpdateInput(
@@ -106,7 +106,7 @@ class ProductApi {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var product = await prisma.product.delete(
-        where: ProductWhereUniqueInput(id: int.parse(id)),
+        where: ProductWhereUniqueInput(id: id),
       );
       var productObject = jsonEncode(product);
       return Response.ok('product Deleted: $productObject\n', headers: {

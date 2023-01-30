@@ -33,13 +33,14 @@ class PaymentMethodApi {
       var secret = payload['secret'];
       var status = payload['status'];
       CommonStatus statusEnum = CommonStatus.values
-          .firstWhere((e) => e.toString() == 'SlugType.' + status);
+          .firstWhere((e) => e.toString() == 'CommonStatus.' + status);
       var paymentMethod = await prisma.paymentMethod.create(
         data: PaymentMethodCreateInput(
           name: name,
           apiKey: apiKey,
           secret: secret,
           status: statusEnum,
+          //ToDo: Payment Method Type has a relation making problem with order
         ),
       );
       var paymentMethodObject = jsonEncode(paymentMethod);
@@ -51,7 +52,7 @@ class PaymentMethodApi {
     //update paymentMethod
     router.put('/updatePaymentMethod', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var name = payload['name'];
       var apiKey = payload['apiKey'];
       var secret = payload['secret'];
@@ -79,7 +80,7 @@ class PaymentMethodApi {
     //delete paymentMethod
     router.delete('/deletePaymentMethod', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var paymentMethod = await prisma.paymentMethod.delete(
         where: PaymentMethodWhereUniqueInput(id: id),
       );

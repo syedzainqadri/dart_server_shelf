@@ -17,7 +17,7 @@ void main(List<String> arguments) async {
   app.mount('/faqGroup', FaqGroupApi().router); //done
   app.mount('/faq', FaqQuestionAnswerApi().router); //done
   app.mount('/floorPlan', FloorPlanApi().router); //done
-  app.mount('/product', ProductApi().router);
+  app.mount('/product', ProductApi().router); //done
   app.mount('/order', OrderApi().router);
   app.mount('/productOrder', OrderProductApi().router);
   app.mount('/forumPost', ForumPostApi().router); //done

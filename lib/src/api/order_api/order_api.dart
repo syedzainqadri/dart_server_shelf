@@ -28,8 +28,8 @@ class OrderApi {
     //create order
     router.post('/createOrder', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var orderAmount = payload['orderAmount'].toDouble();
-      var userId = payload['userId'].toInt();
+      var orderAmount = payload['orderAmount'];
+      var userId = payload['userId'];
       var paymentMethodId = payload['paymentMethodId'];
       var orderProduct = payload['orderProduct'];
       var order = await prisma.order.create(
@@ -42,6 +42,7 @@ class OrderApi {
               connect: PaymentMethodWhereUniqueInput(id: paymentMethodId)),
           orderProduct: OrderProductCreateNestedManyWithoutOrderInput(
             connect: OrderProductWhereUniqueInput(id: orderProduct),
+            //ToDo: Need to create the payment method first to test it
           ),
         ),
       );
