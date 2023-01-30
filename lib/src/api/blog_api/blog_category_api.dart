@@ -40,7 +40,6 @@ class BlogCategoryApi {
           content: PrismaUnion.zero(content),
           iconImage: PrismaUnion.zero(iconImage),
           image: PrismaUnion.zero(image),
-          //uptill here todo
         ),
       );
       var blogCategoryObject = jsonEncode(blogCategory);

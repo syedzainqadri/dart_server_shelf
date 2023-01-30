@@ -55,7 +55,6 @@ class BlogApi {
           author: UsersCreateNestedOneWithoutBlogsInput(
             connect: UsersWhereUniqueInput(id: authorId),
           ),
-          //uptill here todo
         ),
       );
       var blogObject = jsonEncode(blog);

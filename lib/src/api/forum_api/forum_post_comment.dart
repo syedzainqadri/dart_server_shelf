@@ -61,7 +61,7 @@ class ForumPostCommentApi {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var postReplyTitle = payload['postReplyTitle'];
-      var postReplyType = payload['postReplyType']; //ToDo: Define proper enums
+      var postReplyType = payload['postReplyType']; //TODO: Define proper enums
       var postReplyDescription = payload['postReplyDescription'];
       var forumPostComment = await prisma.forumPostComment.update(
         where: ForumPostCommentWhereUniqueInput(id: id),

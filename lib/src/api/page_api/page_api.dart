@@ -15,11 +15,11 @@ class PageApi {
     });
 
     //get page by id
-    router.get('/<id|[0-9]+>', (Request request, String id) async {
+    router.get('/id', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var page = await prisma.page.findUnique(
-        where: PageWhereUniqueInput(id: int.parse(id)),
+        where: PageWhereUniqueInput(id: id),
       );
       var pageObject = jsonEncode(page);
       return Response.ok('page by ID Is: $pageObject\n', headers: {
@@ -38,7 +38,7 @@ class PageApi {
       var slugType = payload['slugType'];
       SlugType slugTypeEnum = SlugType.values
           .firstWhere((e) => e.toString() == 'SlugType.' + slugType);
-      var refrenceId = payload['refrenceId'].toInt();
+      var refrenceId = payload['refrenceId'];
       var page = await prisma.page.create(
         data: PageCreateInput(
           title: title,
@@ -65,7 +65,7 @@ class PageApi {
     //update page
     router.put('/updatePage', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var title = payload['title'];
       var content = payload['content'];
       var featuredImage = payload['featuredImage'];
@@ -76,9 +76,10 @@ class PageApi {
         data: PageUpdateInput(
           title: StringFieldUpdateOperationsInput(set$: title),
           status: BoolFieldUpdateOperationsInput(set$: status),
-          content: NullableStringFieldUpdateOperationsInput(set$: content),
-          featuredImage:
-              NullableStringFieldUpdateOperationsInput(set$: featuredImage),
+          content: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(content)),
+          featuredImage: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(featuredImage)),
           slug: SlugUpdateOneRequiredWithoutPagesNestedInput(
             update: SlugUpdateWithoutPagesInput(
               slug: StringFieldUpdateOperationsInput(set$: slug),
@@ -98,7 +99,7 @@ class PageApi {
     //delete page
     router.delete('/deletePage', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var page = await prisma.page.delete(
         where: PageWhereUniqueInput(id: id),
       );

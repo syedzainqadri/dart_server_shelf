@@ -42,7 +42,7 @@ class OrderApi {
               connect: PaymentMethodWhereUniqueInput(id: paymentMethodId)),
           orderProduct: OrderProductCreateNestedManyWithoutOrderInput(
             connect: OrderProductWhereUniqueInput(id: orderProduct),
-            //ToDo: Need to create the payment method first to test it
+            //TODO: Need to create the payment method first to test it
           ),
         ),
       );
