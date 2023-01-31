@@ -6,8 +6,8 @@ void main(List<String> arguments) async {
   app.mount('/api', HelloWorldApi().router);
   app.mount('/auth', AuthAPi(secret: secret).router); //done
   app.mount('/users', UserApi().router); //done
-  app.mount('/profile', ProfileApi().router);
-  app.mount('/post', PostApi().router);
+  app.mount('/profile', ProfileApi().router); //done
+  app.mount('/post', PostApi().router); //done
   app.mount('/category', CategoryApi().router); //done
   app.mount('/amenity', AmenitiesApi().router); //done
   app.mount('/agency', AgencyApi().router); //done
@@ -18,8 +18,8 @@ void main(List<String> arguments) async {
   app.mount('/faq', FaqQuestionAnswerApi().router); //done
   app.mount('/floorPlan', FloorPlanApi().router); //done
   app.mount('/product', ProductApi().router); //done
-  app.mount('/order', OrderApi().router); //has issue
-  app.mount('/productOrder', OrderProductApi().router); //has issue
+  app.mount('/order', OrderApi().router); //done
+  app.mount('/productOrder', OrderProductApi().router); //done
   app.mount('/forumPost', ForumPostApi().router); //done
   app.mount('/forumPostComment', ForumPostCommentApi().router); //done
   app.mount('/page', PageApi().router); //done
@@ -27,8 +27,8 @@ void main(List<String> arguments) async {
       ProjectNearByPlaceNearByPlacesApi().router); //done
   app.mount('/project', ProjectsApi().router); //done
   app.mount('/paymentMethod', PaymentMethodApi().router); //done
-  app.mount('/slug', SlugApi().router);
-  app.mount('/wishlist', WishListApi().router);
+  app.mount('/slug', SlugApi().router); //done
+  app.mount('/wishlist', WishListApi().router); //done
 
   //server configuration
   final ip = InternetAddress.anyIPv4;

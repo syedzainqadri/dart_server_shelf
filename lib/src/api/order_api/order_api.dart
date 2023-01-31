@@ -17,7 +17,7 @@ class OrderApi {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var order = await prisma.order.findUnique(
-        where: OrderWhereUniqueInput(id: int.parse(id)),
+        where: OrderWhereUniqueInput(id: id),
       );
       var orderObject = jsonEncode(order);
       return Response.ok('order by ID Is: $orderObject\n', headers: {

@@ -15,11 +15,11 @@ class PostApi {
     });
 
     //get post by id
-    router.get('/<id|[0-9]+>', (Request request, String id) async {
+    router.get('/id', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var post = await prisma.post.findUnique(
-        where: PostWhereUniqueInput(id: int.parse(id)),
+        where: PostWhereUniqueInput(id: id),
       );
       var postObject = jsonEncode(post);
       return Response.ok('Post by ID Is: $postObject\n', headers: {
@@ -28,11 +28,11 @@ class PostApi {
     });
 
     //get post by user id
-    router.get('/user/<id|[0-9]+>', (Request request, String id) async {
+    router.get('/user/id', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
-      var post =
-          await prisma.post.findMany(where: PostWhereInput(authorId: id));
+      var post = await prisma.post
+          .findMany(where: PostWhereInput(authorId: IntFilter(equals: id)));
       var postObject = jsonEncode(post);
       return Response.ok('Post by User ID Is: $postObject\n', headers: {
         'Content-Type': 'application/json',
@@ -76,6 +76,11 @@ class PostApi {
       var published = payload['published'];
       var contactName = payload['contactName'];
       var contactPersonType = payload['contactPersonType'];
+      var refrenceId = payload['refrenceId'];
+      var slug = payload['slug'];
+      CcontactPersonType contactPersonEnum = CcontactPersonType.values
+          .firstWhere(
+              (e) => e.toString() == 'CcontactPersonType.' + contactPersonType);
       var status = payload['status'];
       PostStatus postStatus = PostStatus.values
           .firstWhere((e) => e.toString() == 'PostStatus.' + status);
@@ -114,14 +119,20 @@ class PostApi {
           ),
           postContact: PostContactCreateNestedManyWithoutPostInput(
             create: PostContactCreateWithoutPostInput(
-              name: contactName,
-              email: contactEmail,
-              phone: contactMobile,
-              message: contactLandline,
-              ccontactPersonType: contactPersonType,
+              name: PrismaUnion.zero(contactName),
+              email: PrismaUnion.zero(contactEmail),
+              phone: PrismaUnion.zero(contactMobile),
+              message: PrismaUnion.zero(contactLandline),
+              ccontactPersonType: contactPersonEnum,
             ),
           ),
-          slug: title,
+          slug: SlugCreateNestedOneWithoutPostsInput(
+            create: SlugCreateWithoutPostsInput(
+              slug: slug,
+              referenceId: refrenceId,
+              type: SlugType.POST,
+            ),
+          ),
           status: postStatus,
           postmeta: PostMetaCreateNestedManyWithoutPostInput(
             create: PostMetaCreateWithoutPostInput(
@@ -253,7 +264,7 @@ class PostApi {
           ),
           slug: SlugUpdateOneRequiredWithoutPostsNestedInput(
             update: SlugUpdateWithoutPostsInput(
-              slug: title,
+              slug: StringFieldUpdateOperationsInput(set$: title),
             ),
           ),
           status: EnumPostStatusFieldUpdateOperationsInput(
@@ -270,13 +281,12 @@ class PostApi {
       });
     });
 
-    //delete post
-    router.delete('/deletePost/<id|[0-9]+>',
-        (Request request, String id) async {
+    //delete post //TODO: Problem delteing post issue with foreign key
+    router.delete('/deletePost', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var post = await prisma.post.delete(
-        where: PostWhereUniqueInput(id: int.parse(id)),
+        where: PostWhereUniqueInput(id: id),
       );
       var postObject = jsonEncode(post);
       return Response.ok('Post Deleted: $postObject\n', headers: {

@@ -15,7 +15,7 @@ class WishListApi {
     });
 
     //get wishlist by id
-    router.get('/<id|[0-9]+>', (Request request, String id) async {
+    router.get('/id', (Request request, String id) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var wishlist = await prisma.wishlist.findUnique(
@@ -28,7 +28,7 @@ class WishListApi {
     });
 
     //get wishlist by user id
-    router.get('/user/<id|[0-9]+>', (Request request, String id) async {
+    router.get('/user/id', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var wishlist =
@@ -40,7 +40,7 @@ class WishListApi {
     });
 
     //create wishlist
-    router.post('/createWishlit', (Request request) async {
+    router.post('/addToWishlist', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var postId = payload['postId'];
       var userId = payload['userId'];
@@ -84,12 +84,11 @@ class WishListApi {
     });
 
     //delete wishlist
-    router.delete('/deleteWishlit/<id|[0-9]+>',
-        (Request request, String id) async {
+    router.delete('/deleteFromWishlit', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var wishlist = await prisma.wishlist.delete(
-        where: WishlistWhereUniqueInput(id: int.parse(id)),
+        where: WishlistWhereUniqueInput(id: id),
       );
       var wishlistObject = jsonEncode(wishlist);
       return Response.ok('Wishlit Deleted: $wishlistObject\n', headers: {
