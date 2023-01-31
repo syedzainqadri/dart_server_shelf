@@ -31,7 +31,6 @@ class ForumPostCommentApi {
     router.post('/createForumPostComment', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var postReplyTitle = payload['postReplyTitle'];
-      var postReplyType = payload['postReplyType'];
       var postReplyDescription = payload['postReplyDescription'];
       var userId = payload['userId'];
       var forumPostId = payload['forumPostId'];
