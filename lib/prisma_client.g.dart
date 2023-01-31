@@ -1937,31 +1937,31 @@ Map<String, dynamic> _$PostCommentGroupByOutputTypeToJson(
       '_max': instance.$max?.toJson(),
     };
 
-AggregateWishlit _$AggregateWishlitFromJson(Map<String, dynamic> json) =>
-    AggregateWishlit(
+AggregateWishlist _$AggregateWishlistFromJson(Map<String, dynamic> json) =>
+    AggregateWishlist(
       $count: json['_count'] == null
           ? null
-          : WishlitCountAggregateOutputType.fromJson(
+          : WishlistCountAggregateOutputType.fromJson(
               json['_count'] as Map<String, dynamic>),
       $avg: json['_avg'] == null
           ? null
-          : WishlitAvgAggregateOutputType.fromJson(
+          : WishlistAvgAggregateOutputType.fromJson(
               json['_avg'] as Map<String, dynamic>),
       $sum: json['_sum'] == null
           ? null
-          : WishlitSumAggregateOutputType.fromJson(
+          : WishlistSumAggregateOutputType.fromJson(
               json['_sum'] as Map<String, dynamic>),
       $min: json['_min'] == null
           ? null
-          : WishlitMinAggregateOutputType.fromJson(
+          : WishlistMinAggregateOutputType.fromJson(
               json['_min'] as Map<String, dynamic>),
       $max: json['_max'] == null
           ? null
-          : WishlitMaxAggregateOutputType.fromJson(
+          : WishlistMaxAggregateOutputType.fromJson(
               json['_max'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$AggregateWishlitToJson(AggregateWishlit instance) =>
+Map<String, dynamic> _$AggregateWishlistToJson(AggregateWishlist instance) =>
     <String, dynamic>{
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
@@ -1970,9 +1970,9 @@ Map<String, dynamic> _$AggregateWishlitToJson(AggregateWishlit instance) =>
       '_max': instance.$max?.toJson(),
     };
 
-WishlitGroupByOutputType _$WishlitGroupByOutputTypeFromJson(
+WishlistGroupByOutputType _$WishlistGroupByOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    WishlitGroupByOutputType(
+    WishlistGroupByOutputType(
       id: json['id'] as int,
       postId: json['postId'] as int,
       userId: json['userId'] as int,
@@ -1980,28 +1980,28 @@ WishlitGroupByOutputType _$WishlitGroupByOutputTypeFromJson(
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       $count: json['_count'] == null
           ? null
-          : WishlitCountAggregateOutputType.fromJson(
+          : WishlistCountAggregateOutputType.fromJson(
               json['_count'] as Map<String, dynamic>),
       $avg: json['_avg'] == null
           ? null
-          : WishlitAvgAggregateOutputType.fromJson(
+          : WishlistAvgAggregateOutputType.fromJson(
               json['_avg'] as Map<String, dynamic>),
       $sum: json['_sum'] == null
           ? null
-          : WishlitSumAggregateOutputType.fromJson(
+          : WishlistSumAggregateOutputType.fromJson(
               json['_sum'] as Map<String, dynamic>),
       $min: json['_min'] == null
           ? null
-          : WishlitMinAggregateOutputType.fromJson(
+          : WishlistMinAggregateOutputType.fromJson(
               json['_min'] as Map<String, dynamic>),
       $max: json['_max'] == null
           ? null
-          : WishlitMaxAggregateOutputType.fromJson(
+          : WishlistMaxAggregateOutputType.fromJson(
               json['_max'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$WishlitGroupByOutputTypeToJson(
-        WishlitGroupByOutputType instance) =>
+Map<String, dynamic> _$WishlistGroupByOutputTypeToJson(
+        WishlistGroupByOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'postId': instance.postId,
@@ -5846,9 +5846,9 @@ Map<String, dynamic> _$PostCommentMaxAggregateOutputTypeToJson(
       'userId': instance.userId,
     };
 
-WishlitCountAggregateOutputType _$WishlitCountAggregateOutputTypeFromJson(
+WishlistCountAggregateOutputType _$WishlistCountAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    WishlitCountAggregateOutputType(
+    WishlistCountAggregateOutputType(
       id: json['id'] as int,
       postId: json['postId'] as int,
       userId: json['userId'] as int,
@@ -5857,8 +5857,8 @@ WishlitCountAggregateOutputType _$WishlitCountAggregateOutputTypeFromJson(
       $all: json['_all'] as int,
     );
 
-Map<String, dynamic> _$WishlitCountAggregateOutputTypeToJson(
-        WishlitCountAggregateOutputType instance) =>
+Map<String, dynamic> _$WishlistCountAggregateOutputTypeToJson(
+        WishlistCountAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'postId': instance.postId,
@@ -5868,41 +5868,41 @@ Map<String, dynamic> _$WishlitCountAggregateOutputTypeToJson(
       '_all': instance.$all,
     };
 
-WishlitAvgAggregateOutputType _$WishlitAvgAggregateOutputTypeFromJson(
+WishlistAvgAggregateOutputType _$WishlistAvgAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    WishlitAvgAggregateOutputType(
+    WishlistAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
       postId: (json['postId'] as num?)?.toDouble(),
       userId: (json['userId'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$WishlitAvgAggregateOutputTypeToJson(
-        WishlitAvgAggregateOutputType instance) =>
+Map<String, dynamic> _$WishlistAvgAggregateOutputTypeToJson(
+        WishlistAvgAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'postId': instance.postId,
       'userId': instance.userId,
     };
 
-WishlitSumAggregateOutputType _$WishlitSumAggregateOutputTypeFromJson(
+WishlistSumAggregateOutputType _$WishlistSumAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    WishlitSumAggregateOutputType(
+    WishlistSumAggregateOutputType(
       id: json['id'] as int?,
       postId: json['postId'] as int?,
       userId: json['userId'] as int?,
     );
 
-Map<String, dynamic> _$WishlitSumAggregateOutputTypeToJson(
-        WishlitSumAggregateOutputType instance) =>
+Map<String, dynamic> _$WishlistSumAggregateOutputTypeToJson(
+        WishlistSumAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'postId': instance.postId,
       'userId': instance.userId,
     };
 
-WishlitMinAggregateOutputType _$WishlitMinAggregateOutputTypeFromJson(
+WishlistMinAggregateOutputType _$WishlistMinAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    WishlitMinAggregateOutputType(
+    WishlistMinAggregateOutputType(
       id: json['id'] as int?,
       postId: json['postId'] as int?,
       userId: json['userId'] as int?,
@@ -5914,8 +5914,8 @@ WishlitMinAggregateOutputType _$WishlitMinAggregateOutputTypeFromJson(
           : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$WishlitMinAggregateOutputTypeToJson(
-        WishlitMinAggregateOutputType instance) =>
+Map<String, dynamic> _$WishlistMinAggregateOutputTypeToJson(
+        WishlistMinAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'postId': instance.postId,
@@ -5924,9 +5924,9 @@ Map<String, dynamic> _$WishlitMinAggregateOutputTypeToJson(
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 
-WishlitMaxAggregateOutputType _$WishlitMaxAggregateOutputTypeFromJson(
+WishlistMaxAggregateOutputType _$WishlistMaxAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
-    WishlitMaxAggregateOutputType(
+    WishlistMaxAggregateOutputType(
       id: json['id'] as int?,
       postId: json['postId'] as int?,
       userId: json['userId'] as int?,
@@ -5938,8 +5938,8 @@ WishlitMaxAggregateOutputType _$WishlitMaxAggregateOutputTypeFromJson(
           : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$WishlitMaxAggregateOutputTypeToJson(
-        WishlitMaxAggregateOutputType instance) =>
+Map<String, dynamic> _$WishlistMaxAggregateOutputTypeToJson(
+        WishlistMaxAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'postId': instance.postId,
@@ -7818,7 +7818,7 @@ Map<String, dynamic> _$PostCommentToJson(PostComment instance) =>
       'userId': instance.userId,
     };
 
-Wishlit _$WishlitFromJson(Map<String, dynamic> json) => Wishlit(
+Wishlist _$WishlistFromJson(Map<String, dynamic> json) => Wishlist(
       id: json['id'] as int,
       postId: json['postId'] as int,
       userId: json['userId'] as int,
@@ -7826,7 +7826,7 @@ Wishlit _$WishlitFromJson(Map<String, dynamic> json) => Wishlit(
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$WishlitToJson(Wishlit instance) => <String, dynamic>{
+Map<String, dynamic> _$WishlistToJson(Wishlist instance) => <String, dynamic>{
       'id': instance.id,
       'postId': instance.postId,
       'userId': instance.userId,
