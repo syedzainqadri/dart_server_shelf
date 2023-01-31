@@ -1282,7 +1282,7 @@ OrderProductGroupByOutputType _$OrderProductGroupByOutputTypeFromJson(
           : DateTime.parse(json['productExpireDate'] as String),
       productId: json['productId'] as int,
       orderId: json['orderId'] as int,
-      postId: json['postId'] as int,
+      postId: json['postId'] as int?,
       $count: json['_count'] == null
           ? null
           : OrderProductCountAggregateOutputType.fromJson(
@@ -7587,7 +7587,7 @@ OrderProduct _$OrderProductFromJson(Map<String, dynamic> json) => OrderProduct(
           : DateTime.parse(json['productExpireDate'] as String),
       productId: json['productId'] as int,
       orderId: json['orderId'] as int,
-      postId: json['postId'] as int,
+      postId: json['postId'] as int?,
     );
 
 Map<String, dynamic> _$OrderProductToJson(OrderProduct instance) =>

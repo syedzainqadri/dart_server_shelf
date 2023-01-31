@@ -214,8 +214,8 @@ model OrderProduct {
   productId Int
   order Order  @relation(fields: [orderId], references: [id])
   orderId Int
-  post Post  @relation(fields: [postId], references: [id])
-  postId Int
+  post Post?  @relation(fields: [postId], references: [id])
+  postId Int?
 }
 
 // developer and project schema end
@@ -325,7 +325,7 @@ model PostContact {
   ccontactPersonType  CcontactPersonType @default(BUYERTENAT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  post  Post    @relation(fields: [postId], references: [id])
+  post  Post?    @relation(fields: [postId], references: [id])
   postId Int
 }
 

@@ -33,9 +33,7 @@ class OrderApi {
       var paymentMethodId = payload['paymentMethodId'];
       var price = payload['price'];
       var productId = payload['productId'];
-      var postId = payload['postId'];
       var isProductUsed = payload['isProductUsed'];
-      var productActiveDate = payload['productActiveDate'];
       var productExpireDate = payload['productExpireDate'];
       var order = await prisma.order.create(
         data: OrderCreateInput(
@@ -49,11 +47,13 @@ class OrderApi {
           orderProduct: OrderProductCreateNestedManyWithoutOrderInput(
             create: OrderProductCreateWithoutOrderInput(
               price: price,
-              product: productId,
-              post: postId,
+              product: ProductCreateNestedOneWithoutOrderProductInput(
+                connect: ProductWhereUniqueInput(id: productId),
+              ),
               isProductUsed: isProductUsed,
-              productActiveDate: productActiveDate,
-              productExpireDate: productExpireDate,
+              productActiveDate: PrismaUnion.zero(DateTime.now()),
+              productExpireDate:
+                  PrismaUnion.zero(DateTime.parse(productExpireDate)),
             ),
           ),
         ),
@@ -68,16 +68,35 @@ class OrderApi {
     router.put('/updateOrder', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
-      var orderAmount = payload['orderAmount'].toDouble();
+      var orderAmount = payload['orderAmount'];
       var paymentMethodId = payload['paymentMethodId'];
-      var orderProduct = payload['orderProduct'];
+      var orderProductId = payload['orderProductId'];
+      var price = payload['price'];
+      var productId = payload['productId'];
+      var isProductUsed = payload['isProductUsed'];
+      var productExpireDate = payload['productExpireDate'];
       var order = await prisma.order.update(
         where: OrderWhereUniqueInput(id: id),
         data: OrderUpdateInput(
           orderAmount: FloatFieldUpdateOperationsInput(set$: orderAmount),
           paymentMethodId: IntFieldUpdateOperationsInput(set$: paymentMethodId),
           orderProduct: OrderProductUpdateManyWithoutOrderNestedInput(
-            connect: OrderProductWhereUniqueInput(id: orderProduct),
+            update: OrderProductUpdateWithWhereUniqueWithoutOrderInput(
+              where: OrderProductWhereUniqueInput(id: orderProductId),
+              data: OrderProductUpdateWithoutOrderInput(
+                product: ProductUpdateOneRequiredWithoutOrderProductNestedInput(
+                  connect: ProductWhereUniqueInput(id: productId),
+                ),
+                price: FloatFieldUpdateOperationsInput(set$: price),
+                isProductUsed:
+                    BoolFieldUpdateOperationsInput(set$: isProductUsed),
+                productExpireDate: NullableDateTimeFieldUpdateOperationsInput(
+                  set$: PrismaUnion.zero(
+                    DateTime.parse(productExpireDate),
+                  ),
+                ),
+              ),
+            ),
           ),
           updatedAt: DateTimeFieldUpdateOperationsInput(
             set$: DateTime.now(),
