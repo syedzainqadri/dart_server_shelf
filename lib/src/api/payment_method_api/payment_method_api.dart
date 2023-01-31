@@ -59,7 +59,7 @@ class PaymentMethodApi {
       var secret = payload['secret'];
       var status = payload['status'];
       CommonStatus statusEnum = CommonStatus.values
-          .firstWhere((e) => e.toString() == 'SlugType.' + status);
+          .firstWhere((e) => e.toString() == 'CommonStatus.' + status);
       var paymentMethod = await prisma.paymentMethod.update(
         where: PaymentMethodWhereUniqueInput(id: id),
         data: PaymentMethodUpdateInput(

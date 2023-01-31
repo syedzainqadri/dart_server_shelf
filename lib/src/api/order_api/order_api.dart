@@ -13,7 +13,7 @@ class OrderApi {
     });
 
     //get order by id
-    router.get('/<id|[0-9]+>', (Request request, String id) async {
+    router.get('/id', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var order = await prisma.order.findUnique(
@@ -31,7 +31,12 @@ class OrderApi {
       var orderAmount = payload['orderAmount'];
       var userId = payload['userId'];
       var paymentMethodId = payload['paymentMethodId'];
-      var orderProduct = payload['orderProduct'];
+      var price = payload['price'];
+      var productId = payload['productId'];
+      var postId = payload['postId'];
+      var isProductUsed = payload['isProductUsed'];
+      var productActiveDate = payload['productActiveDate'];
+      var productExpireDate = payload['productExpireDate'];
       var order = await prisma.order.create(
         data: OrderCreateInput(
           orderAmount: orderAmount,
@@ -42,7 +47,14 @@ class OrderApi {
           // paymentMethod: PaymentMethodCreateNestedOneWithoutOrderInput(
           //     connect: PaymentMethodWhereUniqueInput(id: paymentMethodId)),
           orderProduct: OrderProductCreateNestedManyWithoutOrderInput(
-            connect: OrderProductWhereUniqueInput(id: orderProduct),
+            create: OrderProductCreateWithoutOrderInput(
+              price: price,
+              product: productId,
+              post: postId,
+              isProductUsed: isProductUsed,
+              productActiveDate: productActiveDate,
+              productExpireDate: productExpireDate,
+            ),
           ),
         ),
       );
@@ -55,7 +67,7 @@ class OrderApi {
     //update order
     router.put('/updateOrder', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var orderAmount = payload['orderAmount'].toDouble();
       var paymentMethodId = payload['paymentMethodId'];
       var orderProduct = payload['orderProduct'];
@@ -81,7 +93,7 @@ class OrderApi {
     //delete order
     router.delete('/deleteOrder', (Request request) async {
       var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
+      var id = payload['id'];
       var order = await prisma.order.delete(
         where: OrderWhereUniqueInput(id: id),
       );
