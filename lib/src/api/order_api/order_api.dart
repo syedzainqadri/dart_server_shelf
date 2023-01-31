@@ -63,9 +63,7 @@ class OrderApi {
         where: OrderWhereUniqueInput(id: id),
         data: OrderUpdateInput(
           orderAmount: FloatFieldUpdateOperationsInput(set$: orderAmount),
-          // paymentMethod: PaymentMethodUpdateOneRequiredWithoutOrderNestedInput(
-          //   connect: PaymentMethodWhereUniqueInput(id: paymentMethodId),
-          // ),
+          paymentMethodId: IntFieldUpdateOperationsInput(set$: paymentMethodId),
           orderProduct: OrderProductUpdateManyWithoutOrderNestedInput(
             connect: OrderProductWhereUniqueInput(id: orderProduct),
           ),
