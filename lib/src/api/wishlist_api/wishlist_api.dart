@@ -7,7 +7,7 @@ class WishListApi {
     final router = Router();
     //get all whishlist
     router.get('/', (Request request) async {
-      var wishlist = await prisma.wishlit.findMany();
+      var wishlist = await prisma.wishlist.findMany();
       var wishlistObject = jsonEncode(wishlist);
       return Response.ok('Wishlit Is: $wishlistObject\n', headers: {
         'Content-Type': 'application/json',
@@ -18,8 +18,8 @@ class WishListApi {
     router.get('/<id|[0-9]+>', (Request request, String id) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
-      var wishlist = await prisma.wishlit.findUnique(
-        where: WishlitWhereUniqueInput(id: int.parse(id)),
+      var wishlist = await prisma.wishlist.findUnique(
+        where: WishlistWhereUniqueInput(id: int.parse(id)),
       );
       var wishlistObject = jsonEncode(wishlist);
       return Response.ok('Wishlit by ID Is: $wishlistObject\n', headers: {
@@ -32,7 +32,7 @@ class WishListApi {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
       var wishlist =
-          await prisma.wishlit.findMany(where: WishlitWhereInput(userId: id));
+          await prisma.wishlist.findMany(where: WishlistWhereInput(userId: id));
       var wishlistObject = jsonEncode(wishlist);
       return Response.ok('Wishlit by User ID Is: $wishlistObject\n', headers: {
         'Content-Type': 'application/json',
@@ -44,8 +44,8 @@ class WishListApi {
       var payload = jsonDecode(await request.readAsString());
       var postId = payload['postId'];
       var userId = payload['userId'];
-      var wishlist = await prisma.wishlit.create(
-        data: WishlitCreateInput(
+      var wishlist = await prisma.wishlist.create(
+        data: WishlistCreateInput(
           post: PostCreateNestedOneWithoutWishlistInput(
             connect: PostWhereUniqueInput(id: postId),
           ),
@@ -66,9 +66,9 @@ class WishListApi {
       var id = payload['id'].toInt();
       var postId = payload['postId'];
       var userId = payload['userId'];
-      var wishlist = await prisma.wishlit.update(
-        where: WishlitWhereUniqueInput(id: id),
-        data: WishlitUpdateInput(
+      var wishlist = await prisma.wishlist.update(
+        where: WishlistWhereUniqueInput(id: id),
+        data: WishlistUpdateInput(
           post: PostUpdateOneRequiredWithoutWishlistNestedInput(
             connect: PostWhereUniqueInput(id: postId),
           ),
@@ -88,8 +88,8 @@ class WishListApi {
         (Request request, String id) async {
       var payload = jsonDecode(await request.readAsString());
       var id = payload['id'];
-      var wishlist = await prisma.wishlit.delete(
-        where: WishlitWhereUniqueInput(id: int.parse(id)),
+      var wishlist = await prisma.wishlist.delete(
+        where: WishlistWhereUniqueInput(id: int.parse(id)),
       );
       var wishlistObject = jsonEncode(wishlist);
       return Response.ok('Wishlit Deleted: $wishlistObject\n', headers: {
