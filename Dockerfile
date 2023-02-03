@@ -1,10 +1,10 @@
-FROM google/dart
+FROM dart:stable AS build
 
 WORKDIR /app
 COPY pubspec.* /app/
-RUN pub get 
+RUN pub get --no-precompile
 COPY . /app/
-RUN pub get --offline 
+RUN pub get --offline --no-precompile
 
 CMD []
 
