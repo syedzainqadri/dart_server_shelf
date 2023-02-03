@@ -1,38 +1,16 @@
 # Specify the Dart SDK base image version using dart:<version> (ex: dart:2.12)
 FROM dart:stable AS build
 
-# # Resolve app dependencies.
-# WORKDIR /app
-# COPY pubspec.* ./
-# RUN dart pub get
-
-# # Copy app source code and AOT compile it.
-# COPY . .
-# # Ensure packages are still up-to-date if anything has changed
-# RUN dart pub get --offline
-
-
-# # Build minimal serving image from AOT-compiled `/server` and required system
-# # libraries and configuration files stored in `/runtime/` from the build stage.
-# FROM scratch
-# COPY --from=build /runtime/ /
-# COPY --from=build /app/bin/server /app/bin/
-
-# # Start server.
-# EXPOSE 8080
-# CMD ["/app/bin/server"]
-
 WORKDIR /app
-COPY pubspec.* /app/
-RUN dart pub get --no-precompile
-COPY . /app/
-RUN dart pub get --offline --no-precompile
-
-CMD []
-
-ENTRYPOINT ["/usr/bin/dart", "bin/server.dart"]
-
-# Service must listen to $PORT environment variable.
-# This default value facilitates local development.
+COPY pubspec.* .
+RUN dart pub get
+COPY . .
+RUN dart pub get --offline
+# Copy over the entire app...
+COPY --from=0 /app /app
+# ...or copy specific files and directories you require at runtime, ex:
+#COPY --from=0 /app/bin/server.dart /app/bin/server.dart
+#COPY --from=0 /app/lib/ /app/lib/
+#COPY --from=0 /app/static/ /app/static/
 EXPOSE 8080
-ENV PORT 8080
+ENTRYPOINT ["/usr/lib/dart/bin/dart", "/app/bin/server.dart"]
