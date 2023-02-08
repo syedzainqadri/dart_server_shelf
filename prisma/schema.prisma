@@ -449,7 +449,6 @@ model Slug {
   formPost ForumPost[]
 }
 
-// Form models start
 model ForumPost {
   id        Int       @id @default(autoincrement())
   postTitle String
@@ -477,7 +476,6 @@ model ForumPostComment {
 
 }
 
-// FAQ models started
 model FaqGroup {
   id        Int       @id @default(autoincrement())
   faqGroupName String
@@ -499,7 +497,6 @@ model FaqQuestionAnswer {
   faqGroup  FaqGroup  @relation(fields: [faqGroupId], references: [id])
   faqGroupId  Int
 }
-// FAQ models ended
 
 enum ForumStatus {
   PENDING
