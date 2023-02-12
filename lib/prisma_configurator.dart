@@ -1,6 +1,6 @@
 import 'package:orm/configure.dart';
 
-/// Configure Prisma for production environment.
+// / Configure Prisma for production environment.
 ///
 /// **NOTE**: The function name must be configurePrisma.
 void configurePrisma(PrismaEnvironment environment) {
