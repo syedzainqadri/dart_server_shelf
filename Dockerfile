@@ -35,11 +35,11 @@ RUN dart run build_runner build --delete-conflicting-outputs
 RUN dart compile exe bin/server.dart -o /app/server
 
 # Build a small image
-FROM ubuntu
+# FROM ubuntu
 
-# Copy dart runtime
-COPY --from=builder /runtime/ /
-COPY --from=builder /app/server /app/server
-COPY --from=builder /app/query-engine /app/query-engine
+# # Copy dart runtime
+# COPY --from=builder /runtime/ /
+# COPY --from=builder /app/server /app/server
+# COPY --from=builder /app/query-engine /app/query-engine
 
 CMD ["/app/server"]
