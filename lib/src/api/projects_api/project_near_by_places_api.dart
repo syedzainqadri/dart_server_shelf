@@ -7,100 +7,200 @@ class ProjectNearByPlaceNearByPlacesApi {
     final router = Router();
     //get all projectNearByPlaceNearByPlaces
     router.get('/', (Request request) async {
-      var projectNearByPlace = await prisma.projectNearByPlace.findMany();
-      var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
-      return Response.ok('All Near By Places Are: $projectNearByPlaceObject\n',
-          headers: {
-            'Content-Type': 'application/json',
-          });
+      try {
+        var projectNearByPlace = await prisma.projectNearByPlace.findMany();
+        var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
+        return Response.ok(projectNearByPlaceObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     //get projectNearByPlace by id
     router.get('/id', (Request request) async {
-      var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'];
-      var projectNearByPlace = await prisma.projectNearByPlace.findUnique(
-        where: ProjectNearByPlaceWhereUniqueInput(id: id),
-      );
-      var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
-      return Response.ok('Near By Place By Id: $projectNearByPlaceObject\n',
-          headers: {
-            'Content-Type': 'application/json',
-          });
+      try {
+        var payload = jsonDecode(await request.readAsString());
+        var id = payload['id'];
+        var projectNearByPlace = await prisma.projectNearByPlace.findUnique(
+          where: ProjectNearByPlaceWhereUniqueInput(id: id),
+        );
+        var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
+        return Response.ok(projectNearByPlaceObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     //create projectNearByPlace
     router.post('/createProjectNearByPlace', (Request request) async {
-      var payload = jsonDecode(await request.readAsString());
-      var title = payload['title'];
-      var longitude = payload['longitude'];
-      var latitude = payload['latitude'];
-      var projectId = payload['projectId'];
-      var placeCategory = payload['placeCategory'];
-      ProjectNearByPlaceCategory placeCategoryEnum =
-          ProjectNearByPlaceCategory.values.firstWhere((e) =>
-              e.toString() == 'ProjectNearByPlaceCategory.' + placeCategory);
-      var projectNearByPlace = await prisma.projectNearByPlace.create(
-        data: ProjectNearByPlaceCreateInput(
-          title: title,
-          longitude: longitude,
-          latitude: latitude,
-          placeCategory: placeCategoryEnum,
-          projects: ProjectCreateNestedManyWithoutProjectNearByPlaceInput(
-            connect: ProjectWhereUniqueInput(id: projectId),
+      try {
+        var payload = jsonDecode(await request.readAsString());
+        var title = payload['title'];
+        var longitude = payload['longitude'];
+        var latitude = payload['latitude'];
+        var projectId = payload['projectId'];
+        var placeCategory = payload['placeCategory'];
+        ProjectNearByPlaceCategory placeCategoryEnum =
+            ProjectNearByPlaceCategory.values.firstWhere((e) =>
+                e.toString() == 'ProjectNearByPlaceCategory.' + placeCategory);
+        var projectNearByPlace = await prisma.projectNearByPlace.create(
+          data: ProjectNearByPlaceCreateInput(
+            title: title,
+            longitude: longitude,
+            latitude: latitude,
+            placeCategory: placeCategoryEnum,
+            projects: ProjectCreateNestedManyWithoutProjectNearByPlaceInput(
+              connect: ProjectWhereUniqueInput(id: projectId),
+            ),
           ),
-        ),
-      );
-      var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
-      return Response.ok('NearBy Place Created: $projectNearByPlaceObject\n',
-          headers: {
-            'Content-Type': 'application/json',
-          });
+        );
+        var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
+        return Response.ok(projectNearByPlaceObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     //update projectNearByPlace
     router.put('/updateProjectNearByPlace', (Request request) async {
-      var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'];
-      var title = payload['title'];
-      var longitude = payload['longitude'];
-      var latitude = payload['latitude'];
-      var placeCategory = payload['placeCategory'];
-      ProjectNearByPlaceCategory placeCategoryEnum =
-          ProjectNearByPlaceCategory.values.firstWhere((e) =>
-              e.toString() ==
-              'ProjectNearByPlaceCategory.' +
-                  placeCategory); //convert int to enum
-      var projectNearByPlace = await prisma.projectNearByPlace.update(
-        where: ProjectNearByPlaceWhereUniqueInput(id: id),
-        data: ProjectNearByPlaceUpdateInput(
-          title: StringFieldUpdateOperationsInput(set$: title),
-          longitude: StringFieldUpdateOperationsInput(set$: longitude),
-          latitude: StringFieldUpdateOperationsInput(set$: latitude),
-          placeCategory:
-              EnumProjectNearByPlaceCategoryFieldUpdateOperationsInput(
-                  set$: placeCategoryEnum),
-        ),
-      );
-      var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
-      return Response.ok('Near By Place Updated: $projectNearByPlaceObject\n',
-          headers: {
-            'Content-Type': 'application/json',
-          });
+      try {
+        var payload = jsonDecode(await request.readAsString());
+        var id = payload['id'];
+        var title = payload['title'];
+        var longitude = payload['longitude'];
+        var latitude = payload['latitude'];
+        var placeCategory = payload['placeCategory'];
+        ProjectNearByPlaceCategory placeCategoryEnum =
+            ProjectNearByPlaceCategory.values.firstWhere((e) =>
+                e.toString() ==
+                'ProjectNearByPlaceCategory.' +
+                    placeCategory); //convert int to enum
+        var projectNearByPlace = await prisma.projectNearByPlace.update(
+          where: ProjectNearByPlaceWhereUniqueInput(id: id),
+          data: ProjectNearByPlaceUpdateInput(
+            title: StringFieldUpdateOperationsInput(set$: title),
+            longitude: StringFieldUpdateOperationsInput(set$: longitude),
+            latitude: StringFieldUpdateOperationsInput(set$: latitude),
+            placeCategory:
+                EnumProjectNearByPlaceCategoryFieldUpdateOperationsInput(
+                    set$: placeCategoryEnum),
+          ),
+        );
+        var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
+        return Response.ok(projectNearByPlaceObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     //delete projectNearByPlace
     router.delete('/deleteProjectNearByPlace', (Request request) async {
-      var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
-      var projectNearByPlace = await prisma.projectNearByPlace.delete(
-        where: ProjectNearByPlaceWhereUniqueInput(id: id),
-      );
-      var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
-      return Response.ok('Near By Place Deleted: $projectNearByPlaceObject\n',
-          headers: {
-            'Content-Type': 'application/json',
-          });
+      try {
+        var payload = jsonDecode(await request.readAsString());
+        var id = payload['id'].toInt();
+        var projectNearByPlace = await prisma.projectNearByPlace.delete(
+          where: ProjectNearByPlaceWhereUniqueInput(id: id),
+        );
+        var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
+        return Response.ok(projectNearByPlaceObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     final handler =

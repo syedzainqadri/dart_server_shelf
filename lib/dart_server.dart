@@ -33,6 +33,7 @@ export 'package:crypto/crypto.dart'; // this is the line you need to add
 export 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart'; // this is the line you need to add
 export 'dart:math'; // this is the line you need to add
 export 'package:dart_server/prisma_client.dart';
+export 'package:orm/orm.dart';
 export 'dart:convert';
 export 'dart:io';
 export 'env.dart';
