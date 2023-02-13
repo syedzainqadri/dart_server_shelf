@@ -8,7 +8,7 @@
             "name": "dart_server",
             "request": "launch",
             "type": "dart",
-            "program": "bin/dart_server.dart",
+            "program": "bin/server.dart",
         }
     ]
 }

@@ -3,13 +3,14 @@
 
 generator client {
   provider        = "prisma-client-dart"
-  previewFeatures = ["interactiveTransactions"]
 }
 
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+
 
 model SystemSettings {
   id       Int       @id @default(autoincrement())
@@ -25,10 +26,62 @@ model SystemUser {
   username  String
   password  String
   salt      String
-  role      SystemRole  @default(SUPERADMIN)
+  // role      SystemRole  @default(SUPERADMIN)
   email     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  systemUserRole SystemUserRole[]
+  systemUserPermissions SystemUserPermissions[]
+}
+
+model SystemUserRole {
+  id        Int       @id @default(autoincrement())
+  title     String
+  systemUser SystemUser[]
+}
+
+model SystemActivityLog {
+  id           Int       @id @default(autoincrement())
+  refrenceId   Int
+  refrenceFrom RefrenceFrom @default(PRODUCT)
+  activity  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum RefrenceFrom {
+  PRODUCT
+  ORDER
+  PROJECT
+  USER
+  POST
+}
+
+model SystemUserPermissions{
+  id  Int @id @default(autoincrement())
+  canView Boolean
+  canAdd Boolean
+  canEdit Boolean
+  canDelete Boolean
+  hasFullAccess Boolean
+  // TODO; need to do some more discussion
+  allowedProject String?
+  allowedCity String?
+  allowedAgency String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  systemUser SystemUser  @relation(fields: [systemUserId], references: [id])
+  systemUserId Int
+  systemModule SystemModule @relation(fields: [systemModuleId], references: [id])
+  systemModuleId Int
+}
+
+model SystemModule {
+  id        Int       @id @default(autoincrement())
+  parentId  Int
+  title String
+  sortOrder Int
+  systemUserPermissions SystemUserPermissions[]
 }
 
 model Agency {
@@ -36,8 +89,26 @@ model Agency {
   title    String
   featuredImage String?
   logoImage String?
+  ownerName String?
+  ownerDesignation String?
+  ownerMessage String?
+  ownerProfilePic String?
+  companyTitle String?
+  country String? @default("Pakistan")
+  email String?
+  website String?
+  address String?
+  description String?
+  mobile String?
+  landline String?
+  whatsapp String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  users         Users?  @relation(fields: [userId], references: [id])
+  userId       Int?
+  slug   Slug @relation(fields: [slugId], references: [id])
+  slugId Int  @unique
+
 }
 // developer and project schema started
 model Developer {
@@ -56,8 +127,9 @@ model Project {
   gallery   String?
   locality  String?
   city      String?
-  price     String?
-  WalkthroughThreeD String? //iframe
+  startingPrice     Float?
+  endingPrice     Float?
+  walkthroughThreeD String? //iframe
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   developer Developer?  @relation(fields: [developerId], references: [id])
@@ -75,8 +147,8 @@ model FloorPlan {
   floorPlanPath String
   project Project?  @relation(fields: [projectId], references: [id])
   projectId Int?
-
 }
+
 model ProjectNearByPlace {
   id        Int       @id @default(autoincrement())
   title     String
@@ -93,6 +165,59 @@ enum ProjectNearByPlaceCategory {
   HOSPITAL
   PARK
 }
+
+model Product {
+  id       Int       @id @default(autoincrement())
+  title String
+  price Float
+  salePrice Float
+  image String
+  productType ProductType @default(HOT)
+  description String?
+  productLifeInDays Int @default(7)
+  status CommonStatus @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orderProduct OrderProduct[]
+}
+
+model Order {
+  id  Int       @id @default(autoincrement())
+  orderAmount Float
+  user         Users  @relation(fields: [userId], references: [id])
+  userId       Int
+  // paymentMethod PaymentMethod  @relation(fields: [paymentMethodId], references: [id])
+  paymentMethodId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orderProduct OrderProduct[]
+}
+
+model PaymentMethod {
+  id  Int       @id @default(autoincrement())
+  name String
+  apiKey String
+  secret String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  status CommonStatus @default(INACTIVE)
+  // order Order
+}
+
+model OrderProduct {
+  id  Int @id @default(autoincrement())
+  price Float
+  isProductUsed Boolean @default(false)
+  productActiveDate DateTime?
+  productExpireDate DateTime?
+  product Product  @relation(fields: [productId], references: [id])
+  productId Int
+  order Order  @relation(fields: [orderId], references: [id])
+  orderId Int
+  post Post?  @relation(fields: [postId], references: [id])
+  postId Int?
+}
+
 // developer and project schema end
 model Users {
   id       Int       @id @default(autoincrement())
@@ -101,10 +226,23 @@ model Users {
   password String?
   fcmtoken String?
   salt     String?
+  preferencesEmailNotification Boolean @default(false)
+  preferencesNewsletter Boolean @default(false)
+  preferencesAutomatedReport Boolean @default(false)
+  currency String @default("PKR")
+  AreaUnit AreaSizeUnit @default(SQFT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   posts    Post[]
   Profile  Profile[] @relation("userProfile")
+  reviews Review[]
+  wishlists Wishlist[]
+  formPosts ForumPost[]
+  formPostComments ForumPostComment[]
+  postComments PostComment[]
+  blogs Blog[]
+  agency Agency[]
+  order Order[]
 }
 
 model Profile {
@@ -132,7 +270,7 @@ model Profile {
 model Post {
   id               Int        @id @default(autoincrement())
   title            String
-  // slug             String?    @unique
+  propertyNumber   String?    @unique
   description      String?
   featuredImages   String?
   galleryImages    String?
@@ -150,7 +288,7 @@ model Post {
   noOfInstallments Int
   monthlyInstallments Int
   readyForPossession  Boolean? @default(false)
-  areaSizeUnit     String? @default("Marla")
+  areaSizeUnit     AreaSizeUnit? @default(MARLA)
   bedroooms        Int
   bathroom         Int
   contactEmail     String
@@ -159,10 +297,16 @@ model Post {
   featureAndAmenities String // save ameeties or featurs in json
   // published        Boolean    @default(false)
   postmeta         PostMeta[]
-  category         Category @relation(fields: [categoryId], references: [id])
+  category         Category    @relation(fields: [categoryId], references: [id])
   categoryId       Int
-  author           Users      @relation(fields: [authorId], references: [id])
+  author           Users       @relation(fields: [authorId], references: [id])
   authorId         Int
+  postContact      PostContact[]
+  review           Review[]
+  wishlist         Wishlist[]
+  postComment      PostComment[]
+  orderProduct     OrderProduct[]
+
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
   status  PostStatus @default(DRAFT)
@@ -170,6 +314,53 @@ model Post {
   updatedAt        DateTime   @updatedAt
   // propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
   // propertyTypeListId Int
+}
+
+model PostContact {
+  id       Int       @id @default(autoincrement())
+  name  String?
+  email String?
+  phone String?
+  message String?
+  ccontactPersonType  CcontactPersonType @default(BUYERTENAT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  post  Post?    @relation(fields: [postId], references: [id])
+  postId Int
+}
+
+model Review {
+  id    Int       @id @default(autoincrement())
+  name  String?
+  message String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user  Users    @relation(fields: [userId], references: [id])
+  userId Int
+  post  Post    @relation(fields: [postId], references: [id])
+  postId Int
+}
+
+model PostComment {
+  id        Int       @id @default(autoincrement())
+  postReplyTitle String
+  postReplyDescription String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  forumPost Post @relation(fields: [postId], references: [id])
+  postId Int
+  user      Users @relation(fields: [userId], references: [id])
+  userId    Int
+}
+
+model Wishlist {
+  id    Int       @id @default(autoincrement())
+  post  Post    @relation(fields: [postId], references: [id])
+  postId Int
+  user  Users    @relation(fields: [userId], references: [id])
+  userId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model PostMeta {
@@ -212,13 +403,15 @@ model Blog {
   title       String
   content     String?
   featuredImage String?
-  createdAt   DateTime
-  updatedAt   DateTime
+  createdAt   DateTime? @default(now())
+  updatedAt  DateTime? @updatedAt
   status      Boolean   @default(true)
   blogCategory        BlogCategory      @relation(fields: [blogCategoryId], references: [id])
   blogCategoryId      Int
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
+  author           Users       @relation(fields: [authorId], references: [id])
+  authorId         Int
 }
 
 model BlogCategory {
@@ -227,8 +420,8 @@ model BlogCategory {
   content     String?
   iconImage   String?
   image       String?
-  createdAt   DateTime
-  updatedAt   DateTime
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? @updatedAt
   blogs       Blog[]
 }
 
@@ -237,8 +430,8 @@ model Page{
   title       String
   content     String?
   featuredImage String?
-  createdAt   DateTime
-  updatedAt   DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   status      Boolean   @default(true)
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
@@ -252,6 +445,69 @@ model Slug {
   pages Page[]
   blogs Blog[]
   posts Post[]
+  agency Agency[]
+  formPost ForumPost[]
+}
+
+model ForumPost {
+  id        Int       @id @default(autoincrement())
+  postTitle String
+  postType  ForumPostType @default(GENERAL)
+  postDescription String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  forumPostReply ForumPostComment[]
+  user           Users       @relation(fields: [userId], references: [id])
+  userId         Int
+  slug   Slug @relation(fields: [slugId], references: [id])
+  slugId Int  @unique
+}
+
+model ForumPostComment {
+  id        Int       @id @default(autoincrement())
+  postReplyTitle String
+  postReplyDescription String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  forumPost ForumPost @relation(fields: [forumPostId], references: [id])
+  forumPostId Int
+  user           Users       @relation(fields: [userId], references: [id])
+  userId         Int
+
+}
+
+model FaqGroup {
+  id        Int       @id @default(autoincrement())
+  faqGroupName String
+  sortOrder Int
+  status Boolean @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  faqQuestionAnswer FaqQuestionAnswer[]
+}
+
+model FaqQuestionAnswer {
+  id  Int @id @default(autoincrement())
+  qusestion String
+  answer String
+  sortOrder Int
+  status Boolean @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  faqGroup  FaqGroup  @relation(fields: [faqGroupId], references: [id])
+  faqGroupId  Int
+}
+
+enum ForumStatus {
+  PENDING
+  CANCEL
+  DELETE
+}
+
+enum ForumPostType {
+  GENERAL
+  DOCUMENTS
+  CLEARANCE
 }
 
 enum Role {
@@ -270,6 +526,8 @@ enum SlugType {
   PAGE
   BLOG
   BLOGCATEGORY
+  AGENCY
+  FORUMPOST
 }
 
 enum SystemRole {
@@ -295,3 +553,26 @@ enum PostStatus {
   DELETED
 }
 
+enum AreaSizeUnit {
+  MARLA
+  SQFT
+  SQMT
+}
+
+enum CcontactPersonType {
+  BUYERTENAT
+  AGENT
+  OTHER
+}
+
+enum CommonStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum ProductType {
+  HOT
+  FEATURED
+  TOP
+  BUMPED
+}
