@@ -5,76 +5,182 @@ class FloorPlanApi {
     final router = Router();
     //get all floorplan
     router.get('/', (Request request) async {
-      var floorPlan = await prisma.floorPlan.findMany();
-      var floorPlanObject = jsonEncode(floorPlan);
-      return Response.ok('All Floor Plan Are: $floorPlanObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      try {
+        var floorPlan = await prisma.floorPlan.findMany();
+        var floorPlanObject = jsonEncode(floorPlan);
+        return Response.ok(floorPlanObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     //get floorPlan by id
     router.get('/id', (Request request) async {
-      var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'];
-      var floorPlan = await prisma.floorPlan.findUnique(
-        where: FloorPlanWhereUniqueInput(id: id),
-      );
-      var floorPlanObject = jsonEncode(floorPlan);
-      return Response.ok('Floor Plan By Id is: $floorPlanObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      try {
+        var payload = jsonDecode(await request.readAsString());
+        var id = payload['id'];
+        var floorPlan = await prisma.floorPlan.findUnique(
+          where: FloorPlanWhereUniqueInput(id: id),
+        );
+        var floorPlanObject = jsonEncode(floorPlan);
+        return Response.ok(floorPlanObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     //create floorPlan
     router.post('/createFloorPlan', (Request request) async {
-      var payload = jsonDecode(await request.readAsString());
-      var title = payload['title'];
-      var floorPlanPath = payload['floorPlanPath'];
-      var projectId = payload['projectId'];
-      var floorPlan = await prisma.floorPlan.create(
-        data: FloorPlanCreateInput(
-          title: title,
-          floorPlanPath: floorPlanPath,
-          project: ProjectCreateNestedOneWithoutFloorplansInput(
-              connect: ProjectWhereUniqueInput(id: projectId)),
-        ),
-      );
-      var floorPlanObject = jsonEncode(floorPlan);
-      return Response.ok('Floor Plan Created it: $floorPlanObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      try {
+        var payload = jsonDecode(await request.readAsString());
+        var title = payload['title'];
+        var floorPlanPath = payload['floorPlanPath'];
+        var projectId = payload['projectId'];
+        var floorPlan = await prisma.floorPlan.create(
+          data: FloorPlanCreateInput(
+            title: title,
+            floorPlanPath: floorPlanPath,
+            project: ProjectCreateNestedOneWithoutFloorplansInput(
+                connect: ProjectWhereUniqueInput(id: projectId)),
+          ),
+        );
+        var floorPlanObject = jsonEncode(floorPlan);
+        return Response.ok(floorPlanObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     //update floorPlan
     router.put('/updateFloorPlan', (Request request) async {
-      var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'];
-      var title = payload['title'];
-      var floorPlanPath = payload['floorPlanPath'];
-      var floorPlan = await prisma.floorPlan.update(
-        where: FloorPlanWhereUniqueInput(id: id),
-        data: FloorPlanUpdateInput(
-          title: StringFieldUpdateOperationsInput(set$: title),
-          floorPlanPath: StringFieldUpdateOperationsInput(set$: floorPlanPath),
-        ),
-      );
-      var floorPlanObject = jsonEncode(floorPlan);
-      return Response.ok('Floor Plan Updated: $floorPlanObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      try {
+        var payload = jsonDecode(await request.readAsString());
+        var id = payload['id'];
+        var title = payload['title'];
+        var floorPlanPath = payload['floorPlanPath'];
+        var floorPlan = await prisma.floorPlan.update(
+          where: FloorPlanWhereUniqueInput(id: id),
+          data: FloorPlanUpdateInput(
+            title: StringFieldUpdateOperationsInput(set$: title),
+            floorPlanPath:
+                StringFieldUpdateOperationsInput(set$: floorPlanPath),
+          ),
+        );
+        var floorPlanObject = jsonEncode(floorPlan);
+        return Response.ok(floorPlanObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     //delete floorPlan
     router.delete('/deleteFloorPlan', (Request request) async {
-      var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'].toInt();
-      var floorPlan = await prisma.floorPlan.delete(
-        where: FloorPlanWhereUniqueInput(id: id),
-      );
-      var floorPlanObject = jsonEncode(floorPlan);
-      return Response.ok('Floor Plan Deleted: $floorPlanObject\n', headers: {
-        'Content-Type': 'application/json',
-      });
+      try {
+        var payload = jsonDecode(await request.readAsString());
+        var id = payload['id'].toInt();
+        var floorPlan = await prisma.floorPlan.delete(
+          where: FloorPlanWhereUniqueInput(id: id),
+        );
+        var floorPlanObject = jsonEncode(floorPlan);
+        return Response.ok(floorPlanObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     final handler =
