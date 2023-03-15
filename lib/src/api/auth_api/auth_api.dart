@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import '/dart_server.dart';
 
 final PrismaClient prisma = PrismaClient();
@@ -86,8 +88,24 @@ class AuthAPi {
         // Generate JWT and send with response
         final userId = user.id.toString();
         final token = generateJwt(userId, 'http;//localhost', secret!);
+        final tokenEncoded = jsonEncode(token);
+        final userObject = jsonEncode(user);
+        final userMap = <String, dynamic>{
+          'id': user.id,
+          'token': token,
+          'email': user.email,
+          'areaUnit': user.AreaUnit.name,
+          'fcmToken': user.fcmtoken,
+          'role': user.role.name,
+          'preferencesEmailNotification': user.preferencesEmailNotification,
+          'preferencesNewsletter': user.preferencesNewsletter,
+          'preferencesAutomatedReport': user.preferencesAutomatedReport,
+          'memberSince': user.createdAt.toString(),
+        };
 
-        return Response.ok(jsonEncode(token), headers: {
+        var userBody = jsonEncode(userMap);
+
+        return Response.ok(userBody, headers: {
           HttpHeaders.contentTypeHeader: ContentType.json.mimeType
         });
       } on PrismaClientInitializationError catch (e) {
