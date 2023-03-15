@@ -55,8 +55,9 @@ class ProfileApi {
         var profile = await prisma.profile.create(
           data: ProfileCreateInput(
             firstName: PrismaUnion.zero(firstName),
+            //TODO: need to sort the slug out
             lastName: PrismaUnion.zero(lastName),
-            slug: PrismaUnion.zero(firstName + lastName),
+            slug: PrismaUnion.zero(firstName + lastName + user),
             addressLine1: PrismaUnion.zero(addressLine1),
             addressLine2: PrismaUnion.zero(addressLine2),
             city: PrismaUnion.zero(city),
