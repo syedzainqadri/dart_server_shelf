@@ -57,7 +57,7 @@ class ProfileApi {
             firstName: PrismaUnion.zero(firstName),
             //TODO: need to sort the slug out
             lastName: PrismaUnion.zero(lastName),
-            slug: PrismaUnion.zero(firstName + lastName + user),
+            slug: PrismaUnion.zero(firstName + lastName + user.toString()),
             addressLine1: PrismaUnion.zero(addressLine1),
             addressLine2: PrismaUnion.zero(addressLine2),
             city: PrismaUnion.zero(city),
