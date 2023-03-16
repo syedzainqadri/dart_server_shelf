@@ -5,7 +5,7 @@ Middleware handleCors() {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
     'Access-Control-Allow-Headers':
-        'Origin, X-Requested-With, Content-Type, Accept,Autherization',
+        'Origin, X-Requested-With, Content-Type, Accept,Authorization',
   };
 
   return createMiddleware(
