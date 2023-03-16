@@ -35,8 +35,8 @@ void main(List<String> arguments) async {
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
 
   final handler = const Pipeline()
-      .addMiddleware(logRequests())
       .addMiddleware(handleCors())
+      .addMiddleware(logRequests())
       .addMiddleware(handleAuth(secret))
       .addHandler(app);
 
