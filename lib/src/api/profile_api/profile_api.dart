@@ -9,6 +9,38 @@ class ProfileApi {
         var payload = jsonDecode(await request.readAsString());
         var id = payload['id'].toInt();
         var profile = await prisma.profile
+            .findUnique(where: ProfileWhereUniqueInput(userId: id));
+        var usersObject = jsonEncode(profile);
+        return Response.ok(usersObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
+    });
+    //get user profile by user Id
+    router.get('/', (Request request) async {
+      try {
+        var payload = jsonDecode(await request.readAsString());
+        var id = payload['id'].toInt();
+        var profile = await prisma.profile
             .findUnique(where: ProfileWhereUniqueInput(id: id));
         var usersObject = jsonEncode(profile);
         return Response.ok(usersObject, headers: {
