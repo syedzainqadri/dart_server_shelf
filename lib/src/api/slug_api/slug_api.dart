@@ -156,12 +156,11 @@ class SlugApi {
     });
 
     //delete slug
-    router.delete('/deleteSlug', (Request request) async {
+    router.delete('/deleteSlug', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var slug = await prisma.slug.delete(
-          where: SlugWhereUniqueInput(id: id),
+          where: SlugWhereUniqueInput(id: uid),
         );
         var slugObject = jsonEncode(slug);
         return Response.ok(slugObject, headers: {

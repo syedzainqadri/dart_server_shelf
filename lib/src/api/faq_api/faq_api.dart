@@ -161,12 +161,12 @@ class FaqQuestionAnswerApi {
     });
 
     //delete faqQuestionAnswer
-    router.delete('/deleteFaqQuestionAnswer', (Request request) async {
+    router.delete('/deleteFaqQuestionAnswer',
+        (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var faqQuestionAnswer = await prisma.faqQuestionAnswer.delete(
-          where: FaqQuestionAnswerWhereUniqueInput(id: id),
+          where: FaqQuestionAnswerWhereUniqueInput(id: uid),
         );
         var faqObject = jsonEncode(faqQuestionAnswer);
         return Response.ok(faqObject, headers: {

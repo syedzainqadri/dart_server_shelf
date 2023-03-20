@@ -195,12 +195,11 @@ class CategoryApi {
     });
 
     //delete category
-    router.delete('/deleteCategory', (Request request) async {
+    router.delete('/deleteCategory/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var category = await prisma.category.delete(
-          where: CategoryWhereUniqueInput(id: id),
+          where: CategoryWhereUniqueInput(id: uid),
         );
         var categoryObject = jsonEncode(category);
         return Response.ok(categoryObject, headers: {

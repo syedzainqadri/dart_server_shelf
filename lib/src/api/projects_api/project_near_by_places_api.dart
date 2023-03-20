@@ -170,12 +170,12 @@ class ProjectNearByPlaceNearByPlacesApi {
     });
 
     //delete projectNearByPlace
-    router.delete('/deleteProjectNearByPlace', (Request request) async {
+    router.delete('/deleteProjectNearByPlace/<id>',
+        (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var projectNearByPlace = await prisma.projectNearByPlace.delete(
-          where: ProjectNearByPlaceWhereUniqueInput(id: id),
+          where: ProjectNearByPlaceWhereUniqueInput(id: uid),
         );
         var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
         return Response.ok(projectNearByPlaceObject, headers: {

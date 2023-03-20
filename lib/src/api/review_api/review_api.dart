@@ -158,12 +158,11 @@ class ReviewApi {
     });
 
     //delete review
-    router.delete('/deleteReview', (Request request) async {
+    router.delete('/deleteReview', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var review = await prisma.review.delete(
-          where: ReviewWhereUniqueInput(id: id),
+          where: ReviewWhereUniqueInput(id: uid),
         );
         var reviewObject = jsonEncode(review);
         return Response.ok(reviewObject, headers: {

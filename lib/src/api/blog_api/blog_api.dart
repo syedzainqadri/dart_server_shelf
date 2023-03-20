@@ -187,12 +187,11 @@ class BlogApi {
     });
 
     //delete blog
-    router.delete('/deleteBlog', (Request request) async {
+    router.delete('/deleteBlog/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var blog = await prisma.blog.delete(
-          where: BlogWhereUniqueInput(id: id),
+          where: BlogWhereUniqueInput(id: uid),
         );
         var blogObject = jsonEncode(blog);
         return Response.ok(blogObject, headers: {

@@ -163,12 +163,12 @@ class PaymentMethodApi {
     });
 
     //delete paymentMethod
-    router.delete('/deletePaymentMethod', (Request request) async {
+    router.delete('/deletePaymentMethod/<id>',
+        (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var paymentMethod = await prisma.paymentMethod.delete(
-          where: PaymentMethodWhereUniqueInput(id: id),
+          where: PaymentMethodWhereUniqueInput(id: uid),
         );
         var paymentMethodObject = jsonEncode(paymentMethod);
         return Response.ok(paymentMethodObject, headers: {

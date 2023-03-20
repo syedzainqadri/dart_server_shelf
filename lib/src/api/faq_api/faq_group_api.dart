@@ -150,12 +150,11 @@ class FaqGroupApi {
     });
 
     //delete faqGroup
-    router.delete('/deleteFaqGroup', (Request request) async {
+    router.delete('/deleteFaqGroup/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var faqGroup = await prisma.faqGroup.delete(
-          where: FaqGroupWhereUniqueInput(id: id),
+          where: FaqGroupWhereUniqueInput(id: uid),
         );
         var faqGroupObject = jsonEncode(faqGroup);
         return Response.ok(faqGroupObject, headers: {

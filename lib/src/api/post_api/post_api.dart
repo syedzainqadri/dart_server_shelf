@@ -381,12 +381,11 @@ class PostApi {
     });
 
     //delete post //TODO: Problem delteing post issue with foreign key
-    router.delete('/deletePost', (Request request) async {
+    router.delete('/deletePost/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var post = await prisma.post.delete(
-          where: PostWhereUniqueInput(id: id),
+          where: PostWhereUniqueInput(id: uid),
         );
         var postObject = jsonEncode(post);
         return Response.ok(postObject, headers: {

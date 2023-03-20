@@ -185,12 +185,11 @@ class ProductApi {
     });
 
     //delete product
-    router.delete('/deleteProduct', (Request request) async {
+    router.delete('/deleteProduct/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var product = await prisma.product.delete(
-          where: ProductWhereUniqueInput(id: id),
+          where: ProductWhereUniqueInput(id: uid),
         );
         var productObject = jsonEncode(product);
         return Response.ok(productObject, headers: {

@@ -195,12 +195,11 @@ class OrderApi {
     });
 
     //delete order
-    router.delete('/deleteOrder', (Request request) async {
+    router.delete('/deleteOrder/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var order = await prisma.order.delete(
-          where: OrderWhereUniqueInput(id: id),
+          where: OrderWhereUniqueInput(id: uid),
         );
         var orderObject = jsonEncode(order);
         return Response.ok(orderObject, headers: {

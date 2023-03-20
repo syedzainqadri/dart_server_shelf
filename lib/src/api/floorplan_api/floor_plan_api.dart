@@ -149,12 +149,11 @@ class FloorPlanApi {
     });
 
     //delete floorPlan
-    router.delete('/deleteFloorPlan', (Request request) async {
+    router.delete('/deleteFloorPlan/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var floorPlan = await prisma.floorPlan.delete(
-          where: FloorPlanWhereUniqueInput(id: id),
+          where: FloorPlanWhereUniqueInput(id: uid),
         );
         var floorPlanObject = jsonEncode(floorPlan);
         return Response.ok(floorPlanObject, headers: {

@@ -172,12 +172,11 @@ class ForumPostApi {
     });
 
     //delete forumPost
-    router.delete('/deleteForumPost', (Request request) async {
+    router.delete('/deleteForumPost/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var forumPost = await prisma.forumPost.delete(
-          where: ForumPostWhereUniqueInput(id: id),
+          where: ForumPostWhereUniqueInput(id: uid),
         );
         var categoryObject = jsonEncode(forumPost);
         return Response.ok(categoryObject, headers: {

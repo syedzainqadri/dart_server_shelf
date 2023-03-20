@@ -193,12 +193,11 @@ class ProjectsApi {
     });
 
     //delete project
-    router.delete('/deleteProject', (Request request) async {
+    router.delete('/deleteProject/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var project = await prisma.project.delete(
-          where: ProjectWhereUniqueInput(id: id),
+          where: ProjectWhereUniqueInput(id: uid),
         );
         var projectObject = jsonEncode(project);
         return Response.ok(projectObject, headers: {

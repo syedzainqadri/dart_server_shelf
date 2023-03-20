@@ -180,12 +180,11 @@ class PageApi {
     });
 
     //delete page
-    router.delete('/deletePage', (Request request) async {
+    router.delete('/deletePage/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var page = await prisma.page.delete(
-          where: PageWhereUniqueInput(id: id),
+          where: PageWhereUniqueInput(id: uid),
         );
         var pageObject = jsonEncode(page);
         return Response.ok(pageObject, headers: {

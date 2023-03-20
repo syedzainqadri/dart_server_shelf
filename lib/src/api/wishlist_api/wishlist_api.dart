@@ -187,12 +187,11 @@ class WishListApi {
     });
 
     //delete wishlist
-    router.delete('/deleteFromWishlit', (Request request) async {
+    router.delete('/deleteFromWishlit', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var wishlist = await prisma.wishlist.delete(
-          where: WishlistWhereUniqueInput(id: id),
+          where: WishlistWhereUniqueInput(id: uid),
         );
         var wishlistObject = jsonEncode(wishlist);
         return Response.ok(wishlistObject, headers: {

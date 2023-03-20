@@ -159,12 +159,12 @@ class ForumPostCommentApi {
     });
 
     //delete forumPostComment
-    router.delete('/deleteForumPostComment', (Request request) async {
+    router.delete('/deleteForumPostComment/<id>',
+        (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var forumPostComment = await prisma.forumPostComment.delete(
-          where: ForumPostCommentWhereUniqueInput(id: id),
+          where: ForumPostCommentWhereUniqueInput(id: uid),
         );
         var forumPostCommentObject = jsonEncode(forumPostComment);
         return Response.ok(forumPostCommentObject, headers: {

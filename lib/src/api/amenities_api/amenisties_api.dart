@@ -166,12 +166,11 @@ class AmenitiesApi {
     });
 
     //delete amenities
-    router.delete('/deleteAmenity', (Request request) async {
+    router.delete('/deleteAmenity/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var amenities = await prisma.amenities.delete(
-          where: AmenitiesWhereUniqueInput(id: id),
+          where: AmenitiesWhereUniqueInput(id: uid),
         );
         var amenitiesObject = jsonEncode(amenities);
         return Response.ok(amenitiesObject, headers: {

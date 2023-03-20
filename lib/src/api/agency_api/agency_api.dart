@@ -230,12 +230,11 @@ class AgencyApi {
     });
 
     //delete agency
-    router.delete('/deleteAgency', (Request request) async {
+    router.delete('/deleteAgency/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var agency = await prisma.agency.delete(
-          where: AgencyWhereUniqueInput(id: id),
+          where: AgencyWhereUniqueInput(id: uid),
         );
         var agencyObject = jsonEncode(agency);
         return Response.ok(agencyObject, headers: {

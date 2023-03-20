@@ -35,12 +35,11 @@ class ProfileApi {
       }
     });
     //get user profile by user Id
-    router.get('/', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var profile = await prisma.profile
-            .findUnique(where: ProfileWhereUniqueInput(id: id));
+            .findUnique(where: ProfileWhereUniqueInput(id: uid));
         var usersObject = jsonEncode(profile);
         return Response.ok(usersObject, headers: {
           'Content-Type': 'application/json',
@@ -129,12 +128,11 @@ class ProfileApi {
       }
     });
     //delete user profile
-    router.delete('/deleteProfile', (Request request) async {
+    router.delete('/deleteProfile/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
-        var profile =
-            await prisma.profile.delete(where: ProfileWhereUniqueInput(id: id));
+        var uid = int.parse(id);
+        var profile = await prisma.profile
+            .delete(where: ProfileWhereUniqueInput(id: uid));
         var profileObject = jsonEncode(profile);
         return Response.ok(profileObject,
             headers: {'Content-Type': 'application/json'});

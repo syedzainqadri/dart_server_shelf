@@ -142,12 +142,11 @@ class DeveloperApi {
     });
 
     //delete developer
-    router.delete('/deleteDeveloper', (Request request) async {
+    router.delete('/deleteDeveloper/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var develoepr = await prisma.developer.delete(
-          where: DeveloperWhereUniqueInput(id: id),
+          where: DeveloperWhereUniqueInput(id: uid),
         );
         var developerObject = jsonEncode(develoepr);
         return Response.ok(developerObject, headers: {

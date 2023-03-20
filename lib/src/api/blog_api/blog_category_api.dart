@@ -161,12 +161,12 @@ class BlogCategoryApi {
     });
 
     //delete blog category
-    router.delete('/deleteBlogCategory', (Request request) async {
+    router.delete('/deleteBlogCategory/<id>',
+        (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var blogCategory = await prisma.blogCategory.delete(
-          where: BlogCategoryWhereUniqueInput(id: id),
+          where: BlogCategoryWhereUniqueInput(id: uid),
         );
         var blogCategoryObject = jsonEncode(blogCategory);
         return Response.ok(blogCategoryObject, headers: {
