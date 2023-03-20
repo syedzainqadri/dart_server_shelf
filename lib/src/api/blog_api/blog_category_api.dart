@@ -34,12 +34,11 @@ class BlogCategoryApi {
     });
 
     //get blog category by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var blogCategory = await prisma.blogCategory.findUnique(
-          where: BlogCategoryWhereUniqueInput(id: id),
+          where: BlogCategoryWhereUniqueInput(id: uid),
         );
         var blogCategoryObject = jsonEncode(blogCategory);
         return Response.ok(blogCategoryObject, headers: {

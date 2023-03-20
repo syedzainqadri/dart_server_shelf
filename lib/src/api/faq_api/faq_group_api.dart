@@ -34,12 +34,11 @@ class FaqGroupApi {
     });
 
     //get faqGroup by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var faqGroup = await prisma.faqGroup.findUnique(
-          where: FaqGroupWhereUniqueInput(id: id),
+          where: FaqGroupWhereUniqueInput(id: uid),
         );
         var faqGroupObject = jsonEncode(faqGroup);
         return Response.ok(faqGroupObject, headers: {

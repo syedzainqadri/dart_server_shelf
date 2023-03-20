@@ -35,25 +35,40 @@ class PostApi {
     });
 
     //get post by id
-    router.get('/id', (Request request) async {
-      var payload = jsonDecode(await request.readAsString());
-      var id = payload['id'];
-      var post = await prisma.post.findUnique(
-        where: PostWhereUniqueInput(id: id),
-      );
-      var postObject = jsonEncode(post);
-      return Response.ok(postObject, headers: {
-        'Content-Type': 'application/json',
-      });
+    router.get('/<id>', (Request request, String id) async {
+      try {
+        var uid = int.parse(id);
+        var post = await prisma.post.findUnique(
+          where: PostWhereUniqueInput(id: uid),
+        );
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
     });
 
     //get post by user id
-    router.get('/user/id', (Request request) async {
+    router.get('/user/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var post = await prisma.post
-            .findMany(where: PostWhereInput(authorId: IntFilter(equals: id)));
+            .findMany(where: PostWhereInput(authorId: IntFilter(equals: uid)));
         var postObject = jsonEncode(post);
         return Response.ok(postObject, headers: {
           'Content-Type': 'application/json',

@@ -34,12 +34,11 @@ class CategoryApi {
     });
 
     //get category by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
+      var uid = int.parse(id);
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
         var category = await prisma.category.findUnique(
-          where: CategoryWhereUniqueInput(id: id),
+          where: CategoryWhereUniqueInput(id: uid),
         );
         var categoryObject = jsonEncode(category);
         return Response.ok(categoryObject, headers: {
@@ -68,15 +67,12 @@ class CategoryApi {
     });
 
     //get subcategories by category id
-    router.get('/subCategories', (
-      Request request,
-    ) async {
+    router.get('/subCategories/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var subCategory = await prisma.category.findMany(
           where: CategoryWhereInput(
-              parentId: IntNullableFilter(equals: PrismaUnion.zero(id))),
+              parentId: IntNullableFilter(equals: PrismaUnion.zero(uid))),
         );
         var subCategoryObject = jsonEncode(subCategory);
         return Response.ok(subCategoryObject, headers: {

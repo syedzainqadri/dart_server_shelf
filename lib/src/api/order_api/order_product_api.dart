@@ -34,12 +34,11 @@ class OrderProductApi {
     });
 
     //get orderProduct by id
-    router.get('/<id|[0-9]+>', (Request request, String id) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var orderProduct = await prisma.orderProduct.findUnique(
-          where: OrderProductWhereUniqueInput(id: int.parse(id)),
+          where: OrderProductWhereUniqueInput(id: uid),
         );
         var orderObject = jsonEncode(orderProduct);
         return Response.ok(orderObject, headers: {

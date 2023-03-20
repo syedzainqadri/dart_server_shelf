@@ -34,12 +34,11 @@ class FaqQuestionAnswerApi {
     });
 
     //get faqQuestionAnswer by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var faqQuestionAnswer = await prisma.faqQuestionAnswer.findUnique(
-          where: FaqQuestionAnswerWhereUniqueInput(id: id),
+          where: FaqQuestionAnswerWhereUniqueInput(id: uid),
         );
         var faqObject = jsonEncode(faqQuestionAnswer);
         return Response.ok(faqObject, headers: {

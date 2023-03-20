@@ -34,12 +34,11 @@ class ProjectsApi {
     });
 
     //get project by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var project = await prisma.project.findUnique(
-          where: ProjectWhereUniqueInput(id: id),
+          where: ProjectWhereUniqueInput(id: uid),
         );
         var projectObject = jsonEncode(project);
         return Response.ok(projectObject, headers: {

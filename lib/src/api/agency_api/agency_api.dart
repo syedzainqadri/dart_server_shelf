@@ -34,15 +34,14 @@ class AgencyApi {
     });
 
     //get agency by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
-        var amenisties = await prisma.agency.findUnique(
-          where: AgencyWhereUniqueInput(id: id),
+        var uid = int.parse(id);
+        var agency = await prisma.agency.findUnique(
+          where: AgencyWhereUniqueInput(id: uid),
         );
-        var amenistiesObject = jsonEncode(amenisties);
-        return Response.ok(amenistiesObject, headers: {
+        var agencyObject = jsonEncode(agency);
+        return Response.ok(agencyObject, headers: {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {

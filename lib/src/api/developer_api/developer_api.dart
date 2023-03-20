@@ -34,12 +34,11 @@ class DeveloperApi {
     });
 
     //get category by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var developer = await prisma.developer.findUnique(
-          where: DeveloperWhereUniqueInput(id: id),
+          where: DeveloperWhereUniqueInput(id: uid),
         );
         var developerObject = jsonEncode(developer);
         return Response.ok(developerObject, headers: {

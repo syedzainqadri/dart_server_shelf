@@ -36,12 +36,11 @@ class WishListApi {
     });
 
     //get wishlist by id
-    router.get('/id', (Request request, String id) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var wishlist = await prisma.wishlist.findUnique(
-          where: WishlistWhereUniqueInput(id: int.parse(id)),
+          where: WishlistWhereUniqueInput(id: uid),
         );
         var wishlistObject = jsonEncode(wishlist);
         return Response.ok(wishlistObject, headers: {
@@ -70,12 +69,11 @@ class WishListApi {
     });
 
     //get wishlist by user id
-    router.get('/user/id', (Request request) async {
+    router.get('/user/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var wishlist = await prisma.wishlist
-            .findMany(where: WishlistWhereInput(userId: id));
+            .findMany(where: WishlistWhereInput(userId: id as IntFilter));
         var wishlistObject = jsonEncode(wishlist);
         return Response.ok(wishlistObject, headers: {
           'Content-Type': 'application/json',

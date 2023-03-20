@@ -4,12 +4,11 @@ class ProfileApi {
   Handler get router {
     final router = Router();
     //get user Profile
-    router.get('/', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var uid = int.parse(id);
         var profile = await prisma.profile
-            .findUnique(where: ProfileWhereUniqueInput(userId: id));
+            .findUnique(where: ProfileWhereUniqueInput(userId: uid));
         var usersObject = jsonEncode(profile);
         return Response.ok(usersObject, headers: {
           'Content-Type': 'application/json',

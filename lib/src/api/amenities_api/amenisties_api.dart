@@ -34,12 +34,11 @@ class AmenitiesApi {
     });
 
     //get amenities by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var amenities = await prisma.amenities.findUnique(
-          where: AmenitiesWhereUniqueInput(id: id),
+          where: AmenitiesWhereUniqueInput(id: uid),
         );
         var amenitiesObject = jsonEncode(amenities);
         return Response.ok(amenitiesObject, headers: {

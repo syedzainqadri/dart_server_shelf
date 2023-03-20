@@ -34,12 +34,11 @@ class ForumPostCommentApi {
     });
 
     //get forumPostComment by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var forumPostComment = await prisma.forumPostComment.findUnique(
-          where: ForumPostCommentWhereUniqueInput(id: id),
+          where: ForumPostCommentWhereUniqueInput(id: uid),
         );
         var forumPostCommentObject = jsonEncode(forumPostComment);
         return Response.ok(forumPostCommentObject, headers: {

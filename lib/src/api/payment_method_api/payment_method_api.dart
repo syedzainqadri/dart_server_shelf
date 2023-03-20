@@ -36,12 +36,11 @@ class PaymentMethodApi {
     });
 
     //get paymentMethod by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var paymentMethod = await prisma.paymentMethod.findUnique(
-          where: PaymentMethodWhereUniqueInput(id: id),
+          where: PaymentMethodWhereUniqueInput(id: uid),
         );
         var paymentMethodObject = jsonEncode(paymentMethod);
         return Response.ok(paymentMethodObject, headers: {

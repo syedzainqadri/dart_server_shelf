@@ -36,12 +36,11 @@ class PageApi {
     });
 
     //get page by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var page = await prisma.page.findUnique(
-          where: PageWhereUniqueInput(id: id),
+          where: PageWhereUniqueInput(id: uid),
         );
         var pageObject = jsonEncode(page);
         return Response.ok(pageObject, headers: {

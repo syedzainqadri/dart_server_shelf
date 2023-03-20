@@ -36,12 +36,11 @@ class ForumPostApi {
     });
 
     //get forumPost by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var forumPost = await prisma.forumPost.findUnique(
-          where: ForumPostWhereUniqueInput(id: id),
+          where: ForumPostWhereUniqueInput(id: uid),
         );
         var categoryObject = jsonEncode(forumPost);
         return Response.ok(categoryObject, headers: {

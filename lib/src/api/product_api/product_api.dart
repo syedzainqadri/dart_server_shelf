@@ -36,12 +36,11 @@ class ProductApi {
     });
 
     //get product by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var product = await prisma.product.findUnique(
-          where: ProductWhereUniqueInput(id: id),
+          where: ProductWhereUniqueInput(id: uid),
         );
         var productObject = jsonEncode(product);
         return Response.ok(productObject, headers: {

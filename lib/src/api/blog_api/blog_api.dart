@@ -34,12 +34,11 @@ class BlogApi {
     });
 
     //get blog by id
-    router.get('/id', (Request request) async {
+    router.get('/<id>', (Request request, String id) async {
       try {
-        var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'];
+        var uid = int.parse(id);
         var blog = await prisma.blog.findUnique(
-          where: BlogWhereUniqueInput(id: id),
+          where: BlogWhereUniqueInput(id: uid),
         );
         var blogObject = jsonEncode(blog);
         return Response.ok(blogObject, headers: {
