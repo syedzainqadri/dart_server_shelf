@@ -153,6 +153,7 @@ class CategoryApi {
         var id = payload['id'];
         var name = payload['name'];
         var slug = payload['slug'];
+        var image = payload['image'];
         var description = payload['description'];
         var parentId = payload['parentId'];
         var published = payload['published'];
@@ -167,6 +168,8 @@ class CategoryApi {
             parentId: NullableIntFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(parentId)),
             published: BoolFieldUpdateOperationsInput(set$: published),
+            image: NullableStringFieldUpdateOperationsInput(
+                set$: PrismaUnion.zero(image)),
             updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
           ),
         );
