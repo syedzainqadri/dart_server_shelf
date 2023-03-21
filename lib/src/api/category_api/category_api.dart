@@ -104,13 +104,15 @@ class CategoryApi {
     router.post('/createCategory', (Request request) async {
       try {
         var payload = jsonDecode(await request.readAsString());
+        var image = payload['image'];
         var name = payload['name'];
         var slug = payload['slug'];
         var description = payload['description'];
-        var parentId = payload['parentId'].toInt();
+        var parentId = payload['parentId'];
         var published = payload['published'];
         var category = await prisma.category.create(
           data: CategoryCreateInput(
+            image: PrismaUnion.zero(image),
             name: name,
             slug: PrismaUnion.zero(slug),
             description: PrismaUnion.zero(description),

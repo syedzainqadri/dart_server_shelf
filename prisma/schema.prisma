@@ -389,7 +389,7 @@ model Category {
   name        String
   slug        String?     @unique
   description String?
-  image       String?
+  image       String?     @db.VarChar(800)
   parentId    Int?
   published   Boolean     @default(false)
   createdAt   DateTime    @default(now())
