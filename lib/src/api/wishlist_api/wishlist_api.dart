@@ -72,8 +72,8 @@ class WishListApi {
     router.get('/user/<id>', (Request request, String id) async {
       try {
         var uid = int.parse(id);
-        var wishlist = await prisma.wishlist
-            .findMany(where: WishlistWhereInput(userId: id as IntFilter));
+        var wishlist = await prisma.wishlist.findMany(
+            where: WishlistWhereInput(userId: IntFilter(equals: uid)));
         var wishlistObject = jsonEncode(wishlist);
         return Response.ok(wishlistObject, headers: {
           'Content-Type': 'application/json',

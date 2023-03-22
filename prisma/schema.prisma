@@ -278,7 +278,6 @@ model Post {
   longDescription  String?
   longitude        String?
   latitude         String?
-  content          String?
   plotNumber       String?
   price            Float?
   city             String?
@@ -286,34 +285,28 @@ model Post {
   isInstallmentAvailable  Boolean? @default(false)
   advanceAmount    Float
   noOfInstallments Int
-  monthlyInstallments Int
+  monthlyInstallments Float
   readyForPossession  Boolean? @default(false)
   areaSizeUnit     AreaSizeUnit? @default(MARLA)
   bedroooms        Int
   bathroom         Int
-  contactEmail     String
-  contactMobile    String
-  contactLandline  String
   featureAndAmenities String // save ameeties or featurs in json
-  // published        Boolean    @default(false)
   postmeta         PostMeta[]
   category         Category    @relation(fields: [categoryId], references: [id])
   categoryId       Int
   author           Users       @relation(fields: [authorId], references: [id])
   authorId         Int
-  postContact      PostContact[]
+  postContact      PostContact?  @relation(fields: [postContactId], references: [id])
+  postContactId    Int?          
   review           Review[]
   wishlist         Wishlist[]
   postComment      PostComment[]
   orderProduct     OrderProduct[]
-
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
   status  PostStatus @default(DRAFT)
   createdAt        DateTime   @default(now())
   updatedAt        DateTime   @updatedAt
-  // propertyTypeList PropertyTypeList        @relation(fields: [propertyTypeListId], references: [id])
-  // propertyTypeListId Int
 }
 
 model PostContact {
@@ -321,17 +314,16 @@ model PostContact {
   name  String?
   email String?
   phone String?
-  message String?
-  ccontactPersonType  CcontactPersonType @default(BUYERTENAT)
+  landLine String?
+  ccontactPersonType  CcontactPersonType @default(BUYER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  post  Post?    @relation(fields: [postId], references: [id])
-  postId Int
+  post  Post[]
 }
 
 model Review {
   id    Int       @id @default(autoincrement())
-  name  String?
+  rating  Float?
   message String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -347,7 +339,7 @@ model PostComment {
   postReplyDescription String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  forumPost Post @relation(fields: [postId], references: [id])
+  post Post @relation(fields: [postId], references: [id])
   postId Int
   user      Users @relation(fields: [userId], references: [id])
   userId    Int
@@ -561,9 +553,11 @@ enum AreaSizeUnit {
 }
 
 enum CcontactPersonType {
-  BUYERTENAT
+  BUYER
   AGENT
   OTHER
+  SELLER
+  USER
 }
 
 enum CommonStatus {
@@ -577,3 +571,7 @@ enum ProductType {
   TOP
   BUMPED
 }
+
+//TODO: add post type
+//TODO: add postContact relation to profile
+//TODO: complete roles

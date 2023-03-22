@@ -66,17 +66,50 @@ class ReviewApi {
       }
     });
 
+    //get review by post id
+    router.get('/post/<id>', (Request request, String id) async {
+      try {
+        var uid = int.parse(id);
+        var review = await prisma.review.findMany(
+          where: ReviewWhereInput(postId: IntFilter(equals: uid)),
+        );
+        var reviewObject = jsonEncode(review);
+        return Response.ok(reviewObject, headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientInitializationError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientKnownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientRustPanicError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientUnknownRequestError catch (e) {
+        return Response.internalServerError(body: 'Error is:\n $e', headers: {
+          'Content-Type': 'application/json',
+        });
+      } on PrismaClientValidationError {
+        return Response.forbidden(
+            'Sorry you dont have the permission to access this resource');
+      }
+    });
+
     //create review
     router.post('/createReview', (Request request) async {
       try {
         var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
-        var name = payload['name'];
+        var id = payload['userId'].toInt();
+        var rating = payload['rating'];
         var message = payload['message'];
-        var postId = payload['postID'].toInt();
+        var postId = payload['postId'];
         var review = await prisma.review.create(
           data: ReviewCreateInput(
-            name: PrismaUnion.zero(name),
+            rating: PrismaUnion.zero(rating),
             message: PrismaUnion.zero(message),
             user: UsersCreateNestedOneWithoutReviewsInput(
               connect: UsersWhereUniqueInput(
@@ -120,14 +153,16 @@ class ReviewApi {
     router.put('/updateReview', (Request request) async {
       try {
         var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
-        var name = payload['name'];
+        var id = payload['userId'].toInt();
+        var rating = payload['rating'];
         var message = payload['message'];
         var review = await prisma.review.update(
           where: ReviewWhereUniqueInput(id: id),
           data: ReviewUpdateInput(
-            name: NullableStringFieldUpdateOperationsInput(set$: name),
-            message: NullableStringFieldUpdateOperationsInput(set$: message),
+            rating: NullableFloatFieldUpdateOperationsInput(
+                set$: PrismaUnion.zero(rating)),
+            message: NullableStringFieldUpdateOperationsInput(
+                set$: PrismaUnion.zero(message)),
             updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
           ),
         );
@@ -158,7 +193,7 @@ class ReviewApi {
     });
 
     //delete review
-    router.delete('/deleteReview', (Request request, String id) async {
+    router.delete('/deleteReview/<id>', (Request request, String id) async {
       try {
         var uid = int.parse(id);
         var review = await prisma.review.delete(

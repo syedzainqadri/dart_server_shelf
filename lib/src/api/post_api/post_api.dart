@@ -41,6 +41,10 @@ class PostApi {
         var post = await prisma.post.findUnique(
           where: PostWhereUniqueInput(id: uid),
         );
+        var postObject = jsonEncode(post);
+        return Response.ok(postObject, headers: {
+          'Content-Type': 'application/json',
+        });
       } on PrismaClientInitializationError catch (e) {
         return Response.internalServerError(body: 'Error is:\n $e', headers: {
           'Content-Type': 'application/json',
@@ -151,7 +155,6 @@ class PostApi {
             longDescription: PrismaUnion.zero(longDescription),
             longitude: PrismaUnion.zero(longitude),
             latitude: PrismaUnion.zero(latitude),
-            content: PrismaUnion.zero(content),
             plotNumber: PrismaUnion.zero(plotNumber),
             price: PrismaUnion.zero(price),
             city: PrismaUnion.zero(city),
@@ -164,9 +167,6 @@ class PostApi {
             areaSizeUnit: PrismaUnion.zero(areaSizeUnitenum),
             bedroooms: bedroooms,
             bathroom: bathrooms,
-            contactEmail: contactEmail,
-            contactMobile: contactMobile,
-            contactLandline: contactLandline,
             featureAndAmenities: featureAndAmenities,
             author: UsersCreateNestedOneWithoutPostsInput(
               connect: UsersWhereUniqueInput(id: authorId),
@@ -174,12 +174,12 @@ class PostApi {
             category: CategoryCreateNestedOneWithoutPostsInput(
               connect: CategoryWhereUniqueInput(id: categoryId),
             ),
-            postContact: PostContactCreateNestedManyWithoutPostInput(
+            postContact: PostContactCreateNestedOneWithoutPostInput(
               create: PostContactCreateWithoutPostInput(
                 name: PrismaUnion.zero(contactName),
                 email: PrismaUnion.zero(contactEmail),
                 phone: PrismaUnion.zero(contactMobile),
-                message: PrismaUnion.zero(contactLandline),
+                landLine: PrismaUnion.zero(contactLandline),
                 ccontactPersonType: contactPersonEnum,
               ),
             ),
@@ -239,7 +239,6 @@ class PostApi {
         var longDescription = payload['longDescription'];
         var longitude = payload['longitude'];
         var latitude = payload['latitude'];
-        var content = payload['content'];
         var plotNumber = payload['plotNumber'];
         var price = payload['price'];
         var city = payload['city'];
@@ -254,9 +253,6 @@ class PostApi {
             .firstWhere((e) => e.toString() == 'AreaSizeUnit.' + areaSizeUnit);
         var bedroooms = payload['bedroooms'];
         var bathrooms = payload['bathrooms'];
-        var contactEmail = payload['contactEmail'];
-        var contactMobile = payload['contactMobile'];
-        var contactLandline = payload['contactLandline'];
         var featureAndAmenities = payload['featureAndAmenities'];
         var authorId = payload['authorId'];
         var categoryId = payload['categoryId'];
@@ -289,9 +285,6 @@ class PostApi {
             latitude: NullableStringFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(latitude),
             ),
-            content: NullableStringFieldUpdateOperationsInput(
-              set$: PrismaUnion.zero(content),
-            ),
             plotNumber: NullableStringFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(plotNumber),
             ),
@@ -311,7 +304,7 @@ class PostApi {
             noOfInstallments:
                 IntFieldUpdateOperationsInput(set$: noOfInstallments),
             monthlyInstallments:
-                IntFieldUpdateOperationsInput(set$: monthlyInstallments),
+                FloatFieldUpdateOperationsInput(set$: monthlyInstallments),
             readyForPossession: NullableBoolFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(readyForPossession),
             ),
@@ -319,11 +312,6 @@ class PostApi {
                 set$: PrismaUnion.zero(areaSizeUnitenum)),
             bedroooms: IntFieldUpdateOperationsInput(set$: bedroooms),
             bathroom: IntFieldUpdateOperationsInput(set$: bathrooms),
-            contactEmail: StringFieldUpdateOperationsInput(set$: contactEmail),
-            contactMobile:
-                StringFieldUpdateOperationsInput(set$: contactMobile),
-            contactLandline:
-                StringFieldUpdateOperationsInput(set$: contactLandline),
             featureAndAmenities:
                 StringFieldUpdateOperationsInput(set$: featureAndAmenities),
             author: UsersUpdateOneRequiredWithoutPostsNestedInput(
