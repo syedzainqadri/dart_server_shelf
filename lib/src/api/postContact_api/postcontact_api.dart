@@ -67,7 +67,7 @@ class PostContactApi {
     });
 
     //get postContact by post id
-    router.get('/post/<id>', (Request request, String id) async {
+    router.get('/postContact/<id>', (Request request, String id) async {
       try {
         var uid = int.parse(id);
         var postContact = await prisma.postContact.findMany(

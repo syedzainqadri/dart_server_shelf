@@ -182,7 +182,7 @@ class PostCommentApi {
     router.put('/updatePostComment', (Request request) async {
       try {
         var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        int? id = payload['postId'];
         var postReplyTitle = payload['postReplyTitle'];
         var postReplyDescription = payload['postReplyDescription'];
         var postComment = await prisma.postComment.update(

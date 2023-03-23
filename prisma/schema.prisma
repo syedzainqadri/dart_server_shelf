@@ -506,6 +506,11 @@ enum ForumPostType {
 enum Role {
   USER
   ADMIN
+  SUPERADMIN
+  AREAMANAGER
+  SALESMANAGER
+  MANAGER
+  MARKETER
 }
 
 enum SellPurpose {
@@ -523,14 +528,14 @@ enum SlugType {
   FORUMPOST
 }
 
-enum SystemRole {
-  SUPERADMIN
-  ADMIN
-  AREAMANAGER
-  SALESMANAGER
-  MANAGER
-  MARKETER
-}
+// enum SystemRole {
+//   SUPERADMIN
+//   ADMIN
+//   AREAMANAGER
+//   SALESMANAGER
+//   MANAGER
+//   MARKETER
+// }
 
 enum SettingGroup {
   GENERAL

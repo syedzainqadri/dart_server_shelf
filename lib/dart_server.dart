@@ -26,6 +26,7 @@ export 'src/api/wishlist_api/wishlist_api.dart';
 export 'src/api/projects_api/projects_api.dart';
 export 'src/api/review_api/review_api.dart';
 export 'src/api/postComment_api/postcomment_api.dart';
+export 'src/api/postContact_api/postcontact_api.dart';
 //shelf exports
 export 'package:shelf/shelf_io.dart';
 export 'package:shelf/shelf.dart';

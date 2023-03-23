@@ -31,6 +31,7 @@ void main(List<String> arguments) async {
   app.mount('/wishlist', WishListApi().router); //done
   app.mount('/review', ReviewApi().router); //done
   app.mount('/postComment', PostCommentApi().router);
+  app.mount('/postContact', PostContactApi().router);
 
   //server configuration
   final ip = InternetAddress.anyIPv4;
