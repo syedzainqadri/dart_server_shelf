@@ -547,12 +547,12 @@ enum SettingGroup {
   SEO
 }
 
-enum PostStatus {
-  DRAFT
-  PUBLISH
-  PENDING
-  DELETED
-}
+// enum PostStatus {
+//   DRAFT
+//   PUBLISH
+//   PENDING
+//   DELETED
+// }
 
 enum AreaSizeUnit {
   MARLA

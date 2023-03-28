@@ -69,6 +69,7 @@ class ProfileApi {
     router.post('/createProfile', (Request request) async {
       try {
         var payload = jsonDecode(await request.readAsString());
+        print(payload);
         var firstName = payload['firstName'];
         var lastName = payload['lastName'];
         var addressLine1 = payload['addressLine1'];
@@ -86,10 +87,11 @@ class ProfileApi {
         CcontactPersonType contactPersonEnum = CcontactPersonType.values
             .firstWhere((e) =>
                 e.toString() == 'CcontactPersonType.' + contactPersonType);
-        var name = payload['name'];
+        var contactPersonName = payload['contactPersonName'];
         var email = payload['email'];
         var mobilePhone = payload['mobilePhone'];
         var landLine = payload['landLine'];
+        var status = payload['status'];
         var profile = await prisma.profile.create(
           data: ProfileCreateInput(
             firstName: PrismaUnion.zero(firstName),
@@ -111,12 +113,13 @@ class ProfileApi {
             ),
             postContact: PostContactCreateNestedOneWithoutProfileInput(
               create: PostContactCreateWithoutProfileInput(
-                  name: PrismaUnion.zero(name),
+                  name: PrismaUnion.zero(contactPersonName),
                   email: PrismaUnion.zero(email),
                   phone: PrismaUnion.zero(mobilePhone),
                   landLine: PrismaUnion.zero(landLine),
                   ccontactPersonType: contactPersonEnum),
             ),
+            status: status,
           ),
         );
         var profileObject = jsonEncode(profile);
