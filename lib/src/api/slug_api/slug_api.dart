@@ -81,7 +81,6 @@ class SlugApi {
           data: SlugCreateInput(
             slug: slugName,
             type: typeEnum,
-            referenceId: referenceId,
           ),
         );
         var slugObject = jsonEncode(slug);
@@ -126,7 +125,6 @@ class SlugApi {
           data: SlugUpdateInput(
             slug: StringFieldUpdateOperationsInput(set$: slugName),
             type: EnumSlugTypeFieldUpdateOperationsInput(set$: typeEnum),
-            referenceId: IntFieldUpdateOperationsInput(set$: referenceId),
           ),
         );
         var slugObject = jsonEncode(slug);

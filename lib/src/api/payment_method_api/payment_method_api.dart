@@ -76,14 +76,12 @@ class PaymentMethodApi {
         var apiKey = payload['apiKey'];
         var secret = payload['secret'];
         var status = payload['status'];
-        CommonStatus statusEnum = CommonStatus.values
-            .firstWhere((e) => e.toString() == 'CommonStatus.' + status);
         var paymentMethod = await prisma.paymentMethod.create(
           data: PaymentMethodCreateInput(
             name: name,
             apiKey: apiKey,
             secret: secret,
-            status: statusEnum,
+            status: status,
           ),
         );
         var paymentMethodObject = jsonEncode(paymentMethod);
@@ -121,16 +119,13 @@ class PaymentMethodApi {
         var apiKey = payload['apiKey'];
         var secret = payload['secret'];
         var status = payload['status'];
-        CommonStatus statusEnum = CommonStatus.values
-            .firstWhere((e) => e.toString() == 'CommonStatus.' + status);
         var paymentMethod = await prisma.paymentMethod.update(
           where: PaymentMethodWhereUniqueInput(id: id),
           data: PaymentMethodUpdateInput(
             name: StringFieldUpdateOperationsInput(set$: name),
             apiKey: StringFieldUpdateOperationsInput(set$: apiKey),
             secret: StringFieldUpdateOperationsInput(set$: secret),
-            status:
-                EnumCommonStatusFieldUpdateOperationsInput(set$: statusEnum),
+            status: BoolFieldUpdateOperationsInput(set$: status),
             updatedAt: DateTimeFieldUpdateOperationsInput(
               set$: DateTime.now(),
             ),

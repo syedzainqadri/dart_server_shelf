@@ -175,7 +175,7 @@ model Product {
   productType ProductType @default(HOT)
   description String?
   productLifeInDays Int @default(7)
-  status CommonStatus @default(ACTIVE)
+  status Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   orderProduct OrderProduct[]
@@ -200,7 +200,7 @@ model PaymentMethod {
   secret String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  status CommonStatus @default(INACTIVE)
+  status Boolean @default(false)
   // order Order
 }
 
@@ -272,7 +272,7 @@ model Profile {
 model Post {
   id               Int        @id @default(autoincrement())
   title            String
-  propertyNumber   String?    @unique
+  propertyNumber   Int?    @unique
   description      String?
   featuredImages   String?
   galleryImages    String?
@@ -305,9 +305,9 @@ model Post {
   wishlist         Wishlist[]
   postComment      PostComment[]
   orderProduct     OrderProduct[]
-  slug   Slug @relation(fields: [slugId], references: [id])
-  slugId Int  @unique
-  status  PostStatus @default(DRAFT)
+  slug   Slug? @relation(fields: [slugId], references: [id])
+  slugId Int? 
+  status  Boolean @default(false)
   createdAt        DateTime   @default(now())
   updatedAt        DateTime   @updatedAt
 }
@@ -402,7 +402,7 @@ model Blog {
   featuredImage String?
   createdAt   DateTime? @default(now())
   updatedAt  DateTime? @updatedAt
-  status      Boolean   @default(true)
+  status      Boolean   @default(false)
   blogCategory        BlogCategory      @relation(fields: [blogCategoryId], references: [id])
   blogCategoryId      Int
   slug   Slug @relation(fields: [slugId], references: [id])
@@ -429,7 +429,7 @@ model Page{
   featuredImage String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  status      Boolean   @default(true)
+  status      Boolean   @default(false)
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
 }
@@ -437,8 +437,7 @@ model Page{
 model Slug {
   id        Int       @id @default(autoincrement())
   slug      String    @unique
-  type      SlugType  @default(POST)
-  referenceId     Int    // Save the postID / pageID / 
+  type      SlugType  @default(POST)    // Save the postID / pageID / 
   pages Page[]
   blogs Blog[]
   posts Post[]

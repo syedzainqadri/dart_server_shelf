@@ -91,7 +91,6 @@ class PageApi {
               create: SlugCreateWithoutPagesInput(
                 slug: slug,
                 type: slugTypeEnum,
-                referenceId: refrenceId,
               ),
             ),
             createdAt: DateTime.now(),

@@ -91,7 +91,6 @@ class BlogApi {
               create: SlugCreateWithoutBlogsInput(
                 slug: slug,
                 type: SlugType.BLOG,
-                referenceId: refrenceId,
               ),
             ),
             author: UsersCreateNestedOneWithoutBlogsInput(

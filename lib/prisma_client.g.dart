@@ -1011,7 +1011,7 @@ ProductGroupByOutputType _$ProductGroupByOutputTypeFromJson(
       productType: $enumDecode(_$ProductTypeEnumMap, json['productType']),
       description: json['description'] as String?,
       productLifeInDays: json['productLifeInDays'] as int,
-      status: $enumDecode(_$CommonStatusEnumMap, json['status']),
+      status: json['status'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       $count: json['_count'] == null
@@ -1047,7 +1047,7 @@ Map<String, dynamic> _$ProductGroupByOutputTypeToJson(
       'productType': _$ProductTypeEnumMap[instance.productType]!,
       'description': instance.description,
       'productLifeInDays': instance.productLifeInDays,
-      'status': _$CommonStatusEnumMap[instance.status]!,
+      'status': instance.status,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       '_count': instance.$count?.toJson(),
@@ -1062,11 +1062,6 @@ const _$ProductTypeEnumMap = {
   ProductType.FEATURED: 'FEATURED',
   ProductType.TOP: 'TOP',
   ProductType.BUMPED: 'BUMPED',
-};
-
-const _$CommonStatusEnumMap = {
-  CommonStatus.ACTIVE: 'ACTIVE',
-  CommonStatus.INACTIVE: 'INACTIVE',
 };
 
 AggregateOrder _$AggregateOrderFromJson(Map<String, dynamic> json) =>
@@ -1193,7 +1188,7 @@ PaymentMethodGroupByOutputType _$PaymentMethodGroupByOutputTypeFromJson(
       secret: json['secret'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
-      status: $enumDecode(_$CommonStatusEnumMap, json['status']),
+      status: json['status'] as bool,
       $count: json['_count'] == null
           ? null
           : PaymentMethodCountAggregateOutputType.fromJson(
@@ -1225,7 +1220,7 @@ Map<String, dynamic> _$PaymentMethodGroupByOutputTypeToJson(
       'secret': instance.secret,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
-      'status': _$CommonStatusEnumMap[instance.status]!,
+      'status': instance.status,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -1578,7 +1573,7 @@ PostGroupByOutputType _$PostGroupByOutputTypeFromJson(
     PostGroupByOutputType(
       id: json['id'] as int,
       title: json['title'] as String,
-      propertyNumber: json['propertyNumber'] as String?,
+      propertyNumber: json['propertyNumber'] as int?,
       description: json['description'] as String?,
       featuredImages: json['featuredImages'] as String?,
       galleryImages: json['galleryImages'] as String?,
@@ -1603,8 +1598,8 @@ PostGroupByOutputType _$PostGroupByOutputTypeFromJson(
       featureAndAmenities: json['featureAndAmenities'] as String,
       categoryId: json['categoryId'] as int,
       authorId: json['authorId'] as int,
-      slugId: json['slugId'] as int,
-      status: $enumDecode(_$PostStatusEnumMap, json['status']),
+      slugId: json['slugId'] as int?,
+      status: json['status'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       $count: json['_count'] == null
@@ -1659,7 +1654,7 @@ Map<String, dynamic> _$PostGroupByOutputTypeToJson(
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
-      'status': _$PostStatusEnumMap[instance.status]!,
+      'status': instance.status,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       '_count': instance.$count?.toJson(),
@@ -1668,13 +1663,6 @@ Map<String, dynamic> _$PostGroupByOutputTypeToJson(
       '_min': instance.$min?.toJson(),
       '_max': instance.$max?.toJson(),
     };
-
-const _$PostStatusEnumMap = {
-  PostStatus.DRAFT: 'DRAFT',
-  PostStatus.PUBLISH: 'PUBLISH',
-  PostStatus.PENDING: 'PENDING',
-  PostStatus.DELETED: 'DELETED',
-};
 
 AggregatePostContact _$AggregatePostContactFromJson(
         Map<String, dynamic> json) =>
@@ -2567,7 +2555,6 @@ SlugGroupByOutputType _$SlugGroupByOutputTypeFromJson(
       id: json['id'] as int,
       slug: json['slug'] as String,
       type: $enumDecode(_$SlugTypeEnumMap, json['type']),
-      referenceId: json['referenceId'] as int,
       $count: json['_count'] == null
           ? null
           : SlugCountAggregateOutputType.fromJson(
@@ -2596,7 +2583,6 @@ Map<String, dynamic> _$SlugGroupByOutputTypeToJson(
       'id': instance.id,
       'slug': instance.slug,
       'type': _$SlugTypeEnumMap[instance.type]!,
-      'referenceId': instance.referenceId,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -4403,7 +4389,7 @@ ProductMinAggregateOutputType _$ProductMinAggregateOutputTypeFromJson(
           $enumDecodeNullable(_$ProductTypeEnumMap, json['productType']),
       description: json['description'] as String?,
       productLifeInDays: json['productLifeInDays'] as int?,
-      status: $enumDecodeNullable(_$CommonStatusEnumMap, json['status']),
+      status: json['status'] as bool?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -4423,7 +4409,7 @@ Map<String, dynamic> _$ProductMinAggregateOutputTypeToJson(
       'productType': _$ProductTypeEnumMap[instance.productType],
       'description': instance.description,
       'productLifeInDays': instance.productLifeInDays,
-      'status': _$CommonStatusEnumMap[instance.status],
+      'status': instance.status,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
@@ -4440,7 +4426,7 @@ ProductMaxAggregateOutputType _$ProductMaxAggregateOutputTypeFromJson(
           $enumDecodeNullable(_$ProductTypeEnumMap, json['productType']),
       description: json['description'] as String?,
       productLifeInDays: json['productLifeInDays'] as int?,
-      status: $enumDecodeNullable(_$CommonStatusEnumMap, json['status']),
+      status: json['status'] as bool?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -4460,7 +4446,7 @@ Map<String, dynamic> _$ProductMaxAggregateOutputTypeToJson(
       'productType': _$ProductTypeEnumMap[instance.productType],
       'description': instance.description,
       'productLifeInDays': instance.productLifeInDays,
-      'status': _$CommonStatusEnumMap[instance.status],
+      'status': instance.status,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
@@ -4653,7 +4639,7 @@ PaymentMethodMinAggregateOutputType
           updatedAt: json['updatedAt'] == null
               ? null
               : DateTime.parse(json['updatedAt'] as String),
-          status: $enumDecodeNullable(_$CommonStatusEnumMap, json['status']),
+          status: json['status'] as bool?,
         );
 
 Map<String, dynamic> _$PaymentMethodMinAggregateOutputTypeToJson(
@@ -4665,7 +4651,7 @@ Map<String, dynamic> _$PaymentMethodMinAggregateOutputTypeToJson(
       'secret': instance.secret,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
-      'status': _$CommonStatusEnumMap[instance.status],
+      'status': instance.status,
     };
 
 PaymentMethodMaxAggregateOutputType
@@ -4681,7 +4667,7 @@ PaymentMethodMaxAggregateOutputType
           updatedAt: json['updatedAt'] == null
               ? null
               : DateTime.parse(json['updatedAt'] as String),
-          status: $enumDecodeNullable(_$CommonStatusEnumMap, json['status']),
+          status: json['status'] as bool?,
         );
 
 Map<String, dynamic> _$PaymentMethodMaxAggregateOutputTypeToJson(
@@ -4693,7 +4679,7 @@ Map<String, dynamic> _$PaymentMethodMaxAggregateOutputTypeToJson(
       'secret': instance.secret,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
-      'status': _$CommonStatusEnumMap[instance.status],
+      'status': instance.status,
     };
 
 OrderProductCountAggregateOutputType
@@ -5279,6 +5265,7 @@ PostAvgAggregateOutputType _$PostAvgAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     PostAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
+      propertyNumber: (json['propertyNumber'] as num?)?.toDouble(),
       price: (json['price'] as num?)?.toDouble(),
       advanceAmount: (json['advanceAmount'] as num?)?.toDouble(),
       noOfInstallments: (json['noOfInstallments'] as num?)?.toDouble(),
@@ -5294,6 +5281,7 @@ Map<String, dynamic> _$PostAvgAggregateOutputTypeToJson(
         PostAvgAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'propertyNumber': instance.propertyNumber,
       'price': instance.price,
       'advanceAmount': instance.advanceAmount,
       'noOfInstallments': instance.noOfInstallments,
@@ -5309,6 +5297,7 @@ PostSumAggregateOutputType _$PostSumAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     PostSumAggregateOutputType(
       id: json['id'] as int?,
+      propertyNumber: json['propertyNumber'] as int?,
       price: (json['price'] as num?)?.toDouble(),
       advanceAmount: (json['advanceAmount'] as num?)?.toDouble(),
       noOfInstallments: json['noOfInstallments'] as int?,
@@ -5324,6 +5313,7 @@ Map<String, dynamic> _$PostSumAggregateOutputTypeToJson(
         PostSumAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'propertyNumber': instance.propertyNumber,
       'price': instance.price,
       'advanceAmount': instance.advanceAmount,
       'noOfInstallments': instance.noOfInstallments,
@@ -5340,7 +5330,7 @@ PostMinAggregateOutputType _$PostMinAggregateOutputTypeFromJson(
     PostMinAggregateOutputType(
       id: json['id'] as int?,
       title: json['title'] as String?,
-      propertyNumber: json['propertyNumber'] as String?,
+      propertyNumber: json['propertyNumber'] as int?,
       description: json['description'] as String?,
       featuredImages: json['featuredImages'] as String?,
       galleryImages: json['galleryImages'] as String?,
@@ -5366,7 +5356,7 @@ PostMinAggregateOutputType _$PostMinAggregateOutputTypeFromJson(
       categoryId: json['categoryId'] as int?,
       authorId: json['authorId'] as int?,
       slugId: json['slugId'] as int?,
-      status: $enumDecodeNullable(_$PostStatusEnumMap, json['status']),
+      status: json['status'] as bool?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -5405,7 +5395,7 @@ Map<String, dynamic> _$PostMinAggregateOutputTypeToJson(
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
-      'status': _$PostStatusEnumMap[instance.status],
+      'status': instance.status,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
@@ -5415,7 +5405,7 @@ PostMaxAggregateOutputType _$PostMaxAggregateOutputTypeFromJson(
     PostMaxAggregateOutputType(
       id: json['id'] as int?,
       title: json['title'] as String?,
-      propertyNumber: json['propertyNumber'] as String?,
+      propertyNumber: json['propertyNumber'] as int?,
       description: json['description'] as String?,
       featuredImages: json['featuredImages'] as String?,
       galleryImages: json['galleryImages'] as String?,
@@ -5441,7 +5431,7 @@ PostMaxAggregateOutputType _$PostMaxAggregateOutputTypeFromJson(
       categoryId: json['categoryId'] as int?,
       authorId: json['authorId'] as int?,
       slugId: json['slugId'] as int?,
-      status: $enumDecodeNullable(_$PostStatusEnumMap, json['status']),
+      status: json['status'] as bool?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -5480,7 +5470,7 @@ Map<String, dynamic> _$PostMaxAggregateOutputTypeToJson(
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
-      'status': _$PostStatusEnumMap[instance.status],
+      'status': instance.status,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
@@ -6686,7 +6676,6 @@ SlugCountAggregateOutputType _$SlugCountAggregateOutputTypeFromJson(
       id: json['id'] as int,
       slug: json['slug'] as int,
       type: json['type'] as int,
-      referenceId: json['referenceId'] as int,
       $all: json['_all'] as int,
     );
 
@@ -6696,7 +6685,6 @@ Map<String, dynamic> _$SlugCountAggregateOutputTypeToJson(
       'id': instance.id,
       'slug': instance.slug,
       'type': instance.type,
-      'referenceId': instance.referenceId,
       '_all': instance.$all,
     };
 
@@ -6704,28 +6692,24 @@ SlugAvgAggregateOutputType _$SlugAvgAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     SlugAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
-      referenceId: (json['referenceId'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$SlugAvgAggregateOutputTypeToJson(
         SlugAvgAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'referenceId': instance.referenceId,
     };
 
 SlugSumAggregateOutputType _$SlugSumAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     SlugSumAggregateOutputType(
       id: json['id'] as int?,
-      referenceId: json['referenceId'] as int?,
     );
 
 Map<String, dynamic> _$SlugSumAggregateOutputTypeToJson(
         SlugSumAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'referenceId': instance.referenceId,
     };
 
 SlugMinAggregateOutputType _$SlugMinAggregateOutputTypeFromJson(
@@ -6734,7 +6718,6 @@ SlugMinAggregateOutputType _$SlugMinAggregateOutputTypeFromJson(
       id: json['id'] as int?,
       slug: json['slug'] as String?,
       type: $enumDecodeNullable(_$SlugTypeEnumMap, json['type']),
-      referenceId: json['referenceId'] as int?,
     );
 
 Map<String, dynamic> _$SlugMinAggregateOutputTypeToJson(
@@ -6743,7 +6726,6 @@ Map<String, dynamic> _$SlugMinAggregateOutputTypeToJson(
       'id': instance.id,
       'slug': instance.slug,
       'type': _$SlugTypeEnumMap[instance.type],
-      'referenceId': instance.referenceId,
     };
 
 SlugMaxAggregateOutputType _$SlugMaxAggregateOutputTypeFromJson(
@@ -6752,7 +6734,6 @@ SlugMaxAggregateOutputType _$SlugMaxAggregateOutputTypeFromJson(
       id: json['id'] as int?,
       slug: json['slug'] as String?,
       type: $enumDecodeNullable(_$SlugTypeEnumMap, json['type']),
-      referenceId: json['referenceId'] as int?,
     );
 
 Map<String, dynamic> _$SlugMaxAggregateOutputTypeToJson(
@@ -6761,7 +6742,6 @@ Map<String, dynamic> _$SlugMaxAggregateOutputTypeToJson(
       'id': instance.id,
       'slug': instance.slug,
       'type': _$SlugTypeEnumMap[instance.type],
-      'referenceId': instance.referenceId,
     };
 
 ForumPostCountOutputType _$ForumPostCountOutputTypeFromJson(
@@ -7521,7 +7501,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       productType: $enumDecode(_$ProductTypeEnumMap, json['productType']),
       description: json['description'] as String?,
       productLifeInDays: json['productLifeInDays'] as int,
-      status: $enumDecode(_$CommonStatusEnumMap, json['status']),
+      status: json['status'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
@@ -7535,7 +7515,7 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'productType': _$ProductTypeEnumMap[instance.productType]!,
       'description': instance.description,
       'productLifeInDays': instance.productLifeInDays,
-      'status': _$CommonStatusEnumMap[instance.status]!,
+      'status': instance.status,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };
@@ -7566,7 +7546,7 @@ PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>
       secret: json['secret'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
-      status: $enumDecode(_$CommonStatusEnumMap, json['status']),
+      status: json['status'] as bool,
     );
 
 Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) =>
@@ -7577,7 +7557,7 @@ Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) =>
       'secret': instance.secret,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
-      'status': _$CommonStatusEnumMap[instance.status]!,
+      'status': instance.status,
     };
 
 OrderProduct _$OrderProductFromJson(Map<String, dynamic> json) => OrderProduct(
@@ -7687,7 +7667,7 @@ Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
 Post _$PostFromJson(Map<String, dynamic> json) => Post(
       id: json['id'] as int,
       title: json['title'] as String,
-      propertyNumber: json['propertyNumber'] as String?,
+      propertyNumber: json['propertyNumber'] as int?,
       description: json['description'] as String?,
       featuredImages: json['featuredImages'] as String?,
       galleryImages: json['galleryImages'] as String?,
@@ -7712,8 +7692,8 @@ Post _$PostFromJson(Map<String, dynamic> json) => Post(
       featureAndAmenities: json['featureAndAmenities'] as String,
       categoryId: json['categoryId'] as int,
       authorId: json['authorId'] as int,
-      slugId: json['slugId'] as int,
-      status: $enumDecode(_$PostStatusEnumMap, json['status']),
+      slugId: json['slugId'] as int?,
+      status: json['status'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
@@ -7746,7 +7726,7 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
-      'status': _$PostStatusEnumMap[instance.status]!,
+      'status': instance.status,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };
@@ -7976,14 +7956,12 @@ Slug _$SlugFromJson(Map<String, dynamic> json) => Slug(
       id: json['id'] as int,
       slug: json['slug'] as String,
       type: $enumDecode(_$SlugTypeEnumMap, json['type']),
-      referenceId: json['referenceId'] as int,
     );
 
 Map<String, dynamic> _$SlugToJson(Slug instance) => <String, dynamic>{
       'id': instance.id,
       'slug': instance.slug,
       'type': _$SlugTypeEnumMap[instance.type]!,
-      'referenceId': instance.referenceId,
     };
 
 ForumPost _$ForumPostFromJson(Map<String, dynamic> json) => ForumPost(

@@ -114,7 +114,6 @@ class AgencyApi {
               create: SlugCreateWithoutAgencyInput(
                 slug: slug,
                 type: SlugType.PAGE,
-                referenceId: refrenceId,
               ),
             ),
           ),

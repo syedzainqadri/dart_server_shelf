@@ -82,8 +82,6 @@ class ProductApi {
             .firstWhere((e) => e.toString() == 'ProductType.' + productType);
         var description = payload['description'];
         var status = payload['status'];
-        CommonStatus productStatus = CommonStatus.values
-            .firstWhere((e) => e.toString() == 'CommonStatus.' + status);
         var product = await prisma.product.create(
           data: ProductCreateInput(
             title: title,
@@ -93,7 +91,7 @@ class ProductApi {
             productLifeInDays: productLifeInDays,
             productType: productTypeEnum,
             description: PrismaUnion.zero(description),
-            status: productStatus,
+            status: status,
           ),
         );
         var productObject = jsonEncode(product);
@@ -137,8 +135,6 @@ class ProductApi {
             .firstWhere((e) => e.toString() == 'ProductType.' + productType);
         var description = payload['description'];
         var status = payload['status'];
-        CommonStatus productStatus = CommonStatus.values
-            .firstWhere((e) => e.toString() == 'CommonStatus.' + status);
         var product = await prisma.product.update(
           where: ProductWhereUniqueInput(id: id),
           data: ProductUpdateInput(
@@ -153,8 +149,7 @@ class ProductApi {
             description: NullableStringFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(description),
             ),
-            status:
-                EnumCommonStatusFieldUpdateOperationsInput(set$: productStatus),
+            status: BoolFieldUpdateOperationsInput(set$: status),
             updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
           ),
         );

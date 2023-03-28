@@ -92,7 +92,6 @@ class ForumPostApi {
             slug: SlugCreateNestedOneWithoutFormPostInput(
               create: SlugCreateWithoutFormPostInput(
                 slug: slug,
-                referenceId: refrenceId,
                 type: SlugType.BLOG,
               ),
             ),
