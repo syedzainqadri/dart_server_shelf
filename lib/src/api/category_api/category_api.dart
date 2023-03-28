@@ -110,15 +110,17 @@ class CategoryApi {
         var description = payload['description'];
         var parentId = payload['parentId'];
         var published = payload['published'];
+        var amenitiesList = payload['amenitiesList'];
         var category = await prisma.category.create(
           data: CategoryCreateInput(
-            image: PrismaUnion.zero(image),
-            name: name,
-            slug: PrismaUnion.zero(slug),
-            description: PrismaUnion.zero(description),
-            parentId: PrismaUnion.zero(parentId),
-            published: published,
-          ),
+              image: PrismaUnion.zero(image),
+              name: name,
+              slug: PrismaUnion.zero(slug),
+              description: PrismaUnion.zero(description),
+              parentId: PrismaUnion.zero(parentId),
+              published: published,
+              amenities: AmenitiesCreateNestedOneWithoutCategoryInput(
+                  connect: AmenitiesWhereUniqueInput(name: amenitiesList))),
         );
         var categoryObject = jsonEncode(category);
         return Response.ok(categoryObject, headers: {
@@ -157,6 +159,7 @@ class CategoryApi {
         var description = payload['description'];
         var parentId = payload['parentId'];
         var published = payload['published'];
+        var amenitiesList = payload['amenitiesList'];
         var category = await prisma.category.update(
           where: CategoryWhereUniqueInput(id: id),
           data: CategoryUpdateInput(
@@ -170,6 +173,9 @@ class CategoryApi {
             published: BoolFieldUpdateOperationsInput(set$: published),
             image: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(image)),
+            amenities: AmenitiesUpdateOneRequiredWithoutCategoryNestedInput(
+              update: AmenitiesUpdateWithoutCategoryInput(name: amenitiesList),
+            ),
             updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
           ),
         );

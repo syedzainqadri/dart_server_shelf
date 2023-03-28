@@ -2122,10 +2122,10 @@ AmenitiesGroupByOutputType _$AmenitiesGroupByOutputTypeFromJson(
       name: json['name'] as String,
       slug: json['slug'] as String?,
       description: json['description'] as String?,
+      icon: json['icon'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       published: json['published'] as bool,
-      categoryId: json['categoryId'] as int,
       $count: json['_count'] == null
           ? null
           : AmenitiesCountAggregateOutputType.fromJson(
@@ -2155,10 +2155,10 @@ Map<String, dynamic> _$AmenitiesGroupByOutputTypeToJson(
       'name': instance.name,
       'slug': instance.slug,
       'description': instance.description,
+      'icon': instance.icon,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'published': instance.published,
-      'categoryId': instance.categoryId,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -2211,6 +2211,7 @@ CategoryGroupByOutputType _$CategoryGroupByOutputTypeFromJson(
       published: json['published'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
+      amenitiesName: json['amenitiesName'] as String,
       $count: json['_count'] == null
           ? null
           : CategoryCountAggregateOutputType.fromJson(
@@ -2245,6 +2246,7 @@ Map<String, dynamic> _$CategoryGroupByOutputTypeToJson(
       'published': instance.published,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
+      'amenitiesName': instance.amenitiesName,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -6027,6 +6029,18 @@ Map<String, dynamic> _$PostMetaMaxAggregateOutputTypeToJson(
       'postId': instance.postId,
     };
 
+AmenitiesCountOutputType _$AmenitiesCountOutputTypeFromJson(
+        Map<String, dynamic> json) =>
+    AmenitiesCountOutputType(
+      category: json['category'] as int,
+    );
+
+Map<String, dynamic> _$AmenitiesCountOutputTypeToJson(
+        AmenitiesCountOutputType instance) =>
+    <String, dynamic>{
+      'category': instance.category,
+    };
+
 AmenitiesCountAggregateOutputType _$AmenitiesCountAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     AmenitiesCountAggregateOutputType(
@@ -6034,10 +6048,10 @@ AmenitiesCountAggregateOutputType _$AmenitiesCountAggregateOutputTypeFromJson(
       name: json['name'] as int,
       slug: json['slug'] as int,
       description: json['description'] as int,
+      icon: json['icon'] as int,
       createdAt: json['createdAt'] as int,
       updatedAt: json['updatedAt'] as int,
       published: json['published'] as int,
-      categoryId: json['categoryId'] as int,
       $all: json['_all'] as int,
     );
 
@@ -6048,10 +6062,10 @@ Map<String, dynamic> _$AmenitiesCountAggregateOutputTypeToJson(
       'name': instance.name,
       'slug': instance.slug,
       'description': instance.description,
+      'icon': instance.icon,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'published': instance.published,
-      'categoryId': instance.categoryId,
       '_all': instance.$all,
     };
 
@@ -6059,28 +6073,24 @@ AmenitiesAvgAggregateOutputType _$AmenitiesAvgAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     AmenitiesAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
-      categoryId: (json['categoryId'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$AmenitiesAvgAggregateOutputTypeToJson(
         AmenitiesAvgAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'categoryId': instance.categoryId,
     };
 
 AmenitiesSumAggregateOutputType _$AmenitiesSumAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     AmenitiesSumAggregateOutputType(
       id: json['id'] as int?,
-      categoryId: json['categoryId'] as int?,
     );
 
 Map<String, dynamic> _$AmenitiesSumAggregateOutputTypeToJson(
         AmenitiesSumAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'categoryId': instance.categoryId,
     };
 
 AmenitiesMinAggregateOutputType _$AmenitiesMinAggregateOutputTypeFromJson(
@@ -6090,6 +6100,7 @@ AmenitiesMinAggregateOutputType _$AmenitiesMinAggregateOutputTypeFromJson(
       name: json['name'] as String?,
       slug: json['slug'] as String?,
       description: json['description'] as String?,
+      icon: json['icon'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -6097,7 +6108,6 @@ AmenitiesMinAggregateOutputType _$AmenitiesMinAggregateOutputTypeFromJson(
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       published: json['published'] as bool?,
-      categoryId: json['categoryId'] as int?,
     );
 
 Map<String, dynamic> _$AmenitiesMinAggregateOutputTypeToJson(
@@ -6107,10 +6117,10 @@ Map<String, dynamic> _$AmenitiesMinAggregateOutputTypeToJson(
       'name': instance.name,
       'slug': instance.slug,
       'description': instance.description,
+      'icon': instance.icon,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'published': instance.published,
-      'categoryId': instance.categoryId,
     };
 
 AmenitiesMaxAggregateOutputType _$AmenitiesMaxAggregateOutputTypeFromJson(
@@ -6120,6 +6130,7 @@ AmenitiesMaxAggregateOutputType _$AmenitiesMaxAggregateOutputTypeFromJson(
       name: json['name'] as String?,
       slug: json['slug'] as String?,
       description: json['description'] as String?,
+      icon: json['icon'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -6127,7 +6138,6 @@ AmenitiesMaxAggregateOutputType _$AmenitiesMaxAggregateOutputTypeFromJson(
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       published: json['published'] as bool?,
-      categoryId: json['categoryId'] as int?,
     );
 
 Map<String, dynamic> _$AmenitiesMaxAggregateOutputTypeToJson(
@@ -6137,16 +6147,15 @@ Map<String, dynamic> _$AmenitiesMaxAggregateOutputTypeToJson(
       'name': instance.name,
       'slug': instance.slug,
       'description': instance.description,
+      'icon': instance.icon,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'published': instance.published,
-      'categoryId': instance.categoryId,
     };
 
 CategoryCountOutputType _$CategoryCountOutputTypeFromJson(
         Map<String, dynamic> json) =>
     CategoryCountOutputType(
-      amenities: json['amenities'] as int,
       posts: json['posts'] as int,
       projects: json['projects'] as int,
     );
@@ -6154,7 +6163,6 @@ CategoryCountOutputType _$CategoryCountOutputTypeFromJson(
 Map<String, dynamic> _$CategoryCountOutputTypeToJson(
         CategoryCountOutputType instance) =>
     <String, dynamic>{
-      'amenities': instance.amenities,
       'posts': instance.posts,
       'projects': instance.projects,
     };
@@ -6171,6 +6179,7 @@ CategoryCountAggregateOutputType _$CategoryCountAggregateOutputTypeFromJson(
       published: json['published'] as int,
       createdAt: json['createdAt'] as int,
       updatedAt: json['updatedAt'] as int,
+      amenitiesName: json['amenitiesName'] as int,
       $all: json['_all'] as int,
     );
 
@@ -6186,6 +6195,7 @@ Map<String, dynamic> _$CategoryCountAggregateOutputTypeToJson(
       'published': instance.published,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
+      'amenitiesName': instance.amenitiesName,
       '_all': instance.$all,
     };
 
@@ -6233,6 +6243,7 @@ CategoryMinAggregateOutputType _$CategoryMinAggregateOutputTypeFromJson(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
+      amenitiesName: json['amenitiesName'] as String?,
     );
 
 Map<String, dynamic> _$CategoryMinAggregateOutputTypeToJson(
@@ -6247,6 +6258,7 @@ Map<String, dynamic> _$CategoryMinAggregateOutputTypeToJson(
       'published': instance.published,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
+      'amenitiesName': instance.amenitiesName,
     };
 
 CategoryMaxAggregateOutputType _$CategoryMaxAggregateOutputTypeFromJson(
@@ -6265,6 +6277,7 @@ CategoryMaxAggregateOutputType _$CategoryMaxAggregateOutputTypeFromJson(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
+      amenitiesName: json['amenitiesName'] as String?,
     );
 
 Map<String, dynamic> _$CategoryMaxAggregateOutputTypeToJson(
@@ -6279,6 +6292,7 @@ Map<String, dynamic> _$CategoryMaxAggregateOutputTypeToJson(
       'published': instance.published,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
+      'amenitiesName': instance.amenitiesName,
     };
 
 BlogCountAggregateOutputType _$BlogCountAggregateOutputTypeFromJson(
@@ -7834,10 +7848,10 @@ Amenities _$AmenitiesFromJson(Map<String, dynamic> json) => Amenities(
       name: json['name'] as String,
       slug: json['slug'] as String?,
       description: json['description'] as String?,
+      icon: json['icon'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       published: json['published'] as bool,
-      categoryId: json['categoryId'] as int,
     );
 
 Map<String, dynamic> _$AmenitiesToJson(Amenities instance) => <String, dynamic>{
@@ -7845,10 +7859,10 @@ Map<String, dynamic> _$AmenitiesToJson(Amenities instance) => <String, dynamic>{
       'name': instance.name,
       'slug': instance.slug,
       'description': instance.description,
+      'icon': instance.icon,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'published': instance.published,
-      'categoryId': instance.categoryId,
     };
 
 Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
@@ -7861,6 +7875,7 @@ Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       published: json['published'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
+      amenitiesName: json['amenitiesName'] as String,
     );
 
 Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
@@ -7873,6 +7888,7 @@ Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
       'published': instance.published,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
+      'amenitiesName': instance.amenitiesName,
     };
 
 Blog _$BlogFromJson(Map<String, dynamic> json) => Blog(

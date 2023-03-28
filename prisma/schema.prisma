@@ -370,14 +370,14 @@ model PostMeta {
 
 model Amenities {
   id          Int      @id @default(autoincrement())
-  name        String
+  name        String @unique
   slug        String?  @unique
   description String?
+  icon String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   published   Boolean  @default(false)
-  category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  Int
+  category    Category[]
 }
 
 model Category {
@@ -390,7 +390,8 @@ model Category {
   published   Boolean     @default(false)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
-  amenities   Amenities[]
+  amenities   Amenities @relation(fields: [amenitiesName], references: [name])
+  amenitiesName String
   posts       Post[]
   projects    Project[]
 }

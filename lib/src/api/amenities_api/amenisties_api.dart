@@ -81,7 +81,7 @@ class AmenitiesApi {
             slug: PrismaUnion.zero(slug),
             description: PrismaUnion.zero(description),
             published: published,
-            category: CategoryCreateNestedOneWithoutAmenitiesInput(
+            category: CategoryCreateNestedManyWithoutAmenitiesInput(
               connect: CategoryWhereUniqueInput(id: categoryId),
             ),
           ),
@@ -131,11 +131,8 @@ class AmenitiesApi {
             description: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(description)),
             published: BoolFieldUpdateOperationsInput(set$: published),
-            category: CategoryUpdateOneRequiredWithoutAmenitiesNestedInput(
-              update: CategoryUpdateWithoutAmenitiesInput(
-                parentId: NullableIntFieldUpdateOperationsInput(
-                    set$: PrismaUnion.zero(categoryId)),
-              ),
+            category: CategoryUpdateManyWithoutAmenitiesNestedInput(
+              connect: CategoryWhereUniqueInput(id: categoryId),
             ),
           ),
         );
