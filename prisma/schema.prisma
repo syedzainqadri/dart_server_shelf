@@ -285,6 +285,7 @@ model Post {
   city             String?
   area             String?
   isInstallmentAvailable  Boolean? @default(false)
+  showContactDetails  Boolean? @default(false)
   advanceAmount    Float
   noOfInstallments Int
   monthlyInstallments Float

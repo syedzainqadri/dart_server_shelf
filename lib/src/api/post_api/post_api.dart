@@ -134,53 +134,54 @@ class PostApi {
         var refrenceId = payload['refrenceId'];
         var slug = payload['slug'];
         var status = payload['status'];
+        var showContactDetails = payload['showContactDetails'];
         PostStatus postStatus = PostStatus.values
             .firstWhere((e) => e.toString() == 'PostStatus.' + status);
         var post = await prisma.post.create(
           data: PostCreateInput(
-            title: title,
-            description: PrismaUnion.zero(description),
-            featuredImages: PrismaUnion.zero(featuredImages),
-            galleryImages: PrismaUnion.zero(galleryImages),
-            video: video,
-            longDescription: PrismaUnion.zero(longDescription),
-            longitude: PrismaUnion.zero(longitude),
-            latitude: PrismaUnion.zero(latitude),
-            plotNumber: PrismaUnion.zero(plotNumber),
-            price: PrismaUnion.zero(price),
-            city: PrismaUnion.zero(city),
-            area: PrismaUnion.zero(area),
-            isInstallmentAvailable: PrismaUnion.zero(isInstallmentAvailable),
-            advanceAmount: advanceAmount,
-            noOfInstallments: noOfInstallments,
-            monthlyInstallments: monthlyInstallments,
-            readyForPossession: PrismaUnion.zero(readyForPossession),
-            areaSizeUnit: PrismaUnion.zero(areaSizeUnitenum),
-            bedroooms: bedroooms,
-            bathroom: bathrooms,
-            featureAndAmenities: featureAndAmenities,
-            author: UsersCreateNestedOneWithoutPostsInput(
-              connect: UsersWhereUniqueInput(id: authorId),
-            ),
-            category: CategoryCreateNestedOneWithoutPostsInput(
-              connect: CategoryWhereUniqueInput(id: categoryId),
-            ),
-            slug: SlugCreateNestedOneWithoutPostsInput(
-              create: SlugCreateWithoutPostsInput(
-                slug: slug,
-                referenceId: refrenceId,
-                type: SlugType.POST,
+              title: title,
+              description: PrismaUnion.zero(description),
+              featuredImages: PrismaUnion.zero(featuredImages),
+              galleryImages: PrismaUnion.zero(galleryImages),
+              video: video,
+              longDescription: PrismaUnion.zero(longDescription),
+              longitude: PrismaUnion.zero(longitude),
+              latitude: PrismaUnion.zero(latitude),
+              plotNumber: PrismaUnion.zero(plotNumber),
+              price: PrismaUnion.zero(price),
+              city: PrismaUnion.zero(city),
+              area: PrismaUnion.zero(area),
+              isInstallmentAvailable: PrismaUnion.zero(isInstallmentAvailable),
+              advanceAmount: advanceAmount,
+              noOfInstallments: noOfInstallments,
+              monthlyInstallments: monthlyInstallments,
+              readyForPossession: PrismaUnion.zero(readyForPossession),
+              areaSizeUnit: PrismaUnion.zero(areaSizeUnitenum),
+              bedroooms: bedroooms,
+              bathroom: bathrooms,
+              featureAndAmenities: featureAndAmenities,
+              author: UsersCreateNestedOneWithoutPostsInput(
+                connect: UsersWhereUniqueInput(id: authorId),
               ),
-            ),
-            status: postStatus,
-            postmeta: PostMetaCreateNestedManyWithoutPostInput(
-              create: PostMetaCreateWithoutPostInput(
-                metaTitle: metaTitle,
-                metaDescription: PrismaUnion.zero(metaDescription),
-                published: published,
+              category: CategoryCreateNestedOneWithoutPostsInput(
+                connect: CategoryWhereUniqueInput(id: categoryId),
               ),
-            ),
-          ),
+              slug: SlugCreateNestedOneWithoutPostsInput(
+                create: SlugCreateWithoutPostsInput(
+                  slug: slug,
+                  referenceId: refrenceId,
+                  type: SlugType.POST,
+                ),
+              ),
+              status: postStatus,
+              postmeta: PostMetaCreateNestedManyWithoutPostInput(
+                create: PostMetaCreateWithoutPostInput(
+                  metaTitle: metaTitle,
+                  metaDescription: PrismaUnion.zero(metaDescription),
+                  published: published,
+                ),
+              ),
+              showContactDetails: PrismaUnion.zero(showContactDetails)),
         );
         var postObject = jsonEncode(post);
         return Response.ok(postObject, headers: {
@@ -244,6 +245,7 @@ class PostApi {
         var status = payload['status'];
         PostStatus postStatus = PostStatus.values
             .firstWhere((e) => e.toString() == 'PostStatus.' + status);
+        var showContactDetails = payload['showContactDetails'];
         var post = await prisma.post.update(
           where: PostWhereUniqueInput(id: id),
           data: PostUpdateInput(
@@ -321,6 +323,9 @@ class PostApi {
             ),
             updatedAt: DateTimeFieldUpdateOperationsInput(
               set$: DateTime.now(),
+            ),
+            showContactDetails: NullableBoolFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(showContactDetails),
             ),
           ),
         );
