@@ -74,16 +74,12 @@ class AmenitiesApi {
         var slug = payload['slug'];
         var description = payload['description'];
         var published = payload['published'];
-        var categoryId = payload['categoryId'];
         var amenities = await prisma.amenities.create(
           data: AmenitiesCreateInput(
             name: name,
             slug: PrismaUnion.zero(slug),
             description: PrismaUnion.zero(description),
             published: published,
-            category: CategoryCreateNestedManyWithoutAmenitiesInput(
-              connect: CategoryWhereUniqueInput(id: categoryId),
-            ),
           ),
         );
         var amenitiesObject = jsonEncode(amenities);
