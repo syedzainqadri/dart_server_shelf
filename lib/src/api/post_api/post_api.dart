@@ -111,7 +111,6 @@ class PostApi {
         var longDescription = payload['longDescription'];
         var longitude = payload['longitude'];
         var latitude = payload['latitude'];
-        var content = payload['content'];
         var plotNumber = payload['plotNumber'];
         var price = payload['price'];
         var city = payload['city'];
@@ -126,22 +125,14 @@ class PostApi {
             .firstWhere((e) => e.toString() == 'AreaSizeUnit.' + areaSizeUnit);
         var bedroooms = payload['bedroooms'];
         var bathrooms = payload['bathrooms'];
-        var contactEmail = payload['contactEmail'];
-        var contactMobile = payload['contactMobile'];
-        var contactLandline = payload['contactLandline'];
         var featureAndAmenities = payload['featureAndAmenities'];
         var authorId = payload['authorId'];
         var categoryId = payload['categoryId'];
         var metaTitle = payload['metaTitle'];
         var metaDescription = payload['metaDescription'];
         var published = payload['published'];
-        var contactName = payload['contactName'];
-        var contactPersonType = payload['contactPersonType'];
         var refrenceId = payload['refrenceId'];
         var slug = payload['slug'];
-        CcontactPersonType contactPersonEnum = CcontactPersonType.values
-            .firstWhere((e) =>
-                e.toString() == 'CcontactPersonType.' + contactPersonType);
         var status = payload['status'];
         PostStatus postStatus = PostStatus.values
             .firstWhere((e) => e.toString() == 'PostStatus.' + status);
@@ -173,15 +164,6 @@ class PostApi {
             ),
             category: CategoryCreateNestedOneWithoutPostsInput(
               connect: CategoryWhereUniqueInput(id: categoryId),
-            ),
-            postContact: PostContactCreateNestedOneWithoutPostInput(
-              create: PostContactCreateWithoutPostInput(
-                name: PrismaUnion.zero(contactName),
-                email: PrismaUnion.zero(contactEmail),
-                phone: PrismaUnion.zero(contactMobile),
-                landLine: PrismaUnion.zero(contactLandline),
-                ccontactPersonType: contactPersonEnum,
-              ),
             ),
             slug: SlugCreateNestedOneWithoutPostsInput(
               create: SlugCreateWithoutPostsInput(

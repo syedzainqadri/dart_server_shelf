@@ -264,6 +264,8 @@ model Profile {
   updatedAt    DateTime @updatedAt
   published    Boolean @default(false)
   user         Users?  @relation("userProfile", fields: [userId], references: [id])
+  postContact  PostContact?  @relation(fields: [postContactId], references: [id])
+  postContactId    Int? 
   userId       Int?   @unique
 }
 
@@ -296,8 +298,8 @@ model Post {
   categoryId       Int
   author           Users       @relation(fields: [authorId], references: [id])
   authorId         Int
-  postContact      PostContact?  @relation(fields: [postContactId], references: [id])
-  postContactId    Int?          
+  // postContact      PostContact?  @relation(fields: [postContactId], references: [id])
+  // postContactId    Int?          
   review           Review[]
   wishlist         Wishlist[]
   postComment      PostComment[]
@@ -318,7 +320,8 @@ model PostContact {
   ccontactPersonType  CcontactPersonType @default(BUYER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  post  Post[]
+  // post  Post[]
+  profile Profile[]
 }
 
 model Review {

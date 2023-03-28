@@ -1421,6 +1421,11 @@ Map<String, dynamic> _$UsersGroupByOutputTypeToJson(
 const _$RoleEnumMap = {
   Role.USER: 'USER',
   Role.ADMIN: 'ADMIN',
+  Role.SUPERADMIN: 'SUPERADMIN',
+  Role.AREAMANAGER: 'AREAMANAGER',
+  Role.SALESMANAGER: 'SALESMANAGER',
+  Role.MANAGER: 'MANAGER',
+  Role.MARKETER: 'MARKETER',
 };
 
 const _$AreaSizeUnitEnumMap = {
@@ -1482,6 +1487,7 @@ ProfileGroupByOutputType _$ProfileGroupByOutputTypeFromJson(
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       published: json['published'] as bool,
+      postContactId: json['postContactId'] as int?,
       userId: json['userId'] as int?,
       $count: json['_count'] == null
           ? null
@@ -1525,6 +1531,7 @@ Map<String, dynamic> _$ProfileGroupByOutputTypeToJson(
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'published': instance.published,
+      'postContactId': instance.postContactId,
       'userId': instance.userId,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
@@ -1595,7 +1602,6 @@ PostGroupByOutputType _$PostGroupByOutputTypeFromJson(
       featureAndAmenities: json['featureAndAmenities'] as String,
       categoryId: json['categoryId'] as int,
       authorId: json['authorId'] as int,
-      postContactId: json['postContactId'] as int?,
       slugId: json['slugId'] as int,
       status: $enumDecode(_$PostStatusEnumMap, json['status']),
       createdAt: DateTime.parse(json['createdAt'] as String),
@@ -1650,7 +1656,6 @@ Map<String, dynamic> _$PostGroupByOutputTypeToJson(
       'featureAndAmenities': instance.featureAndAmenities,
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
-      'postContactId': instance.postContactId,
       'slugId': instance.slugId,
       'status': _$PostStatusEnumMap[instance.status]!,
       'createdAt': instance.createdAt.toIso8601String(),
@@ -5011,6 +5016,7 @@ ProfileCountAggregateOutputType _$ProfileCountAggregateOutputTypeFromJson(
       createdAt: json['createdAt'] as int,
       updatedAt: json['updatedAt'] as int,
       published: json['published'] as int,
+      postContactId: json['postContactId'] as int,
       userId: json['userId'] as int,
       $all: json['_all'] as int,
     );
@@ -5035,6 +5041,7 @@ Map<String, dynamic> _$ProfileCountAggregateOutputTypeToJson(
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'published': instance.published,
+      'postContactId': instance.postContactId,
       'userId': instance.userId,
       '_all': instance.$all,
     };
@@ -5043,6 +5050,7 @@ ProfileAvgAggregateOutputType _$ProfileAvgAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     ProfileAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
+      postContactId: (json['postContactId'] as num?)?.toDouble(),
       userId: (json['userId'] as num?)?.toDouble(),
     );
 
@@ -5050,6 +5058,7 @@ Map<String, dynamic> _$ProfileAvgAggregateOutputTypeToJson(
         ProfileAvgAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'postContactId': instance.postContactId,
       'userId': instance.userId,
     };
 
@@ -5057,6 +5066,7 @@ ProfileSumAggregateOutputType _$ProfileSumAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     ProfileSumAggregateOutputType(
       id: json['id'] as int?,
+      postContactId: json['postContactId'] as int?,
       userId: json['userId'] as int?,
     );
 
@@ -5064,6 +5074,7 @@ Map<String, dynamic> _$ProfileSumAggregateOutputTypeToJson(
         ProfileSumAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'postContactId': instance.postContactId,
       'userId': instance.userId,
     };
 
@@ -5091,6 +5102,7 @@ ProfileMinAggregateOutputType _$ProfileMinAggregateOutputTypeFromJson(
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       published: json['published'] as bool?,
+      postContactId: json['postContactId'] as int?,
       userId: json['userId'] as int?,
     );
 
@@ -5114,6 +5126,7 @@ Map<String, dynamic> _$ProfileMinAggregateOutputTypeToJson(
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'published': instance.published,
+      'postContactId': instance.postContactId,
       'userId': instance.userId,
     };
 
@@ -5141,6 +5154,7 @@ ProfileMaxAggregateOutputType _$ProfileMaxAggregateOutputTypeFromJson(
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       published: json['published'] as bool?,
+      postContactId: json['postContactId'] as int?,
       userId: json['userId'] as int?,
     );
 
@@ -5164,6 +5178,7 @@ Map<String, dynamic> _$ProfileMaxAggregateOutputTypeToJson(
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'published': instance.published,
+      'postContactId': instance.postContactId,
       'userId': instance.userId,
     };
 
@@ -5214,7 +5229,6 @@ PostCountAggregateOutputType _$PostCountAggregateOutputTypeFromJson(
       featureAndAmenities: json['featureAndAmenities'] as int,
       categoryId: json['categoryId'] as int,
       authorId: json['authorId'] as int,
-      postContactId: json['postContactId'] as int,
       slugId: json['slugId'] as int,
       status: json['status'] as int,
       createdAt: json['createdAt'] as int,
@@ -5250,7 +5264,6 @@ Map<String, dynamic> _$PostCountAggregateOutputTypeToJson(
       'featureAndAmenities': instance.featureAndAmenities,
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
-      'postContactId': instance.postContactId,
       'slugId': instance.slugId,
       'status': instance.status,
       'createdAt': instance.createdAt,
@@ -5270,7 +5283,6 @@ PostAvgAggregateOutputType _$PostAvgAggregateOutputTypeFromJson(
       bathroom: (json['bathroom'] as num?)?.toDouble(),
       categoryId: (json['categoryId'] as num?)?.toDouble(),
       authorId: (json['authorId'] as num?)?.toDouble(),
-      postContactId: (json['postContactId'] as num?)?.toDouble(),
       slugId: (json['slugId'] as num?)?.toDouble(),
     );
 
@@ -5286,7 +5298,6 @@ Map<String, dynamic> _$PostAvgAggregateOutputTypeToJson(
       'bathroom': instance.bathroom,
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
-      'postContactId': instance.postContactId,
       'slugId': instance.slugId,
     };
 
@@ -5302,7 +5313,6 @@ PostSumAggregateOutputType _$PostSumAggregateOutputTypeFromJson(
       bathroom: json['bathroom'] as int?,
       categoryId: json['categoryId'] as int?,
       authorId: json['authorId'] as int?,
-      postContactId: json['postContactId'] as int?,
       slugId: json['slugId'] as int?,
     );
 
@@ -5318,7 +5328,6 @@ Map<String, dynamic> _$PostSumAggregateOutputTypeToJson(
       'bathroom': instance.bathroom,
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
-      'postContactId': instance.postContactId,
       'slugId': instance.slugId,
     };
 
@@ -5351,7 +5360,6 @@ PostMinAggregateOutputType _$PostMinAggregateOutputTypeFromJson(
       featureAndAmenities: json['featureAndAmenities'] as String?,
       categoryId: json['categoryId'] as int?,
       authorId: json['authorId'] as int?,
-      postContactId: json['postContactId'] as int?,
       slugId: json['slugId'] as int?,
       status: $enumDecodeNullable(_$PostStatusEnumMap, json['status']),
       createdAt: json['createdAt'] == null
@@ -5390,7 +5398,6 @@ Map<String, dynamic> _$PostMinAggregateOutputTypeToJson(
       'featureAndAmenities': instance.featureAndAmenities,
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
-      'postContactId': instance.postContactId,
       'slugId': instance.slugId,
       'status': _$PostStatusEnumMap[instance.status],
       'createdAt': instance.createdAt?.toIso8601String(),
@@ -5426,7 +5433,6 @@ PostMaxAggregateOutputType _$PostMaxAggregateOutputTypeFromJson(
       featureAndAmenities: json['featureAndAmenities'] as String?,
       categoryId: json['categoryId'] as int?,
       authorId: json['authorId'] as int?,
-      postContactId: json['postContactId'] as int?,
       slugId: json['slugId'] as int?,
       status: $enumDecodeNullable(_$PostStatusEnumMap, json['status']),
       createdAt: json['createdAt'] == null
@@ -5465,7 +5471,6 @@ Map<String, dynamic> _$PostMaxAggregateOutputTypeToJson(
       'featureAndAmenities': instance.featureAndAmenities,
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
-      'postContactId': instance.postContactId,
       'slugId': instance.slugId,
       'status': _$PostStatusEnumMap[instance.status],
       'createdAt': instance.createdAt?.toIso8601String(),
@@ -5475,13 +5480,13 @@ Map<String, dynamic> _$PostMaxAggregateOutputTypeToJson(
 PostContactCountOutputType _$PostContactCountOutputTypeFromJson(
         Map<String, dynamic> json) =>
     PostContactCountOutputType(
-      post: json['post'] as int,
+      profile: json['profile'] as int,
     );
 
 Map<String, dynamic> _$PostContactCountOutputTypeToJson(
         PostContactCountOutputType instance) =>
     <String, dynamic>{
-      'post': instance.post,
+      'profile': instance.profile,
     };
 
 PostContactCountAggregateOutputType
@@ -7645,6 +7650,7 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) => Profile(
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       published: json['published'] as bool,
+      postContactId: json['postContactId'] as int?,
       userId: json['userId'] as int?,
     );
 
@@ -7666,6 +7672,7 @@ Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'published': instance.published,
+      'postContactId': instance.postContactId,
       'userId': instance.userId,
     };
 
@@ -7696,7 +7703,6 @@ Post _$PostFromJson(Map<String, dynamic> json) => Post(
       featureAndAmenities: json['featureAndAmenities'] as String,
       categoryId: json['categoryId'] as int,
       authorId: json['authorId'] as int,
-      postContactId: json['postContactId'] as int?,
       slugId: json['slugId'] as int,
       status: $enumDecode(_$PostStatusEnumMap, json['status']),
       createdAt: DateTime.parse(json['createdAt'] as String),
@@ -7729,7 +7735,6 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'featureAndAmenities': instance.featureAndAmenities,
       'categoryId': instance.categoryId,
       'authorId': instance.authorId,
-      'postContactId': instance.postContactId,
       'slugId': instance.slugId,
       'status': _$PostStatusEnumMap[instance.status]!,
       'createdAt': instance.createdAt.toIso8601String(),

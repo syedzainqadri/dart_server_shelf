@@ -82,6 +82,14 @@ class ProfileApi {
         var latitude = payload['latitude'];
         var images = payload['images'];
         var user = payload['user'];
+        var contactPersonType = payload['contactPersonType'];
+        CcontactPersonType contactPersonEnum = CcontactPersonType.values
+            .firstWhere((e) =>
+                e.toString() == 'CcontactPersonType.' + contactPersonType);
+        var name = payload['name'];
+        var email = payload['email'];
+        var mobilePhone = payload['mobilePhone'];
+        var landLine = payload['landLine'];
         var profile = await prisma.profile.create(
           data: ProfileCreateInput(
             firstName: PrismaUnion.zero(firstName),
@@ -100,6 +108,14 @@ class ProfileApi {
             images: PrismaUnion.zero(images),
             user: UsersCreateNestedOneWithoutProfileInput(
               connect: UsersWhereUniqueInput(id: user),
+            ),
+            postContact: PostContactCreateNestedOneWithoutProfileInput(
+              create: PostContactCreateWithoutProfileInput(
+                  name: PrismaUnion.zero(name),
+                  email: PrismaUnion.zero(email),
+                  phone: PrismaUnion.zero(mobilePhone),
+                  landLine: PrismaUnion.zero(landLine),
+                  ccontactPersonType: contactPersonEnum),
             ),
           ),
         );

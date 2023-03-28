@@ -72,8 +72,8 @@ class PostContactApi {
         var uid = int.parse(id);
         var postContact = await prisma.postContact.findMany(
           where: PostContactWhereInput(
-            post: PostListRelationFilter(
-              every: PostWhereInput(
+            profile: ProfileListRelationFilter(
+              every: ProfileWhereInput(
                 id: IntFilter(equals: uid),
               ),
             ),
