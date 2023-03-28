@@ -130,8 +130,6 @@ class PostApi {
         var categoryId = payload['categoryId'];
         var metaTitle = payload['metaTitle'];
         var metaDescription = payload['metaDescription'];
-        var published = payload['published'];
-        var refrenceId = payload['refrenceId'];
         var slug = payload['slug'];
         var status = payload['status'];
         var showContactDetails = payload['showContactDetails'];
@@ -176,7 +174,7 @@ class PostApi {
               create: PostMetaCreateWithoutPostInput(
                 metaTitle: metaTitle,
                 metaDescription: PrismaUnion.zero(metaDescription),
-                published: published,
+                status: status,
               ),
             ),
             showContactDetails: PrismaUnion.zero(showContactDetails),
@@ -241,7 +239,6 @@ class PostApi {
         var categoryId = payload['categoryId'];
         var metaTitle = payload['metaTitle'];
         var metaDescription = payload['metaDescription'];
-        var published = payload['published'];
         var status = payload['status'];
         var showContactDetails = payload['showContactDetails'];
         var post = await prisma.post.update(
@@ -308,7 +305,6 @@ class PostApi {
                 metaDescription: PrismaUnion.zero(
                   metaDescription,
                 ),
-                published: published,
               ),
             ),
             slug: SlugUpdateOneWithoutPostsNestedInput(

@@ -262,7 +262,7 @@ model Profile {
   latitude     String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  published    Boolean @default(false)
+  status    Boolean @default(false)
   user         Users?  @relation("userProfile", fields: [userId], references: [id])
   postContact  PostContact?  @relation(fields: [postContactId], references: [id])
   postContactId    Int? 
@@ -363,7 +363,7 @@ model PostMeta {
   id               Int     @id @default(autoincrement())
   metaTitle        String
   metaDescription  String?
-  published        Boolean @default(false)
+  status        Boolean @default(false)
   post             Post    @relation(fields: [postId], references: [id])
   postId           Int
 }
@@ -371,12 +371,11 @@ model PostMeta {
 model Amenities {
   id          Int      @id @default(autoincrement())
   name        String @unique
-  slug        String?  @unique
   description String?
   icon String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  published   Boolean  @default(false)
+  status   Boolean  @default(false)
   category    Category[]
 }
 
@@ -387,7 +386,7 @@ model Category {
   description String?
   image       String?     @db.VarChar(800)
   parentId    Int?
-  published   Boolean     @default(false)
+  status   Boolean     @default(false)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   amenities   Amenities @relation(fields: [amenitiesName], references: [name])

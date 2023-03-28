@@ -71,15 +71,13 @@ class AmenitiesApi {
       try {
         var payload = jsonDecode(await request.readAsString());
         var name = payload['name'];
-        var slug = payload['slug'];
         var description = payload['description'];
-        var published = payload['published'];
+        var status = payload['status'];
         var amenities = await prisma.amenities.create(
           data: AmenitiesCreateInput(
             name: name,
-            slug: PrismaUnion.zero(slug),
             description: PrismaUnion.zero(description),
-            published: published,
+            status: status,
           ),
         );
         var amenitiesObject = jsonEncode(amenities);
@@ -114,19 +112,16 @@ class AmenitiesApi {
         var payload = jsonDecode(await request.readAsString());
         var id = payload['id'];
         var name = payload['name'];
-        var slug = payload['slug'];
         var description = payload['description'];
-        var published = payload['published'];
+        var status = payload['status'];
         var categoryId = payload['categoryId'];
         var amenities = await prisma.amenities.update(
           where: AmenitiesWhereUniqueInput(id: id),
           data: AmenitiesUpdateInput(
             name: StringFieldUpdateOperationsInput(set$: name),
-            slug: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(slug)),
             description: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(description)),
-            published: BoolFieldUpdateOperationsInput(set$: published),
+            status: BoolFieldUpdateOperationsInput(set$: status),
             category: CategoryUpdateManyWithoutAmenitiesNestedInput(
               connect: CategoryWhereUniqueInput(id: categoryId),
             ),

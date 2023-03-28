@@ -109,7 +109,7 @@ class CategoryApi {
         var slug = payload['slug'];
         var description = payload['description'];
         var parentId = payload['parentId'];
-        var published = payload['published'];
+        var status = payload['status'];
         var amenitiesList = payload['amenitiesList'];
         var category = await prisma.category.create(
           data: CategoryCreateInput(
@@ -118,7 +118,7 @@ class CategoryApi {
               slug: PrismaUnion.zero(slug),
               description: PrismaUnion.zero(description),
               parentId: PrismaUnion.zero(parentId),
-              published: published,
+              status: status,
               amenities: AmenitiesCreateNestedOneWithoutCategoryInput(
                   connect: AmenitiesWhereUniqueInput(name: amenitiesList))),
         );
@@ -158,7 +158,7 @@ class CategoryApi {
         var image = payload['image'];
         var description = payload['description'];
         var parentId = payload['parentId'];
-        var published = payload['published'];
+        var status = payload['status'];
         var amenitiesList = payload['amenitiesList'];
         var category = await prisma.category.update(
           where: CategoryWhereUniqueInput(id: id),
@@ -170,7 +170,7 @@ class CategoryApi {
                 set$: PrismaUnion.zero(description)),
             parentId: NullableIntFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(parentId)),
-            published: BoolFieldUpdateOperationsInput(set$: published),
+            status: BoolFieldUpdateOperationsInput(set$: status),
             image: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(image)),
             amenities: AmenitiesUpdateOneRequiredWithoutCategoryNestedInput(
