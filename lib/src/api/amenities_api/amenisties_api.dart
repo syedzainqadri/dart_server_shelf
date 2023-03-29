@@ -70,14 +70,17 @@ class AmenitiesApi {
     router.post('/createAmenity', (Request request) async {
       try {
         var payload = jsonDecode(await request.readAsString());
+        print(payload);
         var name = payload['name'];
         var description = payload['description'];
         var status = payload['status'];
+        var icon = payload['icon'];
         var amenities = await prisma.amenities.create(
           data: AmenitiesCreateInput(
             name: name,
             description: PrismaUnion.zero(description),
             status: status,
+            icon: PrismaUnion.zero(icon),
           ),
         );
         var amenitiesObject = jsonEncode(amenities);
