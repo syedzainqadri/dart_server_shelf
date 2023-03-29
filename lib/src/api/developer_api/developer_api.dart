@@ -71,9 +71,15 @@ class DeveloperApi {
       try {
         var payload = jsonDecode(await request.readAsString());
         var name = payload['name'];
+        var description = payload['description'];
+        var logo = payload['logo'];
+        var status = payload['status'];
         var developer = await prisma.developer.create(
           data: DeveloperCreateInput(
             title: name,
+            description: description,
+            logo: logo,
+            status: status,
           ),
         );
         var developerObject = jsonEncode(developer);
@@ -108,10 +114,16 @@ class DeveloperApi {
         var payload = jsonDecode(await request.readAsString());
         var id = payload['id'];
         var name = payload['name'];
+        var description = payload['description'];
+        var logo = payload['logo'];
+        var status = payload['status'];
         var developer = await prisma.developer.update(
           where: DeveloperWhereUniqueInput(id: id),
           data: DeveloperUpdateInput(
             title: StringFieldUpdateOperationsInput(set$: name),
+            description: StringFieldUpdateOperationsInput(set$: description),
+            logo: StringFieldUpdateOperationsInput(set$: logo),
+            status: BoolFieldUpdateOperationsInput(set$: status),
             updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
           ),
         );
@@ -145,10 +157,10 @@ class DeveloperApi {
     router.delete('/deleteDeveloper/<id>', (Request request, String id) async {
       try {
         var uid = int.parse(id);
-        var develoepr = await prisma.developer.delete(
+        var developer = await prisma.developer.delete(
           where: DeveloperWhereUniqueInput(id: uid),
         );
-        var developerObject = jsonEncode(develoepr);
+        var developerObject = jsonEncode(developer);
         return Response.ok(developerObject, headers: {
           'Content-Type': 'application/json',
         });

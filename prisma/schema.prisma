@@ -114,6 +114,9 @@ model Agency {
 model Developer {
   id       Int       @id @default(autoincrement())
   title    String
+  description    String
+  logo      String
+  status    Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   projects Project[]

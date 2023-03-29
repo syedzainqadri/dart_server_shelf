@@ -665,6 +665,9 @@ DeveloperGroupByOutputType _$DeveloperGroupByOutputTypeFromJson(
     DeveloperGroupByOutputType(
       id: json['id'] as int,
       title: json['title'] as String,
+      description: json['description'] as String,
+      logo: json['logo'] as String,
+      status: json['status'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       $count: json['_count'] == null
@@ -694,6 +697,9 @@ Map<String, dynamic> _$DeveloperGroupByOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'description': instance.description,
+      'logo': instance.logo,
+      'status': instance.status,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       '_count': instance.$count?.toJson(),
@@ -3835,6 +3841,9 @@ DeveloperCountAggregateOutputType _$DeveloperCountAggregateOutputTypeFromJson(
     DeveloperCountAggregateOutputType(
       id: json['id'] as int,
       title: json['title'] as int,
+      description: json['description'] as int,
+      logo: json['logo'] as int,
+      status: json['status'] as int,
       createdAt: json['createdAt'] as int,
       updatedAt: json['updatedAt'] as int,
       $all: json['_all'] as int,
@@ -3845,6 +3854,9 @@ Map<String, dynamic> _$DeveloperCountAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'description': instance.description,
+      'logo': instance.logo,
+      'status': instance.status,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       '_all': instance.$all,
@@ -3879,6 +3891,9 @@ DeveloperMinAggregateOutputType _$DeveloperMinAggregateOutputTypeFromJson(
     DeveloperMinAggregateOutputType(
       id: json['id'] as int?,
       title: json['title'] as String?,
+      description: json['description'] as String?,
+      logo: json['logo'] as String?,
+      status: json['status'] as bool?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -3892,6 +3907,9 @@ Map<String, dynamic> _$DeveloperMinAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'description': instance.description,
+      'logo': instance.logo,
+      'status': instance.status,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
@@ -3901,6 +3919,9 @@ DeveloperMaxAggregateOutputType _$DeveloperMaxAggregateOutputTypeFromJson(
     DeveloperMaxAggregateOutputType(
       id: json['id'] as int?,
       title: json['title'] as String?,
+      description: json['description'] as String?,
+      logo: json['logo'] as String?,
+      status: json['status'] as bool?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -3914,6 +3935,9 @@ Map<String, dynamic> _$DeveloperMaxAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'description': instance.description,
+      'logo': instance.logo,
+      'status': instance.status,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
@@ -7417,6 +7441,9 @@ Map<String, dynamic> _$AgencyToJson(Agency instance) => <String, dynamic>{
 Developer _$DeveloperFromJson(Map<String, dynamic> json) => Developer(
       id: json['id'] as int,
       title: json['title'] as String,
+      description: json['description'] as String,
+      logo: json['logo'] as String,
+      status: json['status'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
@@ -7424,6 +7451,9 @@ Developer _$DeveloperFromJson(Map<String, dynamic> json) => Developer(
 Map<String, dynamic> _$DeveloperToJson(Developer instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'description': instance.description,
+      'logo': instance.logo,
+      'status': instance.status,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };
