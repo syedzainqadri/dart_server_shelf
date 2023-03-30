@@ -12,21 +12,29 @@ class BlogCategoryApi {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
@@ -45,21 +53,29 @@ class BlogCategoryApi {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
@@ -87,21 +103,29 @@ class BlogCategoryApi {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
@@ -139,21 +163,29 @@ class BlogCategoryApi {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
@@ -173,21 +205,29 @@ class BlogCategoryApi {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
