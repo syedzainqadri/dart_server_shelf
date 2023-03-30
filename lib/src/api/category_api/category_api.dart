@@ -137,14 +137,14 @@ class CategoryApi {
         var amenitiesList = payload['amenitiesList'];
         var category = await prisma.category.create(
           data: CategoryCreateInput(
-              image: PrismaUnion.zero(image),
-              name: name,
-              slug: PrismaUnion.zero(slug),
-              description: PrismaUnion.zero(description),
-              parentId: PrismaUnion.zero(parentId),
-              status: status,
-              amenities: AmenitiesCreateNestedOneWithoutCategoryInput(
-                  connect: AmenitiesWhereUniqueInput(name: amenitiesList))),
+            image: PrismaUnion.zero(image),
+            name: name,
+            slug: PrismaUnion.zero(slug),
+            description: PrismaUnion.zero(description),
+            parentId: PrismaUnion.zero(parentId),
+            status: status,
+            amenitiesIds: amenitiesList,
+          ),
         );
         var categoryObject = jsonEncode(category);
         return Response.ok(categoryObject, headers: {
@@ -205,9 +205,7 @@ class CategoryApi {
             status: BoolFieldUpdateOperationsInput(set$: status),
             image: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(image)),
-            amenities: AmenitiesUpdateOneRequiredWithoutCategoryNestedInput(
-              update: AmenitiesUpdateWithoutCategoryInput(name: amenitiesList),
-            ),
+            amenitiesIds: StringFieldUpdateOperationsInput(set$: amenitiesList),
             updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
           ),
         );
