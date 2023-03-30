@@ -2122,8 +2122,6 @@ AmenitiesGroupByOutputType _$AmenitiesGroupByOutputTypeFromJson(
       name: json['name'] as String,
       description: json['description'] as String?,
       icon: json['icon'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
       status: json['status'] as bool,
       $count: json['_count'] == null
           ? null
@@ -2154,8 +2152,6 @@ Map<String, dynamic> _$AmenitiesGroupByOutputTypeToJson(
       'name': instance.name,
       'description': instance.description,
       'icon': instance.icon,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
       'status': instance.status,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
@@ -6046,8 +6042,6 @@ AmenitiesCountAggregateOutputType _$AmenitiesCountAggregateOutputTypeFromJson(
       name: json['name'] as int,
       description: json['description'] as int,
       icon: json['icon'] as int,
-      createdAt: json['createdAt'] as int,
-      updatedAt: json['updatedAt'] as int,
       status: json['status'] as int,
       $all: json['_all'] as int,
     );
@@ -6059,8 +6053,6 @@ Map<String, dynamic> _$AmenitiesCountAggregateOutputTypeToJson(
       'name': instance.name,
       'description': instance.description,
       'icon': instance.icon,
-      'createdAt': instance.createdAt,
-      'updatedAt': instance.updatedAt,
       'status': instance.status,
       '_all': instance.$all,
     };
@@ -6096,12 +6088,6 @@ AmenitiesMinAggregateOutputType _$AmenitiesMinAggregateOutputTypeFromJson(
       name: json['name'] as String?,
       description: json['description'] as String?,
       icon: json['icon'] as String?,
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
       status: json['status'] as bool?,
     );
 
@@ -6112,8 +6098,6 @@ Map<String, dynamic> _$AmenitiesMinAggregateOutputTypeToJson(
       'name': instance.name,
       'description': instance.description,
       'icon': instance.icon,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
       'status': instance.status,
     };
 
@@ -6124,12 +6108,6 @@ AmenitiesMaxAggregateOutputType _$AmenitiesMaxAggregateOutputTypeFromJson(
       name: json['name'] as String?,
       description: json['description'] as String?,
       icon: json['icon'] as String?,
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
       status: json['status'] as bool?,
     );
 
@@ -6140,8 +6118,6 @@ Map<String, dynamic> _$AmenitiesMaxAggregateOutputTypeToJson(
       'name': instance.name,
       'description': instance.description,
       'icon': instance.icon,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
       'status': instance.status,
     };
 
@@ -7840,8 +7816,6 @@ Amenities _$AmenitiesFromJson(Map<String, dynamic> json) => Amenities(
       name: json['name'] as String,
       description: json['description'] as String?,
       icon: json['icon'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
       status: json['status'] as bool,
     );
 
@@ -7850,8 +7824,6 @@ Map<String, dynamic> _$AmenitiesToJson(Amenities instance) => <String, dynamic>{
       'name': instance.name,
       'description': instance.description,
       'icon': instance.icon,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
       'status': instance.status,
     };
 
