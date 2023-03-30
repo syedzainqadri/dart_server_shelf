@@ -141,6 +141,7 @@ class AmenitiesApi {
         var name = payload['name'];
         var description = payload['description'];
         var status = payload['status'];
+
         var icon = payload['icon'];
         var amenities = await prisma.amenities.update(
           where: AmenitiesWhereUniqueInput(id: id),
