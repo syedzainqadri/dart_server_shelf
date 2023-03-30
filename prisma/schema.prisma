@@ -373,10 +373,7 @@ model Amenities {
   name        String @unique
   description String?
   icon String? @db.VarChar(800)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
   status   Boolean  @default(false)
-  category    Category[]
 }
 
 model Category {
@@ -389,11 +386,11 @@ model Category {
   status   Boolean     @default(false)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
-  amenities   Amenities @relation(fields: [amenitiesName], references: [name])
-  amenitiesName String
+  amenitiesIds String
   posts       Post[]
   projects    Project[]
 }
+
 
 model Blog {
   id          Int         @id @default(autoincrement())

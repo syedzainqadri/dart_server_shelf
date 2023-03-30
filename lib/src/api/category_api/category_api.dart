@@ -12,21 +12,29 @@ class CategoryApi {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
@@ -45,21 +53,29 @@ class CategoryApi {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
@@ -79,21 +95,29 @@ class CategoryApi {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
@@ -113,35 +137,43 @@ class CategoryApi {
         var amenitiesList = payload['amenitiesList'];
         var category = await prisma.category.create(
           data: CategoryCreateInput(
-              image: PrismaUnion.zero(image),
-              name: name,
-              slug: PrismaUnion.zero(slug),
-              description: PrismaUnion.zero(description),
-              parentId: PrismaUnion.zero(parentId),
-              status: status,
-              amenities: AmenitiesCreateNestedOneWithoutCategoryInput(
-                  connect: AmenitiesWhereUniqueInput(name: amenitiesList))),
+            image: PrismaUnion.zero(image),
+            name: name,
+            slug: PrismaUnion.zero(slug),
+            description: PrismaUnion.zero(description),
+            parentId: PrismaUnion.zero(parentId),
+            status: status,
+            amenitiesIds: amenitiesList,
+          ),
         );
         var categoryObject = jsonEncode(category);
         return Response.ok(categoryObject, headers: {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
@@ -173,9 +205,7 @@ class CategoryApi {
             status: BoolFieldUpdateOperationsInput(set$: status),
             image: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(image)),
-            amenities: AmenitiesUpdateOneRequiredWithoutCategoryNestedInput(
-              update: AmenitiesUpdateWithoutCategoryInput(name: amenitiesList),
-            ),
+            amenitiesIds: StringFieldUpdateOperationsInput(set$: amenitiesList),
             updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
           ),
         );
@@ -184,21 +214,29 @@ class CategoryApi {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
@@ -217,21 +255,29 @@ class CategoryApi {
           'Content-Type': 'application/json',
         });
       } on PrismaClientInitializationError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientKnownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientRustPanicError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientUnknownRequestError catch (e) {
-        return Response.internalServerError(body: 'Error is:\n $e', headers: {
-          'Content-Type': 'application/json',
-        });
+        return Response.internalServerError(
+            body: 'Error is:\n ${e.message}',
+            headers: {
+              'Content-Type': 'application/json',
+            });
       } on PrismaClientValidationError {
         return Response.forbidden(
             'Sorry you dont have the permission to access this resource');
