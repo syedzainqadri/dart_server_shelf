@@ -149,7 +149,6 @@ class PostApi {
             .firstWhere((e) => e.toString() == 'AreaSizeUnit.' + areaSizeUnit);
         var bedroooms = payload['bedroooms'];
         var bathrooms = payload['bathrooms'];
-        var featureAndAmenities = payload['featureAndAmenities'];
         var authorId = payload['authorId'];
         var categoryId = payload['categoryId'];
         var metaTitle = payload['metaTitle'];
@@ -158,6 +157,8 @@ class PostApi {
         var status = payload['status'];
         var showContactDetails = payload['showContactDetails'];
         var propertyNumber = payload['propertyNumber'];
+        var amenitiesNames = payload['amenitiesNames'];
+        var amenitiesIconCodes = payload['amenitiesIconCodes'];
         var post = await prisma.post.create(
           data: PostCreateInput(
             title: title,
@@ -180,7 +181,6 @@ class PostApi {
             areaSizeUnit: PrismaUnion.zero(areaSizeUnitenum),
             bedroooms: bedroooms,
             bathroom: bathrooms,
-            featureAndAmenities: featureAndAmenities,
             author: UsersCreateNestedOneWithoutPostsInput(
               connect: UsersWhereUniqueInput(id: authorId),
             ),
@@ -203,6 +203,8 @@ class PostApi {
             ),
             showContactDetails: PrismaUnion.zero(showContactDetails),
             propertyNumber: PrismaUnion.zero(propertyNumber),
+            amenitiesNames: amenitiesNames,
+            amenitiesIconCodes: amenitiesIconCodes,
           ),
         );
         var postObject = jsonEncode(post);
@@ -266,7 +268,8 @@ class PostApi {
             .firstWhere((e) => e.toString() == 'AreaSizeUnit.' + areaSizeUnit);
         var bedroooms = payload['bedroooms'];
         var bathrooms = payload['bathrooms'];
-        var featureAndAmenities = payload['featureAndAmenities'];
+        var amenitiesNames = payload['amenitiesNames'];
+        var amenitiesIconCodes = payload['amenitiesIconCodes'];
         var authorId = payload['authorId'];
         var categoryId = payload['categoryId'];
         var metaTitle = payload['metaTitle'];
@@ -323,8 +326,10 @@ class PostApi {
                 set$: PrismaUnion.zero(areaSizeUnitenum)),
             bedroooms: IntFieldUpdateOperationsInput(set$: bedroooms),
             bathroom: IntFieldUpdateOperationsInput(set$: bathrooms),
-            featureAndAmenities:
-                StringFieldUpdateOperationsInput(set$: featureAndAmenities),
+            amenitiesIconCodes:
+                StringFieldUpdateOperationsInput(set$: amenitiesIconCodes),
+            amenitiesNames:
+                StringFieldUpdateOperationsInput(set$: amenitiesNames),
             author: UsersUpdateOneRequiredWithoutPostsNestedInput(
               connect: UsersWhereUniqueInput(id: authorId),
             ),

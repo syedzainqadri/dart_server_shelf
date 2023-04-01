@@ -134,7 +134,8 @@ class CategoryApi {
         var description = payload['description'];
         var parentId = payload['parentId'];
         var status = payload['status'];
-        var amenitiesList = payload['amenitiesList'];
+        var amenitiesNames = payload['amenitiesNames'];
+        var amenitiesCode = payload['amenitiesCode'];
         var category = await prisma.category.create(
           data: CategoryCreateInput(
             image: PrismaUnion.zero(image),
@@ -143,7 +144,8 @@ class CategoryApi {
             description: PrismaUnion.zero(description),
             parentId: PrismaUnion.zero(parentId),
             status: status,
-            amenitiesIds: amenitiesList,
+            amenitiesNames: amenitiesNames,
+            amenitiesIconCodes: amenitiesCode,
           ),
         );
         var categoryObject = jsonEncode(category);
@@ -191,7 +193,8 @@ class CategoryApi {
         var description = payload['description'];
         var parentId = payload['parentId'];
         var status = payload['status'];
-        var amenitiesList = payload['amenitiesList'];
+        var amenitiesNames = payload['amenitiesNames'];
+        var amenitiesIconCodes = payload['amenitiesIconCodes'];
         var category = await prisma.category.update(
           where: CategoryWhereUniqueInput(id: id),
           data: CategoryUpdateInput(
@@ -205,7 +208,10 @@ class CategoryApi {
             status: BoolFieldUpdateOperationsInput(set$: status),
             image: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(image)),
-            amenitiesIds: StringFieldUpdateOperationsInput(set$: amenitiesList),
+            amenitiesNames:
+                StringFieldUpdateOperationsInput(set$: amenitiesNames),
+            amenitiesIconCodes:
+                StringFieldUpdateOperationsInput(set$: amenitiesIconCodes),
             updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
           ),
         );
