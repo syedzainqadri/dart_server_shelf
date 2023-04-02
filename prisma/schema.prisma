@@ -276,26 +276,28 @@ model Post {
   id               Int        @id @default(autoincrement())
   title            String
   propertyNumber   Int?    @unique
-  description      String?
-  featuredImages   String?
-  galleryImages    String?
+  description      String? @db.VarChar(800)
+  featuredImages   String? @db.VarChar(2000)
+  galleryImages    String? @db.VarChar(2000)
   video            String
-  longDescription  String?
+  longDescription  String? @db.VarChar(2000)
   longitude        String?
   latitude         String?
   plotNumber       String?
-  price            Float?
+  price            String?
   city             String?
   area             String?
+  purpose          Purpose? @default(SELL)
   amenitiesNames String
   amenitiesIconCodes String
   isInstallmentAvailable  Boolean? @default(false)
   showContactDetails  Boolean? @default(false)
-  advanceAmount    Float
+  advanceAmount    String
   noOfInstallments Int
-  monthlyInstallments Float
+  monthlyInstallments String
   readyForPossession  Boolean? @default(false)
   areaSizeUnit     AreaSizeUnit? @default(MARLA)
+  totalAreaSize String
   bedroooms        Int
   bathroom         Int
   postmeta         PostMeta[]
@@ -557,6 +559,11 @@ enum AreaSizeUnit {
   MARLA
   SQFT
   SQMT
+}
+
+enum Purpose {
+  SELL
+  RENT
 }
 
 enum CcontactPersonType {

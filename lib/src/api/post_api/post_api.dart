@@ -144,9 +144,14 @@ class PostApi {
         var noOfInstallments = payload['noOfInstallments'];
         var monthlyInstallments = payload['monthlyInstallments'];
         var readyForPossession = payload['readyForPossession'];
+        var purpose = payload['purpose'];
+        print(purpose);
+        Purpose purposeEnum = Purpose.values
+            .firstWhere((e) => e.toString() == 'Purpose.' + purpose);
         var areaSizeUnit = payload['areaSizeUnit']['AreaSizeUnit'];
         AreaSizeUnit areaSizeUnitenum = AreaSizeUnit.values
             .firstWhere((e) => e.toString() == 'AreaSizeUnit.' + areaSizeUnit);
+        var totalAreaSize = payload["totalAreaSize"];
         var bedroooms = payload['bedroooms'];
         var bathrooms = payload['bathrooms'];
         var authorId = payload['authorId'];
@@ -179,8 +184,10 @@ class PostApi {
             monthlyInstallments: monthlyInstallments,
             readyForPossession: PrismaUnion.zero(readyForPossession),
             areaSizeUnit: PrismaUnion.zero(areaSizeUnitenum),
+            totalAreaSize: totalAreaSize,
             bedroooms: bedroooms,
             bathroom: bathrooms,
+            purpose: PrismaUnion.zero(purposeEnum),
             author: UsersCreateNestedOneWithoutPostsInput(
               connect: UsersWhereUniqueInput(id: authorId),
             ),
@@ -302,7 +309,7 @@ class PostApi {
             plotNumber: NullableStringFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(plotNumber),
             ),
-            price: NullableFloatFieldUpdateOperationsInput(
+            price: NullableStringFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(price),
             ),
             city: NullableStringFieldUpdateOperationsInput(
@@ -314,11 +321,12 @@ class PostApi {
             isInstallmentAvailable: NullableBoolFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(isInstallmentAvailable),
             ),
-            advanceAmount: FloatFieldUpdateOperationsInput(set$: advanceAmount),
+            advanceAmount:
+                StringFieldUpdateOperationsInput(set$: advanceAmount),
             noOfInstallments:
                 IntFieldUpdateOperationsInput(set$: noOfInstallments),
             monthlyInstallments:
-                FloatFieldUpdateOperationsInput(set$: monthlyInstallments),
+                StringFieldUpdateOperationsInput(set$: monthlyInstallments),
             readyForPossession: NullableBoolFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(readyForPossession),
             ),
