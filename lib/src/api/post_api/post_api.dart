@@ -252,7 +252,7 @@ class PostApi {
     router.put('/updatePost', (Request request) async {
       try {
         var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var id = payload['id'];
         var title = payload['title'];
         var description = payload['description'];
         var featuredImages = payload['featuredImages'];
@@ -284,7 +284,7 @@ class PostApi {
         var status = payload['status'];
         var showContactDetails = payload['showContactDetails'];
         var post = await prisma.post.update(
-          where: PostWhereUniqueInput(id: id),
+          where: PostWhereUniqueInput(id: int.parse(id)),
           data: PostUpdateInput(
             title: StringFieldUpdateOperationsInput(set$: title),
             description: NullableStringFieldUpdateOperationsInput(
@@ -350,11 +350,6 @@ class PostApi {
                 metaDescription: PrismaUnion.zero(
                   metaDescription,
                 ),
-              ),
-            ),
-            slug: SlugUpdateOneWithoutPostsNestedInput(
-              update: SlugUpdateWithoutPostsInput(
-                slug: StringFieldUpdateOperationsInput(set$: title),
               ),
             ),
             status: BoolFieldUpdateOperationsInput(
