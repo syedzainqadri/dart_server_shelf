@@ -303,6 +303,7 @@ model Post {
   postmeta         PostMeta[]
   category         Category    @relation(fields: [categoryId], references: [id])
   categoryId       Int
+  subCategoryId    Int?
   author           Users       @relation(fields: [authorId], references: [id])
   authorId         Int
   review           Review[]
