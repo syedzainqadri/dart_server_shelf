@@ -164,6 +164,7 @@ class PostApi {
         var propertyNumber = payload['propertyNumber'];
         var amenitiesNames = payload['amenitiesNames'];
         var amenitiesIconCodes = payload['amenitiesIconCodes'];
+        var subCategoryid = payload['subCategoryId'];
         var post = await prisma.post.create(
           data: PostCreateInput(
             title: title,
@@ -194,6 +195,7 @@ class PostApi {
             category: CategoryCreateNestedOneWithoutPostsInput(
               connect: CategoryWhereUniqueInput(id: categoryId),
             ),
+            subCategoryId: PrismaUnion.zero(subCategoryid),
             slug: SlugCreateNestedOneWithoutPostsInput(
               create: SlugCreateWithoutPostsInput(
                 slug: slug,
