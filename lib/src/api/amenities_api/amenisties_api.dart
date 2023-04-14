@@ -94,7 +94,6 @@ class AmenitiesApi {
         var amenities = await prisma.amenities.create(
           data: AmenitiesCreateInput(
             name: name,
-            description: PrismaUnion.zero(description),
             status: status,
             icon: PrismaUnion.zero(icon),
           ),
@@ -147,8 +146,6 @@ class AmenitiesApi {
           where: AmenitiesWhereUniqueInput(id: id),
           data: AmenitiesUpdateInput(
             name: StringFieldUpdateOperationsInput(set$: name),
-            description: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(description)),
             status: BoolFieldUpdateOperationsInput(set$: status),
             icon: NullableStringFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(icon),

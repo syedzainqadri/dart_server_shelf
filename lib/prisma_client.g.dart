@@ -1588,21 +1588,25 @@ PostGroupByOutputType _$PostGroupByOutputTypeFromJson(
       longitude: json['longitude'] as String?,
       latitude: json['latitude'] as String?,
       plotNumber: json['plotNumber'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
+      price: json['price'] as String?,
       city: json['city'] as String?,
       area: json['area'] as String?,
+      purpose: $enumDecodeNullable(_$PurposeEnumMap, json['purpose']),
+      amenitiesNames: json['amenitiesNames'] as String,
+      amenitiesIconCodes: json['amenitiesIconCodes'] as String,
       isInstallmentAvailable: json['isInstallmentAvailable'] as bool?,
       showContactDetails: json['showContactDetails'] as bool?,
-      advanceAmount: (json['advanceAmount'] as num).toDouble(),
+      advanceAmount: json['advanceAmount'] as String,
       noOfInstallments: json['noOfInstallments'] as int,
-      monthlyInstallments: (json['monthlyInstallments'] as num).toDouble(),
+      monthlyInstallments: json['monthlyInstallments'] as String,
       readyForPossession: json['readyForPossession'] as bool?,
       areaSizeUnit:
           $enumDecodeNullable(_$AreaSizeUnitEnumMap, json['areaSizeUnit']),
+      totalAreaSize: json['totalAreaSize'] as String,
       bedroooms: json['bedroooms'] as int,
       bathroom: json['bathroom'] as int,
-      featureAndAmenities: json['featureAndAmenities'] as String,
       categoryId: json['categoryId'] as int,
+      subCategoryId: json['subCategoryId'] as int?,
       authorId: json['authorId'] as int,
       slugId: json['slugId'] as int?,
       status: json['status'] as bool,
@@ -1647,6 +1651,9 @@ Map<String, dynamic> _$PostGroupByOutputTypeToJson(
       'price': instance.price,
       'city': instance.city,
       'area': instance.area,
+      'purpose': _$PurposeEnumMap[instance.purpose],
+      'amenitiesNames': instance.amenitiesNames,
+      'amenitiesIconCodes': instance.amenitiesIconCodes,
       'isInstallmentAvailable': instance.isInstallmentAvailable,
       'showContactDetails': instance.showContactDetails,
       'advanceAmount': instance.advanceAmount,
@@ -1654,10 +1661,11 @@ Map<String, dynamic> _$PostGroupByOutputTypeToJson(
       'monthlyInstallments': instance.monthlyInstallments,
       'readyForPossession': instance.readyForPossession,
       'areaSizeUnit': _$AreaSizeUnitEnumMap[instance.areaSizeUnit],
+      'totalAreaSize': instance.totalAreaSize,
       'bedroooms': instance.bedroooms,
       'bathroom': instance.bathroom,
-      'featureAndAmenities': instance.featureAndAmenities,
       'categoryId': instance.categoryId,
+      'subCategoryId': instance.subCategoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
       'status': instance.status,
@@ -1669,6 +1677,11 @@ Map<String, dynamic> _$PostGroupByOutputTypeToJson(
       '_min': instance.$min?.toJson(),
       '_max': instance.$max?.toJson(),
     };
+
+const _$PurposeEnumMap = {
+  Purpose.SELL: 'SELL',
+  Purpose.RENT: 'RENT',
+};
 
 AggregatePostContact _$AggregatePostContactFromJson(
         Map<String, dynamic> json) =>
@@ -2126,7 +2139,6 @@ AmenitiesGroupByOutputType _$AmenitiesGroupByOutputTypeFromJson(
     AmenitiesGroupByOutputType(
       id: json['id'] as int,
       name: json['name'] as String,
-      description: json['description'] as String?,
       icon: json['icon'] as String?,
       status: json['status'] as bool,
       $count: json['_count'] == null
@@ -2156,7 +2168,6 @@ Map<String, dynamic> _$AmenitiesGroupByOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'description': instance.description,
       'icon': instance.icon,
       'status': instance.status,
       '_count': instance.$count?.toJson(),
@@ -2211,7 +2222,8 @@ CategoryGroupByOutputType _$CategoryGroupByOutputTypeFromJson(
       status: json['status'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
-      amenitiesIds: json['amenitiesIds'] as String,
+      amenitiesNames: json['amenitiesNames'] as String,
+      amenitiesIconCodes: json['amenitiesIconCodes'] as String,
       $count: json['_count'] == null
           ? null
           : CategoryCountAggregateOutputType.fromJson(
@@ -2246,7 +2258,8 @@ Map<String, dynamic> _$CategoryGroupByOutputTypeToJson(
       'status': instance.status,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
-      'amenitiesIds': instance.amenitiesIds,
+      'amenitiesNames': instance.amenitiesNames,
+      'amenitiesIconCodes': instance.amenitiesIconCodes,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -5226,6 +5239,9 @@ PostCountAggregateOutputType _$PostCountAggregateOutputTypeFromJson(
       price: json['price'] as int,
       city: json['city'] as int,
       area: json['area'] as int,
+      purpose: json['purpose'] as int,
+      amenitiesNames: json['amenitiesNames'] as int,
+      amenitiesIconCodes: json['amenitiesIconCodes'] as int,
       isInstallmentAvailable: json['isInstallmentAvailable'] as int,
       showContactDetails: json['showContactDetails'] as int,
       advanceAmount: json['advanceAmount'] as int,
@@ -5233,10 +5249,11 @@ PostCountAggregateOutputType _$PostCountAggregateOutputTypeFromJson(
       monthlyInstallments: json['monthlyInstallments'] as int,
       readyForPossession: json['readyForPossession'] as int,
       areaSizeUnit: json['areaSizeUnit'] as int,
+      totalAreaSize: json['totalAreaSize'] as int,
       bedroooms: json['bedroooms'] as int,
       bathroom: json['bathroom'] as int,
-      featureAndAmenities: json['featureAndAmenities'] as int,
       categoryId: json['categoryId'] as int,
+      subCategoryId: json['subCategoryId'] as int,
       authorId: json['authorId'] as int,
       slugId: json['slugId'] as int,
       status: json['status'] as int,
@@ -5262,6 +5279,9 @@ Map<String, dynamic> _$PostCountAggregateOutputTypeToJson(
       'price': instance.price,
       'city': instance.city,
       'area': instance.area,
+      'purpose': instance.purpose,
+      'amenitiesNames': instance.amenitiesNames,
+      'amenitiesIconCodes': instance.amenitiesIconCodes,
       'isInstallmentAvailable': instance.isInstallmentAvailable,
       'showContactDetails': instance.showContactDetails,
       'advanceAmount': instance.advanceAmount,
@@ -5269,10 +5289,11 @@ Map<String, dynamic> _$PostCountAggregateOutputTypeToJson(
       'monthlyInstallments': instance.monthlyInstallments,
       'readyForPossession': instance.readyForPossession,
       'areaSizeUnit': instance.areaSizeUnit,
+      'totalAreaSize': instance.totalAreaSize,
       'bedroooms': instance.bedroooms,
       'bathroom': instance.bathroom,
-      'featureAndAmenities': instance.featureAndAmenities,
       'categoryId': instance.categoryId,
+      'subCategoryId': instance.subCategoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
       'status': instance.status,
@@ -5286,13 +5307,11 @@ PostAvgAggregateOutputType _$PostAvgAggregateOutputTypeFromJson(
     PostAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
       propertyNumber: (json['propertyNumber'] as num?)?.toDouble(),
-      price: (json['price'] as num?)?.toDouble(),
-      advanceAmount: (json['advanceAmount'] as num?)?.toDouble(),
       noOfInstallments: (json['noOfInstallments'] as num?)?.toDouble(),
-      monthlyInstallments: (json['monthlyInstallments'] as num?)?.toDouble(),
       bedroooms: (json['bedroooms'] as num?)?.toDouble(),
       bathroom: (json['bathroom'] as num?)?.toDouble(),
       categoryId: (json['categoryId'] as num?)?.toDouble(),
+      subCategoryId: (json['subCategoryId'] as num?)?.toDouble(),
       authorId: (json['authorId'] as num?)?.toDouble(),
       slugId: (json['slugId'] as num?)?.toDouble(),
     );
@@ -5302,13 +5321,11 @@ Map<String, dynamic> _$PostAvgAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'propertyNumber': instance.propertyNumber,
-      'price': instance.price,
-      'advanceAmount': instance.advanceAmount,
       'noOfInstallments': instance.noOfInstallments,
-      'monthlyInstallments': instance.monthlyInstallments,
       'bedroooms': instance.bedroooms,
       'bathroom': instance.bathroom,
       'categoryId': instance.categoryId,
+      'subCategoryId': instance.subCategoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
     };
@@ -5318,13 +5335,11 @@ PostSumAggregateOutputType _$PostSumAggregateOutputTypeFromJson(
     PostSumAggregateOutputType(
       id: json['id'] as int?,
       propertyNumber: json['propertyNumber'] as int?,
-      price: (json['price'] as num?)?.toDouble(),
-      advanceAmount: (json['advanceAmount'] as num?)?.toDouble(),
       noOfInstallments: json['noOfInstallments'] as int?,
-      monthlyInstallments: (json['monthlyInstallments'] as num?)?.toDouble(),
       bedroooms: json['bedroooms'] as int?,
       bathroom: json['bathroom'] as int?,
       categoryId: json['categoryId'] as int?,
+      subCategoryId: json['subCategoryId'] as int?,
       authorId: json['authorId'] as int?,
       slugId: json['slugId'] as int?,
     );
@@ -5334,13 +5349,11 @@ Map<String, dynamic> _$PostSumAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'propertyNumber': instance.propertyNumber,
-      'price': instance.price,
-      'advanceAmount': instance.advanceAmount,
       'noOfInstallments': instance.noOfInstallments,
-      'monthlyInstallments': instance.monthlyInstallments,
       'bedroooms': instance.bedroooms,
       'bathroom': instance.bathroom,
       'categoryId': instance.categoryId,
+      'subCategoryId': instance.subCategoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
     };
@@ -5359,21 +5372,25 @@ PostMinAggregateOutputType _$PostMinAggregateOutputTypeFromJson(
       longitude: json['longitude'] as String?,
       latitude: json['latitude'] as String?,
       plotNumber: json['plotNumber'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
+      price: json['price'] as String?,
       city: json['city'] as String?,
       area: json['area'] as String?,
+      purpose: $enumDecodeNullable(_$PurposeEnumMap, json['purpose']),
+      amenitiesNames: json['amenitiesNames'] as String?,
+      amenitiesIconCodes: json['amenitiesIconCodes'] as String?,
       isInstallmentAvailable: json['isInstallmentAvailable'] as bool?,
       showContactDetails: json['showContactDetails'] as bool?,
-      advanceAmount: (json['advanceAmount'] as num?)?.toDouble(),
+      advanceAmount: json['advanceAmount'] as String?,
       noOfInstallments: json['noOfInstallments'] as int?,
-      monthlyInstallments: (json['monthlyInstallments'] as num?)?.toDouble(),
+      monthlyInstallments: json['monthlyInstallments'] as String?,
       readyForPossession: json['readyForPossession'] as bool?,
       areaSizeUnit:
           $enumDecodeNullable(_$AreaSizeUnitEnumMap, json['areaSizeUnit']),
+      totalAreaSize: json['totalAreaSize'] as String?,
       bedroooms: json['bedroooms'] as int?,
       bathroom: json['bathroom'] as int?,
-      featureAndAmenities: json['featureAndAmenities'] as String?,
       categoryId: json['categoryId'] as int?,
+      subCategoryId: json['subCategoryId'] as int?,
       authorId: json['authorId'] as int?,
       slugId: json['slugId'] as int?,
       status: json['status'] as bool?,
@@ -5402,6 +5419,9 @@ Map<String, dynamic> _$PostMinAggregateOutputTypeToJson(
       'price': instance.price,
       'city': instance.city,
       'area': instance.area,
+      'purpose': _$PurposeEnumMap[instance.purpose],
+      'amenitiesNames': instance.amenitiesNames,
+      'amenitiesIconCodes': instance.amenitiesIconCodes,
       'isInstallmentAvailable': instance.isInstallmentAvailable,
       'showContactDetails': instance.showContactDetails,
       'advanceAmount': instance.advanceAmount,
@@ -5409,10 +5429,11 @@ Map<String, dynamic> _$PostMinAggregateOutputTypeToJson(
       'monthlyInstallments': instance.monthlyInstallments,
       'readyForPossession': instance.readyForPossession,
       'areaSizeUnit': _$AreaSizeUnitEnumMap[instance.areaSizeUnit],
+      'totalAreaSize': instance.totalAreaSize,
       'bedroooms': instance.bedroooms,
       'bathroom': instance.bathroom,
-      'featureAndAmenities': instance.featureAndAmenities,
       'categoryId': instance.categoryId,
+      'subCategoryId': instance.subCategoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
       'status': instance.status,
@@ -5434,21 +5455,25 @@ PostMaxAggregateOutputType _$PostMaxAggregateOutputTypeFromJson(
       longitude: json['longitude'] as String?,
       latitude: json['latitude'] as String?,
       plotNumber: json['plotNumber'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
+      price: json['price'] as String?,
       city: json['city'] as String?,
       area: json['area'] as String?,
+      purpose: $enumDecodeNullable(_$PurposeEnumMap, json['purpose']),
+      amenitiesNames: json['amenitiesNames'] as String?,
+      amenitiesIconCodes: json['amenitiesIconCodes'] as String?,
       isInstallmentAvailable: json['isInstallmentAvailable'] as bool?,
       showContactDetails: json['showContactDetails'] as bool?,
-      advanceAmount: (json['advanceAmount'] as num?)?.toDouble(),
+      advanceAmount: json['advanceAmount'] as String?,
       noOfInstallments: json['noOfInstallments'] as int?,
-      monthlyInstallments: (json['monthlyInstallments'] as num?)?.toDouble(),
+      monthlyInstallments: json['monthlyInstallments'] as String?,
       readyForPossession: json['readyForPossession'] as bool?,
       areaSizeUnit:
           $enumDecodeNullable(_$AreaSizeUnitEnumMap, json['areaSizeUnit']),
+      totalAreaSize: json['totalAreaSize'] as String?,
       bedroooms: json['bedroooms'] as int?,
       bathroom: json['bathroom'] as int?,
-      featureAndAmenities: json['featureAndAmenities'] as String?,
       categoryId: json['categoryId'] as int?,
+      subCategoryId: json['subCategoryId'] as int?,
       authorId: json['authorId'] as int?,
       slugId: json['slugId'] as int?,
       status: json['status'] as bool?,
@@ -5477,6 +5502,9 @@ Map<String, dynamic> _$PostMaxAggregateOutputTypeToJson(
       'price': instance.price,
       'city': instance.city,
       'area': instance.area,
+      'purpose': _$PurposeEnumMap[instance.purpose],
+      'amenitiesNames': instance.amenitiesNames,
+      'amenitiesIconCodes': instance.amenitiesIconCodes,
       'isInstallmentAvailable': instance.isInstallmentAvailable,
       'showContactDetails': instance.showContactDetails,
       'advanceAmount': instance.advanceAmount,
@@ -5484,10 +5512,11 @@ Map<String, dynamic> _$PostMaxAggregateOutputTypeToJson(
       'monthlyInstallments': instance.monthlyInstallments,
       'readyForPossession': instance.readyForPossession,
       'areaSizeUnit': _$AreaSizeUnitEnumMap[instance.areaSizeUnit],
+      'totalAreaSize': instance.totalAreaSize,
       'bedroooms': instance.bedroooms,
       'bathroom': instance.bathroom,
-      'featureAndAmenities': instance.featureAndAmenities,
       'categoryId': instance.categoryId,
+      'subCategoryId': instance.subCategoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
       'status': instance.status,
@@ -6052,7 +6081,6 @@ AmenitiesCountAggregateOutputType _$AmenitiesCountAggregateOutputTypeFromJson(
     AmenitiesCountAggregateOutputType(
       id: json['id'] as int,
       name: json['name'] as int,
-      description: json['description'] as int,
       icon: json['icon'] as int,
       status: json['status'] as int,
       $all: json['_all'] as int,
@@ -6063,7 +6091,6 @@ Map<String, dynamic> _$AmenitiesCountAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'description': instance.description,
       'icon': instance.icon,
       'status': instance.status,
       '_all': instance.$all,
@@ -6098,7 +6125,6 @@ AmenitiesMinAggregateOutputType _$AmenitiesMinAggregateOutputTypeFromJson(
     AmenitiesMinAggregateOutputType(
       id: json['id'] as int?,
       name: json['name'] as String?,
-      description: json['description'] as String?,
       icon: json['icon'] as String?,
       status: json['status'] as bool?,
     );
@@ -6108,7 +6134,6 @@ Map<String, dynamic> _$AmenitiesMinAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'description': instance.description,
       'icon': instance.icon,
       'status': instance.status,
     };
@@ -6118,7 +6143,6 @@ AmenitiesMaxAggregateOutputType _$AmenitiesMaxAggregateOutputTypeFromJson(
     AmenitiesMaxAggregateOutputType(
       id: json['id'] as int?,
       name: json['name'] as String?,
-      description: json['description'] as String?,
       icon: json['icon'] as String?,
       status: json['status'] as bool?,
     );
@@ -6128,7 +6152,6 @@ Map<String, dynamic> _$AmenitiesMaxAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'description': instance.description,
       'icon': instance.icon,
       'status': instance.status,
     };
@@ -6159,7 +6182,8 @@ CategoryCountAggregateOutputType _$CategoryCountAggregateOutputTypeFromJson(
       status: json['status'] as int,
       createdAt: json['createdAt'] as int,
       updatedAt: json['updatedAt'] as int,
-      amenitiesIds: json['amenitiesIds'] as int,
+      amenitiesNames: json['amenitiesNames'] as int,
+      amenitiesIconCodes: json['amenitiesIconCodes'] as int,
       $all: json['_all'] as int,
     );
 
@@ -6175,7 +6199,8 @@ Map<String, dynamic> _$CategoryCountAggregateOutputTypeToJson(
       'status': instance.status,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
-      'amenitiesIds': instance.amenitiesIds,
+      'amenitiesNames': instance.amenitiesNames,
+      'amenitiesIconCodes': instance.amenitiesIconCodes,
       '_all': instance.$all,
     };
 
@@ -6223,7 +6248,8 @@ CategoryMinAggregateOutputType _$CategoryMinAggregateOutputTypeFromJson(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
-      amenitiesIds: json['amenitiesIds'] as String?,
+      amenitiesNames: json['amenitiesNames'] as String?,
+      amenitiesIconCodes: json['amenitiesIconCodes'] as String?,
     );
 
 Map<String, dynamic> _$CategoryMinAggregateOutputTypeToJson(
@@ -6238,7 +6264,8 @@ Map<String, dynamic> _$CategoryMinAggregateOutputTypeToJson(
       'status': instance.status,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
-      'amenitiesIds': instance.amenitiesIds,
+      'amenitiesNames': instance.amenitiesNames,
+      'amenitiesIconCodes': instance.amenitiesIconCodes,
     };
 
 CategoryMaxAggregateOutputType _$CategoryMaxAggregateOutputTypeFromJson(
@@ -6257,7 +6284,8 @@ CategoryMaxAggregateOutputType _$CategoryMaxAggregateOutputTypeFromJson(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
-      amenitiesIds: json['amenitiesIds'] as String?,
+      amenitiesNames: json['amenitiesNames'] as String?,
+      amenitiesIconCodes: json['amenitiesIconCodes'] as String?,
     );
 
 Map<String, dynamic> _$CategoryMaxAggregateOutputTypeToJson(
@@ -6272,7 +6300,8 @@ Map<String, dynamic> _$CategoryMaxAggregateOutputTypeToJson(
       'status': instance.status,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
-      'amenitiesIds': instance.amenitiesIds,
+      'amenitiesNames': instance.amenitiesNames,
+      'amenitiesIconCodes': instance.amenitiesIconCodes,
     };
 
 BlogCountAggregateOutputType _$BlogCountAggregateOutputTypeFromJson(
@@ -7676,21 +7705,25 @@ Post _$PostFromJson(Map<String, dynamic> json) => Post(
       longitude: json['longitude'] as String?,
       latitude: json['latitude'] as String?,
       plotNumber: json['plotNumber'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
+      price: json['price'] as String?,
       city: json['city'] as String?,
       area: json['area'] as String?,
+      purpose: $enumDecodeNullable(_$PurposeEnumMap, json['purpose']),
+      amenitiesNames: json['amenitiesNames'] as String,
+      amenitiesIconCodes: json['amenitiesIconCodes'] as String,
       isInstallmentAvailable: json['isInstallmentAvailable'] as bool?,
       showContactDetails: json['showContactDetails'] as bool?,
-      advanceAmount: (json['advanceAmount'] as num).toDouble(),
+      advanceAmount: json['advanceAmount'] as String,
       noOfInstallments: json['noOfInstallments'] as int,
-      monthlyInstallments: (json['monthlyInstallments'] as num).toDouble(),
+      monthlyInstallments: json['monthlyInstallments'] as String,
       readyForPossession: json['readyForPossession'] as bool?,
       areaSizeUnit:
           $enumDecodeNullable(_$AreaSizeUnitEnumMap, json['areaSizeUnit']),
+      totalAreaSize: json['totalAreaSize'] as String,
       bedroooms: json['bedroooms'] as int,
       bathroom: json['bathroom'] as int,
-      featureAndAmenities: json['featureAndAmenities'] as String,
       categoryId: json['categoryId'] as int,
+      subCategoryId: json['subCategoryId'] as int?,
       authorId: json['authorId'] as int,
       slugId: json['slugId'] as int?,
       status: json['status'] as bool,
@@ -7713,6 +7746,9 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'price': instance.price,
       'city': instance.city,
       'area': instance.area,
+      'purpose': _$PurposeEnumMap[instance.purpose],
+      'amenitiesNames': instance.amenitiesNames,
+      'amenitiesIconCodes': instance.amenitiesIconCodes,
       'isInstallmentAvailable': instance.isInstallmentAvailable,
       'showContactDetails': instance.showContactDetails,
       'advanceAmount': instance.advanceAmount,
@@ -7720,10 +7756,11 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'monthlyInstallments': instance.monthlyInstallments,
       'readyForPossession': instance.readyForPossession,
       'areaSizeUnit': _$AreaSizeUnitEnumMap[instance.areaSizeUnit],
+      'totalAreaSize': instance.totalAreaSize,
       'bedroooms': instance.bedroooms,
       'bathroom': instance.bathroom,
-      'featureAndAmenities': instance.featureAndAmenities,
       'categoryId': instance.categoryId,
+      'subCategoryId': instance.subCategoryId,
       'authorId': instance.authorId,
       'slugId': instance.slugId,
       'status': instance.status,
@@ -7832,7 +7869,6 @@ Map<String, dynamic> _$PostMetaToJson(PostMeta instance) => <String, dynamic>{
 Amenities _$AmenitiesFromJson(Map<String, dynamic> json) => Amenities(
       id: json['id'] as int,
       name: json['name'] as String,
-      description: json['description'] as String?,
       icon: json['icon'] as String?,
       status: json['status'] as bool,
     );
@@ -7840,7 +7876,6 @@ Amenities _$AmenitiesFromJson(Map<String, dynamic> json) => Amenities(
 Map<String, dynamic> _$AmenitiesToJson(Amenities instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'description': instance.description,
       'icon': instance.icon,
       'status': instance.status,
     };
@@ -7855,7 +7890,8 @@ Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       status: json['status'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
-      amenitiesIds: json['amenitiesIds'] as String,
+      amenitiesNames: json['amenitiesNames'] as String,
+      amenitiesIconCodes: json['amenitiesIconCodes'] as String,
     );
 
 Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
@@ -7868,7 +7904,8 @@ Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
       'status': instance.status,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
-      'amenitiesIds': instance.amenitiesIds,
+      'amenitiesNames': instance.amenitiesNames,
+      'amenitiesIconCodes': instance.amenitiesIconCodes,
     };
 
 Blog _$BlogFromJson(Map<String, dynamic> json) => Blog(

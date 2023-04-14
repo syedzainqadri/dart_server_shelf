@@ -144,12 +144,16 @@ class PostApi {
         var noOfInstallments = payload['noOfInstallments'];
         var monthlyInstallments = payload['monthlyInstallments'];
         var readyForPossession = payload['readyForPossession'];
+        var purpose = payload['purpose'];
+        print(purpose);
+        Purpose purposeEnum = Purpose.values
+            .firstWhere((e) => e.toString() == 'Purpose.' + purpose);
         var areaSizeUnit = payload['areaSizeUnit']['AreaSizeUnit'];
         AreaSizeUnit areaSizeUnitenum = AreaSizeUnit.values
             .firstWhere((e) => e.toString() == 'AreaSizeUnit.' + areaSizeUnit);
+        var totalAreaSize = payload["totalAreaSize"];
         var bedroooms = payload['bedroooms'];
         var bathrooms = payload['bathrooms'];
-        var featureAndAmenities = payload['featureAndAmenities'];
         var authorId = payload['authorId'];
         var categoryId = payload['categoryId'];
         var metaTitle = payload['metaTitle'];
@@ -158,6 +162,9 @@ class PostApi {
         var status = payload['status'];
         var showContactDetails = payload['showContactDetails'];
         var propertyNumber = payload['propertyNumber'];
+        var amenitiesNames = payload['amenitiesNames'];
+        var amenitiesIconCodes = payload['amenitiesIconCodes'];
+        var subCategoryid = payload['subCategoryId'];
         var post = await prisma.post.create(
           data: PostCreateInput(
             title: title,
@@ -178,15 +185,17 @@ class PostApi {
             monthlyInstallments: monthlyInstallments,
             readyForPossession: PrismaUnion.zero(readyForPossession),
             areaSizeUnit: PrismaUnion.zero(areaSizeUnitenum),
+            totalAreaSize: totalAreaSize,
             bedroooms: bedroooms,
             bathroom: bathrooms,
-            featureAndAmenities: featureAndAmenities,
+            purpose: PrismaUnion.zero(purposeEnum),
             author: UsersCreateNestedOneWithoutPostsInput(
               connect: UsersWhereUniqueInput(id: authorId),
             ),
             category: CategoryCreateNestedOneWithoutPostsInput(
               connect: CategoryWhereUniqueInput(id: categoryId),
             ),
+            subCategoryId: PrismaUnion.zero(subCategoryid),
             slug: SlugCreateNestedOneWithoutPostsInput(
               create: SlugCreateWithoutPostsInput(
                 slug: slug,
@@ -203,6 +212,8 @@ class PostApi {
             ),
             showContactDetails: PrismaUnion.zero(showContactDetails),
             propertyNumber: PrismaUnion.zero(propertyNumber),
+            amenitiesNames: amenitiesNames,
+            amenitiesIconCodes: amenitiesIconCodes,
           ),
         );
         var postObject = jsonEncode(post);
@@ -243,7 +254,7 @@ class PostApi {
     router.put('/updatePost', (Request request) async {
       try {
         var payload = jsonDecode(await request.readAsString());
-        var id = payload['id'].toInt();
+        var id = payload['id'];
         var title = payload['title'];
         var description = payload['description'];
         var featuredImages = payload['featuredImages'];
@@ -266,7 +277,8 @@ class PostApi {
             .firstWhere((e) => e.toString() == 'AreaSizeUnit.' + areaSizeUnit);
         var bedroooms = payload['bedroooms'];
         var bathrooms = payload['bathrooms'];
-        var featureAndAmenities = payload['featureAndAmenities'];
+        var amenitiesNames = payload['amenitiesNames'];
+        var amenitiesIconCodes = payload['amenitiesIconCodes'];
         var authorId = payload['authorId'];
         var categoryId = payload['categoryId'];
         var metaTitle = payload['metaTitle'];
@@ -274,7 +286,7 @@ class PostApi {
         var status = payload['status'];
         var showContactDetails = payload['showContactDetails'];
         var post = await prisma.post.update(
-          where: PostWhereUniqueInput(id: id),
+          where: PostWhereUniqueInput(id: int.parse(id)),
           data: PostUpdateInput(
             title: StringFieldUpdateOperationsInput(set$: title),
             description: NullableStringFieldUpdateOperationsInput(
@@ -299,7 +311,7 @@ class PostApi {
             plotNumber: NullableStringFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(plotNumber),
             ),
-            price: NullableFloatFieldUpdateOperationsInput(
+            price: NullableStringFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(price),
             ),
             city: NullableStringFieldUpdateOperationsInput(
@@ -311,11 +323,12 @@ class PostApi {
             isInstallmentAvailable: NullableBoolFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(isInstallmentAvailable),
             ),
-            advanceAmount: FloatFieldUpdateOperationsInput(set$: advanceAmount),
+            advanceAmount:
+                StringFieldUpdateOperationsInput(set$: advanceAmount),
             noOfInstallments:
                 IntFieldUpdateOperationsInput(set$: noOfInstallments),
             monthlyInstallments:
-                FloatFieldUpdateOperationsInput(set$: monthlyInstallments),
+                StringFieldUpdateOperationsInput(set$: monthlyInstallments),
             readyForPossession: NullableBoolFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(readyForPossession),
             ),
@@ -323,8 +336,10 @@ class PostApi {
                 set$: PrismaUnion.zero(areaSizeUnitenum)),
             bedroooms: IntFieldUpdateOperationsInput(set$: bedroooms),
             bathroom: IntFieldUpdateOperationsInput(set$: bathrooms),
-            featureAndAmenities:
-                StringFieldUpdateOperationsInput(set$: featureAndAmenities),
+            amenitiesIconCodes:
+                StringFieldUpdateOperationsInput(set$: amenitiesIconCodes),
+            amenitiesNames:
+                StringFieldUpdateOperationsInput(set$: amenitiesNames),
             author: UsersUpdateOneRequiredWithoutPostsNestedInput(
               connect: UsersWhereUniqueInput(id: authorId),
             ),
@@ -337,11 +352,6 @@ class PostApi {
                 metaDescription: PrismaUnion.zero(
                   metaDescription,
                 ),
-              ),
-            ),
-            slug: SlugUpdateOneWithoutPostsNestedInput(
-              update: SlugUpdateWithoutPostsInput(
-                slug: StringFieldUpdateOperationsInput(set$: title),
               ),
             ),
             status: BoolFieldUpdateOperationsInput(
