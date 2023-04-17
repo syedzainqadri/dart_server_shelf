@@ -86,7 +86,7 @@ class DeveloperApi {
     router.post('/createDeveloper', (Request request) async {
       try {
         var payload = jsonDecode(await request.readAsString());
-        var name = payload['name'];
+        var name = payload['title'];
         var description = payload['description'];
         var logo = payload['logo'];
         var status = payload['status'];
@@ -137,7 +137,7 @@ class DeveloperApi {
       try {
         var payload = jsonDecode(await request.readAsString());
         var id = payload['id'];
-        var name = payload['name'];
+        var name = payload['title'];
         var description = payload['description'];
         var logo = payload['logo'];
         var status = payload['status'];
