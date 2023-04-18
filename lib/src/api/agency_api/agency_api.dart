@@ -104,7 +104,7 @@ class AgencyApi {
         var featuredImage = payload['featuredImage'];
         var logoImage = payload['logoImage'];
         var slug = payload['slug'];
-        var refrenceId = payload['refrenceId'];
+        var status = payload['status'];
         var agency = await prisma.agency.create(
           data: AgencyCreateInput(
             title: title,
@@ -132,6 +132,7 @@ class AgencyApi {
                 type: SlugType.PAGE,
               ),
             ),
+            status: PrismaUnion.zero(status),
           ),
         );
         var agencyObject = jsonEncode(agency);
@@ -189,6 +190,7 @@ class AgencyApi {
         var whatsapp = payload['whatsapp'];
         var featuredImage = payload['featuredImage'];
         var logoImage = payload['logoImage'];
+        var status = payload['status'];
         var agency = await prisma.agency.update(
           where: AgencyWhereUniqueInput(id: id),
           data: AgencyUpdateInput(
@@ -224,6 +226,8 @@ class AgencyApi {
             logoImage: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(logoImage)),
             updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
+            status: NullableBoolFieldUpdateOperationsInput(
+                set$: PrismaUnion.zero(status)),
           ),
         );
         var agencyObject = jsonEncode(agency);

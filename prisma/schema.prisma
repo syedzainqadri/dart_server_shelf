@@ -102,13 +102,13 @@ model Agency {
   mobile String?
   landline String?
   whatsapp String?
+  status Boolean?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   users         Users?  @relation(fields: [userId], references: [id])
   userId       Int?
   slug   Slug @relation(fields: [slugId], references: [id])
   slugId Int  @unique
-
 }
 // developer and project schema started
 model Developer {
