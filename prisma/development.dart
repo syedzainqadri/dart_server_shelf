@@ -3,7 +3,7 @@ import 'package:orm/configure.dart';
 /// Prisma development environment configurator.
 void configurator(PrismaDevelopment development) {
   development.override('DATABASE_URL',
-      r'mysql://doadmin:AVNS_x1TzzXT75yePLxPsDv8@db-mysql-nyc1-39825-do-user-13057874-0.b.db.ondigitalocean.com:25060/defaultdb?ssl-mode=REQUIRED');
+      r'mysql://admin:Ghrounda_123@ghrounda-database.cnlt1am4mrxg.us-east-2.rds.amazonaws.com:3306/ghrounda');
 
   // You can override environment variable example:
   // development.override('DEBUG', 'true');
