@@ -5,5 +5,5 @@ import 'package:orm/configure.dart';
 /// **NOTE**: The function name must be configurePrisma.
 void configurePrisma(PrismaEnvironment environment) {
   environment['DATABASE_URL'] =
-      r'mysql://doadmin:AVNS_x1TzzXT75yePLxPsDv8@db-mysql-nyc1-39825-do-user-13057874-0.b.db.ondigitalocean.com:25060/defaultdb?ssl-mode=REQUIRED';
+      r'mysql://ghroundadb:xB8O1_QY;6FV;z(V0x:~LZ9n,zvG2F1!@ls-ba76fa0894e6f74cd1b6ced47e42e03f256d4e73.cxipqwqmjllh.ap-southeast-1.rds.amazonaws.com:3306/dbghrounda';
 }
