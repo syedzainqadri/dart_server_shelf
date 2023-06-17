@@ -762,6 +762,7 @@ ProjectGroupByOutputType _$ProjectGroupByOutputTypeFromJson(
       developerId: json['developerId'] as int?,
       categoryId: json['categoryId'] as int?,
       projectNearByPlaceId: json['projectNearByPlaceId'] as int?,
+      status: json['status'] as bool?,
       $count: json['_count'] == null
           ? null
           : ProjectCountAggregateOutputType.fromJson(
@@ -802,6 +803,7 @@ Map<String, dynamic> _$ProjectGroupByOutputTypeToJson(
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
       'projectNearByPlaceId': instance.projectNearByPlaceId,
+      'status': instance.status,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
@@ -3989,6 +3991,7 @@ ProjectCountAggregateOutputType _$ProjectCountAggregateOutputTypeFromJson(
       developerId: json['developerId'] as int,
       categoryId: json['categoryId'] as int,
       projectNearByPlaceId: json['projectNearByPlaceId'] as int,
+      status: json['status'] as int,
       $all: json['_all'] as int,
     );
 
@@ -4010,6 +4013,7 @@ Map<String, dynamic> _$ProjectCountAggregateOutputTypeToJson(
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
       'projectNearByPlaceId': instance.projectNearByPlaceId,
+      'status': instance.status,
       '_all': instance.$all,
     };
 
@@ -4079,6 +4083,7 @@ ProjectMinAggregateOutputType _$ProjectMinAggregateOutputTypeFromJson(
       developerId: json['developerId'] as int?,
       categoryId: json['categoryId'] as int?,
       projectNearByPlaceId: json['projectNearByPlaceId'] as int?,
+      status: json['status'] as bool?,
     );
 
 Map<String, dynamic> _$ProjectMinAggregateOutputTypeToJson(
@@ -4099,6 +4104,7 @@ Map<String, dynamic> _$ProjectMinAggregateOutputTypeToJson(
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
       'projectNearByPlaceId': instance.projectNearByPlaceId,
+      'status': instance.status,
     };
 
 ProjectMaxAggregateOutputType _$ProjectMaxAggregateOutputTypeFromJson(
@@ -4123,6 +4129,7 @@ ProjectMaxAggregateOutputType _$ProjectMaxAggregateOutputTypeFromJson(
       developerId: json['developerId'] as int?,
       categoryId: json['categoryId'] as int?,
       projectNearByPlaceId: json['projectNearByPlaceId'] as int?,
+      status: json['status'] as bool?,
     );
 
 Map<String, dynamic> _$ProjectMaxAggregateOutputTypeToJson(
@@ -4143,6 +4150,7 @@ Map<String, dynamic> _$ProjectMaxAggregateOutputTypeToJson(
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
       'projectNearByPlaceId': instance.projectNearByPlaceId,
+      'status': instance.status,
     };
 
 FloorPlanCountAggregateOutputType _$FloorPlanCountAggregateOutputTypeFromJson(
@@ -7477,6 +7485,7 @@ Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
       developerId: json['developerId'] as int?,
       categoryId: json['categoryId'] as int?,
       projectNearByPlaceId: json['projectNearByPlaceId'] as int?,
+      status: json['status'] as bool?,
     );
 
 Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
@@ -7495,6 +7504,7 @@ Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
       'projectNearByPlaceId': instance.projectNearByPlaceId,
+      'status': instance.status,
     };
 
 FloorPlan _$FloorPlanFromJson(Map<String, dynamic> json) => FloorPlan(

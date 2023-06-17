@@ -96,6 +96,7 @@ class ProjectsApi {
         var developerId = payload['developerId'];
         var startingPrice = payload['startingPrice'];
         var endingPrice = payload['endingPrice'];
+        var status = payload['status'];
 
         var project = await prisma.project.create(
           data: ProjectCreateInput(
@@ -113,6 +114,7 @@ class ProjectsApi {
             developer: DeveloperCreateNestedOneWithoutProjectsInput(
               connect: DeveloperWhereUniqueInput(id: developerId),
             ),
+            status: PrismaUnion.zero(status),
           ),
         );
         var projectObject = jsonEncode(project);
@@ -164,6 +166,7 @@ class ProjectsApi {
         var endingPrice = payload['endingPrice'];
         var walkthroughThreeD = payload['walkthroughThreeD'];
         var categoryId = payload['categoryId'];
+        var status = payload['status'];
         var project = await prisma.project.update(
           where: ProjectWhereUniqueInput(id: id),
           data: ProjectUpdateInput(
@@ -187,7 +190,11 @@ class ProjectsApi {
               set$: DateTime.now(),
             ),
             category: CategoryUpdateOneWithoutProjectsNestedInput(
-                connect: CategoryWhereUniqueInput(id: categoryId)),
+              connect: CategoryWhereUniqueInput(id: categoryId),
+            ),
+            status: NullableBoolFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(status),
+            ),
           ),
         );
         var projectObject = jsonEncode(project);

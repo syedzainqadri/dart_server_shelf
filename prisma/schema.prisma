@@ -142,6 +142,7 @@ model Project {
   projectNearByPlace ProjectNearByPlace?  @relation(fields: [projectNearByPlaceId], references: [id])
   projectNearByPlaceId Int?
   floorplans  FloorPlan[]
+  status Boolean?
 }
 
 model FloorPlan {
@@ -590,3 +591,4 @@ enum ProductType {
 //TODO: add post type
 //TODO: add postContact relation to profile
 //TODO: complete roles
+//TODO: add customer api
