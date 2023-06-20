@@ -126,12 +126,14 @@ model Project {
   id        Int       @id @default(autoincrement())
   title     String
   address   String
+  description String?
   featuredImage String?
   gallery   String?
   locality  String?
+  area      String?
   city      String?
-  startingPrice     Float?
-  endingPrice     Float?
+  startingPrice     String?
+  endingPrice     String?
   walkthroughThreeD String? //iframe
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -86,6 +86,7 @@ class ProjectsApi {
     router.post('/createProject', (Request request) async {
       try {
         var payload = jsonDecode(await request.readAsString());
+        print(payload);
         var title = payload['title'];
         var address = payload['address'];
         var featuredImage = payload['featuredImage'];
@@ -97,7 +98,8 @@ class ProjectsApi {
         var startingPrice = payload['startingPrice'];
         var endingPrice = payload['endingPrice'];
         var status = payload['status'];
-
+        var area = payload['area'];
+        var walkthroughThreeD = payload['walkthroughThreeD'];
         var project = await prisma.project.create(
           data: ProjectCreateInput(
             title: title,
@@ -105,6 +107,7 @@ class ProjectsApi {
             featuredImage: PrismaUnion.zero(featuredImage),
             gallery: PrismaUnion.zero(gallery),
             locality: PrismaUnion.zero(locality),
+            area: PrismaUnion.zero(area),
             city: PrismaUnion.zero(city),
             startingPrice: PrismaUnion.zero(startingPrice),
             endingPrice: PrismaUnion.zero(endingPrice),
@@ -115,6 +118,7 @@ class ProjectsApi {
               connect: DeveloperWhereUniqueInput(id: developerId),
             ),
             status: PrismaUnion.zero(status),
+            walkthroughThreeD: PrismaUnion.zero(walkthroughThreeD),
           ),
         );
         var projectObject = jsonEncode(project);
@@ -166,6 +170,7 @@ class ProjectsApi {
         var endingPrice = payload['endingPrice'];
         var walkthroughThreeD = payload['walkthroughThreeD'];
         var categoryId = payload['categoryId'];
+        var area = payload['area'];
         var status = payload['status'];
         var project = await prisma.project.update(
           where: ProjectWhereUniqueInput(id: id),
@@ -178,11 +183,13 @@ class ProjectsApi {
                 set$: PrismaUnion.zero(gallery)),
             locality: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(locality)),
+            area: NullableStringFieldUpdateOperationsInput(
+                set$: PrismaUnion.zero(area)),
             city: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(city)),
-            startingPrice: NullableFloatFieldUpdateOperationsInput(
+            startingPrice: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(startingPrice)),
-            endingPrice: NullableFloatFieldUpdateOperationsInput(
+            endingPrice: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(endingPrice)),
             walkthroughThreeD: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(walkthroughThreeD)),
