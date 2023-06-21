@@ -141,8 +141,8 @@ model Project {
   developerId Int?
   category Category?  @relation(fields: [categoryId], references: [id])
   categoryId Int?
-  projectNearByPlace ProjectNearByPlace?  @relation(fields: [projectNearByPlaceId], references: [id])
-  projectNearByPlaceId Int?
+  projectNearByPlaceNames String?
+  projectNearByPlaceIcons String?
   floorplans  FloorPlan[]
   status Boolean?
 }
@@ -156,20 +156,10 @@ model FloorPlan {
 }
 
 model ProjectNearByPlace {
-  id        Int       @id @default(autoincrement())
-  title     String
-  latitude  String
-  longitude String
-  placeCategory ProjectNearByPlaceCategory @default(PROPERTY)
-  projects Project[]
-}
-
-enum ProjectNearByPlaceCategory {
-  PROPERTY
-  SCHOOL
-  RESTAURANT
-  HOSPITAL
-  PARK
+  id          Int      @id @default(autoincrement())
+  name        String @unique
+  icon String? @db.VarChar(800)
+  status   Boolean  @default(false)
 }
 
 model Product {

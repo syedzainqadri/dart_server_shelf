@@ -90,22 +90,13 @@ class ProjectNearByPlaceNearByPlacesApi {
       try {
         var payload = jsonDecode(await request.readAsString());
         var title = payload['title'];
-        var longitude = payload['longitude'];
-        var latitude = payload['latitude'];
-        var projectId = payload['projectId'];
-        var placeCategory = payload['placeCategory'];
-        ProjectNearByPlaceCategory placeCategoryEnum =
-            ProjectNearByPlaceCategory.values.firstWhere((e) =>
-                e.toString() == 'ProjectNearByPlaceCategory.' + placeCategory);
+        var icon = payload['icon'];
+        var status = payload['status'];
         var projectNearByPlace = await prisma.projectNearByPlace.create(
           data: ProjectNearByPlaceCreateInput(
-            title: title,
-            longitude: longitude,
-            latitude: latitude,
-            placeCategory: placeCategoryEnum,
-            projects: ProjectCreateNestedManyWithoutProjectNearByPlaceInput(
-              connect: ProjectWhereUniqueInput(id: projectId),
-            ),
+            name: title,
+            icon: PrismaUnion.zero(icon),
+            status: status,
           ),
         );
         var projectNearByPlaceObject = jsonEncode(projectNearByPlace);
@@ -148,23 +139,14 @@ class ProjectNearByPlaceNearByPlacesApi {
         var payload = jsonDecode(await request.readAsString());
         var id = payload['id'];
         var title = payload['title'];
-        var longitude = payload['longitude'];
-        var latitude = payload['latitude'];
-        var placeCategory = payload['placeCategory'];
-        ProjectNearByPlaceCategory placeCategoryEnum =
-            ProjectNearByPlaceCategory.values.firstWhere((e) =>
-                e.toString() ==
-                'ProjectNearByPlaceCategory.' +
-                    placeCategory); //convert int to enum
+        var icon = payload['icon'];
+        var status = payload['status']; //convert int to enum
         var projectNearByPlace = await prisma.projectNearByPlace.update(
           where: ProjectNearByPlaceWhereUniqueInput(id: id),
           data: ProjectNearByPlaceUpdateInput(
-            title: StringFieldUpdateOperationsInput(set$: title),
-            longitude: StringFieldUpdateOperationsInput(set$: longitude),
-            latitude: StringFieldUpdateOperationsInput(set$: latitude),
-            placeCategory:
-                EnumProjectNearByPlaceCategoryFieldUpdateOperationsInput(
-                    set$: placeCategoryEnum),
+            name: StringFieldUpdateOperationsInput(set$: title),
+            icon: NullableStringFieldUpdateOperationsInput(set$: icon),
+            status: BoolFieldUpdateOperationsInput(set$: status),
           ),
         );
         var projectNearByPlaceObject = jsonEncode(projectNearByPlace);

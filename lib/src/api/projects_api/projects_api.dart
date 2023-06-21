@@ -89,6 +89,7 @@ class ProjectsApi {
         print(payload);
         var title = payload['title'];
         var address = payload['address'];
+        var description = payload['description'];
         var featuredImage = payload['featuredImage'];
         var gallery = payload['gallery'];
         var locality = payload['locality'];
@@ -100,10 +101,13 @@ class ProjectsApi {
         var status = payload['status'];
         var area = payload['area'];
         var walkthroughThreeD = payload['walkthroughThreeD'];
+        var projectNearByPlacesNames = payload['projectNearByPlacesNames'];
+        var projectNearByPlacesIcons = payload['projectNearByPlacesIcons'];
         var project = await prisma.project.create(
           data: ProjectCreateInput(
             title: title,
             address: address,
+            description: PrismaUnion.zero(description),
             featuredImage: PrismaUnion.zero(featuredImage),
             gallery: PrismaUnion.zero(gallery),
             locality: PrismaUnion.zero(locality),
@@ -119,6 +123,8 @@ class ProjectsApi {
             ),
             status: PrismaUnion.zero(status),
             walkthroughThreeD: PrismaUnion.zero(walkthroughThreeD),
+            projectNearByPlaceNames: PrismaUnion.zero(projectNearByPlacesNames),
+            projectNearByPlaceIcons: PrismaUnion.zero(projectNearByPlacesIcons),
           ),
         );
         var projectObject = jsonEncode(project);
@@ -162,6 +168,7 @@ class ProjectsApi {
         var id = payload['id'].toInt();
         var title = payload['title'];
         var address = payload['address'];
+        var description = payload['description'];
         var featuredImage = payload['featuredImage'];
         var gallery = payload['gallery'];
         var locality = payload['locality'];
@@ -172,11 +179,15 @@ class ProjectsApi {
         var categoryId = payload['categoryId'];
         var area = payload['area'];
         var status = payload['status'];
+        var projectNearByPlacesNames = payload['projectNearByPlacesNames'];
+        var projectNearByPlacesIcons = payload['projectNearByPlacesIcons'];
         var project = await prisma.project.update(
           where: ProjectWhereUniqueInput(id: id),
           data: ProjectUpdateInput(
             title: StringFieldUpdateOperationsInput(set$: title),
             address: StringFieldUpdateOperationsInput(set$: address),
+            description:
+                NullableStringFieldUpdateOperationsInput(set$: description),
             featuredImage: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(featuredImage)),
             gallery: NullableStringFieldUpdateOperationsInput(
@@ -202,6 +213,10 @@ class ProjectsApi {
             status: NullableBoolFieldUpdateOperationsInput(
               set$: PrismaUnion.zero(status),
             ),
+            projectNearByPlaceNames: NullableStringFieldUpdateOperationsInput(
+                set$: projectNearByPlacesNames),
+            projectNearByPlaceIcons: NullableStringFieldUpdateOperationsInput(
+                set$: projectNearByPlacesIcons),
           ),
         );
         var projectObject = jsonEncode(project);

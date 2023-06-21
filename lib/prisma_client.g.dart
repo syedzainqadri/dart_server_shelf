@@ -763,7 +763,8 @@ ProjectGroupByOutputType _$ProjectGroupByOutputTypeFromJson(
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       developerId: json['developerId'] as int?,
       categoryId: json['categoryId'] as int?,
-      projectNearByPlaceId: json['projectNearByPlaceId'] as int?,
+      projectNearByPlaceNames: json['projectNearByPlaceNames'] as String?,
+      projectNearByPlaceIcons: json['projectNearByPlaceIcons'] as String?,
       status: json['status'] as bool?,
       $count: json['_count'] == null
           ? null
@@ -806,7 +807,8 @@ Map<String, dynamic> _$ProjectGroupByOutputTypeToJson(
       'updatedAt': instance.updatedAt.toIso8601String(),
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
-      'projectNearByPlaceId': instance.projectNearByPlaceId,
+      'projectNearByPlaceNames': instance.projectNearByPlaceNames,
+      'projectNearByPlaceIcons': instance.projectNearByPlaceIcons,
       'status': instance.status,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
@@ -930,11 +932,9 @@ ProjectNearByPlaceGroupByOutputType
     _$ProjectNearByPlaceGroupByOutputTypeFromJson(Map<String, dynamic> json) =>
         ProjectNearByPlaceGroupByOutputType(
           id: json['id'] as int,
-          title: json['title'] as String,
-          latitude: json['latitude'] as String,
-          longitude: json['longitude'] as String,
-          placeCategory: $enumDecode(
-              _$ProjectNearByPlaceCategoryEnumMap, json['placeCategory']),
+          name: json['name'] as String,
+          icon: json['icon'] as String?,
+          status: json['status'] as bool,
           $count: json['_count'] == null
               ? null
               : ProjectNearByPlaceCountAggregateOutputType.fromJson(
@@ -961,25 +961,15 @@ Map<String, dynamic> _$ProjectNearByPlaceGroupByOutputTypeToJson(
         ProjectNearByPlaceGroupByOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'placeCategory':
-          _$ProjectNearByPlaceCategoryEnumMap[instance.placeCategory]!,
+      'name': instance.name,
+      'icon': instance.icon,
+      'status': instance.status,
       '_count': instance.$count?.toJson(),
       '_avg': instance.$avg?.toJson(),
       '_sum': instance.$sum?.toJson(),
       '_min': instance.$min?.toJson(),
       '_max': instance.$max?.toJson(),
     };
-
-const _$ProjectNearByPlaceCategoryEnumMap = {
-  ProjectNearByPlaceCategory.PROPERTY: 'PROPERTY',
-  ProjectNearByPlaceCategory.SCHOOL: 'SCHOOL',
-  ProjectNearByPlaceCategory.RESTAURANT: 'RESTAURANT',
-  ProjectNearByPlaceCategory.HOSPITAL: 'HOSPITAL',
-  ProjectNearByPlaceCategory.PARK: 'PARK',
-};
 
 AggregateProduct _$AggregateProductFromJson(Map<String, dynamic> json) =>
     AggregateProduct(
@@ -3996,7 +3986,8 @@ ProjectCountAggregateOutputType _$ProjectCountAggregateOutputTypeFromJson(
       updatedAt: json['updatedAt'] as int,
       developerId: json['developerId'] as int,
       categoryId: json['categoryId'] as int,
-      projectNearByPlaceId: json['projectNearByPlaceId'] as int,
+      projectNearByPlaceNames: json['projectNearByPlaceNames'] as int,
+      projectNearByPlaceIcons: json['projectNearByPlaceIcons'] as int,
       status: json['status'] as int,
       $all: json['_all'] as int,
     );
@@ -4020,7 +4011,8 @@ Map<String, dynamic> _$ProjectCountAggregateOutputTypeToJson(
       'updatedAt': instance.updatedAt,
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
-      'projectNearByPlaceId': instance.projectNearByPlaceId,
+      'projectNearByPlaceNames': instance.projectNearByPlaceNames,
+      'projectNearByPlaceIcons': instance.projectNearByPlaceIcons,
       'status': instance.status,
       '_all': instance.$all,
     };
@@ -4031,7 +4023,6 @@ ProjectAvgAggregateOutputType _$ProjectAvgAggregateOutputTypeFromJson(
       id: (json['id'] as num?)?.toDouble(),
       developerId: (json['developerId'] as num?)?.toDouble(),
       categoryId: (json['categoryId'] as num?)?.toDouble(),
-      projectNearByPlaceId: (json['projectNearByPlaceId'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$ProjectAvgAggregateOutputTypeToJson(
@@ -4040,7 +4031,6 @@ Map<String, dynamic> _$ProjectAvgAggregateOutputTypeToJson(
       'id': instance.id,
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
-      'projectNearByPlaceId': instance.projectNearByPlaceId,
     };
 
 ProjectSumAggregateOutputType _$ProjectSumAggregateOutputTypeFromJson(
@@ -4049,7 +4039,6 @@ ProjectSumAggregateOutputType _$ProjectSumAggregateOutputTypeFromJson(
       id: json['id'] as int?,
       developerId: json['developerId'] as int?,
       categoryId: json['categoryId'] as int?,
-      projectNearByPlaceId: json['projectNearByPlaceId'] as int?,
     );
 
 Map<String, dynamic> _$ProjectSumAggregateOutputTypeToJson(
@@ -4058,7 +4047,6 @@ Map<String, dynamic> _$ProjectSumAggregateOutputTypeToJson(
       'id': instance.id,
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
-      'projectNearByPlaceId': instance.projectNearByPlaceId,
     };
 
 ProjectMinAggregateOutputType _$ProjectMinAggregateOutputTypeFromJson(
@@ -4084,7 +4072,8 @@ ProjectMinAggregateOutputType _$ProjectMinAggregateOutputTypeFromJson(
           : DateTime.parse(json['updatedAt'] as String),
       developerId: json['developerId'] as int?,
       categoryId: json['categoryId'] as int?,
-      projectNearByPlaceId: json['projectNearByPlaceId'] as int?,
+      projectNearByPlaceNames: json['projectNearByPlaceNames'] as String?,
+      projectNearByPlaceIcons: json['projectNearByPlaceIcons'] as String?,
       status: json['status'] as bool?,
     );
 
@@ -4107,7 +4096,8 @@ Map<String, dynamic> _$ProjectMinAggregateOutputTypeToJson(
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
-      'projectNearByPlaceId': instance.projectNearByPlaceId,
+      'projectNearByPlaceNames': instance.projectNearByPlaceNames,
+      'projectNearByPlaceIcons': instance.projectNearByPlaceIcons,
       'status': instance.status,
     };
 
@@ -4134,7 +4124,8 @@ ProjectMaxAggregateOutputType _$ProjectMaxAggregateOutputTypeFromJson(
           : DateTime.parse(json['updatedAt'] as String),
       developerId: json['developerId'] as int?,
       categoryId: json['categoryId'] as int?,
-      projectNearByPlaceId: json['projectNearByPlaceId'] as int?,
+      projectNearByPlaceNames: json['projectNearByPlaceNames'] as String?,
+      projectNearByPlaceIcons: json['projectNearByPlaceIcons'] as String?,
       status: json['status'] as bool?,
     );
 
@@ -4157,7 +4148,8 @@ Map<String, dynamic> _$ProjectMaxAggregateOutputTypeToJson(
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
-      'projectNearByPlaceId': instance.projectNearByPlaceId,
+      'projectNearByPlaceNames': instance.projectNearByPlaceNames,
+      'projectNearByPlaceIcons': instance.projectNearByPlaceIcons,
       'status': instance.status,
     };
 
@@ -4245,27 +4237,14 @@ Map<String, dynamic> _$FloorPlanMaxAggregateOutputTypeToJson(
       'projectId': instance.projectId,
     };
 
-ProjectNearByPlaceCountOutputType _$ProjectNearByPlaceCountOutputTypeFromJson(
-        Map<String, dynamic> json) =>
-    ProjectNearByPlaceCountOutputType(
-      projects: json['projects'] as int,
-    );
-
-Map<String, dynamic> _$ProjectNearByPlaceCountOutputTypeToJson(
-        ProjectNearByPlaceCountOutputType instance) =>
-    <String, dynamic>{
-      'projects': instance.projects,
-    };
-
 ProjectNearByPlaceCountAggregateOutputType
     _$ProjectNearByPlaceCountAggregateOutputTypeFromJson(
             Map<String, dynamic> json) =>
         ProjectNearByPlaceCountAggregateOutputType(
           id: json['id'] as int,
-          title: json['title'] as int,
-          latitude: json['latitude'] as int,
-          longitude: json['longitude'] as int,
-          placeCategory: json['placeCategory'] as int,
+          name: json['name'] as int,
+          icon: json['icon'] as int,
+          status: json['status'] as int,
           $all: json['_all'] as int,
         );
 
@@ -4273,10 +4252,9 @@ Map<String, dynamic> _$ProjectNearByPlaceCountAggregateOutputTypeToJson(
         ProjectNearByPlaceCountAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'placeCategory': instance.placeCategory,
+      'name': instance.name,
+      'icon': instance.icon,
+      'status': instance.status,
       '_all': instance.$all,
     };
 
@@ -4311,22 +4289,18 @@ ProjectNearByPlaceMinAggregateOutputType
             Map<String, dynamic> json) =>
         ProjectNearByPlaceMinAggregateOutputType(
           id: json['id'] as int?,
-          title: json['title'] as String?,
-          latitude: json['latitude'] as String?,
-          longitude: json['longitude'] as String?,
-          placeCategory: $enumDecodeNullable(
-              _$ProjectNearByPlaceCategoryEnumMap, json['placeCategory']),
+          name: json['name'] as String?,
+          icon: json['icon'] as String?,
+          status: json['status'] as bool?,
         );
 
 Map<String, dynamic> _$ProjectNearByPlaceMinAggregateOutputTypeToJson(
         ProjectNearByPlaceMinAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'placeCategory':
-          _$ProjectNearByPlaceCategoryEnumMap[instance.placeCategory],
+      'name': instance.name,
+      'icon': instance.icon,
+      'status': instance.status,
     };
 
 ProjectNearByPlaceMaxAggregateOutputType
@@ -4334,22 +4308,18 @@ ProjectNearByPlaceMaxAggregateOutputType
             Map<String, dynamic> json) =>
         ProjectNearByPlaceMaxAggregateOutputType(
           id: json['id'] as int?,
-          title: json['title'] as String?,
-          latitude: json['latitude'] as String?,
-          longitude: json['longitude'] as String?,
-          placeCategory: $enumDecodeNullable(
-              _$ProjectNearByPlaceCategoryEnumMap, json['placeCategory']),
+          name: json['name'] as String?,
+          icon: json['icon'] as String?,
+          status: json['status'] as bool?,
         );
 
 Map<String, dynamic> _$ProjectNearByPlaceMaxAggregateOutputTypeToJson(
         ProjectNearByPlaceMaxAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'placeCategory':
-          _$ProjectNearByPlaceCategoryEnumMap[instance.placeCategory],
+      'name': instance.name,
+      'icon': instance.icon,
+      'status': instance.status,
     };
 
 ProductCountOutputType _$ProductCountOutputTypeFromJson(
@@ -7494,7 +7464,8 @@ Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       developerId: json['developerId'] as int?,
       categoryId: json['categoryId'] as int?,
-      projectNearByPlaceId: json['projectNearByPlaceId'] as int?,
+      projectNearByPlaceNames: json['projectNearByPlaceNames'] as String?,
+      projectNearByPlaceIcons: json['projectNearByPlaceIcons'] as String?,
       status: json['status'] as bool?,
     );
 
@@ -7515,7 +7486,8 @@ Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
       'updatedAt': instance.updatedAt.toIso8601String(),
       'developerId': instance.developerId,
       'categoryId': instance.categoryId,
-      'projectNearByPlaceId': instance.projectNearByPlaceId,
+      'projectNearByPlaceNames': instance.projectNearByPlaceNames,
+      'projectNearByPlaceIcons': instance.projectNearByPlaceIcons,
       'status': instance.status,
     };
 
@@ -7536,21 +7508,17 @@ Map<String, dynamic> _$FloorPlanToJson(FloorPlan instance) => <String, dynamic>{
 ProjectNearByPlace _$ProjectNearByPlaceFromJson(Map<String, dynamic> json) =>
     ProjectNearByPlace(
       id: json['id'] as int,
-      title: json['title'] as String,
-      latitude: json['latitude'] as String,
-      longitude: json['longitude'] as String,
-      placeCategory: $enumDecode(
-          _$ProjectNearByPlaceCategoryEnumMap, json['placeCategory']),
+      name: json['name'] as String,
+      icon: json['icon'] as String?,
+      status: json['status'] as bool,
     );
 
 Map<String, dynamic> _$ProjectNearByPlaceToJson(ProjectNearByPlace instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'placeCategory':
-          _$ProjectNearByPlaceCategoryEnumMap[instance.placeCategory]!,
+      'name': instance.name,
+      'icon': instance.icon,
+      'status': instance.status,
     };
 
 Product _$ProductFromJson(Map<String, dynamic> json) => Product(
