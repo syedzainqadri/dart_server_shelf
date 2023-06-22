@@ -87,40 +87,34 @@ class AgencyApi {
       try {
         var payload = jsonDecode(await request.readAsString());
         var title = payload['title'];
-        var companyTitle = payload['companyTitle'];
         var ownerName = payload['ownerName'];
-        var ownerMessage = payload['ownerMessage'];
-        var ownerProfilePic = payload['ownerProfilePic'];
-        var ownerDesignation = payload['ownerDesignation'];
         var country = payload['country'];
         var email = payload['email'];
-        var website = payload['website'];
         var address = payload['address'];
+        var city = payload['city'];
+        var state = payload['state'];
         var description = payload['description'];
         var mobile = payload['mobile'];
-        var landline = payload['landLine'];
-        var whatsapp = payload['whatsapp'];
         var userID = payload['userID'];
         var featuredImage = payload['featuredImage'];
         var logoImage = payload['logoImage'];
+        var purpose = payload['purpose'];
+        var propertyType = payload['propertyType'];
         var slug = payload['slug'];
         var status = payload['status'];
         var agency = await prisma.agency.create(
           data: AgencyCreateInput(
             title: title,
-            companyTitle: PrismaUnion.zero(companyTitle),
             ownerName: PrismaUnion.zero(ownerName),
-            ownerMessage: PrismaUnion.zero(ownerMessage),
-            ownerProfilePic: PrismaUnion.zero(ownerProfilePic),
-            ownerDesignation: PrismaUnion.zero(ownerDesignation),
             country: PrismaUnion.zero(country),
             email: PrismaUnion.zero(email),
-            website: PrismaUnion.zero(website),
             address: PrismaUnion.zero(address),
+            city: PrismaUnion.zero(city),
+            state: PrismaUnion.zero(state),
             description: PrismaUnion.zero(description),
+            purpose: PrismaUnion.zero(purpose),
+            propertyType: PrismaUnion.zero(propertyType),
             mobile: PrismaUnion.zero(mobile),
-            landline: PrismaUnion.zero(landline),
-            whatsapp: PrismaUnion.zero(whatsapp),
             featuredImage: PrismaUnion.zero(featuredImage),
             logoImage: PrismaUnion.zero(logoImage),
             users: UsersCreateNestedOneWithoutAgencyInput(
@@ -175,56 +169,52 @@ class AgencyApi {
         var payload = jsonDecode(await request.readAsString());
         var id = payload['id'];
         var title = payload['title'];
-        var companyTitle = payload['companyTitle'];
         var ownerName = payload['ownerName'];
-        var ownerMessage = payload['ownerMessage'];
-        var ownerProfilePic = payload['ownerProfilePic'];
-        var ownerDesignation = payload['ownerDesignation'];
         var country = payload['country'];
         var email = payload['email'];
-        var website = payload['website'];
         var address = payload['address'];
+        var state = payload['state'];
+        var city = payload['city'];
         var description = payload['description'];
         var mobile = payload['mobile'];
-        var landline = payload['landLine'];
-        var whatsapp = payload['whatsapp'];
         var featuredImage = payload['featuredImage'];
         var logoImage = payload['logoImage'];
+        var propertyType = payload['propertyType'];
+        var purpose = payload['purpose'];
         var status = payload['status'];
         var agency = await prisma.agency.update(
           where: AgencyWhereUniqueInput(id: id),
           data: AgencyUpdateInput(
             title: StringFieldUpdateOperationsInput(set$: title),
-            companyTitle: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(companyTitle)),
             ownerName: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(ownerName)),
-            ownerMessage: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(ownerMessage)),
-            ownerProfilePic: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(ownerProfilePic)),
-            ownerDesignation: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(ownerDesignation)),
+              set$: PrismaUnion.zero(ownerName),
+            ),
             country: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(country)),
+              set$: PrismaUnion.zero(country),
+            ),
+            state: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(state),
+            ),
+            city: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(city),
+            ),
             email: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(email)),
-            website: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(website)),
             address: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(address)),
             description: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(description)),
             mobile: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(mobile)),
-            landline: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(landline)),
-            whatsapp: NullableStringFieldUpdateOperationsInput(
-                set$: PrismaUnion.zero(whatsapp)),
             featuredImage: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(featuredImage)),
             logoImage: NullableStringFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(logoImage)),
+            purpose: NullableStringFieldUpdateOperationsInput(
+              set$: PrismaUnion.zero(purpose),
+            ),
+            propertyType: NullableStringFieldUpdateOperationsInput(
+                set$: PrismaUnion.zero(propertyType)),
             updatedAt: DateTimeFieldUpdateOperationsInput(set$: DateTime.now()),
             status: NullableBoolFieldUpdateOperationsInput(
                 set$: PrismaUnion.zero(status)),

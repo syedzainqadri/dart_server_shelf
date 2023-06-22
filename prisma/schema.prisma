@@ -90,18 +90,15 @@ model Agency {
   featuredImage String?
   logoImage String?
   ownerName String?
-  ownerDesignation String?
-  ownerMessage String?
-  ownerProfilePic String?
-  companyTitle String?
   country String? @default("Pakistan")
+  state String?
+  city String?
   email String?
-  website String?
   address String?
   description String?
+  propertyType String?
+  purpose String?
   mobile String?
-  landline String?
-  whatsapp String?
   status Boolean?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -127,8 +124,8 @@ model Project {
   title     String
   address   String
   description String?
-  featuredImage String?
-  gallery   String?
+  featuredImage String? @db.VarChar(2000)
+  gallery   String? @db.VarChar(2000)
   locality  String?
   area      String?
   city      String?
