@@ -1419,6 +1419,7 @@ const _$RoleEnumMap = {
   Role.SALESMANAGER: 'SALESMANAGER',
   Role.MANAGER: 'MANAGER',
   Role.MARKETER: 'MARKETER',
+  Role.AGENCY: 'AGENCY',
 };
 
 const _$AreaSizeUnitEnumMap = {

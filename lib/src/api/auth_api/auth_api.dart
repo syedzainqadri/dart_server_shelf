@@ -17,6 +17,9 @@ class AuthAPi {
         var userEmail = payLoad['email']; //email provided by the user
         var fcmToken = payLoad['fcmtoken']; //fcmToken provided by the user
         var password = payLoad['password']; //password provided by the user
+        var role = payLoad['role'];
+        Role roleEnum =
+            Role.values.firstWhere((e) => e.toString() == 'Role.' + role);
         final salt = generateSalt();
         final hashedPassword = hashPassword(password, salt);
         final newUser = await prisma.users
@@ -31,6 +34,7 @@ class AuthAPi {
             fcmtoken: fcmToken,
             password: PrismaUnion.zero(hashedPassword),
             salt: PrismaUnion.zero(salt),
+            role: roleEnum,
           ),
         );
         var userObject = jsonEncode(user);

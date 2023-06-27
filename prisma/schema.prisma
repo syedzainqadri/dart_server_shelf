@@ -217,7 +217,7 @@ model Users {
   email    String    @unique
   role     Role      @default(USER) // need to create table
   password String?
-  fcmtoken String?
+  fcmtoken String?  @default("")
   salt     String?
   preferencesEmailNotification Boolean @default(false)
   preferencesNewsletter Boolean @default(false)
@@ -506,6 +506,7 @@ enum Role {
   SALESMANAGER
   MANAGER
   MARKETER
+  AGENCY
 }
 
 enum SellPurpose {
