@@ -103,7 +103,6 @@ class ProductApi {
             title: title,
             price: price,
             salePrice: salePrice,
-            image: image,
             productLifeInDays: productLifeInDays,
             productType: productTypeEnum,
             description: PrismaUnion.zero(description),
@@ -165,7 +164,6 @@ class ProductApi {
             title: StringFieldUpdateOperationsInput(set$: title),
             price: FloatFieldUpdateOperationsInput(set$: price),
             salePrice: FloatFieldUpdateOperationsInput(set$: salePrice),
-            image: StringFieldUpdateOperationsInput(set$: image),
             productLifeInDays:
                 IntFieldUpdateOperationsInput(set$: productLifeInDays),
             productType: EnumProductTypeFieldUpdateOperationsInput(

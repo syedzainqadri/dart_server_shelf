@@ -164,8 +164,7 @@ model Product {
   title String
   price Float
   salePrice Float
-  image String
-  productType ProductType @default(HOT)
+  productType ProductType @default(STANDARD)
   description String?
   productLifeInDays Int @default(7)
   status Boolean @default(true)
@@ -576,6 +575,7 @@ enum ProductType {
   FEATURED
   TOP
   BUMPED
+  STANDARD
 }
 
 //TODO: add post type
