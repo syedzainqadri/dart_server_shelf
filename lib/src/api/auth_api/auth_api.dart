@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, prefer_interpolation_to_compose_strings
 
 import '/dart_server.dart';
 

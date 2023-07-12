@@ -88,7 +88,6 @@ class AmenitiesApi {
         var payload = jsonDecode(await request.readAsString());
         print(payload);
         var name = payload['name'];
-        var description = payload['description'];
         var status = payload['status'];
         var icon = payload['icon'];
         var amenities = await prisma.amenities.create(
@@ -138,7 +137,6 @@ class AmenitiesApi {
         var payload = jsonDecode(await request.readAsString());
         var id = payload['id'];
         var name = payload['name'];
-        var description = payload['description'];
         var status = payload['status'];
 
         var icon = payload['icon'];

@@ -91,7 +91,6 @@ class ProductApi {
         var title = payload['title'];
         var price = payload['price'];
         var salePrice = payload['salePrice'];
-        var image = payload['image'];
         var productLifeInDays = payload['productLifeInDays'];
         var productType = payload['productType'];
         ProductType productTypeEnum = ProductType.values
@@ -151,7 +150,6 @@ class ProductApi {
         var title = payload['title'];
         var price = payload['price'];
         var salePrice = payload['salePrice'];
-        var image = payload['image'];
         var productLifeInDays = payload['productLifeInDays'];
         var productType = payload['productType'];
         ProductType productTypeEnum = ProductType.values
