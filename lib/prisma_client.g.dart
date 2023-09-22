@@ -1003,8 +1003,8 @@ ProductGroupByOutputType _$ProductGroupByOutputTypeFromJson(
     ProductGroupByOutputType(
       id: json['id'] as int,
       title: json['title'] as String,
-      price: (json['price'] as num).toDouble(),
-      salePrice: (json['salePrice'] as num).toDouble(),
+      price: json['price'] as String,
+      salePrice: json['salePrice'] as String,
       productType: $enumDecode(_$ProductTypeEnumMap, json['productType']),
       description: json['description'] as String?,
       productLifeInDays: json['productLifeInDays'] as int,
@@ -4346,8 +4346,6 @@ ProductAvgAggregateOutputType _$ProductAvgAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     ProductAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
-      price: (json['price'] as num?)?.toDouble(),
-      salePrice: (json['salePrice'] as num?)?.toDouble(),
       productLifeInDays: (json['productLifeInDays'] as num?)?.toDouble(),
     );
 
@@ -4355,8 +4353,6 @@ Map<String, dynamic> _$ProductAvgAggregateOutputTypeToJson(
         ProductAvgAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'price': instance.price,
-      'salePrice': instance.salePrice,
       'productLifeInDays': instance.productLifeInDays,
     };
 
@@ -4364,8 +4360,6 @@ ProductSumAggregateOutputType _$ProductSumAggregateOutputTypeFromJson(
         Map<String, dynamic> json) =>
     ProductSumAggregateOutputType(
       id: json['id'] as int?,
-      price: (json['price'] as num?)?.toDouble(),
-      salePrice: (json['salePrice'] as num?)?.toDouble(),
       productLifeInDays: json['productLifeInDays'] as int?,
     );
 
@@ -4373,8 +4367,6 @@ Map<String, dynamic> _$ProductSumAggregateOutputTypeToJson(
         ProductSumAggregateOutputType instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'price': instance.price,
-      'salePrice': instance.salePrice,
       'productLifeInDays': instance.productLifeInDays,
     };
 
@@ -4383,8 +4375,8 @@ ProductMinAggregateOutputType _$ProductMinAggregateOutputTypeFromJson(
     ProductMinAggregateOutputType(
       id: json['id'] as int?,
       title: json['title'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
-      salePrice: (json['salePrice'] as num?)?.toDouble(),
+      price: json['price'] as String?,
+      salePrice: json['salePrice'] as String?,
       productType:
           $enumDecodeNullable(_$ProductTypeEnumMap, json['productType']),
       description: json['description'] as String?,
@@ -4418,8 +4410,8 @@ ProductMaxAggregateOutputType _$ProductMaxAggregateOutputTypeFromJson(
     ProductMaxAggregateOutputType(
       id: json['id'] as int?,
       title: json['title'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
-      salePrice: (json['salePrice'] as num?)?.toDouble(),
+      price: json['price'] as String?,
+      salePrice: json['salePrice'] as String?,
       productType:
           $enumDecodeNullable(_$ProductTypeEnumMap, json['productType']),
       description: json['description'] as String?,
@@ -7488,8 +7480,8 @@ Map<String, dynamic> _$ProjectNearByPlaceToJson(ProjectNearByPlace instance) =>
 Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       id: json['id'] as int,
       title: json['title'] as String,
-      price: (json['price'] as num).toDouble(),
-      salePrice: (json['salePrice'] as num).toDouble(),
+      price: json['price'] as String,
+      salePrice: json['salePrice'] as String,
       productType: $enumDecode(_$ProductTypeEnumMap, json['productType']),
       description: json['description'] as String?,
       productLifeInDays: json['productLifeInDays'] as int,

@@ -162,8 +162,8 @@ model ProjectNearByPlace {
 model Product {
   id       Int       @id @default(autoincrement())
   title String
-  price Float
-  salePrice Float
+  price String
+  salePrice String
   productType ProductType @default(STANDARD)
   description String?
   productLifeInDays Int @default(7)

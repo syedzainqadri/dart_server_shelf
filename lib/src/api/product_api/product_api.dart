@@ -160,8 +160,8 @@ class ProductApi {
           where: ProductWhereUniqueInput(id: id),
           data: ProductUpdateInput(
             title: StringFieldUpdateOperationsInput(set$: title),
-            price: FloatFieldUpdateOperationsInput(set$: price),
-            salePrice: FloatFieldUpdateOperationsInput(set$: salePrice),
+            price: StringFieldUpdateOperationsInput(set$: price),
+            salePrice: StringFieldUpdateOperationsInput(set$: salePrice),
             productLifeInDays:
                 IntFieldUpdateOperationsInput(set$: productLifeInDays),
             productType: EnumProductTypeFieldUpdateOperationsInput(
