@@ -11,7 +11,8 @@
 # COPY --from=builder /dart_server/query-engine ./build/query-engine
 # CMD [ "server" ]
 
-FROM dart:stable as builder
+# FROM dart:stable as builder
+FROM dart:2.19.0
 
 # Set the working directory
 WORKDIR /app
